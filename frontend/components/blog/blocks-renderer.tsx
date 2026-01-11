@@ -1,7 +1,7 @@
 "use client";
 
-import type { JSX } from "react";
 import Image from "next/image";
+import type { JSX } from "react";
 
 interface TextNode {
   type: "text";
@@ -58,13 +58,7 @@ interface ImageBlock {
   };
 }
 
-type Block =
-  | ParagraphBlock
-  | HeadingBlock
-  | ListBlock
-  | QuoteBlock
-  | CodeBlock
-  | ImageBlock;
+type Block = ParagraphBlock | HeadingBlock | ListBlock | QuoteBlock | CodeBlock | ImageBlock;
 
 function renderInlineNode(node: InlineNode, index: number): React.ReactNode {
   if (node.type === "link") {
@@ -97,10 +91,7 @@ function renderInlineNode(node: InlineNode, index: number): React.ReactNode {
   }
   if (node.code) {
     content = (
-      <code
-        key={`code-${index}`}
-        className="bg-neutral-100 px-1.5 py-0.5 rounded text-sm"
-      >
+      <code key={`code-${index}`} className="bg-neutral-100 px-1.5 py-0.5 rounded text-sm">
         {content}
       </code>
     );
@@ -112,19 +103,11 @@ function renderInlineNode(node: InlineNode, index: number): React.ReactNode {
 function renderBlock(block: Block, index: number): React.ReactNode {
   switch (block.type) {
     case "paragraph":
-      return (
-        <p key={index}>
-          {block.children.map((child, i) => renderInlineNode(child, i))}
-        </p>
-      );
+      return <p key={index}>{block.children.map((child, i) => renderInlineNode(child, i))}</p>;
 
     case "heading": {
       const Tag = `h${block.level}` as keyof JSX.IntrinsicElements;
-      return (
-        <Tag key={index}>
-          {block.children.map((child, i) => renderInlineNode(child, i))}
-        </Tag>
-      );
+      return <Tag key={index}>{block.children.map((child, i) => renderInlineNode(child, i))}</Tag>;
     }
 
     case "list": {
@@ -132,9 +115,7 @@ function renderBlock(block: Block, index: number): React.ReactNode {
       return (
         <Tag key={index}>
           {block.children.map((item, i) => (
-            <li key={i}>
-              {item.children.map((child, j) => renderInlineNode(child, j))}
-            </li>
+            <li key={i}>{item.children.map((child, j) => renderInlineNode(child, j))}</li>
           ))}
         </Tag>
       );
@@ -149,13 +130,8 @@ function renderBlock(block: Block, index: number): React.ReactNode {
 
     case "code":
       return (
-        <pre
-          key={index}
-          className="bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto"
-        >
-          <code>
-            {block.children.map((child) => child.text).join("")}
-          </code>
+        <pre key={index} className="bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto">
+          <code>{block.children.map((child) => child.text).join("")}</code>
         </pre>
       );
 

@@ -1,8 +1,8 @@
-import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
-import { Experience } from "@/components/sections/experience";
-import { Testimonials } from "@/components/sections/testimonials";
 import { Contact } from "@/components/sections/contact";
+import { Experience } from "@/components/sections/experience";
+import { Hero } from "@/components/sections/hero";
+import { Testimonials } from "@/components/sections/testimonials";
 
 export default function Home() {
   return (

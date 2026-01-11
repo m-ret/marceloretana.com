@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import { getBlogPostBySlug, getBlogPosts, getStrapiImageUrl } from "@/lib/strapi";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import { BlocksRenderer } from "@/components/blog/blocks-renderer";
+import { getBlogPostBySlug, getBlogPosts, getStrapiImageUrl } from "@/lib/strapi";
 
 export const revalidate = 60; // ISR - revalidate every 60 seconds
 
@@ -74,13 +74,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* Featured image */}
         {imageUrl && (
           <div className="relative aspect-video mb-12 rounded-lg overflow-hidden">
-            <Image
-              src={imageUrl}
-              alt={post.title}
-              fill
-              className="object-cover"
-              priority
-            />
+            <Image src={imageUrl} alt={post.title} fill className="object-cover" priority />
           </div>
         )}
 

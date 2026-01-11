@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import { getBlogPosts, getStrapiImageUrl } from "@/lib/strapi";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { getBlogPosts, getStrapiImageUrl } from "@/lib/strapi";
 
 export const revalidate = 60; // ISR - revalidate every 60 seconds
 
@@ -22,9 +22,7 @@ export default async function BlogPage() {
 
         {/* Header */}
         <header className="mb-24">
-          <p className="text-white text-sm uppercase tracking-widest mb-8">
-            Blog
-          </p>
+          <p className="text-white text-sm uppercase tracking-widest mb-8">Blog</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight">
             Thoughts &
             <br />
@@ -57,18 +55,11 @@ export default async function BlogPage() {
                       <h2 className="text-xl md:text-2xl text-white font-light mb-3 group-hover:text-neutral-300 transition-colors">
                         {post.title}
                       </h2>
-                      <p className="text-neutral-400 line-clamp-2">
-                        {post.excerpt}
-                      </p>
+                      <p className="text-neutral-400 line-clamp-2">{post.excerpt}</p>
                     </div>
                     {imageUrl && (
                       <div className="hidden md:block relative w-32 h-20 rounded overflow-hidden flex-shrink-0">
-                        <Image
-                          src={imageUrl}
-                          alt={post.title}
-                          fill
-                          className="object-cover"
-                        />
+                        <Image src={imageUrl} alt={post.title} fill className="object-cover" />
                       </div>
                     )}
                   </div>
@@ -78,9 +69,7 @@ export default async function BlogPage() {
           </div>
         ) : (
           <div className="border-t border-neutral-800 pt-24 text-center">
-            <p className="text-neutral-500 text-lg">
-              No posts yet. Check back soon!
-            </p>
+            <p className="text-neutral-500 text-lg">No posts yet. Check back soon!</p>
           </div>
         )}
       </div>

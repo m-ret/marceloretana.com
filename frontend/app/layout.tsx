@@ -24,8 +24,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Marcelo Retana" }],
   openGraph: {
     title: "Marcelo Retana | Developer & Entrepreneur",
-    description:
-      "Software Engineer and Founder of GEXP Software. Building innovative solutions.",
+    description: "Software Engineer and Founder of GEXP Software. Building innovative solutions.",
     url: "https://marceloretana.com",
     siteName: "Marcelo Retana",
     locale: "en_US",
@@ -34,8 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Marcelo Retana | Developer & Entrepreneur",
-    description:
-      "Software Engineer and Founder of GEXP Software. Building innovative solutions.",
+    description: "Software Engineer and Founder of GEXP Software. Building innovative solutions.",
   },
 };
 

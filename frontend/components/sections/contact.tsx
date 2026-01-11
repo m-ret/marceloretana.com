@@ -25,7 +25,10 @@ export function Contact() {
                 placeholder="E-MAIL"
                 className="flex-1 bg-transparent text-[var(--color-fg)] text-sm placeholder:text-[var(--color-fg-muted)] focus:outline-none"
               />
-              <button type="submit" className="text-[var(--color-fg)] ml-4 hover:text-[var(--color-fg-secondary)] transition-colors">
+              <button
+                type="submit"
+                className="text-[var(--color-fg)] ml-4 hover:text-[var(--color-fg-secondary)] transition-colors"
+              >
                 →
               </button>
             </form>
@@ -75,10 +78,7 @@ export function Contact() {
             >
               marcelo@gexpsoftware.com
             </a>
-            <a
-              href="tel:+50671077969"
-              className="hover:text-[var(--color-fg)] transition-colors"
-            >
+            <a href="tel:+50671077969" className="hover:text-[var(--color-fg)] transition-colors">
               +506 7107 7969
             </a>
           </div>

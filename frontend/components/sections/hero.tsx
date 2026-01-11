@@ -34,19 +34,15 @@ export function Hero() {
           {/* Info panel */}
           <div className="bg-yellow-400 p-8 md:p-10 flex flex-col justify-between md:w-80">
             <div>
-              <h2 className="text-2xl md:text-3xl font-light text-black mb-2">
-                Marcelo Retana
-              </h2>
-              <p className="text-black/70 text-sm mb-6">
-                Founder & Software Engineer
-              </p>
+              <h2 className="text-2xl md:text-3xl font-light text-black mb-2">Marcelo Retana</h2>
+              <p className="text-black/70 text-sm mb-6">Founder & Software Engineer</p>
               <p className="text-black/80 leading-relaxed mb-4">
-                Serial entrepreneur passionate about helping small businesses scale through technology.
-                Software engineer with a love for UI/UX design.
+                Serial entrepreneur passionate about helping small businesses scale through
+                technology. Software engineer with a love for UI/UX design.
               </p>
               <p className="text-black/80 leading-relaxed text-sm">
-                Building with the most modern tools — Claude Code, AI-powered workflows,
-                and cutting-edge frameworks. Based in Puerto Jiménez, Costa Rica.
+                Building with the most modern tools — Claude Code, AI-powered workflows, and
+                cutting-edge frameworks. Based in Puerto Jiménez, Costa Rica.
               </p>
             </div>
             <div className="mt-8 space-y-2 text-sm">

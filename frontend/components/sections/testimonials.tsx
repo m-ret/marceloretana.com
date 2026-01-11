@@ -13,7 +13,8 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    quote: "Their approach created a mutually beneficial relationship that resembled a unified team. Their proactivity and creativity stood out.",
+    quote:
+      "Their approach created a mutually beneficial relationship that resembled a unified team. Their proactivity and creativity stood out.",
     author: "Don Hayley, CPA",
     role: "Founder",
     company: "Mavrix AI",
@@ -21,7 +22,8 @@ const testimonials: Testimonial[] = [
     rating: 5,
   },
   {
-    quote: "Their speed and ability to adapt to changes are top-notch. They over-delivered, and operated like an extension of our team.",
+    quote:
+      "Their speed and ability to adapt to changes are top-notch. They over-delivered, and operated like an extension of our team.",
     author: "Clay McIlrath",
     role: "Founder",
     company: "Unicorn",
@@ -29,14 +31,16 @@ const testimonials: Testimonial[] = [
     rating: 5,
   },
   {
-    quote: "The page turned out spectacular; it honestly exceeded my expectations. Their attention and step-by-step explanation was incredible.",
+    quote:
+      "The page turned out spectacular; it honestly exceeded my expectations. Their attention and step-by-step explanation was incredible.",
     author: "Leonel Chinchilla",
     role: "Business Owner",
     source: "google",
     rating: 5,
   },
   {
-    quote: "We were pleased with their service and the results. Their ability to plan an entire design process impressed us.",
+    quote:
+      "We were pleased with their service and the results. Their ability to plan an entire design process impressed us.",
     author: "Andrew Bailey",
     role: "Co-Founder",
     company: "Avodah Transformations",
@@ -44,7 +48,8 @@ const testimonials: Testimonial[] = [
     rating: 5,
   },
   {
-    quote: "An extremely professional team. They supported us every step of the way to achieve the website we dreamed of.",
+    quote:
+      "An extremely professional team. They supported us every step of the way to achieve the website we dreamed of.",
     author: "Stefany Ramírez",
     role: "Business Owner",
     source: "google",
@@ -63,11 +68,7 @@ function StarRating({ rating }: { rating: number }) {
   return (
     <div className="flex gap-1">
       {[...Array(rating)].map((_, i) => (
-        <svg
-          key={i}
-          className="w-4 h-4 text-yellow-400 fill-current"
-          viewBox="0 0 20 20"
-        >
+        <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
           <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
         </svg>
       ))}
@@ -123,9 +124,7 @@ export function Testimonials() {
               </p>
               <p className="text-[var(--color-fg-muted)]">
                 {testimonials[activeIndex].role}
-                {testimonials[activeIndex].company && (
-                  <>, {testimonials[activeIndex].company}</>
-                )}
+                {testimonials[activeIndex].company && <>, {testimonials[activeIndex].company}</>}
               </p>
             </div>
           </div>
@@ -143,9 +142,7 @@ export function Testimonials() {
                   : "bg-[var(--color-bg-secondary)] text-[var(--color-fg-secondary)] hover:bg-[var(--color-bg)] hover:text-[var(--color-fg)]"
               }`}
             >
-              <p className="text-xs font-medium truncate">
-                {testimonial.author.split(",")[0]}
-              </p>
+              <p className="text-xs font-medium truncate">{testimonial.author.split(",")[0]}</p>
               <p className="text-xs opacity-60 truncate">
                 {testimonial.company || testimonial.role}
               </p>

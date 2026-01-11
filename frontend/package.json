@@ -2,32 +2,55 @@
   "name": "marceloretana-frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "biome lint . && oxlint",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "check": "biome check --write .",
+    "typecheck": "tsc --noEmit",
+    "validate": "bun run typecheck && bun run lint && bun run format:check",
+    "prepare": "cd .. && husky frontend/.husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "biome check --write --no-errors-on-unmatched",
+      "oxlint"
+    ],
+    "*.{json,md,css}": [
+      "biome format --write --no-errors-on-unmatched"
+    ]
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
     "@tailwindcss/typography": "^0.5.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.562.0",
+    "lucide-react": "^3.0.0",
     "next": "^15",
     "react": "^19",
     "react-dom": "^19",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.11",
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
     "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^15",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "oxlint": "^1.38.0",
     "tailwindcss": "^4",
-    "@tailwindcss/postcss": "^4",
     "typescript": "^5"
   }
 }

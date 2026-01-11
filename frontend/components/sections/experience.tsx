@@ -52,7 +52,10 @@ const experiences: ExperienceItem[] = [
 
 export function Experience() {
   return (
-    <section id="experience" className="py-32 md:py-40 px-6 md:px-12 lg:px-16 bg-[var(--color-bg-secondary)]">
+    <section
+      id="experience"
+      className="py-32 md:py-40 px-6 md:px-12 lg:px-16 bg-[var(--color-bg-secondary)]"
+    >
       <div className="max-w-6xl">
         {/* WHAT I DO section */}
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-24">

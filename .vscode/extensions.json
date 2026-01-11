@@ -1,0 +1,35 @@
+{
+  "recommendations": [
+    // Biome - Formatter & Linter
+    "biomejs.biome",
+
+    // Tailwind CSS IntelliSense
+    "bradlc.vscode-tailwindcss",
+
+    // TypeScript improvements
+    "yoavbls.pretty-ts-errors",
+
+    // Git
+    "eamodio.gitlens",
+
+    // Icons
+    "pkief.material-icon-theme",
+
+    // Error Lens - Inline error display
+    "usernamehw.errorlens",
+
+    // Import Cost - Show package sizes
+    "wix.vscode-import-cost",
+
+    // Path autocomplete
+    "christian-kohler.path-intellisense",
+
+    // Console Ninja - Console logs in editor
+    "wallabyjs.console-ninja"
+  ],
+  "unwantedRecommendations": [
+    // Disable ESLint & Prettier (using Biome instead)
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}

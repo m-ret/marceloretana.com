@@ -62,9 +62,12 @@ export function About() {
           </div>
           <div>
             <p className="text-2xl md:text-3xl lg:text-4xl font-light text-[var(--color-fg-secondary)] leading-relaxed">
-              I&apos;m a Software Engineer and serial entrepreneur with a passion for creating work that{" "}
+              I&apos;m a Software Engineer and serial entrepreneur with a passion for creating work
+              that{" "}
               <span className="text-[var(--color-fg)] font-normal">empowers small businesses</span>,{" "}
-              <span className="text-[var(--color-fg)] font-normal">transforms ideas into reality</span>{" "}
+              <span className="text-[var(--color-fg)] font-normal">
+                transforms ideas into reality
+              </span>{" "}
               and{" "}
               <span className="text-[var(--color-fg)] font-normal">drives meaningful impact</span>.
             </p>
@@ -80,18 +83,18 @@ export function About() {
           </div>
           <div className="space-y-6">
             <p className="text-lg md:text-xl text-[var(--color-fg-secondary)] leading-relaxed">
-              I combine deep technical expertise with a keen eye for design. While I write code
-              that scales, I never lose sight of the user experience. Every pixel matters,
-              every interaction counts.
+              I combine deep technical expertise with a keen eye for design. While I write code that
+              scales, I never lose sight of the user experience. Every pixel matters, every
+              interaction counts.
             </p>
             <p className="text-lg md:text-xl text-[var(--color-fg-secondary)] leading-relaxed">
-              I leverage the most modern tools in the industry — from AI-powered development
-              with Claude Code to cutting-edge frameworks. I believe in working smarter,
-              not just harder, to deliver exceptional results.
+              I leverage the most modern tools in the industry — from AI-powered development with
+              Claude Code to cutting-edge frameworks. I believe in working smarter, not just harder,
+              to deliver exceptional results.
             </p>
             <p className="text-lg md:text-xl text-[var(--color-fg)] leading-relaxed font-medium">
-              My mission? Helping small businesses compete with the big players through
-              technology that just works.
+              My mission? Helping small businesses compete with the big players through technology
+              that just works.
             </p>
           </div>
         </div>

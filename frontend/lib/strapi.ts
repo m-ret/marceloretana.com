@@ -59,10 +59,7 @@ export interface Profile {
   skills?: string[];
 }
 
-async function fetchStrapi<T>(
-  endpoint: string,
-  options?: RequestInit
-): Promise<T> {
+async function fetchStrapi<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const headers: HeadersInit = {
     "Content-Type": "application/json",
   };
@@ -98,9 +95,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
   }
 }
 
-export async function getBlogPostBySlug(
-  slug: string
-): Promise<BlogPost | null> {
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
     const response = await fetchStrapi<StrapiResponse<BlogPost[]>>(
       `/blog-posts?filters[slug][$eq]=${slug}&populate=featuredImage&publicationState=live`
@@ -126,9 +121,7 @@ export async function getExperiences(): Promise<Experience[]> {
 
 export async function getProfile(): Promise<Profile | null> {
   try {
-    const response = await fetchStrapi<StrapiResponse<Profile>>(
-      "/profile?populate=profileImage"
-    );
+    const response = await fetchStrapi<StrapiResponse<Profile>>("/profile?populate=profileImage");
     return response.data || null;
   } catch {
     console.error("Failed to fetch profile");
