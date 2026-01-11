@@ -42,13 +42,15 @@ export default async function BlogPage() {
                   className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-16 py-8 border-b border-neutral-800 group hover:bg-neutral-900/30 transition-colors -mx-4 px-4"
                 >
                   <div>
-                    <time className="text-sm text-neutral-500">
-                      {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </time>
+                    {post.publishedAt && (
+                      <time className="text-sm text-neutral-500">
+                        {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </time>
+                    )}
                   </div>
                   <div className="flex gap-8">
                     <div className="flex-1">

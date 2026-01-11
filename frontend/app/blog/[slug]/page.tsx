@@ -58,13 +58,15 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Header */}
         <header className="mb-12">
-          <time className="text-neutral-500 text-sm">
-            {new Date(post.publishedAt).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
+          {post.publishedAt && (
+            <time className="text-neutral-500 text-sm">
+              {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+          )}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mt-4 mb-6 leading-tight">
             {post.title}
           </h1>
