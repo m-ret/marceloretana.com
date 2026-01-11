@@ -1,6 +1,6 @@
 export function Contact() {
   return (
-    <section id="contact" className="py-32 md:py-40 px-6 md:px-12 lg:px-16 bg-[var(--color-bg)]">
+    <section id="contact" className="pt-32 md:pt-40 px-6 md:px-12 lg:px-16 bg-[var(--color-bg)]">
       <div className="max-w-6xl">
         {/* LET'S KEEP IN TOUCH header */}
         <div className="border-t border-[var(--color-border)] pt-8 mb-24">
@@ -89,7 +89,7 @@ export function Contact() {
       </div>
 
       {/* Scrolling tagline bar */}
-      <div className="mt-24 -mx-6 md:-mx-12 lg:-mx-16 overflow-hidden">
+      <div className="mt-16 -mx-6 md:-mx-12 lg:-mx-16 overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...Array(4)].map((_, i) => (
             <div key={i} className="flex">
