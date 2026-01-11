@@ -12,7 +12,13 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "lint": "biome lint . && oxlint",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "check": "biome check --write .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.33.2",
@@ -25,9 +31,11 @@
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.11",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "oxlint": "^1.38.0",
     "typescript": "^5"
   },
   "engines": {
