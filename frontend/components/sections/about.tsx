@@ -1,14 +1,20 @@
-const skills = [
-  "React",
-  "React Native",
-  "TypeScript",
-  "Node.js",
-  "Next.js",
-  "AWS",
-  "GraphQL",
-  "UI/UX Design",
-  "Claude Code",
-  "AI Tools",
+const capabilities = [
+  {
+    category: "Frontend",
+    items: ["React", "Next.js", "React Native", "TypeScript", "SSR/RSC"],
+  },
+  {
+    category: "Backend",
+    items: ["Node.js", "GraphQL", "REST APIs", "PostgreSQL", "Redis"],
+  },
+  {
+    category: "Cloud & DevOps",
+    items: ["AWS", "Hetzner", "Coolify", "Docker", "CI/CD"],
+  },
+  {
+    category: "AI-Powered Dev",
+    items: ["Claude Code", "Cursor", "AI Workflows"],
+  },
 ];
 
 const clients = [
@@ -18,8 +24,20 @@ const clients = [
   "BMW",
   "Mercedes Benz",
   "Pfizer",
-  "Univision",
+  "Univision-Televisa",
   "Provectus",
+  "Automation Anywhere",
+  "3Pillar Global",
+  "Unicorn",
+  "Value Creation Labs",
+  "Ambit",
+  "Avodah",
+  "Sunrise Hill Glamping",
+  "Nature Escapes",
+  "Vista3 Architects",
+  "IdeADesign Architecture",
+  "Softon Digital",
+  "MyBasePay",
 ];
 
 const ventures = [
@@ -149,42 +167,50 @@ export function About() {
             Index
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-16">
-            {/* Skills */}
+          <div className="space-y-16">
+            {/* Full-Stack Capabilities */}
             <div>
               <h3 className="text-lg md:text-xl uppercase tracking-widest text-[var(--color-fg)] font-medium mb-6">
-                Technologies & Tools
+                Full-Stack Capabilities
               </h3>
-              <div className="border-t border-[var(--color-border)]">
-                <div className="grid grid-cols-2 gap-x-8">
-                  {skills.map((skill) => (
-                    <p
-                      key={skill}
-                      className="py-2 text-[var(--color-fg-secondary)] border-b border-[var(--color-border)] hover:text-[var(--color-fg)] transition-colors"
-                    >
-                      {skill}
-                    </p>
-                  ))}
-                </div>
+              <p className="text-[var(--color-fg-muted)] mb-8 max-w-2xl">
+                End-to-end ownership — from pixel-perfect interfaces to scalable infrastructure.
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-[var(--color-border)] pt-6">
+                {capabilities.map((cap) => (
+                  <div key={cap.category}>
+                    <h4 className="text-sm uppercase tracking-widest text-[var(--color-fg)] font-medium mb-4">
+                      {cap.category}
+                    </h4>
+                    <div className="space-y-2">
+                      {cap.items.map((item) => (
+                        <p
+                          key={item}
+                          className="text-[var(--color-fg-secondary)] hover:text-[var(--color-fg)] transition-colors"
+                        >
+                          {item}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Clients */}
+            {/* Trusted By */}
             <div>
               <h3 className="text-lg md:text-xl uppercase tracking-widest text-[var(--color-fg)] font-medium mb-6">
                 Trusted By
               </h3>
-              <div className="border-t border-[var(--color-border)]">
-                <div className="grid grid-cols-2 gap-x-8">
-                  {clients.map((client) => (
-                    <p
-                      key={client}
-                      className="py-2 text-[var(--color-fg-secondary)] border-b border-[var(--color-border)] hover:text-[var(--color-fg)] transition-colors"
-                    >
-                      {client}
-                    </p>
-                  ))}
-                </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 border-t border-[var(--color-border)]">
+                {clients.map((client) => (
+                  <p
+                    key={client}
+                    className="py-3 text-[var(--color-fg-secondary)] border-b border-[var(--color-border)] hover:text-[var(--color-fg)] transition-colors"
+                  >
+                    {client}
+                  </p>
+                ))}
               </div>
             </div>
           </div>

@@ -14,15 +14,6 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "Their approach created a mutually beneficial relationship that resembled a unified team. Their proactivity and creativity stood out.",
-    author: "Don Hayley, CPA",
-    role: "Founder",
-    company: "Mavrix AI",
-    source: "clutch",
-    rating: 5,
-  },
-  {
-    quote:
       "Their speed and ability to adapt to changes are top-notch. They over-delivered, and operated like an extension of our team.",
     author: "Clay McIlrath",
     role: "Founder",
@@ -52,6 +43,7 @@ const testimonials: Testimonial[] = [
       "An extremely professional team. They supported us every step of the way to achieve the website we dreamed of.",
     author: "Stefany Ramírez",
     role: "Business Owner",
+    company: "Nature Escapes",
     source: "google",
     rating: 5,
   },
@@ -59,7 +51,17 @@ const testimonials: Testimonial[] = [
     quote: "Top-quality service with the utmost professionalism. 100% recommended.",
     author: "Francisco Elizondo",
     role: "Business Owner",
+    company: "Dr Bahía Ballena",
     source: "google",
+    rating: 5,
+  },
+  {
+    quote:
+      "Their approach created a mutually beneficial relationship that resembled a unified team. Their proactivity and creativity stood out.",
+    author: "Don Hayley, CPA",
+    role: "Founder",
+    company: "Mavrix AI",
+    source: "clutch",
     rating: 5,
   },
 ];
