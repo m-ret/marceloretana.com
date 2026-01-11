@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Content */}
         <div className="prose prose-invert prose-lg max-w-none prose-p:text-neutral-300 prose-headings:text-white prose-headings:font-light prose-a:text-white prose-a:underline prose-strong:text-white">
-          <BlocksRenderer content={post.content} />
+          <BlocksRenderer content={post.content ?? []} />
         </div>
 
         {/* Footer */}
