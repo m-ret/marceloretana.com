@@ -1,7 +1,9 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Nav } from "@/components/sections/nav";
 import { ThemeProvider } from "@/components/theme-provider";
+import { QueryProvider } from "@/lib/query-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,6 +24,7 @@ export const metadata: Metadata = {
     "Costa Rica",
   ],
   authors: [{ name: "Marcelo Retana" }],
+  metadataBase: new URL("https://marceloretana.com"),
   openGraph: {
     title: "Marcelo Retana | Developer & Entrepreneur",
     description: "Software Engineer and Founder of GEXP Software. Building innovative solutions.",
@@ -35,6 +38,10 @@ export const metadata: Metadata = {
     title: "Marcelo Retana | Developer & Entrepreneur",
     description: "Software Engineer and Founder of GEXP Software. Building innovative solutions.",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -45,10 +52,13 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider>
-          <Nav />
-          {children}
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider>
+            <Nav />
+            {children}
+          </ThemeProvider>
+        </QueryProvider>
+        <Analytics />
       </body>
     </html>
   );
