@@ -1,0 +1,135 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { X } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
+
+const menuLinks = [
+  { href: "/", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "/blog", label: "Blog" },
+  { href: "#contact", label: "Contact" },
+];
+
+export function Nav() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      {/* Fixed Nav */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-16 py-6 bg-[var(--color-bg)]">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="text-[var(--color-fg)] text-xl tracking-tight">
+            <span className="font-light">MARCELO</span>
+            <span className="font-light text-[var(--color-fg-muted)] mx-1">&</span>
+            <span className="font-bold">RETANA</span>
+          </Link>
+
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+
+            {/* Hamburger button */}
+            <button
+              onClick={() => setIsOpen(true)}
+              className="flex flex-col gap-1.5 p-2 group"
+              aria-label="Open menu"
+            >
+              <span className="w-8 h-0.5 bg-[var(--color-fg)] group-hover:bg-[var(--color-fg-secondary)] transition-colors" />
+              <span className="w-8 h-0.5 bg-[var(--color-fg)] group-hover:bg-[var(--color-fg-secondary)] transition-colors" />
+              <span className="w-8 h-0.5 bg-[var(--color-fg)] group-hover:bg-[var(--color-fg-secondary)] transition-colors" />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Full screen menu overlay */}
+      <div
+        className={`fixed inset-0 z-[100] bg-[var(--color-bg)] transition-transform duration-500 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="h-full px-6 md:px-12 lg:px-16 py-6 flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <Link
+              href="/"
+              className="text-[var(--color-fg)] text-xl tracking-tight"
+              onClick={() => setIsOpen(false)}
+            >
+              <span className="font-light">MARCELO</span>
+              <span className="font-light text-[var(--color-fg-muted)] mx-1">&</span>
+              <span className="font-bold">RETANA</span>
+            </Link>
+
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+
+              {/* Close button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-2 text-[var(--color-fg)] hover:text-[var(--color-fg-secondary)] transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="w-8 h-8" strokeWidth={1} />
+              </button>
+            </div>
+          </div>
+
+          {/* Menu content */}
+          <div className="flex-1 flex flex-col md:flex-row md:items-start pt-24 md:pt-32">
+            {/* Newsletter section */}
+            <div className="md:w-1/2 mb-16 md:mb-0">
+              <p className="text-sm uppercase tracking-widest text-[var(--color-fg)] mb-2">
+                Newsletter
+              </p>
+              <p className="text-[var(--color-fg-muted)] text-sm mb-6">
+                Tips, tricks and my latest bits
+              </p>
+              <form className="flex items-center border-b border-[var(--color-border)] pb-2 max-w-sm">
+                <input
+                  type="email"
+                  placeholder="E-MAIL"
+                  className="flex-1 bg-transparent text-[var(--color-fg)] text-sm placeholder:text-[var(--color-fg-muted)] focus:outline-none"
+                />
+                <button type="submit" className="text-[var(--color-fg)] ml-4">
+                  →
+                </button>
+              </form>
+            </div>
+
+            {/* Menu links */}
+            <div className="md:w-1/2 md:pl-16">
+              <nav className="space-y-2">
+                {menuLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block text-3xl md:text-4xl text-[var(--color-fg)] hover:text-[var(--color-fg-secondary)] transition-colors border-b border-[var(--color-border)] pb-2"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="border-t border-[var(--color-border)] pt-6 flex flex-wrap gap-8 text-sm text-[var(--color-fg-muted)]">
+            <div>
+              <p className="text-[var(--color-fg)] mb-1">Puerto Jiménez, Costa Rica</p>
+            </div>
+            <div>
+              <p className="text-[var(--color-fg)] mb-1">marcelo@gexpsoftware.com</p>
+            </div>
+            <div className="ml-auto">
+              <p>&copy; {new Date().getFullYear()} Marcelo Retana</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

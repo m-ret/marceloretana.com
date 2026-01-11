@@ -1,0 +1,42 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+.yarn
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Env files
+.env
+.env*.local
+
+# Misc
+.DS_Store
+*.pem
+*.log
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+
+# Bun
+bun.lockb
+
+# Strapi
+cms/.tmp
+cms/.cache
+cms/build
+cms/exports
+cms/.strapi-updater.json
