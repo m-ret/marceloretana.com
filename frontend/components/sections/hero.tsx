@@ -95,7 +95,7 @@ export function Hero() {
                 <span>→</span>
               </a>
               <a
-                href="/api/resume"
+                href="/marcelo-retana-resume.pdf"
                 className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] transition-colors"
               >
                 <span>Download Resume</span>
