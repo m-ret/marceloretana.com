@@ -37,8 +37,8 @@ export function Hero() {
               <h2 className="text-2xl md:text-3xl font-light text-black mb-2">Marcelo Retana</h2>
               <p className="text-black/70 text-sm mb-6">Founder & Software Engineer</p>
               <p className="text-black/80 leading-relaxed mb-4">
-                Serial entrepreneur passionate about helping small businesses scale through
-                technology. Software engineer with a love for UI/UX design.
+                Serial entrepreneur passionate about technology and helping businesses and people
+                grow. Software engineer who loves getting involved with product, UX, and UI.
               </p>
               <p className="text-black/80 leading-relaxed text-sm">
                 Building with the most modern tools — Claude Code, AI-powered workflows, and
@@ -80,10 +80,28 @@ export function Hero() {
             </p>
             <a
               href="mailto:info@gexpsoftware.com"
-              className="text-xl md:text-2xl text-[var(--color-fg-secondary)] hover:text-[var(--color-fg)] transition-colors"
+              className="text-xl md:text-2xl text-[var(--color-fg-secondary)] hover:text-[var(--color-fg)] transition-colors mb-6"
             >
               info@gexpsoftware.com
             </a>
+            <div className="flex flex-col gap-3">
+              <a
+                href="https://cal.com/marcelo-retana"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-[var(--color-fg)] hover:text-[var(--color-fg-secondary)] transition-colors"
+              >
+                <span>Book a Call</span>
+                <span>→</span>
+              </a>
+              <a
+                href="/api/resume"
+                className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] transition-colors"
+              >
+                <span>Download Resume</span>
+                <span>↓</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

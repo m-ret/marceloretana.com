@@ -19,12 +19,22 @@ export function Contact() {
             <p className="text-[var(--color-fg-muted)] text-sm mb-6">
               Have a project in mind? Let&apos;s talk.
             </p>
-            <a
-              href="mailto:info@gexpsoftware.com"
-              className="text-[var(--color-fg)] hover:text-[var(--color-fg-secondary)] transition-colors text-sm uppercase tracking-widest"
-            >
-              info@gexpsoftware.com →
-            </a>
+            <div className="flex flex-col gap-3">
+              <a
+                href="https://cal.com/marcelo-retana"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--color-fg)] hover:text-[var(--color-fg-secondary)] transition-colors text-sm uppercase tracking-widest"
+              >
+                Book a Call →
+              </a>
+              <a
+                href="mailto:info@gexpsoftware.com"
+                className="text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] transition-colors text-sm uppercase tracking-widest"
+              >
+                info@gexpsoftware.com →
+              </a>
+            </div>
           </div>
 
           {/* Location */}
