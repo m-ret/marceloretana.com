@@ -35,18 +35,18 @@ const experiences: ExperienceItem[] = [
       "Built and maintained business process tools using React, Node.js, and IBM Carbon Design System.",
   },
   {
-    company: "SixFifty",
-    role: "Software Developer",
-    duration: "1+ yrs",
+    company: "Univision-Televisa",
+    role: "Full Stack Developer",
+    duration: "4 yrs",
     description:
-      "Developed legal document automation systems using TypeScript, React, Redux, GraphQL, and AWS.",
+      "Built and maintained multiple high-traffic platforms including Univision.com and TUDN using Next.js, GraphQL, and modern web technologies.",
   },
   {
     company: "Prodigious Latin America",
-    role: "Senior Software Engineer",
+    role: "Full Stack Developer",
     duration: "3 yrs",
     description:
-      "Front-end development for Bank of America. Built web applications following latest standards.",
+      "Full stack development for Bank of America. Built web applications following latest standards.",
   },
 ];
 
@@ -73,9 +73,9 @@ export function Experience() {
 
         {/* Experience list */}
         <div className="border-t border-[var(--color-border)]">
-          {experiences.map((exp, index) => (
+          {experiences.map((exp) => (
             <div
-              key={index}
+              key={exp.company}
               className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-16 py-8 border-b border-[var(--color-border)] group hover:bg-[var(--color-bg-tertiary)] transition-colors -mx-4 px-4"
             >
               <div>

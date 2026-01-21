@@ -11,27 +11,20 @@ export function Contact() {
 
         {/* Contact grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24">
-          {/* Newsletter */}
+          {/* Get In Touch */}
           <div className="lg:col-span-2">
             <p className="text-lg md:text-xl uppercase tracking-widest text-[var(--color-fg)] font-medium mb-2">
-              Newsletter
+              Get In Touch
             </p>
             <p className="text-[var(--color-fg-muted)] text-sm mb-6">
-              Tips, tricks and my latest bits
+              Have a project in mind? Let&apos;s talk.
             </p>
-            <form className="flex items-center border-b border-[var(--color-border)] pb-2 max-w-sm">
-              <input
-                type="email"
-                placeholder="E-MAIL"
-                className="flex-1 bg-transparent text-[var(--color-fg)] text-sm placeholder:text-[var(--color-fg-muted)] focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="text-[var(--color-fg)] ml-4 hover:text-[var(--color-fg-secondary)] transition-colors"
-              >
-                →
-              </button>
-            </form>
+            <a
+              href="mailto:info@gexpsoftware.com"
+              className="text-[var(--color-fg)] hover:text-[var(--color-fg-secondary)] transition-colors text-sm uppercase tracking-widest"
+            >
+              info@gexpsoftware.com →
+            </a>
           </div>
 
           {/* Location */}
@@ -73,10 +66,10 @@ export function Contact() {
         <div className="border-t border-[var(--color-border)] pt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 text-sm">
           <div className="flex flex-wrap gap-8 text-[var(--color-fg-muted)]">
             <a
-              href="mailto:marcelo@gexpsoftware.com"
+              href="mailto:info@gexpsoftware.com"
               className="hover:text-[var(--color-fg)] transition-colors"
             >
-              marcelo@gexpsoftware.com
+              info@gexpsoftware.com
             </a>
             <a href="tel:+50671077969" className="hover:text-[var(--color-fg)] transition-colors">
               +506 7107 7969
@@ -91,8 +84,8 @@ export function Contact() {
       {/* Scrolling tagline bar */}
       <div className="mt-16 -mx-6 md:-mx-12 lg:-mx-16 overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex">
+          {["set-1", "set-2", "set-3", "set-4"].map((id) => (
+            <div key={id} className="flex">
               <span className="px-8 py-4 text-sm font-bold uppercase tracking-wider bg-yellow-400 text-black">
                 Building The Future
               </span>

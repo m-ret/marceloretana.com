@@ -30,7 +30,7 @@ const clients = [
   "3Pillar Global",
   "Unicorn",
   "Value Creation Labs",
-  "Ambit",
+  "Ambit Design",
   "Avodah",
   "Sunrise Hill Glamping",
   "Nature Escapes",

@@ -32,6 +32,7 @@ export function Nav() {
 
             {/* Hamburger button */}
             <button
+              type="button"
               onClick={() => setIsOpen(true)}
               className="flex flex-col gap-1.5 p-2 group"
               aria-label="Open menu"
@@ -68,6 +69,7 @@ export function Nav() {
 
               {/* Close button */}
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
                 className="p-2 text-[var(--color-fg)] hover:text-[var(--color-fg-secondary)] transition-colors"
                 aria-label="Close menu"
@@ -122,7 +124,7 @@ export function Nav() {
               <p className="text-[var(--color-fg)] mb-1">Puerto Jiménez, Costa Rica</p>
             </div>
             <div>
-              <p className="text-[var(--color-fg)] mb-1">marcelo@gexpsoftware.com</p>
+              <p className="text-[var(--color-fg)] mb-1">info@gexpsoftware.com</p>
             </div>
             <div className="ml-auto">
               <p>&copy; {new Date().getFullYear()} Marcelo Retana</p>
