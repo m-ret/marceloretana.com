@@ -19,7 +19,7 @@ export function Hero() {
         </h1>
 
         {/* Profile image section */}
-        <div className="flex flex-col md:flex-row gap-0 max-w-4xl">
+        <div className="flex flex-col md:flex-row gap-0">
           {/* Image */}
           <div className="relative w-full md:w-80 h-96 md:h-[520px] flex-shrink-0">
             <Image
@@ -71,6 +71,19 @@ export function Hero() {
                 TicoGuides →
               </a>
             </div>
+          </div>
+
+          {/* Get in Touch */}
+          <div className="flex flex-col justify-end p-8 md:p-10 md:pl-16">
+            <p className="text-lg md:text-xl uppercase tracking-widest text-[var(--color-fg)] font-medium mb-4">
+              Get in Touch
+            </p>
+            <a
+              href="mailto:info@gexpsoftware.com"
+              className="text-xl md:text-2xl text-[var(--color-fg-secondary)] hover:text-[var(--color-fg)] transition-colors"
+            >
+              info@gexpsoftware.com
+            </a>
           </div>
         </div>
       </div>

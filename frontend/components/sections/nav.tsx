@@ -21,10 +21,10 @@ export function Nav() {
       {/* Fixed Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-16 py-6 bg-[var(--color-bg)]">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-[var(--color-fg)] text-xl tracking-tight">
-            <span className="font-light">MARCELO</span>
-            <span className="font-light text-[var(--color-fg-muted)] mx-1">&</span>
-            <span className="font-bold">RETANA</span>
+          <Link href="/" className="text-[var(--color-fg)] text-2xl md:text-3xl tracking-tight">
+            <span className="font-medium">M</span>
+            <span className="font-light text-[var(--color-fg-muted)]">/</span>
+            <span className="font-bold">R</span>
           </Link>
 
           <div className="flex items-center gap-4">
@@ -56,12 +56,12 @@ export function Nav() {
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="text-[var(--color-fg)] text-xl tracking-tight"
+              className="text-[var(--color-fg)] text-2xl md:text-3xl tracking-tight"
               onClick={() => setIsOpen(false)}
             >
-              <span className="font-light">MARCELO</span>
-              <span className="font-light text-[var(--color-fg-muted)] mx-1">&</span>
-              <span className="font-bold">RETANA</span>
+              <span className="font-medium">M</span>
+              <span className="font-light text-[var(--color-fg-muted)]">/</span>
+              <span className="font-bold">R</span>
             </Link>
 
             <div className="flex items-center gap-4">
@@ -81,24 +81,20 @@ export function Nav() {
 
           {/* Menu content */}
           <div className="flex-1 flex flex-col md:flex-row md:items-start pt-24 md:pt-32">
-            {/* Newsletter section */}
+            {/* Get in Touch section */}
             <div className="md:w-1/2 mb-16 md:mb-0">
               <p className="text-sm uppercase tracking-widest text-[var(--color-fg)] mb-2">
-                Newsletter
+                Get in Touch
               </p>
               <p className="text-[var(--color-fg-muted)] text-sm mb-6">
-                Tips, tricks and my latest bits
+                Have a project in mind? Let&apos;s talk.
               </p>
-              <form className="flex items-center border-b border-[var(--color-border)] pb-2 max-w-sm">
-                <input
-                  type="email"
-                  placeholder="E-MAIL"
-                  className="flex-1 bg-transparent text-[var(--color-fg)] text-sm placeholder:text-[var(--color-fg-muted)] focus:outline-none"
-                />
-                <button type="submit" className="text-[var(--color-fg)] ml-4">
-                  →
-                </button>
-              </form>
+              <a
+                href="mailto:info@gexpsoftware.com"
+                className="text-xl md:text-2xl text-[var(--color-fg)] hover:text-[var(--color-fg-secondary)] transition-colors"
+              >
+                info@gexpsoftware.com →
+              </a>
             </div>
 
             {/* Menu links */}
