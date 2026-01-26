@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         )}
 
         {/* Content */}
-        <div className="prose prose-lg max-w-none dark:prose-invert prose-p:text-fg-secondary prose-headings:text-fg prose-headings:font-light prose-a:text-fg prose-a:underline prose-strong:text-fg prose-code:text-accent prose-pre:bg-bg-tertiary prose-blockquote:border-border prose-blockquote:text-fg-secondary prose-li:text-fg-secondary">
+        <div className="prose prose-lg max-w-none dark:prose-invert prose-p:text-fg prose-headings:text-fg prose-headings:font-light prose-a:text-accent prose-a:underline hover:prose-a:text-accent-secondary prose-strong:text-fg prose-code:text-accent prose-pre:bg-bg-tertiary prose-blockquote:border-border prose-blockquote:text-fg-muted prose-li:text-fg">
           <MarkdownRenderer content={post.content} />
         </div>
 
