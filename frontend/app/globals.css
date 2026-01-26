@@ -5,9 +5,8 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  /* Accent colors */
-  --color-accent: #f97316;
-  --color-accent-secondary: #3b82f6;
+  /* Accent color */
+  --color-accent: #3b82f6;
 
   /* Semantic colors (dark mode defaults, overridden in [data-theme]) */
   --color-bg: #000000;
@@ -80,4 +79,136 @@ h1, h2, h3, h4, h5, h6 {
 /* Theme transition for all elements */
 *, *::before, *::after {
   transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Prose typography overrides for theme support */
+.prose {
+  --tw-prose-body: var(--color-fg);
+  --tw-prose-headings: var(--color-fg);
+  --tw-prose-links: var(--color-fg);
+  --tw-prose-bold: var(--color-fg);
+  --tw-prose-code: var(--color-fg);
+  --tw-prose-quotes: var(--color-fg-secondary);
+  --tw-prose-quote-borders: var(--color-border);
+  --tw-prose-bullets: var(--color-fg-secondary);
+  --tw-prose-counters: var(--color-fg-secondary);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
+}
+
+/* Links - subtle underline, accent on hover */
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.prose a:hover {
+  color: var(--color-accent);
+}
+
+/* Inline code styling - subtle background, no backticks */
+.prose code {
+  color: var(--color-fg);
+  background: var(--color-bg-tertiary);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose code::before,
+.prose code::after {
+  content: none;
+}
+
+/* Don't apply inline code styles to code inside pre blocks */
+.prose pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* Syntax highlighting - Dark theme (Atom One Dark inspired) */
+:root,
+[data-theme="dark"] {
+  --hljs-bg: #282c34;
+  --hljs-fg: #abb2bf;
+  --hljs-comment: #5c6370;
+  --hljs-keyword: #c678dd;
+  --hljs-string: #98c379;
+  --hljs-number: #d19a66;
+  --hljs-function: #61afef;
+  --hljs-variable: #e06c75;
+  --hljs-type: #e5c07b;
+}
+
+/* Syntax highlighting - Light theme (Atom One Light inspired) */
+[data-theme="light"] {
+  --hljs-bg: #fafafa;
+  --hljs-fg: #383a42;
+  --hljs-comment: #a0a1a7;
+  --hljs-keyword: #a626a4;
+  --hljs-string: #50a14f;
+  --hljs-number: #986801;
+  --hljs-function: #4078f2;
+  --hljs-variable: #e45649;
+  --hljs-type: #c18401;
+}
+
+/* Apply syntax highlighting */
+.hljs {
+  background: var(--hljs-bg);
+  color: var(--hljs-fg);
+  padding: 1em;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--hljs-comment);
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-deletion {
+  color: var(--hljs-keyword);
+}
+
+.hljs-string,
+.hljs-addition {
+  color: var(--hljs-string);
+}
+
+.hljs-number,
+.hljs-literal {
+  color: var(--hljs-number);
+}
+
+.hljs-function,
+.hljs-title,
+.hljs-section {
+  color: var(--hljs-function);
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-name,
+.hljs-attr {
+  color: var(--hljs-variable);
+}
+
+.hljs-type,
+.hljs-class,
+.hljs-built_in {
+  color: var(--hljs-type);
+}
+
+.hljs-meta,
+.hljs-symbol,
+.hljs-params {
+  color: var(--hljs-fg);
 }

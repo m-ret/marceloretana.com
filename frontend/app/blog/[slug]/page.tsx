@@ -44,7 +44,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* Back link */}
         <Link
           href="/blog"
-          className="inline-flex items-center text-fg-muted hover:text-fg transition-colors mb-12"
+          className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors mb-12"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to blog
@@ -53,7 +53,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* Header */}
         <header className="mb-12">
           {post.publishedAt && (
-            <time className="text-fg-muted text-sm">
+            <time className="text-fg-secondary text-sm">
               {new Date(post.publishedAt).toLocaleDateString(
                 post.lang === "es" ? "es-CR" : "en-US",
                 {
@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         )}
 
         {/* Content */}
-        <div className="prose prose-lg max-w-none dark:prose-invert prose-p:text-fg prose-headings:text-fg prose-headings:font-light prose-a:text-accent prose-a:underline hover:prose-a:text-accent-secondary prose-strong:text-fg prose-code:text-accent prose-pre:bg-bg-tertiary prose-blockquote:border-border prose-blockquote:text-fg-muted prose-li:text-fg">
+        <div className="prose prose-lg max-w-none prose-headings:font-light prose-a:underline hover:prose-a:opacity-80 prose-pre:bg-bg-tertiary">
           <MarkdownRenderer content={post.content} />
         </div>
 
@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <footer className="border-t border-border mt-16 pt-8">
           <Link
             href="/blog"
-            className="inline-flex items-center text-fg-muted hover:text-fg transition-colors"
+            className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to all posts

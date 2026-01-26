@@ -163,6 +163,14 @@ cd awesome-claude-code
 
 ### 2. Copiá la configuración global
 
+**Opción A: Ejecutá el script de instalación**
+
+```bash
+./install.sh
+```
+
+**Opción B: Instalación manual**
+
 ```bash
 mkdir -p ~/.claude
 cp global/CLAUDE.md ~/.claude/CLAUDE.md

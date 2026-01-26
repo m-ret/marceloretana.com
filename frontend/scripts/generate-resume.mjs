@@ -1,13 +1,13 @@
+import { writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { renderToBuffer } from "@react-pdf/renderer";
-import { writeFileSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import React from "react";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Inline the PDF component since we can't import TSX directly
-import { Document, Page, Text, View, StyleSheet, Link } from "@react-pdf/renderer";
+import { Document, Link, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   page: {
@@ -181,7 +181,10 @@ const experiences = [
 ];
 
 const skills = [
-  { category: "Frontend", items: "React, Next.js, React Native, TypeScript, SSR/RSC, Tailwind CSS" },
+  {
+    category: "Frontend",
+    items: "React, Next.js, React Native, TypeScript, SSR/RSC, Tailwind CSS",
+  },
   { category: "Backend", items: "Node.js, GraphQL, REST APIs, PostgreSQL, Redis, MongoDB" },
   { category: "Cloud & DevOps", items: "AWS, Hetzner, Coolify, Docker, CI/CD, Vercel" },
   { category: "AI & Tools", items: "Claude Code, Cursor, AI Workflows, Git, Figma" },
@@ -207,34 +210,64 @@ const clients = [
   "3Pillar Global",
 ];
 
-const ResumePDF = () => (
-  React.createElement(Document, null,
-    React.createElement(Page, { size: "LETTER", style: styles.page },
+const ResumePDF = () =>
+  React.createElement(
+    Document,
+    null,
+    React.createElement(
+      Page,
+      { size: "LETTER", style: styles.page },
       // Header
-      React.createElement(View, { style: styles.header },
+      React.createElement(
+        View,
+        { style: styles.header },
         React.createElement(Text, { style: styles.name }, "Marcelo Retana"),
         React.createElement(Text, { style: styles.title }, "Full Stack Developer & Entrepreneur"),
-        React.createElement(View, { style: styles.contactRow },
+        React.createElement(
+          View,
+          { style: styles.contactRow },
           React.createElement(Text, null, "Puerto Jiménez, Costa Rica"),
-          React.createElement(Link, { src: "mailto:info@gexpsoftware.com", style: styles.link }, "info@gexpsoftware.com"),
+          React.createElement(
+            Link,
+            { src: "mailto:info@gexpsoftware.com", style: styles.link },
+            "info@gexpsoftware.com"
+          ),
           React.createElement(Text, null, "+506 7107 7969"),
-          React.createElement(Link, { src: "https://marceloretana.com", style: styles.link }, "marceloretana.com"),
-          React.createElement(Link, { src: "https://linkedin.com/in/marceloretana", style: styles.link }, "LinkedIn")
+          React.createElement(
+            Link,
+            { src: "https://marceloretana.com", style: styles.link },
+            "marceloretana.com"
+          ),
+          React.createElement(
+            Link,
+            { src: "https://linkedin.com/in/marceloretana", style: styles.link },
+            "LinkedIn"
+          )
         )
       ),
       // Summary
-      React.createElement(View, { style: styles.section },
+      React.createElement(
+        View,
+        { style: styles.section },
         React.createElement(Text, { style: styles.sectionTitle }, "Summary"),
-        React.createElement(Text, { style: styles.summary },
+        React.createElement(
+          Text,
+          { style: styles.summary },
           "Serial entrepreneur passionate about technology and helping businesses and people grow. Full-stack developer with 10+ years of experience building scalable web applications for Fortune 500 companies and startups. Loves getting involved with product, UX, and UI. Expert in React, Next.js, Node.js, and cloud architecture. Founder of GEXP Software."
         )
       ),
       // Experience
-      React.createElement(View, { style: styles.section },
+      React.createElement(
+        View,
+        { style: styles.section },
         React.createElement(Text, { style: styles.sectionTitle }, "Experience"),
         ...experiences.map((exp) =>
-          React.createElement(View, { key: exp.company, style: styles.experienceItem },
-            React.createElement(View, { style: styles.experienceHeader },
+          React.createElement(
+            View,
+            { key: exp.company, style: styles.experienceItem },
+            React.createElement(
+              View,
+              { style: styles.experienceHeader },
               React.createElement(Text, { style: styles.company }, exp.company),
               React.createElement(Text, { style: styles.duration }, exp.duration)
             ),
@@ -244,11 +277,17 @@ const ResumePDF = () => (
         )
       ),
       // Skills
-      React.createElement(View, { style: styles.section },
+      React.createElement(
+        View,
+        { style: styles.section },
         React.createElement(Text, { style: styles.sectionTitle }, "Technical Skills"),
-        React.createElement(View, { style: styles.skillsGrid },
+        React.createElement(
+          View,
+          { style: styles.skillsGrid },
           ...skills.map((skill) =>
-            React.createElement(View, { key: skill.category, style: styles.skillCategory },
+            React.createElement(
+              View,
+              { key: skill.category, style: styles.skillCategory },
               React.createElement(Text, { style: styles.skillCategoryTitle }, skill.category),
               React.createElement(Text, { style: styles.skillItems }, skill.items)
             )
@@ -256,11 +295,17 @@ const ResumePDF = () => (
         )
       ),
       // Ventures
-      React.createElement(View, { style: styles.section },
+      React.createElement(
+        View,
+        { style: styles.section },
         React.createElement(Text, { style: styles.sectionTitle }, "Ventures & Projects"),
-        React.createElement(View, { style: styles.venturesGrid },
+        React.createElement(
+          View,
+          { style: styles.venturesGrid },
           ...ventures.map((v) =>
-            React.createElement(View, { key: v.name, style: styles.ventureItem },
+            React.createElement(
+              View,
+              { key: v.name, style: styles.ventureItem },
               React.createElement(Text, { style: styles.ventureName }, v.name),
               React.createElement(Text, { style: styles.ventureDesc }, v.desc)
             )
@@ -268,15 +313,20 @@ const ResumePDF = () => (
         )
       ),
       // Clients
-      React.createElement(View, { style: styles.section },
+      React.createElement(
+        View,
+        { style: styles.section },
         React.createElement(Text, { style: styles.sectionTitle }, "Notable Clients"),
         React.createElement(Text, { style: styles.clientsList }, clients.join(" • "))
       ),
       // Footer
-      React.createElement(Text, { style: styles.footer }, "References available upon request • marceloretana.com")
+      React.createElement(
+        Text,
+        { style: styles.footer },
+        "References available upon request • marceloretana.com"
+      )
     )
-  )
-);
+  );
 
 async function generateResume() {
   console.log("Generating resume PDF...");

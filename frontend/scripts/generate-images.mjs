@@ -1,7 +1,6 @@
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-import { mkdirSync, existsSync } from "fs";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, "..");
@@ -61,15 +60,15 @@ async function generateImages() {
       width: ogWidth,
       height: ogHeight,
       channels: 3,
-      background: { r: 10, g: 10, b: 10 }
-    }
+      background: { r: 10, g: 10, b: 10 },
+    },
   })
     .composite([
       {
         input: resizedProfile,
         left: 0,
         top: 0,
-      }
+      },
     ])
     .jpeg({ quality: 90 })
     .toFile(join(appDir, "opengraph-image.jpg"));
@@ -81,15 +80,15 @@ async function generateImages() {
       width: ogWidth,
       height: ogHeight,
       channels: 3,
-      background: { r: 10, g: 10, b: 10 }
-    }
+      background: { r: 10, g: 10, b: 10 },
+    },
   })
     .composite([
       {
         input: resizedProfile,
         left: 0,
         top: 0,
-      }
+      },
     ])
     .jpeg({ quality: 90 })
     .toFile(join(appDir, "twitter-image.jpg"));
