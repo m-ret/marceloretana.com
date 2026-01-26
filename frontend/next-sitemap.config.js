@@ -1,5 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
-module.exports = {
+const config = {
   siteUrl: process.env.SITE_URL || "https://marceloretana.com",
   generateRobotsTxt: true,
   generateIndexSitemap: false,
@@ -40,3 +40,5 @@ module.exports = {
     };
   },
 };
+
+export default config;

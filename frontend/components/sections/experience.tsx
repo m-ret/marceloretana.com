@@ -52,43 +52,38 @@ const experiences: ExperienceItem[] = [
 
 export function Experience() {
   return (
-    <section
-      id="experience"
-      className="py-32 md:py-40 px-6 md:px-12 lg:px-16 bg-[var(--color-bg-secondary)]"
-    >
+    <section id="experience" className="py-32 md:py-40 px-6 md:px-12 lg:px-16 bg-bg-secondary">
       <div className="max-w-6xl">
         {/* WHAT I DO section */}
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-24">
           <div>
-            <h2 className="text-lg md:text-xl uppercase tracking-widest text-[var(--color-fg)] font-medium">
+            <h2 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium">
               What I Do
             </h2>
           </div>
           <div>
-            <p className="text-3xl md:text-4xl lg:text-5xl font-light text-[var(--color-fg)] leading-tight">
+            <p className="text-3xl md:text-4xl lg:text-5xl font-light text-fg leading-tight">
               Crafting future icons, today.
             </p>
           </div>
         </div>
 
         {/* Experience list */}
-        <div className="border-t border-[var(--color-border)]">
+        <div className="border-t border-border">
           {experiences.map((exp) => (
             <div
               key={exp.company}
-              className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-16 py-8 border-b border-[var(--color-border)] group hover:bg-[var(--color-bg-tertiary)] transition-colors -mx-4 px-4"
+              className="grid md:grid-cols-[200px_1fr] gap-4 md:gap-16 py-8 border-b border-border group hover:bg-bg-tertiary transition-colors -mx-4 px-4"
             >
               <div>
-                <p className="text-sm text-[var(--color-fg-muted)]">{exp.duration}</p>
+                <p className="text-sm text-fg-muted">{exp.duration}</p>
               </div>
               <div>
-                <h3 className="text-xl md:text-2xl text-[var(--color-fg)] font-light mb-1 group-hover:text-[var(--color-fg-secondary)] transition-colors">
+                <h3 className="text-xl md:text-2xl text-fg font-light mb-1 group-hover:text-fg-secondary transition-colors">
                   {exp.company}
                 </h3>
-                <p className="text-[var(--color-fg-muted)] mb-3">{exp.role}</p>
-                <p className="text-[var(--color-fg-secondary)] leading-relaxed">
-                  {exp.description}
-                </p>
+                <p className="text-fg-muted mb-3">{exp.role}</p>
+                <p className="text-fg-secondary leading-relaxed">{exp.description}</p>
               </div>
             </div>
           ))}

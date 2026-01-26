@@ -14,31 +14,50 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Marcelo Retana | Freelance Developer & Designer in Costa Rica",
+    default: "Marcelo Retana | Senior Developer - Apps, MVPs & Ecommerce",
     template: "%s | Marcelo Retana",
   },
   description:
-    "Freelance software developer and designer based in Costa Rica. I build custom websites, web apps, and digital solutions for startups and businesses. Expert in React, Next.js, TypeScript, and modern web technologies.",
+    "Senior developer with 10+ years experience. I design, build, and ship fast - web apps, mobile apps, MVPs, demos, ecommerce, and AI workflows. Based in Costa Rica, delivering worldwide.",
   keywords: [
-    "freelance developer",
-    "freelance designer",
-    "web developer Costa Rica",
-    "software engineer",
+    // Core identity
+    "senior developer",
+    "senior software engineer",
     "full stack developer",
+    "10 years experience developer",
+    // Speed & delivery
+    "MVP developer",
+    "MVP specialist",
+    "rapid prototyping",
+    "demo developer",
+    "fast delivery developer",
+    // Apps
+    "web app developer",
+    "mobile app developer",
+    "React Native developer",
+    "app development",
+    // Ecommerce
+    "ecommerce developer",
+    "online store developer",
+    "shopify developer",
+    "custom ecommerce",
+    // Web
+    "professional website developer",
+    "business website design",
+    "web design",
+    "custom web development",
+    // AI & Modern
+    "AI workflow developer",
+    "AI integration specialist",
+    "Claude AI developer",
+    // Tech stack
     "React developer",
     "Next.js developer",
     "TypeScript developer",
     "Node.js developer",
-    "UI/UX designer",
-    "web design",
-    "web development",
-    "custom software",
-    "startup developer",
-    "remote developer",
+    // Location
     "Costa Rica developer",
-    "frontend developer",
-    "backend developer",
-    "mobile app developer",
+    "remote developer",
     "GEXP Software",
   ],
   authors: [{ name: "Marcelo Retana", url: "https://marceloretana.com" }],
@@ -49,9 +68,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Marcelo Retana | Freelance Developer & Designer",
+    title: "Marcelo Retana | Senior Developer - Apps, MVPs & Ecommerce",
     description:
-      "Freelance software developer and designer based in Costa Rica. I build custom websites, web apps, and digital solutions for startups and businesses.",
+      "10+ years building what others say takes months. Apps, MVPs, ecommerce, AI workflows - designed, developed, and delivered fast.",
     url: "https://marceloretana.com",
     siteName: "Marcelo Retana",
     locale: "en_US",
@@ -67,9 +86,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marcelo Retana | Freelance Developer & Designer",
+    title: "Marcelo Retana | Senior Developer - Apps, MVPs & Ecommerce",
     description:
-      "Freelance software developer and designer based in Costa Rica. Building custom web solutions.",
+      "10+ years building what others say takes months. Apps, MVPs, ecommerce, AI workflows - designed and shipped fast.",
     images: ["/twitter-image.jpg"],
   },
   robots: {
@@ -97,7 +116,7 @@ const jsonLd = {
   name: "Marcelo Retana",
   url: "https://marceloretana.com",
   image: "https://marceloretana.com/profile.jpeg",
-  jobTitle: "Freelance Software Developer & Designer",
+  jobTitle: "Senior Software Developer & MVP Specialist",
   worksFor: {
     "@type": "Organization",
     name: "GEXP Software",
@@ -108,24 +127,67 @@ const jsonLd = {
     addressCountry: "Costa Rica",
   },
   email: "info@gexpsoftware.com",
-  sameAs: ["https://linkedin.com/in/marceloretana", "https://github.com"],
+  sameAs: ["https://linkedin.com/in/marceloretana", "https://github.com/maketroli"],
   knowsAbout: [
-    "Web Development",
-    "Software Engineering",
-    "UI/UX Design",
+    "MVP Development",
+    "Rapid Prototyping",
+    "Ecommerce Development",
+    "Web Applications",
+    "Mobile App Development",
+    "AI Workflows",
     "React",
     "Next.js",
+    "React Native",
     "TypeScript",
     "Node.js",
   ],
-  offers: {
-    "@type": "Offer",
-    itemOffered: {
-      "@type": "Service",
-      name: "Custom Software Development",
-      description:
-        "Custom websites, web applications, and digital solutions for startups and businesses",
-    },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Development Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "MVP & Prototype Development",
+          description:
+            "Launch-ready MVPs and demos for startups. Fast turnaround from idea to working product.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Ecommerce Development",
+          description:
+            "Custom online stores, Shopify apps, and ecommerce solutions that drive sales.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Web & Mobile Apps",
+          description: "Full-stack web applications and React Native mobile apps built for scale.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "AI Workflow Integration",
+          description: "Custom AI integrations and automated workflows using modern LLM tools.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Professional Websites",
+          description: "High-converting business websites with modern design and fast performance.",
+        },
+      },
+    ],
   },
 };
 

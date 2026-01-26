@@ -17,6 +17,17 @@
       "!**/*.config.mjs"
     ]
   },
+  "css": {
+    "parser": {
+      "cssModules": true
+    },
+    "formatter": {
+      "enabled": false
+    },
+    "linter": {
+      "enabled": false
+    }
+  },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",

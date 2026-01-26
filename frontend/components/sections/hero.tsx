@@ -2,21 +2,26 @@ import Image from "next/image";
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-16 pt-24 pb-16 bg-[var(--color-bg)]">
+    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-16 pt-24 pb-16 bg-bg">
       <div className="max-w-6xl">
         {/* Page label */}
-        <p className="text-[var(--color-fg)] text-lg md:text-xl uppercase tracking-widest mb-8">
-          About
-        </p>
+        <p className="text-fg text-lg md:text-xl uppercase tracking-widest mb-8">About</p>
 
         {/* Main headline - Large, thin typography */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-[var(--color-fg)] leading-tight tracking-tight mb-16 md:mb-24">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-fg leading-tight tracking-tight mb-6">
           I craft digital experiences
           <br />
           that bring ideas to life
           <br />
           around the world.
         </h1>
+
+        {/* Subtitle */}
+        <p className="text-lg md:text-xl lg:text-2xl text-fg-muted mb-16 md:mb-24 max-w-2xl">
+          I design and develop websites, apps, and ecommerce.
+          <br className="hidden md:block" />
+          <span className="md:ml-0"> MVPs and prototypes shipped fast.</span>
+        </p>
 
         {/* Profile image section */}
         <div className="flex flex-col md:flex-row gap-0">
@@ -37,12 +42,12 @@ export function Hero() {
               <h2 className="text-2xl md:text-3xl font-light text-black mb-2">Marcelo Retana</h2>
               <p className="text-black/70 text-sm mb-6">Founder & Software Engineer</p>
               <p className="text-black/80 leading-relaxed mb-4">
-                Serial entrepreneur passionate about technology and helping businesses and people
-                grow. Software engineer who loves getting involved with product, UX, and UI.
+                Full-stack developer with 10+ years of experience. I solve problems and ship
+                solutions — websites, apps, ecommerce, MVPs, whatever you need built.
               </p>
               <p className="text-black/80 leading-relaxed text-sm">
-                Building with the most modern tools — Claude Code, AI-powered workflows, and
-                cutting-edge frameworks. Based in Puerto Jiménez, Costa Rica.
+                Fast learner, quick to adapt, technology-agnostic. Based in Costa Rica, delivering
+                worldwide.
               </p>
             </div>
             <div className="mt-8 space-y-2 text-sm">
@@ -75,12 +80,12 @@ export function Hero() {
 
           {/* Get in Touch */}
           <div className="flex flex-col justify-end p-8 md:p-10 md:pl-16">
-            <p className="text-lg md:text-xl uppercase tracking-widest text-[var(--color-fg)] font-medium mb-4">
+            <p className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium mb-4">
               Get in Touch
             </p>
             <a
               href="mailto:info@gexpsoftware.com"
-              className="text-xl md:text-2xl text-[var(--color-fg-secondary)] hover:text-[var(--color-fg)] transition-colors mb-6"
+              className="text-xl md:text-2xl text-fg-secondary hover:text-fg transition-colors mb-6"
             >
               info@gexpsoftware.com
             </a>
@@ -89,17 +94,17 @@ export function Hero() {
                 href="https://cal.com/marcelo-retana"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-[var(--color-fg)] hover:text-[var(--color-fg-secondary)] transition-colors"
+                className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-fg hover:text-fg-secondary transition-colors"
               >
                 <span>Book a Call</span>
                 <span>→</span>
               </a>
               <a
                 href="/marcelo-retana-resume.pdf"
-                className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] transition-colors"
+                className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-fg hover:text-fg-secondary transition-colors"
               >
                 <span>Download Resume</span>
-                <span>↓</span>
+                <span>→</span>
               </a>
             </div>
           </div>

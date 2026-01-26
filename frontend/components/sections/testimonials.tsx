@@ -82,25 +82,25 @@ export function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="py-32 md:py-40 px-6 md:px-12 lg:px-16 bg-[var(--color-bg-tertiary)]">
+    <section className="py-32 md:py-40 px-6 md:px-12 lg:px-16 bg-bg-tertiary">
       <div className="max-w-6xl">
         {/* Header */}
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-16">
           <div>
-            <h2 className="text-lg md:text-xl uppercase tracking-widest text-[var(--color-fg)] font-medium">
+            <h2 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium">
               Testimonials
             </h2>
           </div>
           <div className="flex items-end justify-between">
-            <p className="text-3xl md:text-4xl lg:text-5xl font-light text-[var(--color-fg)] leading-tight">
+            <p className="text-3xl md:text-4xl lg:text-5xl font-light text-fg leading-tight">
               What clients say.
             </p>
             <div className="hidden md:flex items-center gap-4">
-              <div className="flex items-center gap-2 text-sm text-[var(--color-fg-muted)]">
+              <div className="flex items-center gap-2 text-sm text-fg-muted">
                 <span className="w-2 h-2 rounded-full bg-yellow-400" />
                 5.0 on Clutch
               </div>
-              <div className="flex items-center gap-2 text-sm text-[var(--color-fg-muted)]">
+              <div className="flex items-center gap-2 text-sm text-fg-muted">
                 <span className="w-2 h-2 rounded-full bg-yellow-400" />
                 5.0 on Google
               </div>
@@ -110,21 +110,19 @@ export function Testimonials() {
 
         {/* Featured testimonial */}
         <div className="mb-12">
-          <div className="bg-[var(--color-bg-secondary)] p-8 md:p-12 relative">
+          <div className="bg-bg-secondary p-8 md:p-12 relative">
             <div className="absolute top-8 right-8 md:top-12 md:right-12">
-              <span className="text-xs uppercase tracking-widest text-[var(--color-fg-muted)]">
+              <span className="text-xs uppercase tracking-widest text-fg-muted">
                 {testimonials[activeIndex].source === "clutch" ? "Clutch" : "Google"}
               </span>
             </div>
             <StarRating rating={testimonials[activeIndex].rating} />
-            <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-[var(--color-fg)] leading-relaxed mt-6 mb-8">
+            <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-fg leading-relaxed mt-6 mb-8">
               &ldquo;{testimonials[activeIndex].quote}&rdquo;
             </blockquote>
             <div>
-              <p className="text-[var(--color-fg)] font-medium">
-                {testimonials[activeIndex].author}
-              </p>
-              <p className="text-[var(--color-fg-muted)]">
+              <p className="text-fg font-medium">{testimonials[activeIndex].author}</p>
+              <p className="text-fg-muted">
                 {testimonials[activeIndex].role}
                 {testimonials[activeIndex].company && <>, {testimonials[activeIndex].company}</>}
               </p>
@@ -141,7 +139,7 @@ export function Testimonials() {
               className={`p-4 text-left transition-all ${
                 activeIndex === index
                   ? "bg-yellow-400 text-black"
-                  : "bg-[var(--color-bg-secondary)] text-[var(--color-fg-secondary)] hover:bg-[var(--color-bg)] hover:text-[var(--color-fg)]"
+                  : "bg-bg-secondary text-fg-secondary hover:bg-bg hover:text-fg"
               }`}
             >
               <p className="text-xs font-medium truncate">{testimonial.author.split(",")[0]}</p>
@@ -153,22 +151,22 @@ export function Testimonials() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-[var(--color-border)]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-border">
           <div>
-            <p className="text-4xl md:text-5xl font-light text-[var(--color-fg)]">5.0</p>
-            <p className="text-[var(--color-fg-muted)] text-sm mt-2">Clutch Rating</p>
+            <p className="text-4xl md:text-5xl font-light text-fg">5.0</p>
+            <p className="text-fg-muted text-sm mt-2">Clutch Rating</p>
           </div>
           <div>
-            <p className="text-4xl md:text-5xl font-light text-[var(--color-fg)]">5.0</p>
-            <p className="text-[var(--color-fg-muted)] text-sm mt-2">Google Rating</p>
+            <p className="text-4xl md:text-5xl font-light text-fg">5.0</p>
+            <p className="text-fg-muted text-sm mt-2">Google Rating</p>
           </div>
           <div>
-            <p className="text-4xl md:text-5xl font-light text-[var(--color-fg)]">100%</p>
-            <p className="text-[var(--color-fg-muted)] text-sm mt-2">Client Satisfaction</p>
+            <p className="text-4xl md:text-5xl font-light text-fg">100%</p>
+            <p className="text-fg-muted text-sm mt-2">Client Satisfaction</p>
           </div>
           <div>
-            <p className="text-4xl md:text-5xl font-light text-[var(--color-fg)]">50+</p>
-            <p className="text-[var(--color-fg-muted)] text-sm mt-2">Projects Delivered</p>
+            <p className="text-4xl md:text-5xl font-light text-fg">50+</p>
+            <p className="text-fg-muted text-sm mt-2">Projects Delivered</p>
           </div>
         </div>
       </div>
