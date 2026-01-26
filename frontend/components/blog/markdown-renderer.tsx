@@ -3,59 +3,163 @@ interface MarkdownRendererProps {
 }
 
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
-  // Simple markdown to HTML conversion
-  // Handles: headings, paragraphs, bold, italic, links, code, lists, blockquotes
-  const html = content
-    // Code blocks (must be before inline code)
-    .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>')
-    // Headings (process before inline code so we can convert backticks inside headings)
-    .replace(/^#### (.+)$/gm, "<h4>$1</h4>")
-    .replace(/^### (.+)$/gm, "<h3>$1</h3>")
-    .replace(/^## (.+)$/gm, "<h2>$1</h2>")
-    .replace(/^# (.+)$/gm, "<h1>$1</h1>")
-    // Inline code (after headings so it works inside them too)
-    .replace(/`([^`]+)`/g, "<code>$1</code>")
-    // Bold and italic
-    .replace(/\*\*\*(.+?)\*\*\*/g, "<strong><em>$1</em></strong>")
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    // Links
+  // Process markdown in correct order
+  let html = content;
+
+  // 1. Escape HTML entities first
+  html = html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  // 2. Code blocks (must be before everything else to protect their content)
+  html = html.replace(
+    /```(\w+)?\n([\s\S]*?)```/g,
+    (_match, lang, code) => `<pre><code class="language-${lang || ""}">${code.trim()}</code></pre>`
+  );
+
+  // 3. Inline code (before other inline formatting)
+  html = html.replace(/`([^`\n]+)`/g, "<code>$1</code>");
+
+  // 4. Bold and italic (before links to handle **text** in links)
+  html = html
+    .replace(/\*\*\*([^*]+)\*\*\*/g, "<strong><em>$1</em></strong>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
+
+  // 5. Links and images
+  html = html
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="rounded-lg" />')
     .replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
       '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
-    )
-    // Images
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="rounded-lg" />')
-    // Blockquotes
-    .replace(/^> (.+)$/gm, "<blockquote>$1</blockquote>")
-    // Unordered lists
-    .replace(/^- (.+)$/gm, "<li>$1</li>")
-    // Ordered lists
-    .replace(/^\d+\. (.+)$/gm, "<li>$1</li>")
-    // Horizontal rule
-    .replace(/^---$/gm, "<hr />")
-    // Paragraphs (lines not already wrapped)
-    .split("\n\n")
-    .map((block) => {
-      const trimmed = block.trim();
-      if (!trimmed) return "";
-      if (
-        trimmed.startsWith("<h") ||
-        trimmed.startsWith("<pre") ||
-        trimmed.startsWith("<blockquote") ||
-        trimmed.startsWith("<li") ||
-        trimmed.startsWith("<hr") ||
-        trimmed.startsWith("<img")
-      ) {
-        // Wrap consecutive list items
-        if (trimmed.includes("<li>")) {
-          return `<ul>${trimmed}</ul>`;
-        }
-        return trimmed;
+    );
+
+  // 6. Process block elements
+  const lines = html.split("\n");
+  const processedLines: string[] = [];
+  let inList = false;
+  let listType: "ul" | "ol" | null = null;
+  let inBlockquote = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    // Skip empty lines but close lists/blockquotes
+    if (!trimmed) {
+      if (inList) {
+        processedLines.push(listType === "ul" ? "</ul>" : "</ol>");
+        inList = false;
+        listType = null;
       }
-      return `<p>${trimmed.replace(/\n/g, "<br />")}</p>`;
-    })
-    .join("\n");
+      if (inBlockquote) {
+        processedLines.push("</blockquote>");
+        inBlockquote = false;
+      }
+      processedLines.push("");
+      continue;
+    }
+
+    // Headings
+    if (trimmed.startsWith("#### ")) {
+      processedLines.push(`<h4>${trimmed.slice(5)}</h4>`);
+      continue;
+    }
+    if (trimmed.startsWith("### ")) {
+      processedLines.push(`<h3>${trimmed.slice(4)}</h3>`);
+      continue;
+    }
+    if (trimmed.startsWith("## ")) {
+      processedLines.push(`<h2>${trimmed.slice(3)}</h2>`);
+      continue;
+    }
+    if (trimmed.startsWith("# ")) {
+      processedLines.push(`<h1>${trimmed.slice(2)}</h1>`);
+      continue;
+    }
+
+    // Horizontal rule
+    if (trimmed === "---") {
+      processedLines.push("<hr />");
+      continue;
+    }
+
+    // Blockquotes
+    if (trimmed.startsWith("&gt; ")) {
+      if (!inBlockquote) {
+        processedLines.push("<blockquote>");
+        inBlockquote = true;
+      }
+      processedLines.push(`<p>${trimmed.slice(5)}</p>`);
+      continue;
+    }
+
+    // Unordered list items
+    if (trimmed.startsWith("- ")) {
+      if (!inList || listType !== "ul") {
+        if (inList) {
+          processedLines.push(listType === "ul" ? "</ul>" : "</ol>");
+        }
+        processedLines.push("<ul>");
+        inList = true;
+        listType = "ul";
+      }
+      processedLines.push(`<li>${trimmed.slice(2)}</li>`);
+      continue;
+    }
+
+    // Ordered list items
+    const orderedMatch = trimmed.match(/^(\d+)\.\s+(.+)$/);
+    if (orderedMatch) {
+      if (!inList || listType !== "ol") {
+        if (inList) {
+          processedLines.push(listType === "ul" ? "</ul>" : "</ol>");
+        }
+        processedLines.push("<ol>");
+        inList = true;
+        listType = "ol";
+      }
+      processedLines.push(`<li>${orderedMatch[2]}</li>`);
+      continue;
+    }
+
+    // Close list if we hit a non-list item
+    if (inList) {
+      processedLines.push(listType === "ul" ? "</ul>" : "</ol>");
+      inList = false;
+      listType = null;
+    }
+
+    // Pre blocks (already processed, just pass through)
+    if (trimmed.startsWith("<pre>") || trimmed.startsWith("</pre>")) {
+      processedLines.push(line);
+      continue;
+    }
+
+    // Regular paragraphs
+    if (
+      !trimmed.startsWith("<") ||
+      trimmed.startsWith("<code>") ||
+      trimmed.startsWith("<strong>") ||
+      trimmed.startsWith("<em>") ||
+      trimmed.startsWith("<a ")
+    ) {
+      processedLines.push(`<p>${trimmed}</p>`);
+    } else {
+      processedLines.push(line);
+    }
+  }
+
+  // Close any open tags
+  if (inList) {
+    processedLines.push(listType === "ul" ? "</ul>" : "</ol>");
+  }
+  if (inBlockquote) {
+    processedLines.push("</blockquote>");
+  }
+
+  html = processedLines.join("\n");
+
+  // Clean up multiple empty paragraphs
+  html = html.replace(/<p><\/p>/g, "").replace(/\n{3,}/g, "\n\n");
 
   return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }
