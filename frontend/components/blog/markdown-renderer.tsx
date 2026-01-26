@@ -8,13 +8,13 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
   const html = content
     // Code blocks (must be before inline code)
     .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>')
-    // Inline code
-    .replace(/`([^`]+)`/g, "<code>$1</code>")
-    // Headings
+    // Headings (process before inline code so we can convert backticks inside headings)
     .replace(/^#### (.+)$/gm, "<h4>$1</h4>")
     .replace(/^### (.+)$/gm, "<h3>$1</h3>")
     .replace(/^## (.+)$/gm, "<h2>$1</h2>")
     .replace(/^# (.+)$/gm, "<h1>$1</h1>")
+    // Inline code (after headings so it works inside them too)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
     // Bold and italic
     .replace(/\*\*\*(.+?)\*\*\*/g, "<strong><em>$1</em></strong>")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
