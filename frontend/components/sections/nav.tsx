@@ -38,7 +38,7 @@ export function Nav() {
               <span className="font-bold text-white">R</span>
             </Link>
             <div className="w-px h-5 bg-white/15 mx-2" />
-            <ThemeToggle />
+            <ThemeToggle className="text-white" />
           </div>
 
           {/* Hamburger -- standalone, no container */}
