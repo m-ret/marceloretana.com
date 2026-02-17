@@ -72,17 +72,18 @@ export function Hero() {
             </p>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white leading-[1.1] tracking-tight mb-8">
-              <span className="hero-line inline-block">I craft digital experiences</span>
+              <span className="hero-line inline-block">I build modern websites</span>
               <br />
-              <span className="hero-line inline-block">that bring ideas to life</span>
+              <span className="hero-line inline-block">and apps that convert</span>
               <br />
-              <span className="hero-line inline-block">around the world.</span>
+              <span className="hero-line inline-block">visitors into customers.</span>
             </h1>
 
             <p className="hero-subtitle text-lg md:text-xl lg:text-2xl text-white/60 max-w-2xl">
-              I design and develop websites, apps, and ecommerce.
+              Full-stack development with Next.js. SEO-optimized, fast, and built for lead
+              generation.
               <br className="hidden md:block" />
-              <span className="md:ml-0"> MVPs and prototypes shipped fast.</span>
+              <span className="md:ml-0"> Websites, apps, ecommerce, and MVPs — shipped fast.</span>
             </p>
           </div>
 
@@ -112,12 +113,12 @@ export function Hero() {
                 <h2 className="text-2xl md:text-3xl font-light text-black mb-2">Marcelo Retana</h2>
                 <p className="text-black/70 text-sm mb-6">Founder &amp; Software Engineer</p>
                 <p className="text-black/80 leading-relaxed mb-4">
-                  Full-stack developer with 10+ years of experience. I solve problems and ship
-                  solutions — websites, apps, ecommerce, MVPs, whatever you need built.
+                  Full-stack developer with 10+ years of experience building high-converting
+                  websites, apps, and MVPs. Performance-first, SEO-optimized, and designed for lead
+                  generation.
                 </p>
                 <p className="text-black/80 leading-relaxed text-sm">
-                  Fast learner, quick to adapt, technology-agnostic. Based in Costa Rica, delivering
-                  worldwide.
+                  Modern tech stack. Clean architecture. Based in Costa Rica, delivering worldwide.
                 </p>
               </div>
               <div className="mt-8 space-y-2 text-sm">

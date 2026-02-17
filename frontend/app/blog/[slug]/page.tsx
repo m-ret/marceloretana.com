@@ -24,9 +24,31 @@ export async function generateMetadata({ params }: PageProps) {
     };
   }
 
+  const url = `https://marceloretana.com/blog/${slug}`;
+
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: post.tags,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url,
+      type: "article",
+      publishedTime: post.publishedAt,
+      authors: ["Marcelo Retana"],
+      tags: post.tags,
+      locale: post.lang === "es" ? "es_CR" : "en_US",
+      siteName: "Marcelo Retana",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+    },
   };
 }
 
@@ -38,8 +60,43 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    url: `https://marceloretana.com/blog/${slug}`,
+    inLanguage: post.lang === "es" ? "es" : "en",
+    keywords: post.tags?.join(", "),
+    author: {
+      "@type": "Person",
+      name: "Marcelo Retana",
+      url: "https://marceloretana.com",
+      jobTitle: "Senior Software Developer",
+      worksFor: {
+        "@type": "Organization",
+        name: "GEXP Software",
+      },
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Marcelo Retana",
+      url: "https://marceloretana.com",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://marceloretana.com/blog/${slug}`,
+    },
+  };
+
   return (
     <main className="min-h-screen py-32 px-6 md:px-12 lg:px-16 bg-bg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <article className="max-w-3xl mx-auto">
         {/* Back link */}
         <Link

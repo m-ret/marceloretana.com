@@ -14,22 +14,28 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Marcelo Retana | Senior Developer - Apps, MVPs & Ecommerce",
+    default: "Marcelo Retana | Full-Stack Developer - Modern Websites, Apps & MVPs",
     template: "%s | Marcelo Retana",
   },
   description:
-    "Senior developer with 10+ years experience. I design, build, and ship fast - web apps, mobile apps, MVPs, demos, ecommerce, and AI workflows. Based in Costa Rica, delivering worldwide.",
+    "Full-stack developer with 10+ years experience building high-converting websites, apps, and MVPs. Performance-first development with Next.js, SEO optimization, and AI search visibility. Based in Costa Rica, delivering worldwide.",
   keywords: [
     // Core identity
-    "senior developer",
-    "senior software engineer",
     "full stack developer",
+    "senior software engineer",
     "10 years experience developer",
+    // Target SEO keywords
+    "modern website development",
+    "high-converting landing pages",
+    "SEO-friendly websites",
+    "lead generation websites",
+    "performance-first development",
+    "custom CMS",
+    "AI search optimization",
     // Speed & delivery
     "MVP developer",
     "MVP specialist",
     "rapid prototyping",
-    "demo developer",
     "fast delivery developer",
     // Apps
     "web app developer",
@@ -38,13 +44,10 @@ export const metadata: Metadata = {
     "app development",
     // Ecommerce
     "ecommerce developer",
-    "online store developer",
-    "shopify developer",
     "custom ecommerce",
     // Web
     "professional website developer",
     "business website design",
-    "web design",
     "custom web development",
     // AI & Modern
     "AI workflow developer",
@@ -68,9 +71,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Marcelo Retana | Senior Developer - Apps, MVPs & Ecommerce",
+    title: "Marcelo Retana | Full-Stack Developer - Modern Websites, Apps & MVPs",
     description:
-      "10+ years building what others say takes months. Apps, MVPs, ecommerce, AI workflows - designed, developed, and delivered fast.",
+      "10+ years building high-converting websites, apps, and MVPs. Performance-first development with Next.js, SEO + AI search optimization. Delivered fast.",
     url: "https://marceloretana.com",
     siteName: "Marcelo Retana",
     locale: "en_US",
@@ -86,9 +89,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marcelo Retana | Senior Developer - Apps, MVPs & Ecommerce",
+    title: "Marcelo Retana | Full-Stack Developer - Modern Websites, Apps & MVPs",
     description:
-      "10+ years building what others say takes months. Apps, MVPs, ecommerce, AI workflows - designed and shipped fast.",
+      "10+ years building high-converting websites, apps, and MVPs. Performance-first development with Next.js, SEO + AI search optimization.",
     images: ["/twitter-image.jpg"],
   },
   robots: {
@@ -116,7 +119,9 @@ const jsonLd = {
   name: "Marcelo Retana",
   url: "https://marceloretana.com",
   image: "https://marceloretana.com/profile.jpeg",
-  jobTitle: "Senior Software Developer & MVP Specialist",
+  jobTitle: "Full-Stack Developer & Founder",
+  description:
+    "Full-stack developer with 10+ years of experience building high-converting websites, web apps, mobile apps, and MVPs. Specializes in performance-first development with Next.js, SEO optimization, and AI search visibility.",
   worksFor: {
     "@type": "Organization",
     name: "GEXP Software",
@@ -129,12 +134,17 @@ const jsonLd = {
   email: "info@gexpsoftware.com",
   sameAs: ["https://linkedin.com/in/marceloretana", "https://github.com/maketroli"],
   knowsAbout: [
+    "Modern Website Development",
+    "High-Converting Landing Pages",
+    "SEO Optimization",
+    "AI Search Optimization",
+    "Performance-First Development",
     "MVP Development",
     "Rapid Prototyping",
     "Ecommerce Development",
     "Web Applications",
     "Mobile App Development",
-    "AI Workflows",
+    "Lead Generation Websites",
     "React",
     "Next.js",
     "React Native",

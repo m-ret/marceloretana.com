@@ -4,7 +4,9 @@ export function Contact() {
       <div className="max-w-6xl">
         {/* LET'S KEEP IN TOUCH header */}
         <div className="border-t border-border pt-8 mb-24">
-          <h2 className="text-2xl md:text-3xl font-light text-fg">Let&apos;s Keep In Touch</h2>
+          <h2 className="text-2xl md:text-3xl font-light text-fg">
+            Ready to Build Something That Works?
+          </h2>
         </div>
 
         {/* Contact grid */}
@@ -14,7 +16,10 @@ export function Contact() {
             <p className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium mb-2">
               Get In Touch
             </p>
-            <p className="text-fg-muted text-sm mb-6">Have a project in mind? Let&apos;s talk.</p>
+            <p className="text-fg-muted text-sm mb-6">
+              Whether it&apos;s a website, app, or MVP — let&apos;s talk about what your business
+              needs.
+            </p>
             <div className="flex flex-col gap-3">
               <a
                 href="https://cal.com/marcelo-retana"

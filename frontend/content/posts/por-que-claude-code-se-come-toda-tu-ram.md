@@ -27,7 +27,7 @@ Este es el que más me sorprendió. Claude Code guarda logs de sesión como arch
 
 El problema? **Pueden crecer silenciosamente a 1-10GB por proyecto.**
 
-Un desarrollador en GitHub reportó que Claude Code intentaba procesar estos archivos JSONL masivos al iniciar, congelando todo su sistema. Borrar los archivos grandes resolvió el problema inmediatamente.
+Un desarrollador en [GitHub issue #4356](https://github.com/anthropics/claude-code/issues/4356) reportó que Claude Code intentaba procesar estos archivos JSONL masivos al iniciar, congelando todo su sistema. Borrar los archivos grandes resolvió el problema inmediatamente.
 
 Peor aún: si estás usando servidores MCP como Playwright, las capturas de pantalla se guardan como datos base64 dentro de estos archivos JSONL. Cada screenshot. Cada sesión. Un desarrollador encontró sus logs llenos de cientos de screenshots codificadas en base64 — gigabytes de datos de imagen en un archivo de log que Claude intenta cargar en memoria.
 
@@ -85,7 +85,7 @@ VmRSS:         425,416 kB  (415 MB residentes)
 
 129GB de memoria virtual en un sistema de 16GB. El proceso consumió toda la RAM física en 30 minutos, congeló el sistema, y requirió un reinicio forzado. Sin OOM killer, sin advertencias — simplemente se bloqueó todo.
 
-El número de memoria virtual está inflado (incluye espacio de direcciones reservado, no solo RAM física), pero que VmRSS crezca de ~2GB a ~12GB en 30 minutos sin ninguna otra aplicación corriendo es un leak real.
+El número de memoria virtual está inflado (incluye espacio de direcciones reservado, no solo RAM física), pero que VmRSS crezca de ~2GB a ~12GB en 30 minutos sin ninguna otra aplicación corriendo es un leak real. Para dar contexto, Node.js — el runtime sobre el que corre Claude Code — tiene un heap por defecto de aproximadamente 1.7GB en V8. Cuando un proceso de Node supera consistentemente los 4GB de RSS, algo está reteniendo referencias que el garbage collector no puede liberar.
 
 Causas potenciales según la investigación de la comunidad:
 
@@ -127,7 +127,7 @@ Esta es la parte que SÍ depende de tus hábitos:
 
 **Usá `/clear` entre tareas.** Cuando terminás una tarea, limpiá la sesión. Una tarea, una sesión.
 
-**Usá `/compact` en sesiones largas.** Si no podés limpiar, `/compact` resume el contexto para reducir su tamaño.
+**Usá `/compact` en sesiones largas.** Si no podés limpiar, `/compact` resume el contexto para reducir su tamaño. Según pruebas de la comunidad, una sesión de 2 horas sin compactación puede acumular entre 500MB y 2GB de contexto en memoria. Después de `/compact`, ese número suele bajar un 60-80%.
 
 **Usá TASKS.md para memoria persistente.** La razón por la que la gente evita `/clear` es el miedo a perder contexto. Dale a Claude un archivo donde guardar estado:
 
@@ -155,6 +155,24 @@ Cuando este tema se volvió viral, vi gente sugiriendo "simplemente cámbiate a 
 Yo me cambié de Warp a Ghostty hace dos semanas. El problema de memoria me siguió — porque nunca fue sobre la terminal. Ghostty, Warp, iTerm, Alacritty — todos guardan scrollback en memoria. Si tirás 200,000 líneas de output de Claude Code en cualquier terminal, va a usar mucha RAM.
 
 Ghostty sí tenía un bug real que lo empeoraba, y ya fue corregido. Pero los problemas de fondo — logs de sesión inflados, servidores MCP con fugas, la gestión de memoria de Claude Code — son independientes de la terminal.
+
+## Preguntas Frecuentes
+
+### ¿Claude Code usa más RAM que otros asistentes de código como GitHub Copilot o Cursor?
+
+Sí, considerablemente. GitHub Copilot opera como una extensión liviana dentro de VS Code y no mantiene contexto de conversación en memoria. Cursor sí mantiene contexto pero corre dentro de Electron con límites de heap definidos. Claude Code corre como un proceso Node.js independiente con acceso completo a tu sistema de archivos y sin límite duro de memoria — por eso puede escalar de forma descontrolada si no se gestiona.
+
+### ¿Borrar los archivos JSONL de ~/.claude puede romper algo?
+
+No. Los archivos JSONL en `~/.claude/projects/` son logs de sesiones anteriores — historial de conversaciones pasadas. Borrarlos solo significa que perdés la posibilidad de retomar esas sesiones exactas. Tu configuración, settings, y servidores MCP no se ven afectados. Es seguro eliminar cualquier `.jsonl` de más de 100MB.
+
+### ¿Cuánta RAM necesito realmente para usar Claude Code de forma estable?
+
+Con buenas prácticas de gestión de sesiones, 16GB de RAM son suficientes para la mayoría de flujos de trabajo. Sin embargo, si usás múltiples servidores MCP, sesiones largas sin `/compact`, o dejás logs acumularse, vas a necesitar 32GB para evitar que el sistema se congele. Monitoreá tu uso con `htop` o `Activity Monitor` y reiniciá si RSS supera los 4GB.
+
+### ¿Existe algún flag o configuración para limitar el uso de memoria de Claude Code?
+
+No hay un flag oficial todavía. Anthropic está trabajando en mejoras de memoria (el issue #11315 está etiquetado como `perf:memory`). Mientras tanto, las mejores opciones son: limitar scrollback de tu terminal (por ejemplo, `scrollback_limit = 10000` en Ghostty), usar `/compact` y `/clear` proactivamente, y borrar logs pesados periódicamente.
 
 ## El Panorama General
 

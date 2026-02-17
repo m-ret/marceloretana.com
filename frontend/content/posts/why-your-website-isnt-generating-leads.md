@@ -24,13 +24,13 @@ Here's how I approach it differently.
 
 Most websites fail for one of three reasons:
 
-1. **They're slow.** If your page takes more than 3 seconds to load, over half your visitors leave. Google knows this too — slow sites rank lower. Most WordPress and Squarespace sites fall into this trap out of the box.
+1. **They're slow.** According to Google's own research, 53% of mobile visitors abandon a page that takes longer than 3 seconds to load ([Google/SOASTA, 2017](https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/)). Most WordPress and Squarespace sites fall into this trap out of the box.
 
 2. **They're generic.** Template-based sites all look the same. Visitors can't tell what makes your business different. If your site doesn't communicate a clear value proposition in under 5 seconds, people bounce.
 
 3. **They're not built for action.** No conversion strategy. No lead capture flow. No structured path from visitor to customer. Just pages of information with no direction.
 
-Web agencies don't solve these problems because they're selling you a design, not a business tool. A high-converting landing page isn't about looking good. It's about guiding every visitor toward a specific action.
+Web agencies don't solve these problems because they're selling you a design, not a business tool. A high-converting landing page isn't about looking good — it's about guiding every visitor toward a specific action.
 
 ## My Approach: Strategy First, Then Design, Then Technology
 
@@ -52,7 +52,7 @@ I build with **Next.js** and **React** — the same frameworks used by Netflix, 
 
 Next.js delivers static generation, server-side rendering, and automatic image optimization by default. My sites consistently score 90+ on Google PageSpeed. Most WordPress sites struggle to hit 60.
 
-Speed directly impacts revenue. Faster sites rank higher on Google, keep visitors engaged longer, and convert at higher rates.
+Speed directly impacts revenue. Portent's research found that a site loading in 1 second has a conversion rate 3x higher than a site loading in 5 seconds ([Portent, 2019](https://www.portent.com/blog/analytics/research-site-speed-hurting-everyones-revenue.htm)). Faster sites rank higher on Google, keep visitors engaged longer, and convert at substantially higher rates.
 
 ### No Plugin Chaos
 
@@ -84,7 +84,7 @@ Every site I build ships with SEO-friendly structure from day one:
 - **Core Web Vitals optimization** — because Google rewards fast, stable, accessible sites
 - **Clean URLs and automated sitemap generation** — so nothing gets missed by crawlers
 
-This isn't an add-on package. This is how the site is built from the start.
+This isn't an add-on package. This is how the site is built from the start. According to Google's own documentation, Core Web Vitals are a confirmed ranking signal, and pages meeting all three thresholds see measurably lower bounce rates ([Google Search Central](https://developers.google.com/search/docs/appearance/core-web-vitals)).
 
 ## AI Search Optimization: Preparing for the Future
 
@@ -118,7 +118,7 @@ Every site I build has one job: move visitors to action.
 
 That means intentional page structure, clear calls to action, fast load times, and mobile-first design. Not decorative elements and filler sections. Every component exists because it serves the conversion goal.
 
-Whether the objective is booking a call, capturing an email, or completing a purchase, the entire user experience is engineered around that outcome.
+Whether the objective is booking a call, capturing an email, or completing a purchase, the entire user experience is engineered around that outcome. HubSpot's benchmarking data shows that the average landing page conversion rate across industries is 5.89% — but pages with a single focused CTA and streamlined design consistently outperform that benchmark by 2-3x ([HubSpot, 2024](https://www.hubspot.com/marketing-statistics)).
 
 ## What Clients Say
 
@@ -155,6 +155,28 @@ If your current site isn't generating leads, it's not a website problem — it's
 I build modern, fast, SEO-optimized, conversion-focused digital products — websites, apps, ecommerce, MVPs. They're designed for how people search today (including AI search engines) and architected for how your business will grow tomorrow.
 
 No templates. No plugin chaos. No guesswork. Just results.
+
+## Frequently Asked Questions
+
+### How long does it take to build a lead-generating website?
+
+Most projects are delivered in 2-4 weeks, depending on scope. That includes strategy, design, development, and deployment. Traditional agencies typically quote 3-6 months for comparable work because they spread the process across multiple teams and approval layers.
+
+### How much does a custom website cost compared to WordPress or Squarespace?
+
+The upfront investment is higher than a DIY Squarespace site, but lower than what most agencies charge for WordPress builds. The critical difference is total cost of ownership: my sites require virtually no ongoing maintenance fees, plugin subscriptions, or emergency fixes. Over 2-3 years, the total cost is typically lower.
+
+### Will my website work with AI search engines like ChatGPT and Perplexity?
+
+Yes. Every site I build includes AI search optimization using methods from Princeton's Generative Engine Optimization research. This includes structured data, FAQ schemas, and content formatting designed specifically for AI citation — something most agencies aren't even aware of yet.
+
+### Can I update the website myself after launch?
+
+Absolutely. Every project includes a CMS tailored to your team's needs. You can update text, images, blog posts, and pages without touching code. My clients consistently tell me it's easier than WordPress.
+
+### What if I already have a website that isn't performing?
+
+I offer audits that identify exactly why your current site isn't converting. Common issues include slow load times, poor mobile experience, missing conversion paths, and invisible SEO. From there, we can either optimize what you have or rebuild on a modern stack.
 
 ---
 

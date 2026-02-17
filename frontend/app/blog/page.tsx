@@ -1,7 +1,21 @@
 import { ArrowLeft } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getPostsByLang, type Post } from "@/lib/posts";
+
+export const metadata: Metadata = {
+  title: "Blog - Web Development, AI & Performance",
+  description:
+    "Articles on modern web development, AI-powered workflows, performance optimization, and building high-converting websites. By Marcelo Retana.",
+  openGraph: {
+    title: "Blog - Web Development, AI & Performance | Marcelo Retana",
+    description:
+      "Articles on modern web development, AI-powered workflows, performance optimization, and building high-converting websites.",
+    url: "https://marceloretana.com/blog",
+    type: "website",
+  },
+};
 
 function PostList({ posts, locale }: { posts: Post[]; locale: "en" | "es" }) {
   if (posts.length === 0) {
@@ -74,9 +88,9 @@ export default function BlogPage() {
         <header className="mb-24">
           <p className="text-fg text-sm uppercase tracking-widest mb-8">Blog</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-fg leading-tight">
-            Thoughts &
+            Web Development,
             <br />
-            Insights.
+            AI & Performance.
           </h1>
         </header>
 

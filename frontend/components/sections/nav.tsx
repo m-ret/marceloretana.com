@@ -93,7 +93,9 @@ export function Nav() {
             {/* Get in Touch section */}
             <div className="md:w-1/2 mb-16 md:mb-0">
               <p className="text-sm uppercase tracking-widest text-fg mb-2">Get in Touch</p>
-              <p className="text-fg-muted text-sm mb-6">Have a project in mind? Let&apos;s talk.</p>
+              <p className="text-fg-muted text-sm mb-6">
+                Need a website, app, or MVP? Let&apos;s talk.
+              </p>
               <a
                 href="mailto:info@gexpsoftware.com"
                 className="text-xl md:text-2xl text-fg hover:text-fg-secondary transition-colors"

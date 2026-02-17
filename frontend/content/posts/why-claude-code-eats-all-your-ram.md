@@ -94,7 +94,9 @@ Potential causes from community investigation:
 - **Subagent memory not being freed** after task completion
 - **Context accumulation** without proper garbage collection
 
-This is a bug in Claude Code. Anthropic has tagged the issue with `perf:memory` and `bug`. As users, we can't fix it — but we can work around it.
+This is a confirmed bug in Claude Code. Anthropic has tagged the issue with `perf:memory` and `bug`. As users, we can't fix it — but we can work around it.
+
+Node.js applications are particularly susceptible to this type of memory bloat. According to the 2023 Node.js user survey, memory management is among the top three operational challenges reported by developers running long-lived Node processes ([OpenJS Foundation, 2023](https://openjsf.org/blog/nodejs-2023-survey-results)).
 
 ## The Fixes (By Culprit)
 
@@ -166,7 +168,7 @@ This is a new category of problem. We've never had developer tools that:
 - Store every interaction in append-only log files
 - Try to reload entire session histories on startup
 
-Our terminals, our memory management expectations, and our workflow habits weren't designed for this.
+Our terminals, our memory management expectations, and our workflow habits weren't designed for this. As Anthropic noted in their own documentation, Claude Code is a new paradigm in developer tooling — an agentic coding assistant that operates directly in the terminal with full system access ([Anthropic Docs](https://docs.anthropic.com/en/docs/claude-code)).
 
 The fix isn't one thing. It's a combination:
 
@@ -175,6 +177,28 @@ The fix isn't one thing. It's a combination:
 - **We** need to manage sessions, audit our MCP servers, and clean up our logs
 
 The tool is powerful. But right now, using it well means understanding these sharp edges.
+
+## Frequently Asked Questions
+
+### How much RAM does Claude Code actually need to run well?
+
+Claude Code itself typically uses 400MB-2GB of resident memory under normal conditions. The extreme numbers (12GB+, 129GB virtual) are the result of memory leaks and accumulated session data, not normal operation. A machine with 16GB of RAM is sufficient if you manage sessions properly.
+
+### Will switching terminals fix the memory problem?
+
+No. Switching from Ghostty to Warp, iTerm, or Alacritty will not solve the core issue. The Ghostty-specific mmap leak has been fixed in nightly builds, but the primary memory consumers — session log bloat, MCP server processes, and Claude Code's own memory management — are terminal-independent.
+
+### Is it safe to delete files in ~/.claude/projects/?
+
+Yes. The JSONL files in `~/.claude/projects/` are session history logs. Deleting them removes your conversation history but does not affect Claude Code's functionality, your project files, or your configuration. It's the single most effective immediate fix for memory issues.
+
+### Does Anthropic know about these memory leaks?
+
+Yes. GitHub issue #11315 is tagged with `perf:memory` and `bug` by the Anthropic team. The community has provided detailed diagnostics including VmRSS growth patterns and `/proc/[pid]/status` data. A fix has not yet shipped as of February 2026, but it's acknowledged as a known issue.
+
+### How often should I clear session logs?
+
+Weekly is a reasonable cadence for most developers. If you use MCP servers that generate screenshots or large outputs (like Playwright), check more frequently. Setting up a cron job to delete JSONL files over 500MB is a low-effort way to prevent buildup.
 
 ---
 

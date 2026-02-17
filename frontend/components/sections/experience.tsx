@@ -11,14 +11,14 @@ const experiences: ExperienceItem[] = [
     role: "Founder",
     duration: "7+ yrs",
     description:
-      "Leading a team delivering innovative software solutions, design services, and staff augmentation for businesses looking to scale.",
+      "Building high-converting websites, web apps, and MVPs for startups and growing businesses. Modern tech stack, performance-first development, and SEO optimization.",
   },
   {
     company: "Universal Music Group",
     role: "Senior Software Developer",
     duration: "6+ yrs",
     description:
-      "Fullstack development with React, Node.js, and AWS. Building dynamic interfaces and managing cloud operations.",
+      "Full-stack development with React, Next.js, Node.js, and AWS. Built high-traffic web applications, managed cloud infrastructure, and delivered internal tools at enterprise scale.",
   },
   {
     company: "Provectus",
@@ -39,14 +39,14 @@ const experiences: ExperienceItem[] = [
     role: "Full Stack Developer",
     duration: "4 yrs",
     description:
-      "Built and maintained multiple high-traffic platforms including Univision.com and TUDN using Next.js, GraphQL, and modern web technologies.",
+      "Built and maintained high-traffic platforms including Univision.com and TUDN serving millions of users. Next.js, GraphQL, and performance-optimized architecture.",
   },
   {
     company: "Prodigious Latin America",
     role: "Full Stack Developer",
     duration: "3 yrs",
     description:
-      "Full stack development for Bank of America. Built web applications following latest standards.",
+      "Full-stack development for Bank of America. Built secure, standards-compliant web applications for one of the largest financial institutions in the world.",
   },
 ];
 
@@ -63,7 +63,7 @@ export function Experience() {
           </div>
           <div>
             <p className="text-3xl md:text-4xl lg:text-5xl font-light text-fg leading-tight">
-              Crafting future icons, today.
+              10+ years shipping software that works.
             </p>
           </div>
         </div>

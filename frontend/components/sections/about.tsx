@@ -86,10 +86,13 @@ export function About() {
           </div>
           <div>
             <p className="text-2xl md:text-3xl lg:text-4xl font-light text-fg-secondary leading-relaxed">
-              I&apos;m a Software Engineer and serial entrepreneur with a passion for creating work
-              that <span className="text-fg font-normal">empowers small businesses</span>,{" "}
-              <span className="text-fg font-normal">transforms ideas into reality</span> and{" "}
-              <span className="text-fg font-normal">drives meaningful impact</span>.
+              I&apos;m a Software Engineer and serial entrepreneur who builds{" "}
+              <span className="text-fg font-normal">modern, high-converting websites</span>,{" "}
+              <span className="text-fg font-normal">scalable apps</span>, and{" "}
+              <span className="text-fg font-normal">
+                digital products that drive real business results
+              </span>
+              .
             </p>
           </div>
         </div>
@@ -103,18 +106,18 @@ export function About() {
           </div>
           <div className="space-y-6">
             <p className="text-lg md:text-xl text-fg-secondary leading-relaxed">
-              I combine deep technical expertise with a keen eye for design. While I write code that
-              scales, I never lose sight of the user experience. Every pixel matters, every
-              interaction counts.
+              I combine deep technical expertise with a keen eye for design. Every site I build is
+              performance-first, SEO-optimized, and engineered for conversions. Every pixel matters,
+              every interaction counts.
             </p>
             <p className="text-lg md:text-xl text-fg-secondary leading-relaxed">
-              I leverage the most modern tools in the industry — from AI-powered development with
-              Claude Code to cutting-edge frameworks. I believe in working smarter, not just harder,
-              to deliver exceptional results.
+              I leverage the most modern tools in the industry — Next.js, AI-powered development,
+              and advanced search optimization for both Google and AI search engines like ChatGPT
+              and Perplexity. My sites don&apos;t just look good — they generate leads.
             </p>
             <p className="text-lg md:text-xl text-fg leading-relaxed font-medium">
-              My mission? Helping small businesses compete with the big players through technology
-              that just works.
+              My mission? Helping businesses compete with the big players through technology that
+              performs, converts, and scales.
             </p>
           </div>
         </div>
@@ -172,7 +175,8 @@ export function About() {
                 Full-Stack Capabilities
               </h3>
               <p className="text-fg-muted mb-8 max-w-2xl">
-                End-to-end ownership — from pixel-perfect interfaces to scalable infrastructure.
+                End-to-end ownership — from high-converting interfaces to scalable cloud
+                infrastructure.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border pt-6">
                 {capabilities.map((cap) => (

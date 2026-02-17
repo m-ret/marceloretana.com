@@ -24,7 +24,7 @@ Así es como yo lo hago diferente.
 
 La mayoría de sitios web fallan por una de tres razones:
 
-1. **Son lentos.** Si tu página tarda más de 3 segundos en cargar, más de la mitad de tus visitantes se van. Google también lo sabe — los sitios lentos rankean más bajo. La mayoría de sitios en WordPress y Squarespace caen en esta trampa desde el inicio.
+1. **Son lentos.** Según un [estudio de Google de 2018](https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/), si tu página tarda más de 3 segundos en cargar, el 53% de los visitantes móviles la abandona. Google también lo sabe — los sitios lentos rankean más bajo. La mayoría de sitios en WordPress y Squarespace caen en esta trampa desde el inicio.
 
 2. **Son genéricos.** Los sitios basados en plantillas se ven todos iguales. Los visitantes no pueden distinguir qué hace diferente a tu negocio. Si tu sitio no comunica una propuesta de valor clara en menos de 5 segundos, la gente se va.
 
@@ -52,11 +52,13 @@ Construyo con **Next.js** y **React** — los mismos frameworks que usan Netflix
 
 Next.js ofrece generación estática, server-side rendering y optimización automática de imágenes por defecto. Mis sitios consistentemente obtienen 90+ en Google PageSpeed. La mayoría de sitios WordPress luchan por llegar a 60.
 
-La velocidad impacta directamente tus ingresos. Sitios más rápidos rankean más alto en Google, mantienen a los visitantes más tiempo y convierten a tasas más altas.
+La velocidad impacta directamente tus ingresos. Según datos de Portent (2022), la tasa de conversión de un sitio web cae un 4.42% por cada segundo adicional de carga entre los segundos 0 y 5. Sitios más rápidos rankean más alto en Google, mantienen a los visitantes más tiempo y convierten a tasas más altas.
 
 ### Sin Caos de Plugins
 
 WordPress depende de docenas de plugins para funciones básicas — SEO, caché, seguridad, formularios de contacto. Cada plugin es una vulnerabilidad de seguridad potencial, un golpe al rendimiento y una carga de mantenimiento. Las actualizaciones rompen cosas. Los plugins entran en conflicto entre sí. Es frágil por diseño.
+
+De hecho, un [informe de Patchstack (2023)](https://patchstack.com/whitepaper/state-of-wordpress-security-in-2023/) encontró que el 97% de las vulnerabilidades de seguridad en WordPress provienen de plugins y temas, no del core.
 
 Mi stack maneja todo esto de forma nativa. SEO, rendimiento y seguridad están integrados en la arquitectura — no pegados con código de terceros.
 
@@ -118,6 +120,8 @@ Cada sitio que construyo tiene un trabajo: mover visitantes a la acción.
 
 Eso significa estructura de página intencional, llamados a la acción claros, tiempos de carga rápidos y diseño mobile-first. No elementos decorativos ni secciones de relleno. Cada componente existe porque sirve al objetivo de conversión.
 
+Datos de Statista (2024) muestran que el tráfico móvil representa más del 60% de las visitas web globales. Si tu sitio no está optimizado para móvil primero, estás perdiendo a la mayoría de tus visitantes potenciales antes de que vean tu oferta.
+
 Ya sea que el objetivo sea agendar una llamada, capturar un email o completar una compra, toda la experiencia de usuario está diseñada alrededor de ese resultado.
 
 ## Lo Que Dicen los Clientes
@@ -145,6 +149,28 @@ Las agencias cobran tarifas premium por sitios WordPress que necesitan mantenimi
 Yo ofrezco algo diferente: un sitio web moderno y de alta conversión construido sobre un stack tecnológico que rinde mejor, cuesta menos de mantener y dura más. Obtenés calidad premium — el mismo nivel de ingeniería que he entregado para empresas Fortune 500 — a un precio que tiene sentido para negocios en crecimiento.
 
 Sin suscripciones de plugins. Sin contratos de mantenimiento por cosas que no deberían romperse. Solo un sitio que trabaja más duro por tu negocio desde el día uno.
+
+## Preguntas Frecuentes
+
+### ¿Cuánto tiempo tarda construir un sitio web profesional con tu enfoque?
+
+Depende del alcance, pero la mayoría de sitios de negocio y landing pages los entrego en 2-4 semanas. Proyectos más complejos como ecommerce o plataformas web toman 4-8 semanas. Es considerablemente más rápido que el promedio de agencias (3-6 meses) porque trabajo todo el stack yo mismo y uso flujos de desarrollo asistidos por IA.
+
+### ¿Qué diferencia a un sitio en Next.js de uno en WordPress o Squarespace?
+
+Rendimiento, seguridad y escalabilidad. Un sitio en Next.js carga más rápido (90+ en PageSpeed vs. 50-60 típico de WordPress), no depende de plugins de terceros que introducen vulnerabilidades, y escala sin reconstrucciones. Empresas como Netflix, Nike y Notion usan React y Next.js por estas mismas razones.
+
+### ¿Qué es la optimización para búsqueda con IA y por qué importa?
+
+Es el proceso de estructurar tu contenido para que motores de respuesta como ChatGPT Search, Perplexity y Claude lo citen como fuente. Con más de 250 millones de usuarios combinados en estas plataformas, aparecer en resultados de IA ya no es opcional — es una fuente de tráfico y credibilidad que crece exponencialmente.
+
+### ¿Necesito conocimientos técnicos para manejar mi sitio después?
+
+No. Configuro un CMS que cualquier persona de tu equipo puede usar sin tocar código. Podés editar textos, subir imágenes, crear páginas nuevas y publicar contenido de blog de forma independiente.
+
+### ¿Cómo garantizás que el sitio genere clientes y no sea solo un folleto digital más?
+
+Cada decisión de diseño y desarrollo está orientada a la conversión. Desde la estructura de la página hasta la velocidad de carga, los llamados a la acción y el flujo de usuario — todo se construye alrededor de un objetivo medible: que el visitante tome una acción específica como agendar una llamada, llenar un formulario o completar una compra.
 
 ## La Conclusión
 
