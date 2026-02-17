@@ -65,6 +65,12 @@ const ventures = [
     category: "Tourism",
     tagline: "Authentic Costa Rican adventures",
   },
+  {
+    name: "GoEasy Chat",
+    url: "https://goeasy.chat",
+    category: "SaaS",
+    tagline: "Team-based WhatsApp customer support",
+  },
 ];
 
 export function About() {

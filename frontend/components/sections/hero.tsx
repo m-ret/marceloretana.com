@@ -145,6 +145,14 @@ export function Hero() {
                 >
                   TicoGuides &rarr;
                 </a>
+                <a
+                  href="https://goeasy.chat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-black underline underline-offset-4 hover:text-black/60 transition-colors"
+                >
+                  GoEasy Chat &rarr;
+                </a>
               </div>
             </div>
 
