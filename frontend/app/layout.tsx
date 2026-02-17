@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Nav } from "@/components/sections/nav";
@@ -78,21 +79,12 @@ export const metadata: Metadata = {
     siteName: "Marcelo Retana",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/opengraph-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Marcelo Retana - Freelance Developer & Designer",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Marcelo Retana | Full-Stack Developer - Modern Websites, Apps & MVPs",
     description:
       "10+ years building high-converting websites, apps, and MVPs. Performance-first development with Next.js, SEO + AI search optimization.",
-    images: ["/twitter-image.jpg"],
   },
   robots: {
     index: true,
@@ -206,6 +198,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const showToolbar = process.env.NODE_ENV === "development";
+
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
@@ -223,6 +217,7 @@ export default function RootLayout({
         </QueryProvider>
         <Analytics />
         <SpeedInsights />
+        {showToolbar && <VercelToolbar />}
       </body>
     </html>
   );
