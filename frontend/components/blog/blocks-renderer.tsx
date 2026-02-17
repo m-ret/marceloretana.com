@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { JSX } from "react";
+import { createElement } from "react";
 
 interface TextNode {
   type: "text";
@@ -106,8 +107,12 @@ function renderBlock(block: Block, index: number): React.ReactNode {
       return <p key={index}>{block.children.map((child, i) => renderInlineNode(child, i))}</p>;
 
     case "heading": {
-      const Tag = `h${block.level}` as keyof JSX.IntrinsicElements;
-      return <Tag key={index}>{block.children.map((child, i) => renderInlineNode(child, i))}</Tag>;
+      const tag = `h${block.level}` as keyof JSX.IntrinsicElements;
+      return createElement(
+        tag,
+        { key: index },
+        ...block.children.map((child, i) => renderInlineNode(child, i))
+      );
     }
 
     case "list": {
