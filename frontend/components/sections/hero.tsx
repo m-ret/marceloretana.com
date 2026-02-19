@@ -60,6 +60,13 @@ export function Hero() {
         ) : (
           <div className="hero-mobile-gradient absolute inset-0" />
         )}
+        {/* CSS vignette replaces GPU post-processing pass */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%)",
+          }}
+        />
       </div>
 
       {/* Content scrolls naturally on top -- hidden until GSAP reveals */}
@@ -67,11 +74,11 @@ export function Hero() {
         {/* Hero headline (viewport height) */}
         <div className="flex h-screen flex-col justify-center px-6 md:px-12 lg:px-16">
           <div className="max-w-5xl">
-            <p className="hero-label text-white/70 text-sm md:text-base uppercase tracking-[0.3em] mb-6">
+            <p className="hero-label text-white/70 text-sm md:text-base uppercase tracking-[0.3em] mb-6 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
               About
             </p>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white leading-[1.1] tracking-tight mb-8">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white leading-[1.1] tracking-tight mb-8 [text-shadow:0_2px_20px_rgba(0,0,0,0.8)]">
               <span className="hero-line inline-block">I build modern websites</span>
               <br />
               <span className="hero-line inline-block">and apps that convert</span>
@@ -79,7 +86,7 @@ export function Hero() {
               <span className="hero-line inline-block">visitors into customers.</span>
             </h1>
 
-            <p className="hero-subtitle text-lg md:text-xl lg:text-2xl text-white/60 max-w-2xl">
+            <p className="hero-subtitle text-lg md:text-xl lg:text-2xl text-white/60 max-w-2xl [text-shadow:0_2px_16px_rgba(0,0,0,0.8)]">
               Full-stack development with Next.js. SEO-optimized, fast, and built for lead
               generation.
               <br className="hidden md:block" />
@@ -89,7 +96,9 @@ export function Hero() {
 
           {/* Scroll indicator */}
           <div className="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-            <span className="text-white/40 text-xs uppercase tracking-[0.2em]">Scroll</span>
+            <span className="text-white/40 text-xs uppercase tracking-[0.2em] [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
+              Scroll
+            </span>
             <div className="scroll-indicator-line" />
           </div>
         </div>
@@ -159,16 +168,16 @@ export function Hero() {
 
             {/* Get in Touch */}
             <div className="flex flex-col justify-end p-8 md:p-10 md:pl-16">
-              <p className="text-lg md:text-xl uppercase tracking-widest text-white font-medium mb-4">
+              <p className="text-lg md:text-xl uppercase tracking-widest text-white font-medium mb-4 [text-shadow:0_2px_16px_rgba(0,0,0,0.8)]">
                 Get in Touch
               </p>
               <a
                 href="mailto:info@gexpsoftware.com"
-                className="text-xl md:text-2xl text-white/70 hover:text-white transition-colors mb-6"
+                className="text-xl md:text-2xl text-white/70 hover:text-white transition-colors mb-6 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]"
               >
                 info@gexpsoftware.com
               </a>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
                 <a
                   href="https://cal.com/marcelo-retana"
                   target="_blank"
