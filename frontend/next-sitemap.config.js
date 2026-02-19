@@ -43,6 +43,9 @@ const config = {
       },
     ],
     additionalSitemaps: [],
+    transformRobotsTxt: async (_, robotsTxt) => {
+      return `${robotsTxt}\n# LLMs\nLlms-Txt: https://marceloretana.com/llms.txt\n`;
+    },
   },
   transform: async (config, path) => {
     // Custom priority for different pages

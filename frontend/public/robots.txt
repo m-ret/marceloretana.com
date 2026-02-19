@@ -36,3 +36,6 @@ Host: https://marceloretana.com
 
 # Sitemaps
 Sitemap: https://marceloretana.com/sitemap.xml
+
+# LLMs
+Llms-Txt: https://marceloretana.com/llms.txt
