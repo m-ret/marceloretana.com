@@ -76,9 +76,27 @@ h1, h2, h3, h4, h5, h6 {
   animation: marquee 20s linear infinite;
 }
 
-/* Theme transition for all elements */
-*, *::before, *::after {
+/* Theme transition — scoped to themed containers only */
+body,
+.nav-glass,
+.prose {
   transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Page enter animation (replaces framer-motion) */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-in {
+  animation: page-in 0.4s ease-out both;
 }
 
 /* Prose typography overrides for theme support */
