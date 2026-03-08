@@ -61,13 +61,7 @@ export function Hero() {
         ) : (
           <div className="hero-mobile-gradient absolute inset-0" />
         )}
-        {/* CSS vignette replaces GPU post-processing pass */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%)",
-          }}
-        />
+        {/* Vignette handled by GPU post-processing in hero-scene */}
       </div>
 
       {/* Content scrolls naturally on top -- hidden until GSAP reveals */}

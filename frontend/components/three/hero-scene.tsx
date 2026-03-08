@@ -1,7 +1,8 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
+import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
+import { BlendFunction } from "postprocessing";
 import { useRef } from "react";
 import type * as THREE from "three";
 import { useMousePosition } from "@/hooks/use-mouse-position";
@@ -44,6 +45,7 @@ export function HeroScene() {
       {/* Post-processing */}
       <EffectComposer>
         <Bloom intensity={0.8} luminanceThreshold={0.2} luminanceSmoothing={0.9} mipmapBlur />
+        <Vignette offset={0.3} darkness={0.7} blendFunction={BlendFunction.NORMAL} />
       </EffectComposer>
     </>
   );
