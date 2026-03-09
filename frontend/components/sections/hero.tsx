@@ -64,8 +64,7 @@ export function Hero() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background:
-              "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.85) 100%)",
+            background: "radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%)",
           }}
         />
       </div>
