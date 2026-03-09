@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
@@ -61,12 +60,6 @@ export function Hero() {
         ) : (
           <div className="hero-mobile-gradient absolute inset-0" />
         )}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%)",
-          }}
-        />
       </div>
 
       {/* Content scrolls naturally on top -- hidden until GSAP reveals */}
@@ -108,13 +101,11 @@ export function Hero() {
           <div className="flex flex-col md:flex-row gap-0">
             {/* Image */}
             <div className="relative w-full md:w-80 h-96 md:h-[520px] flex-shrink-0">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/profile.jpeg"
                 alt="Marcelo Retana"
-                fill
-                sizes="(max-width: 768px) 100vw, 320px"
-                className="object-cover object-top"
-                loading="lazy"
+                className="w-full h-full object-cover object-top"
               />
             </div>
 
@@ -170,16 +161,16 @@ export function Hero() {
 
             {/* Get in Touch */}
             <div className="flex flex-col justify-end p-8 md:p-10 md:pl-16">
-              <p className="text-lg md:text-xl uppercase tracking-widest text-white font-medium mb-4 [text-shadow:0_2px_16px_rgba(0,0,0,0.8)]">
+              <p className="text-lg md:text-xl uppercase tracking-widest text-white font-medium mb-4">
                 Get in Touch
               </p>
               <a
                 href="mailto:info@gexpsoftware.com"
-                className="text-xl md:text-2xl text-white/70 hover:text-white transition-colors mb-6 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]"
+                className="text-xl md:text-2xl text-white/70 hover:text-white transition-colors mb-6"
               >
                 info@gexpsoftware.com
               </a>
-              <div className="flex flex-col gap-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
+              <div className="flex flex-col gap-3">
                 <a
                   href="https://cal.com/marcelo-retana"
                   target="_blank"

@@ -7,7 +7,7 @@ import { HeroScene } from "./hero-scene";
 export function HeroCanvas() {
   return (
     <Canvas
-      camera={{ position: [0, 0, 10], fov: 45 }}
+      camera={{ position: [0, 0, 5], fov: 45 }}
       dpr={[1, 1.5]}
       gl={{
         antialias: true,

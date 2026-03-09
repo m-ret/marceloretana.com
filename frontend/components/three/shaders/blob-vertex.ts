@@ -18,8 +18,9 @@ void main() {
   // Multi-octave noise for organic shape
   float noise1 = snoise(position * 0.8 + uTime * uNoiseSpeed) * 0.5;
   float noise2 = snoise(position * 1.6 + uTime * uNoiseSpeed * 0.8) * 0.25;
+  float noise3 = snoise(position * 3.2 + uTime * uNoiseSpeed * 0.6) * 0.125;
 
-  float displacement = (noise1 + noise2) * uNoiseStrength;
+  float displacement = (noise1 + noise2 + noise3) * uNoiseStrength;
   vDisplacement = displacement;
 
   vec3 newPosition = position + normal * displacement;

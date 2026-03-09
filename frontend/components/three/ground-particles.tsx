@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import type * as THREE from "three";
 
-const PARTICLE_COUNT = 150;
+const PARTICLE_COUNT = 200;
 
 export function GroundParticles() {
   const pointsRef = useRef<THREE.Points>(null);
@@ -13,9 +13,9 @@ export function GroundParticles() {
     const pos = new Float32Array(PARTICLE_COUNT * 3);
     const spd = new Float32Array(PARTICLE_COUNT);
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 14;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
+      pos[i * 3] = (Math.random() - 0.5) * 12;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 8;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 8;
       spd[i] = 0.2 + Math.random() * 0.5;
     }
     return { positions: pos, speeds: spd };

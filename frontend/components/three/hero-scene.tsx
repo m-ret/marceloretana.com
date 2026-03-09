@@ -1,8 +1,10 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
+import { Bloom, ChromaticAberration, EffectComposer, Vignette } from "@react-three/postprocessing";
+import { BlendFunction } from "postprocessing";
 import { useRef } from "react";
-import type * as THREE from "three";
+import * as THREE from "three";
 import { useMousePosition } from "@/hooks/use-mouse-position";
 import { GroundParticles } from "./ground-particles";
 import { MorphingBlob } from "./morphing-blob";
@@ -21,6 +23,7 @@ export function HeroScene() {
 
   return (
     <>
+      {/* Lighting */}
       <ambientLight intensity={0.1} />
       <spotLight
         position={[0, 8, 4]}
@@ -33,10 +36,23 @@ export function HeroScene() {
       <pointLight position={[-5, 2, -2]} intensity={1.5} color="#4488ff" />
       <pointLight position={[5, -2, -3]} intensity={1.2} color="#8844ff" />
 
+      {/* Scene group follows mouse */}
       <group ref={groupRef}>
         <MorphingBlob />
         <GroundParticles />
       </group>
+
+      {/* Post-processing */}
+      <EffectComposer>
+        <Bloom intensity={0.8} luminanceThreshold={0.2} luminanceSmoothing={0.9} mipmapBlur />
+        <ChromaticAberration
+          blendFunction={BlendFunction.NORMAL}
+          offset={new THREE.Vector2(0.0006, 0.0006)}
+          radialModulation={false}
+          modulationOffset={0}
+        />
+        <Vignette offset={0.3} darkness={0.7} blendFunction={BlendFunction.NORMAL} />
+      </EffectComposer>
     </>
   );
 }
