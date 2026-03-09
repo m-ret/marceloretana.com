@@ -3,6 +3,7 @@ title: "Codex vs Claude Code: Stop Switching, Start Mastering"
 excerpt: "Every time a new AI coding tool drops, devs jump ship. The problem isn't the tool — it's never going deep enough with any of them. Here's an honest comparison and why mastery beats tool-hopping."
 publishedAt: 2026-02-18
 lang: en
+alternate: codex-vs-claude-code-deja-de-cambiar-empieza-a-dominar
 tags:
   - Claude Code
   - Codex

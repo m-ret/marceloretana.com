@@ -3,6 +3,7 @@ title: Why I Build MVPs Fast (And You Should Too)
 excerpt: Speed isn't about cutting corners - it's about learning faster. Here's my approach to rapid MVP development.
 publishedAt: 2025-01-26
 lang: en
+alternate: por-que-construyo-mvps-rapido
 tags:
   - MVP
   - startups

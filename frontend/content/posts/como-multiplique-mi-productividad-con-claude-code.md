@@ -3,6 +3,7 @@ title: "Cómo Multipliqué x10 Mi Velocidad de Código con Claude Code (Y Mi Set
 excerpt: "Después de meses refinando mi flujo de trabajo con IA, comparto la configuración exacta que convirtió a Claude Code en mi herramienta más productiva."
 publishedAt: 2025-01-26
 lang: es
+alternate: how-i-10x-my-coding-with-claude-code
 tags:
   - IA
   - Claude Code

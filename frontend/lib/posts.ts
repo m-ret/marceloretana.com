@@ -13,6 +13,7 @@ export interface Post {
   featuredImage?: string;
   tags?: string[];
   lang: "en" | "es";
+  alternate?: string;
 }
 
 export function getAllPosts(): Post[] {
@@ -39,6 +40,7 @@ export function getAllPosts(): Post[] {
         featuredImage: data.featuredImage || data.image,
         tags: data.tags || [],
         lang: data.lang || "en",
+        alternate: data.alternate || undefined,
       } satisfies Post;
     })
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
@@ -64,6 +66,7 @@ export function getPostBySlug(slug: string): Post | null {
         featuredImage: data.featuredImage || data.image,
         tags: data.tags || [],
         lang: data.lang || "en",
+        alternate: data.alternate || undefined,
       };
     }
   }

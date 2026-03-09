@@ -3,6 +3,7 @@ title: "Por Qué Tu Sitio Web No Genera Clientes (Y Qué Hago Diferente)"
 excerpt: "La mayoría de sitios web se ven bien pero fallan en lo único que importa — convertir visitantes en clientes. Así es como el desarrollo full-stack moderno, la arquitectura enfocada en rendimiento y la optimización para búsqueda con IA generan resultados reales."
 publishedAt: 2026-02-17
 lang: es
+alternate: why-your-website-isnt-generating-leads
 tags:
   - desarrollo web
   - generación de leads

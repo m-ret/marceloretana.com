@@ -3,6 +3,7 @@ title: "Codex vs Claude Code: Dejá de Cambiar, Empezá a Dominar"
 excerpt: "Cada vez que sale una herramienta de IA nueva, los devs saltan de barco. El problema no es la herramienta — es nunca profundizar lo suficiente con ninguna. Acá va una comparación honesta y por qué dominar gana siempre."
 publishedAt: 2026-02-18
 lang: es
+alternate: codex-vs-claude-code-stop-switching-start-mastering
 tags:
   - Claude Code
   - Codex

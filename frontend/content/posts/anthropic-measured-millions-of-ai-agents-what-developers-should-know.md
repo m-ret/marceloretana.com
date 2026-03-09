@@ -3,6 +3,7 @@ title: "Anthropic Measured Millions of AI Agents — What Developers Should Know
 excerpt: "Anthropic just published research analyzing millions of real AI agent interactions. The data reveals how developers actually use agents, what risks are emerging, and why the 'set it and forget it' era is closer than you think."
 publishedAt: 2026-02-19
 lang: en
+alternate: anthropic-midio-millones-de-agentes-ia-lo-que-los-desarrolladores-deben-saber
 tags:
   - AI agents
   - Claude Code

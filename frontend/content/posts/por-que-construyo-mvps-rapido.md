@@ -3,6 +3,7 @@ title: Por Qué Construyo MVPs Rápido (Y Vos También Deberías)
 excerpt: La velocidad no es recortar caminos - es aprender más rápido. Así es mi enfoque para el desarrollo rápido de MVPs.
 publishedAt: 2025-01-26
 lang: es
+alternate: why-i-build-mvps-fast
 tags:
   - MVP
   - startups

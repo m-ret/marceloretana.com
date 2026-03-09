@@ -3,6 +3,7 @@ title: "Qué Es llms.txt y Cómo Agregarlo a Tu Sitio Web"
 excerpt: "Los modelos de IA están leyendo tu sitio web ahora mismo — pero están adivinando qué es importante. llms.txt es un nuevo estándar que te permite decirles directamente. Acá te explico qué es, quién lo usa, y cómo implementarlo en Next.js."
 publishedAt: 2026-02-18
 lang: es
+alternate: what-is-llms-txt-and-how-to-add-it-to-your-website
 tags:
   - optimización IA
   - SEO

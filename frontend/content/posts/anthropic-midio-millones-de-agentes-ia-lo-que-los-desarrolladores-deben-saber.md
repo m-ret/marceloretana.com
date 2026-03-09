@@ -3,6 +3,7 @@ title: "Anthropic Midió Millones de Agentes IA — Lo Que los Desarrolladores D
 excerpt: "Anthropic acaba de publicar una investigación analizando millones de interacciones reales con agentes IA. Los datos revelan cómo los desarrolladores realmente usan agentes, qué riesgos están emergiendo, y por qué la era de 'configurar y olvidar' está más cerca de lo que pensás."
 publishedAt: 2026-02-19
 lang: es
+alternate: anthropic-measured-millions-of-ai-agents-what-developers-should-know
 tags:
   - agentes IA
   - Claude Code

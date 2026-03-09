@@ -3,6 +3,7 @@ title: "How I 10x My Coding Speed with Claude Code (And My Open Source Setup)"
 excerpt: "After months of refining my AI-powered development workflow, I'm sharing the exact configuration that turned Claude Code into my most productive coding partner."
 publishedAt: 2025-01-26
 lang: en
+alternate: como-multiplique-mi-productividad-con-claude-code
 tags:
   - AI
   - Claude Code

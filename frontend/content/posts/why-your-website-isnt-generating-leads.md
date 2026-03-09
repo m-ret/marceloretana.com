@@ -3,6 +3,7 @@ title: "Why Your Website Isn't Generating Leads (And What I Do Differently)"
 excerpt: "Most websites look fine but fail at the one job that matters — turning visitors into customers. Here's how modern full-stack development, performance-first architecture, and AI search optimization deliver real business results."
 publishedAt: 2026-02-17
 lang: en
+alternate: por-que-tu-sitio-web-no-genera-clientes
 tags:
   - web development
   - lead generation

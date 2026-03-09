@@ -3,6 +3,7 @@ title: "What Is llms.txt and How to Add It to Your Website"
 excerpt: "AI models are reading your website right now — but they're guessing what matters. llms.txt is a new standard that lets you tell them directly. Here's what it is, who's using it, and how to implement it in Next.js."
 publishedAt: 2026-02-18
 lang: en
+alternate: que-es-llms-txt-y-como-agregarlo-a-tu-sitio-web
 tags:
   - AI search optimization
   - SEO

@@ -105,6 +105,31 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "GEXP Software",
+  url: "https://gexpsoftware.com",
+  logo: "https://marceloretana.com/profile.jpeg",
+  founder: {
+    "@type": "Person",
+    name: "Marcelo Retana",
+    url: "https://marceloretana.com",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "info@gexpsoftware.com",
+    contactType: "customer service",
+    availableLanguage: ["English", "Spanish"],
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Puerto Jiménez",
+    addressCountry: "CR",
+  },
+  sameAs: ["https://linkedin.com/in/marceloretana", "https://github.com/maketroli"],
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -206,6 +231,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
       <body className={inter.className}>

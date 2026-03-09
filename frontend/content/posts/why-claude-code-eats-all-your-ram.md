@@ -3,6 +3,7 @@ title: "Why Claude Code Eats All Your RAM (And How to Fix It)"
 excerpt: "Ghostty showing 207GB on a 32GB Mac. 129GB memory leaks on Linux. It's not just bad habits — there are real technical culprits hiding in your system. Here's what's actually going on."
 publishedAt: 2026-02-17
 lang: en
+alternate: por-que-claude-code-se-come-toda-tu-ram
 tags:
   - Claude Code
   - AI

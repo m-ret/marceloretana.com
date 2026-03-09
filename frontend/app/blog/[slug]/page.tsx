@@ -25,6 +25,20 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   const url = `https://marceloretana.com/blog/${slug}`;
+  const altLang = post.lang === "es" ? "en" : "es";
+
+  const languages: Record<string, string> = {
+    [post.lang]: url,
+    "x-default":
+      post.lang === "en"
+        ? url
+        : post.alternate
+          ? `https://marceloretana.com/blog/${post.alternate}`
+          : url,
+  };
+  if (post.alternate) {
+    languages[altLang] = `https://marceloretana.com/blog/${post.alternate}`;
+  }
 
   return {
     title: post.title,
@@ -32,6 +46,7 @@ export async function generateMetadata({ params }: PageProps) {
     keywords: post.tags,
     alternates: {
       canonical: url,
+      languages,
     },
     openGraph: {
       title: post.title,
@@ -42,12 +57,22 @@ export async function generateMetadata({ params }: PageProps) {
       authors: ["Marcelo Retana"],
       tags: post.tags,
       locale: post.lang === "es" ? "es_CR" : "en_US",
+      alternateLocale: post.lang === "es" ? "en_US" : "es_CR",
       siteName: "Marcelo Retana",
+      images: [
+        {
+          url: `https://marceloretana.com/blog/${slug}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+      images: [`https://marceloretana.com/blog/${slug}/twitter-image`],
     },
   };
 }
@@ -59,6 +84,21 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) {
     notFound();
   }
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://marceloretana.com" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://marceloretana.com/blog" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `https://marceloretana.com/blog/${slug}`,
+      },
+    ],
+  };
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -93,6 +133,10 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen py-32 px-6 md:px-12 lg:px-16 bg-bg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
