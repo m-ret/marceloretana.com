@@ -27,8 +27,8 @@ export function MorphingBlob() {
   });
 
   return (
-    <mesh ref={meshRef} position={[1.5, 0, 0]}>
-      <icosahedronGeometry args={[1.8, 128]} />
+    <mesh ref={meshRef} position={[2.5, -0.3, 0]}>
+      <icosahedronGeometry args={[1.6, 48]} />
       <shaderMaterial
         vertexShader={blobVertexShader}
         fragmentShader={blobFragmentShader}
