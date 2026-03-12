@@ -7,6 +7,7 @@ import { useRef } from "react";
 import type * as THREE from "three";
 import { useMousePosition } from "@/hooks/use-mouse-position";
 import { GroundParticles } from "./ground-particles";
+import { HeroParticles } from "./hero-particles";
 import { MorphingBlob } from "./morphing-blob";
 
 export function HeroScene() {
@@ -40,6 +41,7 @@ export function HeroScene() {
       <group ref={groupRef}>
         <MorphingBlob />
         <GroundParticles />
+        <HeroParticles />
       </group>
 
       {/* Post-processing */}

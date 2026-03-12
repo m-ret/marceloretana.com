@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
+import { ContactForm } from "@/components/sections/contact-form";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
 
 interface PageProps {
@@ -188,6 +189,14 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="prose prose-lg max-w-none prose-headings:font-light prose-a:underline hover:prose-a:opacity-80 prose-pre:bg-bg-tertiary">
           <MarkdownRenderer content={post.content} />
         </div>
+
+        <section className="mt-16">
+          <h2 className="text-xl font-light text-fg mb-2">Want to work together?</h2>
+          <p className="text-sm text-fg-muted mb-0">
+            I build websites, apps, and MVPs. Let&apos;s talk about your project.
+          </p>
+          <ContactForm />
+        </section>
 
         {/* Footer */}
         <footer className="border-t border-border mt-16 pt-8">

@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ContactForm } from "@/components/sections/contact-form";
 import { getAllPseoContent, getPseoContentByLocale } from "@/lib/pseo";
 import type { Checklist, Comparison, Resource, Stack } from "@/lib/pseo-types";
 
@@ -99,18 +100,12 @@ export default function ResourcesHub() {
           </section>
         )}
 
-        {/* CTA */}
-        <section className="border border-border rounded-lg p-8 mt-16 text-center">
-          <h2 className="text-xl font-light text-fg mb-3">Need a Custom Solution?</h2>
-          <p className="text-fg-secondary mb-6">
+        <section className="mt-16">
+          <h2 className="text-xl font-light text-fg mb-2">Need a Custom Solution?</h2>
+          <p className="text-sm text-fg-muted mb-0">
             I build high-converting websites and apps. Let&apos;s talk about your project.
           </p>
-          <Link
-            href="#contact"
-            className="inline-block border border-accent text-accent px-6 py-2.5 rounded-full text-sm hover:bg-accent hover:text-white transition-colors"
-          >
-            Let&apos;s Talk
-          </Link>
+          <ContactForm />
         </section>
       </div>
     </main>

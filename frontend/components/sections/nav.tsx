@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -11,12 +12,13 @@ const menuLinks = [
   { href: "#experience", label: "Experience" },
   { href: "/blog", label: "Blog" },
   { href: "/resources", label: "Resources" },
-  { href: "#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     function onScroll() {
@@ -32,7 +34,7 @@ export function Nav() {
       <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-4 pointer-events-none">
         <div className="flex items-center justify-between">
           {/* Glass pill: logo + theme toggle */}
-          <div className="nav-glass pointer-events-auto flex items-center gap-1 rounded-full px-4 py-2">
+          <div className="nav-glass pointer-events-auto flex items-center gap-1 rounded-full px-4 h-12">
             <Link href="/" className="text-2xl md:text-3xl tracking-tight">
               <span className="font-medium text-white">M</span>
               <span className="font-light text-white/40">/</span>
@@ -42,11 +44,23 @@ export function Nav() {
             <ThemeToggle className="text-white" />
           </div>
 
+          {/* Contact CTA */}
+          <button
+            type="button"
+            onClick={() => router.push("/contact")}
+            className="pointer-events-auto nav-glass flex items-center gap-2 px-4 h-12 rounded-full group contact-cta-btn"
+            aria-label="Contact"
+          >
+            <span className="text-xs uppercase tracking-widest text-white/80 group-hover:text-white transition-colors">
+              Let&apos;s Talk
+            </span>
+          </button>
+
           {/* Hamburger -- standalone, no container */}
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="pointer-events-auto nav-glass flex flex-col gap-1.5 p-3 rounded-full group"
+            className="pointer-events-auto nav-glass flex flex-col items-center justify-center gap-1.5 w-12 h-12 rounded-full group"
             aria-label="Open menu"
           >
             <span className="w-6 h-0.5 bg-white group-hover:bg-white/70 transition-colors" />

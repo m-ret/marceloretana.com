@@ -224,6 +224,42 @@ h1, h2, h3, h4, h5, h6 {
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
+
+/* Contact CTA button shimmer */
+.contact-cta-btn {
+  position: relative;
+  overflow: hidden;
+}
+.contact-cta-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0s;
+}
+.contact-cta-btn:hover::before {
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+}
+
+/* Contact form flash animation */
+@keyframes contact-flash {
+  0%   { box-shadow: none; }
+  25%  { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0 40px rgba(255, 255, 255, 0.06); }
+  75%  { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08), 0 0 20px rgba(255, 255, 255, 0.03); }
+  100% { box-shadow: none; }
+}
+.contact-flash {
+  animation: contact-flash 1.5s ease-out forwards;
+  border-radius: 2px;
+}
+
 /* Hero mobile gradient fallback */
 .hero-mobile-gradient {
   background: radial-gradient(

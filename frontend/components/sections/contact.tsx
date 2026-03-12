@@ -1,16 +1,21 @@
+import { ContactForm } from "@/components/sections/contact-form";
+import { MarqueeStrip } from "@/components/ui/marquee-strip";
+
 export function Contact() {
   return (
     <section id="contact" className="pt-32 md:pt-40 px-6 md:px-12 lg:px-16 bg-bg">
       <div className="max-w-6xl">
         {/* LET'S KEEP IN TOUCH header */}
-        <div className="border-t border-border pt-8 mb-24">
+        <div className="border-t border-border pt-8 mb-12">
           <h2 className="text-2xl md:text-3xl font-light text-fg">
             Ready to Build Something That Works?
           </h2>
         </div>
 
+        <ContactForm />
+
         {/* Contact grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mt-16 mb-24">
           {/* Get In Touch */}
           <div className="lg:col-span-2">
             <p className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium mb-2">
@@ -69,6 +74,14 @@ export function Contact() {
               >
                 Gh
               </a>
+              <a
+                href="https://x.com/MarceloRet41877"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-fg transition-colors"
+              >
+                X
+              </a>
             </div>
           </div>
         </div>
@@ -88,25 +101,8 @@ export function Contact() {
       </div>
 
       {/* Scrolling tagline bar */}
-      <div className="mt-16 -mx-6 md:-mx-12 lg:-mx-16 overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap">
-          {["set-1", "set-2", "set-3", "set-4"].map((id) => (
-            <div key={id} className="flex">
-              <span className="px-8 py-4 text-sm font-bold uppercase tracking-wider bg-yellow-400 text-black">
-                Building The Future
-              </span>
-              <span className="px-8 py-4 text-sm font-bold uppercase tracking-wider bg-cyan-500 text-black">
-                Crafting Experiences
-              </span>
-              <span className="px-8 py-4 text-sm font-bold uppercase tracking-wider bg-rose-500 text-white">
-                Solving Problems
-              </span>
-              <span className="px-8 py-4 text-sm font-bold uppercase tracking-wider bg-violet-500 text-white">
-                Creating Impact
-              </span>
-            </div>
-          ))}
-        </div>
+      <div className="mt-16 -mx-6 md:-mx-12 lg:-mx-16">
+        <MarqueeStrip />
       </div>
     </section>
   );

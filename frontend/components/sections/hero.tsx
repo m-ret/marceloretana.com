@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "@/hooks/use-media-query";
 
 const HeroCanvas = dynamic(
   () => import("@/components/three/hero-canvas").then((m) => m.HeroCanvas),
@@ -11,7 +10,6 @@ const HeroCanvas = dynamic(
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
   const [isVisible, setIsVisible] = useState(true);
 
   // Pause canvas when hero section is out of view
@@ -29,11 +27,7 @@ export function Hero() {
     <section ref={sectionRef} className="relative bg-black" style={{ clipPath: "inset(0)" }}>
       {/* Fixed canvas -- stays viewport-sized, clipped to section bounds by clip-path */}
       <div className="hero-canvas-wrap fixed inset-0 pointer-events-none">
-        {isDesktop && isVisible ? (
-          <HeroCanvas />
-        ) : (
-          <div className="hero-mobile-gradient absolute inset-0" />
-        )}
+        {isVisible && <HeroCanvas />}
       </div>
 
       {/* Content scrolls naturally on top -- CSS animations, no JS dependency */}
