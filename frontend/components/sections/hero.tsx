@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const HeroCanvas = dynamic(
@@ -93,11 +94,13 @@ export function Hero() {
           <div className="flex flex-col md:flex-row gap-0">
             {/* Image */}
             <div className="relative w-full md:w-80 h-96 md:h-[520px] flex-shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/profile.avif"
+              <Image
+                src="/profile.jpeg"
                 alt="Marcelo Retana"
-                className="w-full h-full object-cover object-top"
+                fill
+                className="object-cover object-top"
+                priority
+                sizes="(max-width: 768px) 100vw, 320px"
               />
             </div>
 
