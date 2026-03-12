@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "niche": "backend",
+    "type": "comparison",
+    "locale": "en",
+    "slug": "supabase-vs-firebase",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Supabase vs Firebase: Which Is Better for Your Backend in 2026?",
+    "description": "Supabase (Postgres) vs Firebase (NoSQL) compared on database, auth, real-time, pricing, and vendor lock-in. An honest guide for choosing your BaaS.",
+    "keywords": [
+      "supabase vs firebase",
+      "firebase vs supabase",
+      "best backend as a service 2026",
+      "supabase or firebase",
+      "firebase alternative"
+    ]
+  },
+  "tools": [
+    {
+      "name": "Supabase",
+      "slug": "supabase",
+      "tagline": "The open-source Firebase alternative built on Postgres",
+      "website": "https://supabase.com",
+      "category": "Backend as a Service"
+    },
+    {
+      "name": "Firebase",
+      "slug": "firebase",
+      "tagline": "Google's app development platform",
+      "website": "https://firebase.google.com",
+      "category": "Backend as a Service"
+    }
+  ],
+  "introduction": "Supabase and Firebase both promise to replace your backend with a managed service, but they're built on fundamentally different foundations. Firebase uses NoSQL (Firestore) with Google's proprietary infrastructure. Supabase uses PostgreSQL — the world's most advanced open-source relational database — with an open-source stack you can self-host. This isn't just a database choice; it shapes how you model data, handle relationships, run queries, and what happens if you ever need to leave.",
+  "categories": [
+    {
+      "name": "Database & Data Modeling",
+      "criteria": [
+        {
+          "criterion": "Query Capabilities",
+          "tool_a": {
+            "score": 10,
+            "detail": "Full PostgreSQL — joins, aggregations, CTEs, window functions, full-text search, JSON operators, and PostGIS for geospatial. You can write any query SQL supports. No artificial limitations."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Firestore queries are limited: no joins, no aggregations (without extensions), no OR queries across fields until recently. Complex queries require denormalizing data or using Cloud Functions. Realtime Database is even more limited."
+          }
+        },
+        {
+          "criterion": "Data Modeling Flexibility",
+          "tool_a": {
+            "score": 9,
+            "detail": "Relational data modeling with foreign keys, constraints, triggers, and stored procedures. Supports JSONB for flexible schema when needed. Views and materialized views for complex data access patterns."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Document-oriented NoSQL is flexible for simple data structures. Works well for mobile-first apps with flat data. But modeling relationships (e.g., many-to-many) requires duplication and denormalization, which leads to consistency challenges."
+          }
+        },
+        {
+          "criterion": "Migrations & Schema Management",
+          "tool_a": {
+            "score": 8,
+            "detail": "supabase db diff generates migrations automatically. Full SQL migration support. Schema changes are versioned and deployable through CLI. Database branching for staging environments."
+          },
+          "tool_b": {
+            "score": 4,
+            "detail": "No schema to migrate — Firestore is schemaless. This sounds flexible until you realize it means no type safety at the database level, no constraints, and schema validation must happen entirely in application code."
+          }
+        },
+        {
+          "criterion": "Full-Text Search",
+          "tool_a": {
+            "score": 8,
+            "detail": "PostgreSQL's built-in full-text search with ts_vector, GIN indexes, and ranking functions. Not as polished as Elasticsearch but handles most use cases without an external service. pgvector adds vector/semantic search."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Firestore added basic full-text search via extensions (Algolia, Typesense integration). Native search is limited to exact matches and array-contains. You'll likely need a third-party search service."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth & Security",
+      "criteria": [
+        {
+          "criterion": "Authentication",
+          "tool_a": {
+            "score": 8,
+            "detail": "GoTrue-based auth with email/password, magic links, OAuth (Google, GitHub, Apple, etc.), phone/SMS, and SAML SSO. MFA support. Custom claims via JWT. Solid but fewer social providers than Firebase."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Firebase Auth is battle-tested at massive scale. Email, phone, Google, Apple, Facebook, Twitter, GitHub, anonymous auth. Firebase Auth UI provides drop-in components. The most proven auth system in BaaS."
+          }
+        },
+        {
+          "criterion": "Authorization & Row-Level Security",
+          "tool_a": {
+            "score": 10,
+            "detail": "PostgreSQL Row Level Security (RLS) policies run at the database level. Every query is automatically filtered — no way to accidentally bypass permissions. Write SQL policies once, they protect all access paths."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Firestore Security Rules are declarative and powerful but separate from data modeling. Easy to write rules that look correct but have subtle bypasses. Rules don't apply to Admin SDK, creating a split security model."
+          }
+        },
+        {
+          "criterion": "API Security",
+          "tool_a": {
+            "score": 9,
+            "detail": "PostgREST generates a REST API with RLS enforcement. anon and service_role keys separate public and admin access. API requests are SQL queries under the hood — same security model throughout."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Firebase client SDKs communicate directly with Firestore/RTDB. Security Rules are the protection layer. Admin SDK bypasses rules entirely. App Check adds device attestation but isn't foolproof."
+          }
+        },
+        {
+          "criterion": "Compliance",
+          "tool_a": {
+            "score": 7,
+            "detail": "SOC 2 Type II certified. HIPAA available on enterprise plan. Self-hosting option means you control data residency completely. Growing enterprise compliance story."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Inherits Google Cloud's extensive compliance: SOC 1/2/3, ISO 27001, HIPAA BAA, FedRAMP, PCI DSS. Google's compliance portfolio is one of the strongest in cloud computing."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Real-Time & Functions",
+      "criteria": [
+        {
+          "criterion": "Real-Time Subscriptions",
+          "tool_a": {
+            "score": 7,
+            "detail": "Realtime via PostgreSQL logical replication (LISTEN/NOTIFY). Works for database changes but has higher latency (~200-500ms) than Firebase. Broadcast and Presence channels for non-database real-time features."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Firebase's real-time is best-in-class. Firestore and Realtime Database push changes to clients in <50ms. Offline persistence with automatic sync. Battle-tested for chat apps, collaboration tools, and live dashboards."
+          }
+        },
+        {
+          "criterion": "Serverless Functions",
+          "tool_a": {
+            "score": 7,
+            "detail": "Edge Functions using Deno with TypeScript. Fast cold starts (~50ms). Integrated with Supabase client. Can also use PostgreSQL functions for database-level logic. Edge Functions are newer and have fewer integrations."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Cloud Functions for Firebase (1st and 2nd gen) are mature. Trigger on Firestore writes, Auth events, Storage uploads, pub/sub. Extensive GCP integration. Cold starts can be slow (~1-3s for Node.js) but gen2 improved this."
+          }
+        },
+        {
+          "criterion": "File Storage",
+          "tool_a": {
+            "score": 8,
+            "detail": "S3-compatible storage with RLS policies on buckets and objects. Image transformations (resize, crop, format). CDN delivery. Familiar API if you've used AWS S3. Generous limits on paid plans."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Firebase Storage (Cloud Storage) is backed by Google Cloud Storage — enterprise-grade, globally distributed. Security Rules for access control. Client SDKs handle upload resumption and progress natively."
+          }
+        },
+        {
+          "criterion": "Offline Support",
+          "tool_a": {
+            "score": 4,
+            "detail": "No built-in offline persistence. The client library caches some data but doesn't support full offline-first development. For offline apps, you need to layer on your own sync solution."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Firestore and Realtime Database have transparent offline persistence. Apps work fully offline and sync when reconnected — no extra code. This is Firebase's killer feature for mobile apps."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vendor Lock-In & Pricing",
+      "criteria": [
+        {
+          "criterion": "Vendor Lock-In Risk",
+          "tool_a": {
+            "score": 10,
+            "detail": "Fully open-source (Apache 2.0). Self-host the entire stack with Docker. Your database is standard PostgreSQL — migrate to any Postgres host (AWS RDS, Railway, Neon) with pg_dump. Zero lock-in."
+          },
+          "tool_b": {
+            "score": 3,
+            "detail": "Deeply locked into Google Cloud. Firestore's proprietary data model, Security Rules, and SDKs have no equivalent elsewhere. Migrating off Firebase means rewriting your data layer, auth, and real-time infrastructure."
+          }
+        },
+        {
+          "criterion": "Pricing Transparency",
+          "tool_a": {
+            "score": 9,
+            "detail": "Clear, predictable pricing based on compute, storage, and bandwidth. Free tier includes 500MB database, 1GB storage, 2GB bandwidth. Pro plan at $25/month is enough for most production apps."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Pay-per-operation pricing (reads, writes, deletes) is hard to predict. A poorly optimized query can spike costs overnight. Many developers have been hit with surprise bills. The pricing calculator is complex."
+          }
+        },
+        {
+          "criterion": "Scaling Costs at Growth",
+          "tool_a": {
+            "score": 8,
+            "detail": "Costs scale with compute and storage, not operations. Read-heavy apps are cheap since PostgreSQL doesn't charge per-read. Predictable growth curve. Self-hosting is always an escape hatch."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Costs can spiral quickly at scale. Per-read pricing means a popular app with many users loading data gets expensive. Real-time listeners count as reads. Many startups have migrated away after hitting cost walls."
+          }
+        },
+        {
+          "criterion": "Self-Hosting Option",
+          "tool_a": {
+            "score": 10,
+            "detail": "Official Docker Compose setup, Kubernetes Helm chart, and detailed self-hosting docs. Every feature works self-hosted. Companies like Coolify and Railway offer one-click Supabase deployments."
+          },
+          "tool_b": {
+            "score": 1,
+            "detail": "Cannot be self-hosted. Firebase is a Google Cloud service only. The Firebase Local Emulator Suite exists for development but there's no way to run Firebase infrastructure on your own servers."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "Supabase for most new projects in 2026",
+    "best_for": {
+      "relational data": "Supabase",
+      "complex queries": "Supabase",
+      "avoiding vendor lock-in": "Supabase",
+      "predictable pricing": "Supabase",
+      "self-hosting": "Supabase",
+      "real-time features": "Firebase",
+      "offline-first mobile apps": "Firebase",
+      "Google Cloud ecosystem": "Firebase",
+      "rapid mobile prototyping": "Firebase",
+      "enterprise compliance": "Firebase"
+    },
+    "summary": "Supabase has become the better default choice for most web applications in 2026. PostgreSQL gives you query power, RLS provides security at the database level, open-source means no lock-in, and pricing is predictable. Firebase still wins decisively for offline-first mobile apps where its real-time sync and offline persistence are genuinely unmatched. But for web development — especially if you value data relationships, flexible querying, and the ability to migrate — Supabase is the modern choice that doesn't compromise your future options."
+  },
+  "related_slugs": ["nodejs-vs-bun", "nextjs-vs-remix"]
+}

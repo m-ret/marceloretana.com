@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "comparison",
+    "locale": "en",
+    "slug": "nextjs-vs-astro",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Next.js vs Astro: Which Is Better for Web Development in 2026?",
+    "description": "An honest comparison of Next.js and Astro across performance, developer experience, ecosystem, and use cases. Find out which framework fits your project.",
+    "keywords": [
+      "next.js vs astro",
+      "astro vs nextjs",
+      "best web framework 2026",
+      "nextjs or astro",
+      "static site generator comparison"
+    ]
+  },
+  "tools": [
+    {
+      "name": "Next.js",
+      "slug": "nextjs",
+      "tagline": "The React framework for production web applications",
+      "website": "https://nextjs.org",
+      "category": "Full-Stack React Framework"
+    },
+    {
+      "name": "Astro",
+      "slug": "astro",
+      "tagline": "The web framework for content-driven websites",
+      "website": "https://astro.build",
+      "category": "Content-First Web Framework"
+    }
+  ],
+  "introduction": "Next.js and Astro take fundamentally different approaches to building websites. Next.js is a full-stack React framework designed for dynamic, interactive applications — think SaaS dashboards, e-commerce, and complex web apps. Astro is a content-first framework that ships zero JavaScript by default and uses Islands Architecture for selective interactivity. Choosing between them comes down to what you're building and how much client-side interactivity you actually need.",
+  "categories": [
+    {
+      "name": "Performance",
+      "criteria": [
+        {
+          "criterion": "Initial Page Load Speed",
+          "tool_a": {
+            "score": 7,
+            "detail": "Server Components and streaming help, but React's runtime adds baseline JavaScript. Typical pages ship 80-150KB of JS before your app code."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Ships zero JavaScript by default. A typical Astro page loads in under 50KB total. Pages are pure HTML/CSS unless you explicitly add interactive islands."
+          }
+        },
+        {
+          "criterion": "Core Web Vitals",
+          "tool_a": {
+            "score": 7,
+            "detail": "Good LCP with Server Components, but hydration can impact INP on complex pages. Requires careful optimization to consistently score 90+ on Lighthouse."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Near-perfect Lighthouse scores out of the box because there's minimal JavaScript to parse. CLS and INP are non-issues on most content pages."
+          }
+        },
+        {
+          "criterion": "Build Times",
+          "tool_a": {
+            "score": 7,
+            "detail": "Turbopack has dramatically improved dev server speed. Production builds for 500+ page sites can take 2-5 minutes depending on data fetching."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Fast builds using Vite under the hood. Content collections with thousands of markdown files build in under a minute. Incremental builds are solid."
+          }
+        },
+        {
+          "criterion": "Runtime Performance Under Load",
+          "tool_a": {
+            "score": 8,
+            "detail": "Edge Runtime and ISR handle traffic spikes well. Server Components reduce client work. Vercel's infrastructure is battle-tested for high-traffic apps."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Static output handles any traffic since it's just files on a CDN. SSR mode with Node adapter performs well but doesn't have Next.js-level edge infrastructure."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Developer Experience",
+      "criteria": [
+        {
+          "criterion": "Learning Curve",
+          "tool_a": {
+            "score": 5,
+            "detail": "Steep learning curve in 2026. App Router, Server vs Client Components, caching strategies, server actions, middleware — there's a lot of surface area to learn."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Simple mental model: write HTML-like components, add interactivity only where needed. Content Collections provide type-safe markdown handling out of the box."
+          }
+        },
+        {
+          "criterion": "TypeScript Support",
+          "tool_a": {
+            "score": 9,
+            "detail": "First-class TypeScript support with auto-generated types for routes and params. Strong typing across server and client boundaries."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Excellent TypeScript support. Content Collections generate types automatically from your schema. Astro components have good type inference."
+          }
+        },
+        {
+          "criterion": "Documentation Quality",
+          "tool_a": {
+            "score": 8,
+            "detail": "Comprehensive docs with examples, but the sheer amount of content can be overwhelming. Some advanced patterns require community resources to understand."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Outstanding documentation with clear tutorials, recipes, and migration guides. Starlight (Astro's docs framework) is itself a testament to the DX quality."
+          }
+        },
+        {
+          "criterion": "Local Development Speed",
+          "tool_a": {
+            "score": 8,
+            "detail": "Turbopack makes dev server startup near-instant. Hot Module Replacement is fast. React DevTools integration is mature."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Vite-powered dev server starts in milliseconds. HMR is instant. Less complexity means fewer confusing dev-mode behaviors."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ecosystem & Flexibility",
+      "criteria": [
+        {
+          "criterion": "Component Ecosystem",
+          "tool_a": {
+            "score": 10,
+            "detail": "Access to the entire React ecosystem — thousands of battle-tested libraries, UI kits (shadcn/ui, Radix), animation libraries (Framer Motion, GSAP), and more."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Can use React, Vue, Svelte, or Solid components via Islands. But you're mixing paradigms, and not all React libraries work in island mode."
+          }
+        },
+        {
+          "criterion": "Backend Capabilities",
+          "tool_a": {
+            "score": 9,
+            "detail": "Full-stack with API routes, server actions, middleware, edge functions. Can build complete applications without a separate backend."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "API endpoints exist but are basic. Astro is intentionally not a full-stack framework — for complex backends, you'll pair it with a separate API."
+          }
+        },
+        {
+          "criterion": "Deployment Options",
+          "tool_a": {
+            "score": 8,
+            "detail": "Best experience on Vercel, but deployable to AWS, Docker, Cloudflare, Netlify. Some advanced features (ISR, middleware) work best on Vercel."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Adapter system deploys to Vercel, Netlify, Cloudflare, Deno, Node, and static hosting. Static output works literally anywhere. No vendor preference."
+          }
+        },
+        {
+          "criterion": "Content Management",
+          "tool_a": {
+            "score": 6,
+            "detail": "No built-in content system. You need to build your own markdown pipeline or integrate a headless CMS. MDX support exists but requires configuration."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Content Collections are best-in-class: type-safe schemas, automatic validation, built-in markdown/MDX support, image optimization. Purpose-built for content."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Use Case Fit",
+      "criteria": [
+        {
+          "criterion": "Marketing & Content Sites",
+          "tool_a": {
+            "score": 6,
+            "detail": "Works but overpowered. You're shipping React's runtime for pages that might not need any interactivity. Like using a tank to go grocery shopping."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "This is exactly what Astro was built for. Blogs, docs, marketing sites, portfolios — anywhere content is king and interactivity is optional."
+          }
+        },
+        {
+          "criterion": "Web Applications (SaaS, Dashboards)",
+          "tool_a": {
+            "score": 10,
+            "detail": "The natural choice for interactive apps. Auth flows, real-time data, complex state management, role-based access — Next.js handles it all."
+          },
+          "tool_b": {
+            "score": 3,
+            "detail": "Not designed for this. You could hack together a SaaS with Astro islands, but you'd be fighting the framework every step of the way."
+          }
+        },
+        {
+          "criterion": "E-commerce",
+          "tool_a": {
+            "score": 9,
+            "detail": "Strong e-commerce story with Shopify integration, Vercel Commerce, and dynamic features like personalized recommendations and cart management."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Good for catalog-style stores with mostly static product pages. Dynamic cart and checkout require islands or external services."
+          }
+        },
+        {
+          "criterion": "Documentation Sites",
+          "tool_a": {
+            "score": 6,
+            "detail": "Possible with Nextra or custom setup, but no built-in docs framework. You're assembling pieces rather than using a purpose-built solution."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Starlight is a world-class docs framework built on Astro. Algolia/Pagefind search, i18n, versioning, sidebar generation — all included."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "It depends on what you're building",
+    "best_for": {
+      "blogs and content sites": "Astro",
+      "documentation": "Astro",
+      "marketing pages": "Astro",
+      "SaaS applications": "Next.js",
+      "e-commerce": "Next.js",
+      "dashboards": "Next.js",
+      "performance out of the box": "Astro",
+      "React ecosystem access": "Next.js"
+    },
+    "summary": "These frameworks aren't really competitors — they solve different problems. If your site is primarily content with sprinkles of interactivity, Astro will give you better performance with less effort. If you're building an interactive application with auth, real-time data, and complex state, Next.js is the mature, full-stack choice. Many teams use both: Astro for their marketing site and docs, Next.js for their app."
+  },
+  "related_slugs": ["nextjs-vs-remix", "nextjs-vs-nuxt"]
+}

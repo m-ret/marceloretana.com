@@ -1,0 +1,249 @@
+{
+  "meta": {
+    "niche": "react",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "react-performance-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "React Performance Checklist: 26 Essential Steps",
+    "description": "Optimize your React app with this 26-step performance checklist. Covers re-renders, bundle size, state management, virtualization, and profiling.",
+    "keywords": [
+      "react performance checklist",
+      "react optimization",
+      "react re-renders",
+      "react bundle size",
+      "react profiling",
+      "react performance best practices"
+    ]
+  },
+  "introduction": "React applications can become sluggish as they grow — unnecessary re-renders, bloated bundles, and unoptimized state management compound into noticeable lag. This checklist gives you 25 concrete optimizations to audit and fix, organized from high-impact fundamentals to advanced techniques. Profile first, then apply the relevant fixes.",
+  "total_items": 26,
+  "estimated_time": "3-4 hours",
+  "sections": [
+    {
+      "name": "Re-Render Optimization",
+      "description": "Identify and eliminate unnecessary re-renders — the most common source of React performance problems.",
+      "items": [
+        {
+          "id": "react-perf-1",
+          "text": "Profile components with React DevTools Profiler",
+          "description": "Record interactions in the React DevTools Profiler tab to see which components re-render and why. Focus on components that render frequently or take longer than 16ms. Do not optimize blindly — always profile first.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-perf-2",
+          "text": "Lift state down to minimize re-render scope",
+          "description": "Move state to the lowest component that needs it. When state lives too high in the tree, every state change re-renders all children. Colocating state with the component that uses it is the simplest and most effective optimization.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-perf-3",
+          "text": "Use React.memo for expensive pure components",
+          "description": "Wrap components that receive the same props frequently with `React.memo`. This skips re-rendering when props have not changed. Most effective for list items, chart components, and complex UI sections that render often.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-4",
+          "text": "Stabilize callback props with useCallback",
+          "description": "Wrap callback functions passed as props with `useCallback` to prevent child components wrapped in React.memo from re-rendering. Without useCallback, a new function reference is created every render, defeating memoization.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-5",
+          "text": "Avoid creating objects and arrays inline in JSX",
+          "description": "Expressions like `style={{ color: 'red' }}` or `options={[1, 2, 3]}` create new references every render, causing memoized children to re-render. Extract these to constants outside the component or memoize with useMemo.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-6",
+          "text": "Split context providers to prevent cascading re-renders",
+          "description": "A single context with multiple values (user, theme, locale) re-renders every consumer when any value changes. Split into separate contexts: UserContext, ThemeContext, LocaleContext. Each consumer only re-renders for the context it actually uses.",
+          "difficulty": "advanced",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Bundle Size & Code Splitting",
+      "description": "Reduce the JavaScript your users download and parse to improve initial load time.",
+      "items": [
+        {
+          "id": "react-perf-7",
+          "text": "Implement route-based code splitting with React.lazy",
+          "description": "Wrap route components with `React.lazy(() => import('./Page'))`. Each route becomes a separate chunk downloaded only when the user navigates to it. This can reduce initial bundle size by 50-80% in multi-page apps.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-perf-8",
+          "text": "Visualize and analyze bundle composition",
+          "description": "Install `source-map-explorer` or `webpack-bundle-analyzer` and run against your production build. Identify dependencies over 50KB, duplicate packages loaded in different chunks, and code that should be lazy-loaded.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-perf-9",
+          "text": "Replace heavyweight libraries with lighter alternatives",
+          "description": "Common swaps: moment.js to date-fns or dayjs, lodash to lodash-es with individual imports, numeral.js to Intl.NumberFormat (built-in), classnames to clsx (smaller). Check bundlephobia.com before adding any dependency.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-10",
+          "text": "Lazy-load heavy UI components",
+          "description": "Use `React.lazy` for modals, drawers, charts, date pickers, rich text editors, and any component not visible on initial load. Wrap with `<Suspense fallback={<Skeleton />}>` to show a loading state during chunk download.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-11",
+          "text": "Enable tree shaking and verify it works",
+          "description": "Use named imports (`import { debounce } from 'lodash-es'`) instead of default imports of entire modules. Verify tree shaking is working by checking your bundle analyzer output — dead code should not appear in production chunks.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "State Management Performance",
+      "description": "Optimize how state flows through your application to minimize unnecessary work.",
+      "items": [
+        {
+          "id": "react-perf-12",
+          "text": "Use selectors with state management libraries",
+          "description": "In Zustand, use selectors: `useStore(state => state.count)` instead of `useStore()`. In Redux, use `useSelector` with specific state slices. Without selectors, components re-render on every store change, even unrelated ones.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-perf-13",
+          "text": "Normalize complex nested state",
+          "description": "Store relational data in flat, normalized structures with IDs as keys instead of deeply nested objects. Updating a nested object requires creating new references for every parent, causing widespread re-renders. Flat structures allow surgical updates.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-14",
+          "text": "Batch state updates to reduce render cycles",
+          "description": "React 18+ automatically batches state updates in event handlers, timeouts, and promises. For older versions or custom scheduling, use `ReactDOM.flushSync` sparingly and `unstable_batchedUpdates` for legacy code. Verify batching is active with the Profiler.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-15",
+          "text": "Use useTransition for non-urgent state updates",
+          "description": "Wrap expensive state updates with `startTransition` to mark them as non-urgent. React will keep the UI responsive during the transition, showing the old UI until the new one is ready. Ideal for search filtering, tab switching, and data-heavy renders.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-16",
+          "text": "Debounce rapid state changes from user input",
+          "description": "For search inputs, resize observers, and scroll handlers, debounce state updates with a 150-300ms delay. Each state update triggers a render cycle — rapid-fire updates from typing or scrolling can cause janky UI.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "List & Rendering Performance",
+      "description": "Optimize the rendering of large lists, tables, and data-heavy UI components.",
+      "items": [
+        {
+          "id": "react-perf-17",
+          "text": "Virtualize long lists and tables",
+          "description": "Use `@tanstack/react-virtual` or `react-window` for lists with 100+ items. Virtualization renders only visible rows (typically 10-20) instead of all items, reducing DOM nodes from thousands to dozens.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-perf-18",
+          "text": "Use stable, unique keys for list items",
+          "description": "Always use unique, stable IDs as keys — never array indices. Index keys cause React to re-mount items when the list order changes (sorting, filtering, inserting), destroying component state and hurting performance.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-19",
+          "text": "Implement pagination or infinite scroll for large datasets",
+          "description": "Never load thousands of items at once. Use cursor-based pagination for predictable performance. For infinite scroll, use IntersectionObserver to trigger loading the next batch. Show skeleton loaders while data loads.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-20",
+          "text": "Optimize expensive computations with useMemo",
+          "description": "Wrap expensive filtering, sorting, or transformation logic with `useMemo`. This caches the result and only recomputes when dependencies change. Measure the computation cost first — memoization adds overhead and is only worth it for operations taking >1ms.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-20b",
+          "text": "Minimize DOM nodes by flattening component structure",
+          "description": "Reduce unnecessary wrapper divs and deeply nested component trees. Each DOM node costs memory and slows layout calculations. Use React Fragments (`<>...</>`) instead of wrapping divs. Aim for under 1500 total DOM nodes per page — pages exceeding 3000 nodes show measurable layout and paint delays.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Asset & Network Performance",
+      "description": "Optimize assets and network requests to reduce load time and bandwidth usage.",
+      "items": [
+        {
+          "id": "react-perf-21",
+          "text": "Lazy-load images below the fold",
+          "description": "Add `loading='lazy'` to all images that are not immediately visible. For more control, use IntersectionObserver to load images as they approach the viewport. This reduces initial page weight significantly on image-heavy pages.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-22",
+          "text": "Implement data caching with React Query or SWR",
+          "description": "Use TanStack Query or SWR to cache API responses and avoid redundant network requests. Configure staleTime and gcTime to control cache freshness. These libraries handle refetching, deduplication, and background updates automatically.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-perf-23",
+          "text": "Preload critical resources",
+          "description": "Add `<link rel='preload'>` for fonts, hero images, and critical CSS. Use `<link rel='prefetch'>` for resources needed on the next likely page. Preloading starts the download before the rendering code requests the resource.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "react-perf-24",
+          "text": "Serve modern image formats (WebP, AVIF)",
+          "description": "Convert images to WebP (30% smaller than JPEG) or AVIF (50% smaller). Use `<picture>` element with format fallbacks for browser compatibility. If using a CDN like Cloudinary or imgix, enable automatic format negotiation.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "react-perf-25",
+          "text": "Enable gzip or Brotli compression on your server",
+          "description": "Configure your web server or CDN to compress responses with Brotli (preferred) or gzip. Brotli achieves 15-25% better compression than gzip. Verify compression is active using Chrome DevTools Network tab — check the Content-Encoding header.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "The React DevTools Profiler is your most important tool. Always profile before optimizing — the bottleneck is almost never where you expect. Look for components that render frequently with identical props.",
+    "React.memo, useMemo, and useCallback are not free. Each adds memory overhead and comparison cost. Only use them when profiling shows a measurable benefit. Premature memoization can make code harder to read with no performance gain.",
+    "The highest-impact optimization is often architectural: colocating state, splitting components, and choosing the right data-fetching strategy. These structural changes compound, while micro-optimizations have diminishing returns.",
+    "Set up performance budgets in your CI pipeline using Lighthouse CI or bundlewatch. Automated checks catch regressions before they reach production and keep the team accountable for performance."
+  ],
+  "related_slugs": [
+    "react-launch-checklist",
+    "react-accessibility-checklist",
+    "nextjs-performance-checklist"
+  ]
+}

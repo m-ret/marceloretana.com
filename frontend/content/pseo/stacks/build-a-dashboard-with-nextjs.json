@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-dashboard-with-nextjs",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a Dashboard with Next.js | Admin Panel Guide",
+    "description": "Build an analytics dashboard with Next.js featuring charts, data tables, real-time updates, and role-based access control.",
+    "keywords": [
+      "nextjs dashboard",
+      "build dashboard nextjs",
+      "nextjs admin panel",
+      "react dashboard tutorial",
+      "nextjs charts",
+      "nextjs data tables",
+      "admin dashboard react"
+    ]
+  },
+  "introduction": "Dashboards are one of the most common web applications — from analytics platforms to admin panels to internal tools. Next.js is ideal for dashboards because server components handle data-heavy pages without shipping large JavaScript bundles, and the App Router's nested layouts keep your sidebar and navigation persistent across pages. This guide builds a complete analytics dashboard with charts, data tables, server-side filtering, and role-based access control.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for Next.js and its build tools.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "PostgreSQL Database",
+      "description": "For storing dashboard data, user accounts, and analytics. Neon offers a generous free tier.",
+      "url": "https://neon.tech"
+    },
+    {
+      "name": "React and TypeScript Knowledge",
+      "description": "Familiarity with React hooks, component composition, and TypeScript interfaces."
+    }
+  ],
+  "estimated_time": "5-7 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Scaffold the Project and Install Dashboard Dependencies",
+      "description": "Create a Next.js project and install libraries for charts, data tables, and database access. Recharts provides composable React chart components, and TanStack Table gives you headless data table primitives that you style with Tailwind. Prisma handles all database queries with type safety.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npx create-next-app@latest my-dashboard \\\n  --typescript \\\n  --tailwind \\\n  --eslint \\\n  --app \\\n  --src-dir\n\ncd my-dashboard\nnpm install recharts @tanstack/react-table @prisma/client next-auth@beta\nnpm install -D prisma"
+      },
+      "tips": [
+        "Recharts is the most popular React charting library — it uses SVG rendering for crisp visuals at any resolution.",
+        "TanStack Table is headless, meaning you control all the markup and styling."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Create the Dashboard Layout with Sidebar Navigation",
+      "description": "Build a persistent layout with a collapsible sidebar, top navigation bar, and content area. Next.js App Router layouts persist across page navigations — the sidebar does not re-render when you switch between dashboard pages. This gives the dashboard a native app feel.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/app/dashboard/layout.tsx\nimport { auth } from \"@/lib/auth\";\nimport { redirect } from \"next/navigation\";\nimport { Sidebar } from \"@/components/Sidebar\";\n\nexport default async function DashboardLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n  const session = await auth();\n  if (!session) redirect(\"/login\");\n\n  return (\n    <div className=\"flex h-screen bg-gray-50\">\n      <Sidebar\n        user={{\n          name: session.user?.name ?? \"User\",\n          email: session.user?.email ?? \"\",\n          role: session.user?.role ?? \"viewer\",\n        }}\n        items={[\n          { label: \"Overview\", href: \"/dashboard\", icon: \"home\" },\n          { label: \"Analytics\", href: \"/dashboard/analytics\", icon: \"chart\" },\n          { label: \"Users\", href: \"/dashboard/users\", icon: \"users\" },\n          { label: \"Settings\", href: \"/dashboard/settings\", icon: \"settings\" },\n        ]}\n      />\n      <main className=\"flex-1 overflow-y-auto p-8\">{children}</main>\n    </div>\n  );\n}",
+        "filename": "src/app/dashboard/layout.tsx"
+      },
+      "tips": [
+        "Use a server component for the layout to fetch the user session without client-side JavaScript.",
+        "Store sidebar collapse state in localStorage via a client component wrapper."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Build the Overview Page with KPI Cards",
+      "description": "Create the main dashboard page with key performance indicator cards that show metrics like total revenue, active users, conversion rate, and growth percentage. Each card fetches its data from the database using a server component — no loading states needed because the data is available before the HTML reaches the browser.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/app/dashboard/page.tsx\nimport { prisma } from \"@/lib/prisma\";\n\nasync function getMetrics() {\n  const now = new Date();\n  const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);\n\n  const [totalUsers, newUsers, totalRevenue, activeUsers] = await Promise.all([\n    prisma.user.count(),\n    prisma.user.count({ where: { createdAt: { gte: thirtyDaysAgo } } }),\n    prisma.payment.aggregate({ _sum: { amount: true } }),\n    prisma.session.count({\n      where: { lastActive: { gte: thirtyDaysAgo } },\n    }),\n  ]);\n\n  return { totalUsers, newUsers, totalRevenue: totalRevenue._sum.amount ?? 0, activeUsers };\n}\n\nexport default async function DashboardPage() {\n  const metrics = await getMetrics();\n\n  const cards = [\n    { label: \"Total Users\", value: metrics.totalUsers.toLocaleString(), change: \"+12%\" },\n    { label: \"New Users (30d)\", value: metrics.newUsers.toLocaleString(), change: \"+8%\" },\n    { label: \"Revenue\", value: `$${(metrics.totalRevenue / 100).toLocaleString()}`, change: \"+23%\" },\n    { label: \"Active Users\", value: metrics.activeUsers.toLocaleString(), change: \"+5%\" },\n  ];\n\n  return (\n    <div>\n      <h1 className=\"text-2xl font-bold\">Overview</h1>\n      <div className=\"mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4\">\n        {cards.map((card) => (\n          <div key={card.label} className=\"rounded-xl border bg-white p-6\">\n            <p className=\"text-sm text-gray-500\">{card.label}</p>\n            <p className=\"mt-2 text-3xl font-bold\">{card.value}</p>\n            <p className=\"mt-1 text-sm text-green-600\">{card.change}</p>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}",
+        "filename": "src/app/dashboard/page.tsx"
+      },
+      "tips": [
+        "Use Promise.all to run independent database queries in parallel — this cuts the page load time significantly.",
+        "Calculate percentage changes by comparing current period to previous period."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Add Interactive Charts with Recharts",
+      "description": "Build a chart component that visualizes time-series data like revenue over time, user signups, or page views. Recharts requires client-side rendering for interactivity (tooltips, hover effects), so mark it as a client component. The data is still fetched on the server and passed as props.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/components/RevenueChart.tsx\n\"use client\";\nimport {\n  AreaChart,\n  Area,\n  XAxis,\n  YAxis,\n  CartesianGrid,\n  Tooltip,\n  ResponsiveContainer,\n} from \"recharts\";\n\ninterface DataPoint {\n  date: string;\n  revenue: number;\n}\n\nexport function RevenueChart({ data }: { data: DataPoint[] }) {\n  return (\n    <div className=\"rounded-xl border bg-white p-6\">\n      <h3 className=\"mb-4 text-lg font-semibold\">Revenue Over Time</h3>\n      <ResponsiveContainer width=\"100%\" height={300}>\n        <AreaChart data={data}>\n          <CartesianGrid strokeDasharray=\"3 3\" stroke=\"#f0f0f0\" />\n          <XAxis\n            dataKey=\"date\"\n            tick={{ fontSize: 12 }}\n            tickLine={false}\n            axisLine={false}\n          />\n          <YAxis\n            tick={{ fontSize: 12 }}\n            tickLine={false}\n            axisLine={false}\n            tickFormatter={(value) => `$${value}`}\n          />\n          <Tooltip\n            formatter={(value: number) => [`$${value}`, \"Revenue\"]}\n            labelStyle={{ fontWeight: \"bold\" }}\n          />\n          <Area\n            type=\"monotone\"\n            dataKey=\"revenue\"\n            stroke=\"#2563eb\"\n            fill=\"#3b82f6\"\n            fillOpacity={0.1}\n            strokeWidth={2}\n          />\n        </AreaChart>\n      </ResponsiveContainer>\n    </div>\n  );\n}",
+        "filename": "src/components/RevenueChart.tsx"
+      },
+      "tips": [
+        "Use ResponsiveContainer to make charts resize automatically with the viewport.",
+        "Keep chart components as client components but fetch and aggregate data in the parent server component."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Build a Data Table with Server-Side Pagination",
+      "description": "Create a sortable, paginated data table using TanStack Table and URL search params for server-side pagination. Storing pagination state in the URL means table pages are shareable and work with the browser's back button. The server component fetches only the current page of data from the database.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/app/dashboard/users/page.tsx\nimport { prisma } from \"@/lib/prisma\";\nimport { UsersTable } from \"@/components/UsersTable\";\n\nconst PAGE_SIZE = 20;\n\nexport default async function UsersPage({\n  searchParams,\n}: {\n  searchParams: { page?: string; sort?: string; order?: string };\n}) {\n  const page = Math.max(1, Number(searchParams.page) || 1);\n  const sortField = searchParams.sort ?? \"createdAt\";\n  const sortOrder = searchParams.order === \"asc\" ? \"asc\" : \"desc\";\n\n  const [users, totalCount] = await Promise.all([\n    prisma.user.findMany({\n      skip: (page - 1) * PAGE_SIZE,\n      take: PAGE_SIZE,\n      orderBy: { [sortField]: sortOrder },\n      select: {\n        id: true,\n        name: true,\n        email: true,\n        createdAt: true,\n        organization: { select: { name: true } },\n      },\n    }),\n    prisma.user.count(),\n  ]);\n\n  return (\n    <div>\n      <div className=\"flex items-center justify-between\">\n        <h1 className=\"text-2xl font-bold\">Users</h1>\n        <p className=\"text-sm text-gray-500\">{totalCount} total</p>\n      </div>\n      <div className=\"mt-6\">\n        <UsersTable\n          users={users}\n          currentPage={page}\n          totalPages={Math.ceil(totalCount / PAGE_SIZE)}\n          sortField={sortField}\n          sortOrder={sortOrder}\n        />\n      </div>\n    </div>\n  );\n}",
+        "filename": "src/app/dashboard/users/page.tsx"
+      },
+      "tips": [
+        "Server-side pagination keeps your queries fast even with millions of rows — you only fetch one page at a time.",
+        "Use Prisma's count and findMany in a Promise.all for parallel execution."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Implement Role-Based Access Control",
+      "description": "Add role-based access control so admins can manage users and settings while viewers can only see analytics. Create a middleware layer that checks the user's role on every request and a utility function for component-level permission checks. Roles are stored in the database and cached in the session.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/lib/permissions.ts\nexport type Role = \"admin\" | \"editor\" | \"viewer\";\n\nconst roleHierarchy: Record<Role, number> = {\n  viewer: 0,\n  editor: 1,\n  admin: 2,\n};\n\nexport function hasPermission(userRole: Role, requiredRole: Role): boolean {\n  return roleHierarchy[userRole] >= roleHierarchy[requiredRole];\n}\n\nexport function requireRole(userRole: Role, requiredRole: Role) {\n  if (!hasPermission(userRole, requiredRole)) {\n    throw new Error(`Requires ${requiredRole} role, but user has ${userRole}`);\n  }\n}\n\n// Usage in a server component or API route:\n// const session = await auth();\n// requireRole(session.user.role, \"admin\");\n// ... proceed with admin-only operations",
+        "filename": "src/lib/permissions.ts"
+      },
+      "tips": [
+        "Use a role hierarchy so admin inherits all editor permissions, and editor inherits viewer permissions.",
+        "Check permissions in server components and API routes — never rely on client-side role checks alone."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Add Real-Time Updates with Server-Sent Events",
+      "description": "Implement real-time dashboard updates using Server-Sent Events (SSE) through a Next.js route handler. SSE is simpler than WebSockets for one-way data streams like live metrics. The client receives updates automatically and re-renders the affected components without polling.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/app/api/dashboard/stream/route.ts\nimport { prisma } from \"@/lib/prisma\";\nimport { auth } from \"@/lib/auth\";\n\nexport async function GET() {\n  const session = await auth();\n  if (!session) {\n    return new Response(\"Unauthorized\", { status: 401 });\n  }\n\n  const encoder = new TextEncoder();\n  const stream = new ReadableStream({\n    async start(controller) {\n      const sendEvent = (data: Record<string, unknown>) => {\n        controller.enqueue(\n          encoder.encode(`data: ${JSON.stringify(data)}\\n\\n`)\n        );\n      };\n\n      // Send initial data\n      const activeUsers = await prisma.session.count({\n        where: {\n          lastActive: {\n            gte: new Date(Date.now() - 5 * 60 * 1000),\n          },\n        },\n      });\n      sendEvent({ type: \"activeUsers\", value: activeUsers });\n\n      // Send updates every 10 seconds\n      const interval = setInterval(async () => {\n        try {\n          const count = await prisma.session.count({\n            where: {\n              lastActive: {\n                gte: new Date(Date.now() - 5 * 60 * 1000),\n              },\n            },\n          });\n          sendEvent({ type: \"activeUsers\", value: count });\n        } catch {\n          clearInterval(interval);\n          controller.close();\n        }\n      }, 10_000);\n    },\n  });\n\n  return new Response(stream, {\n    headers: {\n      \"Content-Type\": \"text/event-stream\",\n      \"Cache-Control\": \"no-cache\",\n      Connection: \"keep-alive\",\n    },\n  });\n}",
+        "filename": "src/app/api/dashboard/stream/route.ts"
+      },
+      "tips": [
+        "SSE automatically reconnects if the connection drops — the browser handles this natively.",
+        "Use a 10-30 second interval for dashboard updates to keep database load manageable."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Deploy with Caching and Performance Optimization",
+      "description": "Deploy the dashboard to Vercel with optimized caching strategies. Dashboard pages with real-time data use dynamic rendering, while settings and documentation pages use static generation. Use React Suspense boundaries for streaming so the page shell loads instantly while data-heavy sections load progressively.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// Example: Dashboard page with streaming\nimport { Suspense } from \"react\";\nimport { KPICards } from \"@/components/KPICards\";\nimport { RevenueChart } from \"@/components/RevenueChart\";\nimport { RecentActivity } from \"@/components/RecentActivity\";\n\nexport const dynamic = \"force-dynamic\";\n\nexport default function DashboardPage() {\n  return (\n    <div className=\"space-y-6\">\n      <h1 className=\"text-2xl font-bold\">Overview</h1>\n      <Suspense fallback={<KPICardsSkeleton />}>\n        <KPICards />\n      </Suspense>\n      <div className=\"grid gap-6 lg:grid-cols-2\">\n        <Suspense fallback={<ChartSkeleton />}>\n          <RevenueChart />\n        </Suspense>\n        <Suspense fallback={<ActivitySkeleton />}>\n          <RecentActivity />\n        </Suspense>\n      </div>\n    </div>\n  );\n}\n\nfunction KPICardsSkeleton() {\n  return (\n    <div className=\"grid gap-4 sm:grid-cols-2 lg:grid-cols-4\">\n      {Array.from({ length: 4 }).map((_, i) => (\n        <div key={i} className=\"h-28 animate-pulse rounded-xl border bg-gray-100\" />\n      ))}\n    </div>\n  );\n}\n\nfunction ChartSkeleton() {\n  return <div className=\"h-80 animate-pulse rounded-xl border bg-gray-100\" />;\n}\n\nfunction ActivitySkeleton() {\n  return <div className=\"h-80 animate-pulse rounded-xl border bg-gray-100\" />;\n}",
+        "filename": "src/app/dashboard/page.tsx"
+      },
+      "tips": [
+        "Use Suspense boundaries to stream heavy components — the page shell renders immediately while charts load.",
+        "Create skeleton components that match the dimensions of their real counterparts to prevent layout shift.",
+        "Use 'force-dynamic' on pages that show real-time data, and let Next.js statically generate pages that rarely change."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add data export functionality (CSV, PDF) for reports and analytics.",
+    "Implement audit logging to track who changed what and when.",
+    "Build a notification system with in-app alerts and email digests.",
+    "Add keyboard shortcuts for power users to navigate the dashboard faster."
+  ],
+  "related_slugs": [
+    "build-a-saas-with-nextjs",
+    "build-a-realtime-app-with-supabase",
+    "build-an-ecommerce-store-with-nextjs"
+  ]
+}

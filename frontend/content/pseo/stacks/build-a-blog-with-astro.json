@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "niche": "astro",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-blog-with-astro",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a Blog with Astro | Zero-JS Content Site",
+    "description": "Build a lightning-fast blog with Astro using content collections, Markdown, and zero client-side JavaScript by default.",
+    "keywords": [
+      "astro blog",
+      "build blog astro",
+      "astro content collections",
+      "static site blog",
+      "astro markdown blog",
+      "astro tutorial"
+    ]
+  },
+  "introduction": "Astro is purpose-built for content-heavy websites like blogs, documentation sites, and portfolios. It ships zero JavaScript to the browser by default, which makes your blog one of the fastest on the web. With content collections, you get type-safe Markdown/MDX authoring, automatic validation, and built-in image optimization. This guide builds a complete blog with content collections, RSS, and a sitemap.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Astro requires Node.js 20 or later.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Basic HTML and CSS",
+      "description": "Astro components use a superset of HTML, so HTML fundamentals are essential."
+    },
+    {
+      "name": "Familiarity with Markdown",
+      "description": "Blog posts are written in Markdown with frontmatter metadata.",
+      "url": "https://www.markdownguide.org/basic-syntax/"
+    }
+  ],
+  "estimated_time": "2-3 hours",
+  "difficulty": "beginner",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Create the Astro Project",
+      "description": "Scaffold a new Astro project using the CLI wizard. Choose the blog template as a starting point, then add Tailwind CSS and sitemap integrations. Astro's CLI is interactive and sets up everything including TypeScript configuration.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npm create astro@latest my-blog -- --template blog\ncd my-blog\nnpx astro add tailwind\nnpx astro add sitemap\nnpm install"
+      },
+      "tips": [
+        "The 'astro add' command automatically configures integrations in your astro.config.mjs.",
+        "Choose 'strict' TypeScript mode for the best developer experience with content collections."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Define Content Collections with a Schema",
+      "description": "Content collections let you define a typed schema for your blog posts using Zod. Astro validates every Markdown file against this schema at build time, catching errors like missing titles or invalid dates before they reach production. Define your collection in the src/content directory.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/content.config.ts\nimport { defineCollection, z } from \"astro:content\";\nimport { glob } from \"astro/loaders\";\n\nconst blog = defineCollection({\n  loader: glob({ pattern: \"**/*.{md,mdx}\", base: \"./src/content/blog\" }),\n  schema: z.object({\n    title: z.string(),\n    description: z.string(),\n    pubDate: z.coerce.date(),\n    updatedDate: z.coerce.date().optional(),\n    heroImage: z.string().optional(),\n    tags: z.array(z.string()).default([]),\n    draft: z.boolean().default(false),\n  }),\n});\n\nexport const collections = { blog };",
+        "filename": "src/content.config.ts"
+      },
+      "tips": [
+        "The schema acts as documentation for your content format — new team members instantly know what fields are available.",
+        "Use z.coerce.date() instead of z.date() so string dates in frontmatter are automatically parsed."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Write Your First Blog Post",
+      "description": "Create a Markdown file in the content/blog directory with frontmatter that matches your schema. Astro will validate the frontmatter at build time and give you clear error messages if anything is wrong. You can use standard Markdown syntax plus any remark/rehype plugins you add.",
+      "code_snippet": {
+        "language": "markdown",
+        "code": "---\ntitle: \"Why I Switched to Astro\"\ndescription: \"How Astro's zero-JS approach cut my blog's load time by 80%.\"\npubDate: 2026-03-10\ntags: [\"astro\", \"performance\", \"web\"]\nheroImage: \"/images/astro-hero.jpg\"\n---\n\nI rebuilt my blog with Astro and the results were dramatic.\nMy Lighthouse performance score went from 72 to 100.\n\n## The Problem with JavaScript-Heavy Blogs\n\nMost blog frameworks ship a full React runtime to the browser,\neven though blog posts are entirely static content.\n\n## How Astro Solves This\n\nAstro renders everything to HTML at build time and ships\n**zero JavaScript** by default. If you need interactivity,\nyou opt in with [client directives](https://docs.astro.build/en/reference/directives-reference/).\n\n```astro\n<!-- Only hydrate when visible -->\n<Counter client:visible />\n```",
+        "filename": "src/content/blog/why-i-switched-to-astro.md"
+      }
+    },
+    {
+      "number": 4,
+      "title": "Build the Blog Listing Page",
+      "description": "Create the blog index page that queries your content collection and displays all published posts sorted by date. Astro's getCollection function returns typed post data that matches your schema. The page is rendered to static HTML at build time with zero JavaScript.",
+      "code_snippet": {
+        "language": "astro",
+        "code": "---\n// src/pages/blog/index.astro\nimport { getCollection } from \"astro:content\";\nimport BaseLayout from \"../../layouts/BaseLayout.astro\";\nimport FormattedDate from \"../../components/FormattedDate.astro\";\n\nconst posts = (await getCollection(\"blog\"))\n  .filter((post) => !post.data.draft)\n  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());\n---\n\n<BaseLayout title=\"Blog\" description=\"All blog posts\">\n  <main class=\"mx-auto max-w-2xl px-4 py-16\">\n    <h1 class=\"mb-12 text-4xl font-bold\">Blog</h1>\n    <ul class=\"space-y-8\">\n      {posts.map((post) => (\n        <li>\n          <a href={`/blog/${post.id}`} class=\"group block\">\n            <FormattedDate date={post.data.pubDate} />\n            <h2 class=\"mt-1 text-xl font-semibold group-hover:text-blue-600\">\n              {post.data.title}\n            </h2>\n            <p class=\"mt-2 text-gray-600\">{post.data.description}</p>\n          </a>\n        </li>\n      ))}\n    </ul>\n  </main>\n</BaseLayout>",
+        "filename": "src/pages/blog/index.astro"
+      }
+    },
+    {
+      "number": 5,
+      "title": "Create Dynamic Post Pages",
+      "description": "Build individual post pages using Astro's dynamic routing with getStaticPaths. Each post is rendered at build time to its own HTML page. The render() function converts Markdown to HTML, and you get access to all frontmatter data through the entry.data object.",
+      "code_snippet": {
+        "language": "astro",
+        "code": "---\n// src/pages/blog/[id].astro\nimport { getCollection, render } from \"astro:content\";\nimport BaseLayout from \"../../layouts/BaseLayout.astro\";\nimport FormattedDate from \"../../components/FormattedDate.astro\";\n\nexport async function getStaticPaths() {\n  const posts = await getCollection(\"blog\");\n  return posts.map((post) => ({\n    params: { id: post.id },\n    props: { post },\n  }));\n}\n\nconst { post } = Astro.props;\nconst { Content } = await render(post);\n---\n\n<BaseLayout title={post.data.title} description={post.data.description}>\n  <article class=\"mx-auto max-w-2xl px-4 py-16\">\n    <header class=\"mb-8\">\n      <FormattedDate date={post.data.pubDate} />\n      <h1 class=\"mt-2 text-4xl font-bold\">{post.data.title}</h1>\n      <p class=\"mt-4 text-lg text-gray-600\">{post.data.description}</p>\n      {post.data.heroImage && (\n        <img\n          src={post.data.heroImage}\n          alt={post.data.title}\n          class=\"mt-6 rounded-lg\"\n        />\n      )}\n    </header>\n    <div class=\"prose prose-lg max-w-none\">\n      <Content />\n    </div>\n  </article>\n</BaseLayout>",
+        "filename": "src/pages/blog/[id].astro"
+      },
+      "tips": [
+        "Add a table of contents by using the remarkToc plugin or Astro's built-in heading extraction.",
+        "Use Astro's Image component for automatic image optimization in hero images."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Add an RSS Feed",
+      "description": "Install the official Astro RSS package and create a feed endpoint. The RSS feed is generated at build time from your content collection, so subscribers get updates whenever you publish a new post and deploy. Search engines also use RSS feeds for content discovery.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/pages/rss.xml.ts\nimport rss from \"@astrojs/rss\";\nimport { getCollection } from \"astro:content\";\nimport type { APIContext } from \"astro\";\n\nexport async function GET(context: APIContext) {\n  const posts = (await getCollection(\"blog\")).filter(\n    (post) => !post.data.draft\n  );\n\n  return rss({\n    title: \"My Blog\",\n    description: \"Articles about web development\",\n    site: context.site!,\n    items: posts.map((post) => ({\n      title: post.data.title,\n      pubDate: post.data.pubDate,\n      description: post.data.description,\n      link: `/blog/${post.id}/`,\n    })),\n  });\n}",
+        "filename": "src/pages/rss.xml.ts"
+      },
+      "tips": [
+        "Install the package with 'npx astro add rss' and set the 'site' property in astro.config.mjs.",
+        "Add a link to your RSS feed in your layout's <head> for feed reader auto-discovery."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Deploy to Vercel or Netlify",
+      "description": "Astro supports multiple deployment targets. For static hosting, build the site and deploy the dist folder. Both Vercel and Netlify have official Astro adapters that handle deployment configuration automatically. Your blog will be served from a global CDN with near-zero latency.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "# Option 1: Deploy to Vercel\nnpx astro add vercel\nnpm run build\nnpx vercel --prod\n\n# Option 2: Deploy to Netlify\nnpx astro add netlify\nnpm run build\nnpx netlify deploy --prod --dir=dist"
+      },
+      "tips": [
+        "Astro's static output mode produces a dist folder that works on any static host, including GitHub Pages.",
+        "Enable Vercel's Edge Network or Netlify's CDN for sub-50ms global response times."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add a search feature using Pagefind for zero-dependency client-side search.",
+    "Implement view transitions with Astro's built-in ViewTransitions component for smooth page navigation.",
+    "Add a CMS like Tina or Decap CMS for non-technical content editors.",
+    "Create tag archive pages by grouping posts from your content collection."
+  ],
+  "related_slugs": [
+    "build-a-blog-with-nextjs",
+    "build-a-portfolio-with-astro",
+    "build-a-landing-page-with-tailwindcss"
+  ]
+}

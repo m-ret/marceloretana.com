@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "niche": "react",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "react-accessibility-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "React Accessibility Checklist: 25 Essential Steps",
+    "description": "Make your React app accessible with this 25-step a11y checklist. Covers ARIA, keyboard navigation, screen readers, focus management, and testing tools.",
+    "keywords": [
+      "react accessibility checklist",
+      "react a11y",
+      "react aria",
+      "react screen reader",
+      "react keyboard navigation",
+      "wcag react",
+      "accessible react components"
+    ]
+  },
+  "introduction": "Accessibility is not a feature — it is a requirement. Over 1 billion people worldwide live with some form of disability, and inaccessible web applications exclude them entirely. Beyond the ethical imperative, accessibility failures expose your organization to legal liability under the ADA and EAA. This 24-step checklist covers every accessibility concern specific to React applications.",
+  "total_items": 25,
+  "estimated_time": "3-4 hours",
+  "sections": [
+    {
+      "name": "Semantic HTML & Structure",
+      "description": "Use proper HTML elements and document structure to give assistive technologies the context they need.",
+      "items": [
+        {
+          "id": "react-a11y-1",
+          "text": "Use semantic HTML elements instead of generic divs",
+          "description": "Replace `<div>` and `<span>` with `<button>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<header>`, `<footer>`, and `<aside>`. Screen readers use semantic elements to build a page outline and allow users to jump between landmark regions.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-a11y-2",
+          "text": "Maintain a logical heading hierarchy (h1-h6)",
+          "description": "Use exactly one `<h1>` per page. Follow heading levels in order — never skip from h2 to h4. Screen reader users navigate by heading levels to scan page structure. Skipped levels break this navigation pattern and confuse the content hierarchy.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-a11y-3",
+          "text": "Add landmark roles to major page sections",
+          "description": "Ensure your page has `<main>`, `<nav>`, `<header>`, and `<footer>` landmarks. If you have multiple nav elements, differentiate them with `aria-label` (e.g., `aria-label='Primary navigation'`). Landmarks let screen reader users jump directly to page sections.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-4",
+          "text": "Use lists for groups of related items",
+          "description": "Render navigation links, menu items, and related content groups as `<ul>` or `<ol>` with `<li>` children. Screen readers announce 'list, 5 items' giving users context about how much content to expect. Divs with links provide no such context.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-5",
+          "text": "Add lang attribute to the html element",
+          "description": "Set `lang='en'` (or appropriate language code) on your `<html>` element. Screen readers use this to switch pronunciation engines. Without it, a French screen reader trying to read English text produces unintelligible output.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "name": "Keyboard Navigation",
+      "description": "Ensure every interactive element and workflow is fully operable using only a keyboard.",
+      "items": [
+        {
+          "id": "react-a11y-6",
+          "text": "Verify all interactive elements are keyboard accessible",
+          "description": "Tab through your entire application using only the keyboard. Every button, link, form field, and interactive widget must be reachable and operable. If you used `onClick` on a div, it is not keyboard accessible — use a `<button>` instead.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-a11y-7",
+          "text": "Add visible focus indicators to all interactive elements",
+          "description": "Ensure focus rings are visible on buttons, links, and inputs. Use `focus-visible` (not `focus`) to show indicators only for keyboard users. Never use `outline: none` without providing an alternative. Focus indicators should have 3:1 contrast ratio against adjacent colors.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-a11y-8",
+          "text": "Implement keyboard trapping in modals and dialogs",
+          "description": "When a modal is open, Tab and Shift+Tab should cycle through only the modal's focusable elements, not escape to the page behind. Move focus to the modal on open and return focus to the trigger element on close. Use `inert` attribute on background content.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-a11y-9",
+          "text": "Support Escape key to close overlays",
+          "description": "Modals, dropdowns, tooltips, and popovers must close when the user presses Escape. This is a standard keyboard convention that users with motor disabilities rely on. Listen for the `keydown` event and check for `event.key === 'Escape'`.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-10",
+          "text": "Manage focus after dynamic content changes",
+          "description": "When content loads dynamically (form submissions, route changes, toast notifications), move focus to the new content or announce it with a live region. Users who cannot see the page do not know something changed unless focus or an announcement tells them.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "ARIA & Screen Reader Support",
+      "description": "Use ARIA attributes correctly to provide additional context that HTML semantics alone cannot convey.",
+      "items": [
+        {
+          "id": "react-a11y-11",
+          "text": "Add aria-label to icon-only buttons and links",
+          "description": "Buttons with only an icon (hamburger menu, close X, search magnifier) need `aria-label` to communicate their purpose to screen readers. Without it, screen readers announce 'button' with no context about what the button does.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-a11y-12",
+          "text": "Use aria-live regions for dynamic content updates",
+          "description": "Wrap toast notifications, form validation messages, and real-time counters with `aria-live='polite'` (for non-urgent updates) or `aria-live='assertive'` (for errors). This tells screen readers to announce the content change without moving focus.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-13",
+          "text": "Implement proper ARIA roles for custom widgets",
+          "description": "Custom dropdowns need `role='listbox'` with `role='option'` children. Tabs need `role='tablist'`, `role='tab'`, and `role='tabpanel'` with proper `aria-selected` and `aria-controls`. Follow WAI-ARIA Authoring Practices for each widget pattern.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-14",
+          "text": "Connect form inputs to labels and error messages",
+          "description": "Every input needs a `<label>` with matching `htmlFor`/`id`, or an `aria-label`. Connect error messages with `aria-describedby` pointing to the error element's ID. Set `aria-invalid='true'` on inputs with validation errors.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-a11y-15",
+          "text": "Do not misuse ARIA — prefer native HTML",
+          "description": "The first rule of ARIA is do not use ARIA if native HTML can do the job. A `<button>` is always better than `<div role='button'>` because it includes keyboard handling, focus management, and click events for free. ARIA adds announcements but not behavior.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Visual & Content Accessibility",
+      "description": "Ensure your visual design and content are perceivable by users with visual, cognitive, and motor disabilities.",
+      "items": [
+        {
+          "id": "react-a11y-16",
+          "text": "Meet WCAG AA color contrast ratios",
+          "description": "Normal text needs 4.5:1 contrast ratio against its background. Large text (18px+ bold or 24px+ regular) needs 3:1. Use Chrome DevTools color picker or WebAIM's contrast checker to verify. Check all states: default, hover, focus, disabled.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-a11y-17",
+          "text": "Add descriptive alt text to all meaningful images",
+          "description": "Write alt text that describes the image's content and function, not just its appearance ('Chart showing 40% revenue growth in Q3' not 'chart image'). Decorative images should use `alt=''` so screen readers skip them entirely.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-18",
+          "text": "Do not rely on color alone to convey information",
+          "description": "Error states need icons or text in addition to red color. Success states need checkmarks, not just green. Form required fields need asterisks or text, not just a different color. About 8% of men have red-green color blindness.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-19",
+          "text": "Support prefers-reduced-motion",
+          "description": "Check `window.matchMedia('(prefers-reduced-motion: reduce)')` and disable or simplify animations for users who have this OS setting enabled. Vestibular disorders can cause nausea, dizziness, and headaches from motion effects on screen.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-19b",
+          "text": "Ensure text is resizable up to 200% without loss of content",
+          "description": "Verify that when users zoom to 200% in their browser, no text is clipped, truncated, or overlaps other elements. Use relative units (rem, em) instead of fixed pixels for font sizes and container dimensions. WCAG 1.4.4 requires content to remain functional at 200% zoom.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Testing & Validation",
+      "description": "Test your application with real assistive technologies and automated tools to catch accessibility issues.",
+      "items": [
+        {
+          "id": "react-a11y-20",
+          "text": "Run axe-core automated accessibility audit",
+          "description": "Install `@axe-core/react` for development warnings or use the axe browser extension. Automated tools catch about 30-40% of accessibility issues — they are a starting point, not a complete audit. Fix all violations before manual testing.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-a11y-21",
+          "text": "Test with a screen reader (VoiceOver, NVDA, or JAWS)",
+          "description": "Navigate your application using VoiceOver (Mac), NVDA (Windows, free), or JAWS. Complete your core user flows without looking at the screen. Listen for confusing announcements, missing labels, and navigation dead ends. This catches issues no automated tool can find.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-22",
+          "text": "Add accessibility tests to your test suite",
+          "description": "Use `jest-axe` or `vitest-axe` to run automated accessibility checks in your component tests. Add `expect(container).toHaveNoViolations()` to every component test. This catches regressions when components are modified.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-23",
+          "text": "Install eslint-plugin-jsx-a11y for static analysis",
+          "description": "Add `eslint-plugin-jsx-a11y` to your ESLint config with recommended rules. It catches missing alt text, invalid ARIA props, non-interactive elements with click handlers, and more during development, before the code is even compiled.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-a11y-24",
+          "text": "Use accessible component libraries or audit your own",
+          "description": "If building custom components, follow WAI-ARIA Authoring Practices. Consider using Radix UI, React Aria (Adobe), or Headless UI (Tailwind Labs) — these libraries handle the complex ARIA patterns, keyboard interactions, and focus management that custom implementations often get wrong.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Use the tab key as your first accessibility test. If you cannot complete a task with just the keyboard, screen reader users cannot either. This single test catches a large percentage of accessibility issues.",
+    "Install the axe DevTools browser extension and run it on every page during development. It provides detailed explanations and fix suggestions for each violation, making accessibility fixes faster.",
+    "The most impactful accessibility improvement is almost always using the right HTML element. A `<button>` instead of a clickable `<div>` gives you keyboard access, focus management, and screen reader announcements for free.",
+    "Test with real users who use assistive technology. Automated tools and developer testing miss the real-world patterns, workarounds, and pain points that daily assistive technology users encounter.",
+    "Accessibility is incremental — you do not need to fix everything at once. Start with critical issues (keyboard navigation, missing labels, color contrast) and improve progressively with each release."
+  ],
+  "related_slugs": [
+    "react-launch-checklist",
+    "react-performance-checklist",
+    "tailwindcss-launch-checklist"
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "niche": "herramientas de desarrollo con IA",
+    "type": "comparison",
+    "locale": "es",
+    "slug": "cursor-vs-claude-code-es",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Cursor vs Claude Code: Cual Es Mejor para Programar con IA en 2026?",
+    "description": "Comparamos Cursor y Claude Code para desarrollo con IA. Analizamos autocompletado, refactorizacion, terminal y flujo de trabajo para programadores en 2026.",
+    "keywords": [
+      "Cursor vs Claude Code",
+      "programar con IA",
+      "IDE con inteligencia artificial",
+      "asistente de codigo IA",
+      "desarrollo con IA 2026",
+      "herramientas IA programacion",
+      "Anthropic Claude",
+      "desarrollo software Costa Rica"
+    ]
+  },
+  "tools": [
+    {
+      "name": "Cursor",
+      "slug": "cursor",
+      "tagline": "Editor de codigo basado en VS Code con IA integrada para autocompletado, chat y edicion multi-archivo",
+      "website": "https://cursor.com",
+      "category": "Editor de codigo con IA"
+    },
+    {
+      "name": "Claude Code",
+      "slug": "claude-code",
+      "tagline": "Agente de desarrollo en terminal de Anthropic que entiende codebases completos y ejecuta tareas autonomamente",
+      "website": "https://claude.ai/code",
+      "category": "Agente de desarrollo en terminal"
+    }
+  ],
+  "introduction": "Cursor y Claude Code representan dos enfoques fundamentalmente diferentes para integrar IA en el desarrollo de software. Cursor extiende VS Code con capacidades de IA visual e integrada al editor. Claude Code opera desde la terminal como un agente autonomo capaz de analizar, editar y ejecutar codigo. Ambos transforman la productividad pero de maneras distintas que se adaptan a diferentes flujos de trabajo.",
+  "categories": [
+    {
+      "name": "Capacidades de IA",
+      "criteria": [
+        {
+          "criterion": "Comprension del codebase",
+          "tool_a": {
+            "score": 7,
+            "detail": "Indexa el proyecto para contexto pero tiene limitaciones con codebases muy grandes. El contexto se puede ampliar manualmente con @files y @folders."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Analiza el codebase completo de forma inteligente, navegando archivos automaticamente. Entiende relaciones entre modulos, patrones del proyecto e historial de git."
+          }
+        },
+        {
+          "criterion": "Autocompletado en tiempo real",
+          "tool_a": {
+            "score": 9,
+            "detail": "Tab completion ultrarapido que predice lineas y bloques completos. Se siente nativo al flujo de escritura y las sugerencias suelen ser acertadas."
+          },
+          "tool_b": {
+            "score": 3,
+            "detail": "No tiene autocompletado en tiempo real al ser una herramienta de terminal. El flujo de trabajo es conversacional: describes lo que necesitas y Claude lo implementa."
+          }
+        },
+        {
+          "criterion": "Edicion multi-archivo",
+          "tool_a": {
+            "score": 8,
+            "detail": "Composer permite editar multiples archivos en una sola interaccion. Muestra diffs claros y permite aceptar o rechazar cambios por archivo."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Excelente en refactorizaciones que tocan muchos archivos. Navega, lee y edita archivos autonomamente, manteniendo coherencia a traves de todo el proyecto."
+          }
+        },
+        {
+          "criterion": "Ejecucion de comandos",
+          "tool_a": {
+            "score": 6,
+            "detail": "Puede ejecutar comandos en la terminal integrada pero requiere permiso explicito. La integracion entre chat y terminal no es completamente fluida."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Nativo de la terminal: ejecuta builds, tests, linters y cualquier comando directamente. Puede iterar sobre errores, corregirlos y verificar automaticamente."
+          }
+        },
+        {
+          "criterion": "Generacion de codigo nuevo",
+          "tool_a": {
+            "score": 8,
+            "detail": "Genera componentes, funciones y modulos completos desde el chat. La previsualizacion de cambios facilita la revision antes de aplicar."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Genera proyectos enteros o features completas con tests. Puede crear archivos, instalar dependencias y verificar que todo funcione en un solo flujo."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Experiencia de uso",
+      "criteria": [
+        {
+          "criterion": "Interfaz y accesibilidad",
+          "tool_a": {
+            "score": 9,
+            "detail": "Interfaz familiar de VS Code con IA superpuesta. Cualquier usuario de VS Code se siente en casa inmediatamente. Chat lateral, diffs inline y sugerencias contextuales."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Interfaz de terminal que puede intimidar a desarrolladores acostumbrados a IDEs graficos. Requiere comodidad con la linea de comandos y flujo conversacional."
+          }
+        },
+        {
+          "criterion": "Flujo de trabajo para tareas grandes",
+          "tool_a": {
+            "score": 7,
+            "detail": "Composer maneja tareas grandes pero puede perder contexto en refactorizaciones muy extensas. Mejor para cambios incrementales dentro del editor."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Disenado para tareas grandes: puede analizar un proyecto completo, planificar una refactorizacion y ejecutarla paso a paso con verificacion automatica."
+          }
+        },
+        {
+          "criterion": "Revision y control de cambios",
+          "tool_a": {
+            "score": 8,
+            "detail": "Muestra diffs claros antes de aplicar cambios. El flujo accept/reject por archivo da buen control. Integracion con git para ver el historial."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Muestra cada cambio que realiza y pide confirmacion. Integrado con git para commits, diffs y PR. El comando /undo permite revertir cambios facilmente."
+          }
+        },
+        {
+          "criterion": "Personalizacion del comportamiento",
+          "tool_a": {
+            "score": 7,
+            "detail": "Rules permite configurar instrucciones persistentes por proyecto. Archivos .cursorrules definen estilo y convenciones que la IA sigue en sugerencias."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "CLAUDE.md por proyecto permite instrucciones detalladas. Comandos personalizados, skills y hooks hacen que el agente se adapte profundamente al flujo de cada equipo."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Aspectos practicos",
+      "criteria": [
+        {
+          "criterion": "Precio y modelo de costos",
+          "tool_a": {
+            "score": 7,
+            "detail": "Plan Pro a $20/mes con limites de uso. Plan Business a $40/mes. Las solicitudes rapidas premium se agotan y el fallback a modelos lentos puede frustrar."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Requiere suscripcion a Claude (Pro $20/mes o Max hasta $200/mes). El consumo de tokens puede ser alto en sesiones largas con proyectos grandes."
+          }
+        },
+        {
+          "criterion": "Soporte de lenguajes y frameworks",
+          "tool_a": {
+            "score": 9,
+            "detail": "Soporta todos los lenguajes que soporta VS Code. Mejor rendimiento con JavaScript/TypeScript, Python y lenguajes populares. Extensiones de VS Code compatibles."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Agnositico de lenguaje: funciona igual de bien con cualquier stack. Al operar a nivel de archivos y terminal, no tiene limitaciones especificas de lenguaje."
+          }
+        },
+        {
+          "criterion": "Trabajo en equipo",
+          "tool_a": {
+            "score": 7,
+            "detail": "Cada desarrollador tiene su propia instancia. Las reglas de proyecto se comparten via .cursorrules en el repositorio. No hay funcionalidades colaborativas en tiempo real."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "CLAUDE.md se versiona en git, compartiendo convenciones del equipo. Cada desarrollador ejecuta su propia sesion. Sin funcionalidades colaborativas en tiempo real."
+          }
+        },
+        {
+          "criterion": "Integracion con flujos DevOps",
+          "tool_a": {
+            "score": 5,
+            "detail": "Limitado a lo que el editor puede hacer. No tiene integracion nativa con CI/CD, revisiones de PR o workflows automatizados de DevOps."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Se integra directamente con git, GitHub CLI (gh), pipelines de CI y cualquier herramienta de terminal. Puede crear PRs, revisar codigo y gestionar deploys."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "Depende del flujo de trabajo",
+    "best_for": {
+      "Desarrollo cotidiano con autocompletado rapido": "Cursor",
+      "Refactorizaciones grandes y tareas complejas": "Claude Code",
+      "Desarrolladores que prefieren interfaces graficas": "Cursor",
+      "Desarrolladores comodos en la terminal": "Claude Code",
+      "Automatizacion de flujos DevOps": "Claude Code"
+    },
+    "summary": "No hay un ganador claro porque Cursor y Claude Code son complementarios. Cursor destaca en el flujo cotidiano de escritura de codigo con autocompletado instantaneo y una interfaz visual pulida. Claude Code brilla en tareas complejas que requieren entender y modificar un codebase completo. En GEXP Software los usamos juntos: Cursor para desarrollo interactivo diario y Claude Code para refactorizaciones, features completas y automatizacion de flujos de desarrollo."
+  },
+  "related_slugs": ["v0-vs-bolt-es", "supabase-vs-firebase-es"]
+}

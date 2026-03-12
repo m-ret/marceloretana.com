@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "niche": "react",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-libraries-for-react",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Libraries for React in 2026",
+    "description": "Top React libraries for routing, state management, tables, drag-and-drop, and styling. Battle-tested picks from production React engineers.",
+    "keywords": [
+      "react libraries",
+      "best react packages",
+      "react state management",
+      "react table library",
+      "react drag and drop",
+      "react styling",
+      "react component libraries"
+    ]
+  },
+  "introduction": "React's ecosystem is enormous, which makes choosing the right libraries overwhelming. After years of building React applications for clients at GEXP Software, we've narrowed down the libraries that consistently prove their worth. These are the ones we reach for first in every new project.",
+  "total_items": 26,
+  "categories": [
+    {
+      "name": "Data Display & Tables",
+      "description": "Libraries for rendering, sorting, filtering, and virtualizing large datasets and tables in React applications.",
+      "items": [
+        {
+          "name": "TanStack Table",
+          "description": "The most powerful headless table library for React with built-in sorting, filtering, pagination, and column resizing. Fully type-safe and renders however you want since it owns zero markup.",
+          "url": "https://tanstack.com/table",
+          "tags": ["table", "headless", "sorting", "filtering", "virtualization"],
+          "pricing": "open-source",
+          "highlight": "Headless — you control 100% of the markup and styling"
+        },
+        {
+          "name": "AG Grid",
+          "description": "Enterprise-grade data grid with hundreds of features including pivoting, charting, and Excel export. The community edition is free and covers most use cases.",
+          "url": "https://www.ag-grid.com",
+          "tags": ["data-grid", "enterprise", "excel-export", "charting"],
+          "pricing": "freemium",
+          "highlight": "Handles millions of rows with virtual scrolling"
+        },
+        {
+          "name": "TanStack Virtual",
+          "description": "Virtualization library that renders only visible items in long lists and grids. Critical for performance when displaying thousands of items without crashing the browser.",
+          "url": "https://tanstack.com/virtual",
+          "tags": ["virtualization", "performance", "lists", "grids"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Recharts",
+          "description": "Declarative charting library built on D3.js with a React-native API. Responsive, composable, and handles most data visualization needs without touching D3 directly.",
+          "url": "https://recharts.org",
+          "tags": ["charts", "data-visualization", "d3", "responsive"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Nivo",
+          "description": "Rich set of data visualization components built on D3 with server-side rendering support. Offers more chart types than Recharts with built-in theming and animation.",
+          "url": "https://nivo.rocks",
+          "tags": ["charts", "data-visualization", "ssr", "theming"],
+          "pricing": "open-source",
+          "highlight": "Server-side rendering support for charts"
+        }
+      ]
+    },
+    {
+      "name": "Drag & Drop and Interactions",
+      "description": "Libraries for implementing drag-and-drop, gesture recognition, and complex user interactions.",
+      "items": [
+        {
+          "name": "dnd kit",
+          "description": "Modern, lightweight drag-and-drop toolkit with accessibility baked in. Supports sortable lists, multiple containers, and custom drag overlays with zero dependencies.",
+          "url": "https://dndkit.com",
+          "tags": ["drag-and-drop", "sortable", "accessible", "lightweight"],
+          "pricing": "open-source",
+          "highlight": "Keyboard and screen reader support out of the box"
+        },
+        {
+          "name": "Pragmatic Drag and Drop",
+          "description": "Atlassian's drag-and-drop library built on native browser APIs for maximum performance. Powers Trello and Jira, handling complex multi-list scenarios at scale.",
+          "url": "https://atlassian.design/components/pragmatic-drag-and-drop",
+          "tags": ["drag-and-drop", "native-api", "atlassian", "performance"],
+          "pricing": "open-source",
+          "highlight": "Built on native HTML drag-and-drop for best performance"
+        },
+        {
+          "name": "use-gesture",
+          "description": "React hook for handling complex gestures — pinch, drag, scroll, wheel, and hover. Works standalone or paired with React Spring for physics-based gesture responses.",
+          "url": "https://use-gesture.netlify.app",
+          "tags": ["gestures", "touch", "hooks", "mobile"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Floating UI",
+          "description": "Low-level positioning engine for tooltips, popovers, dropdowns, and menus. Handles overflow detection, flipping, and virtual elements — the successor to Popper.js.",
+          "url": "https://floating-ui.com",
+          "tags": ["positioning", "tooltips", "popovers", "dropdowns"],
+          "pricing": "open-source",
+          "highlight": "The official successor to Popper.js"
+        }
+      ]
+    },
+    {
+      "name": "Styling & CSS",
+      "description": "Libraries and tools for styling React components, from utility-first CSS to CSS-in-JS solutions.",
+      "items": [
+        {
+          "name": "Tailwind CSS",
+          "description": "Utility-first CSS framework that lets you style directly in your markup. Eliminates context-switching between files and produces tiny production bundles through automatic purging.",
+          "url": "https://tailwindcss.com",
+          "tags": ["css", "utility-first", "responsive", "design-system"],
+          "pricing": "open-source",
+          "highlight": "v4 uses Lightning CSS for near-instant builds"
+        },
+        {
+          "name": "CVA (Class Variance Authority)",
+          "description": "Build type-safe component variants with Tailwind CSS. Define variants, compound variants, and defaults in a clean API that makes component APIs predictable.",
+          "url": "https://cva.style",
+          "tags": ["variants", "tailwind", "type-safe", "design-system"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "tailwind-merge",
+          "description": "Intelligently merges Tailwind CSS classes without style conflicts. Essential for component libraries where consumer classes need to override internal defaults.",
+          "url": "https://github.com/dcastil/tailwind-merge",
+          "tags": ["tailwind", "utility", "class-merging"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Panda CSS",
+          "description": "Zero-runtime CSS-in-JS with type-safe style props, recipes, and design tokens. Gives you the DX of styled-components with the performance of static CSS extraction.",
+          "url": "https://panda-css.com",
+          "tags": ["css-in-js", "zero-runtime", "type-safe", "design-tokens"],
+          "pricing": "open-source",
+          "highlight": "CSS-in-JS developer experience with zero runtime cost"
+        },
+        {
+          "name": "clsx",
+          "description": "Tiny utility for constructing className strings conditionally. At 228 bytes, it's the most efficient way to handle conditional class application in React.",
+          "url": "https://github.com/lukeed/clsx",
+          "tags": ["utility", "classnames", "lightweight"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Routing & Navigation",
+      "description": "Libraries for client-side routing, navigation state management, and URL handling in React applications.",
+      "items": [
+        {
+          "name": "TanStack Router",
+          "description": "Fully type-safe routing for React with built-in search param validation, preloading, and code splitting. The type safety extends to route params, search params, and loader data.",
+          "url": "https://tanstack.com/router",
+          "tags": ["routing", "type-safe", "code-splitting", "search-params"],
+          "pricing": "open-source",
+          "highlight": "End-to-end type safety from route definition to component"
+        },
+        {
+          "name": "React Router",
+          "description": "The most widely-used React routing library with data loaders, actions, and nested layouts. v7 brings framework features like SSR and file-based routing while remaining a standalone library.",
+          "url": "https://reactrouter.com",
+          "tags": ["routing", "data-loading", "nested-layouts", "ssr"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "React Aria",
+          "description": "Adobe's collection of React hooks that provide accessible UI primitives. Handles keyboard navigation, focus management, and ARIA attributes so you can build custom components that work for everyone.",
+          "url": "https://react-spectrum.adobe.com/react-aria",
+          "tags": ["accessibility", "hooks", "primitives", "keyboard-navigation"],
+          "pricing": "open-source",
+          "highlight": "Handles all accessibility concerns including mobile screen readers"
+        },
+        {
+          "name": "React Helmet Async",
+          "description": "Manages document head tags (title, meta, link) declaratively with full SSR support. Essential for SEO in single-page React applications without a framework.",
+          "url": "https://github.com/staylor/react-helmet-async",
+          "tags": ["seo", "meta-tags", "ssr", "head-management"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Utilities & Hooks",
+      "description": "General-purpose utility libraries and custom hook collections that solve common React development challenges.",
+      "items": [
+        {
+          "name": "React Hot Toast",
+          "description": "The most popular toast notification library with a beautiful default design, promise-based toasts, and an API so simple you'll have notifications working in under a minute.",
+          "url": "https://react-hot-toast.com",
+          "tags": ["notifications", "toasts", "lightweight"],
+          "pricing": "open-source",
+          "highlight": "Promise-based toasts that show loading, success, and error states"
+        },
+        {
+          "name": "Sonner",
+          "description": "An opinionated toast notification library by the creator of cmdk. Beautiful animations, stacking behavior, and a clean API that makes notifications feel premium.",
+          "url": "https://sonner.emilkowal.ski",
+          "tags": ["notifications", "toasts", "animations"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "date-fns",
+          "description": "Modular date utility library with tree-shakeable functions. Import only what you need — unlike Moment.js, you won't add 70KB to your bundle for a single date format.",
+          "url": "https://date-fns.org",
+          "tags": ["dates", "utility", "tree-shakeable", "immutable"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "usehooks-ts",
+          "description": "Collection of well-documented, type-safe React hooks for common needs — media queries, local storage, intersection observer, debounce, and dozens more.",
+          "url": "https://usehooks-ts.com",
+          "tags": ["hooks", "typescript", "utilities"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "React Email",
+          "description": "Build email templates using React components with a live preview server. Finally lets you write responsive, cross-client emails with the same tools you use for your UI.",
+          "url": "https://react.email",
+          "tags": ["email", "templates", "components"],
+          "pricing": "open-source",
+          "highlight": "Write emails as React components with live preview"
+        },
+        {
+          "name": "Uploadthing",
+          "description": "File upload infrastructure for React with a type-safe API, automatic image optimization, and built-in components. Handles the entire upload pipeline from UI to storage.",
+          "url": "https://uploadthing.com",
+          "tags": ["file-upload", "storage", "type-safe"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "React Wrap Balancer",
+          "description": "Makes text headings wrap more evenly by balancing line lengths. A tiny detail that dramatically improves the visual quality of typography in React apps.",
+          "url": "https://react-wrap-balancer.vercel.app",
+          "tags": ["typography", "layout", "text-wrapping"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "TanStack Form",
+          "description": "Framework-agnostic form library from the TanStack ecosystem with first-class type safety. Headless design means you control every aspect of rendering while it handles validation and state.",
+          "url": "https://tanstack.com/form",
+          "tags": ["forms", "type-safe", "headless", "validation"],
+          "pricing": "open-source"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-tools-for-react",
+    "best-libraries-for-nextjs",
+    "best-libraries-for-tailwindcss",
+    "best-libraries-for-typescript"
+  ]
+}

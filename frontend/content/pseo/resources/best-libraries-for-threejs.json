@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "niche": "threejs",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-libraries-for-threejs",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Libraries for Three.js in 2026",
+    "description": "Top Three.js libraries for React integration, physics, shaders, post-processing, and performance. Curated by 3D web developers shipping WebGL in production.",
+    "keywords": [
+      "three.js libraries",
+      "react three fiber",
+      "threejs physics",
+      "threejs shaders",
+      "webgl libraries",
+      "3d web development",
+      "threejs post-processing",
+      "threejs performance"
+    ]
+  },
+  "introduction": "Three.js remains the backbone of 3D on the web, but its ecosystem of companion libraries is what makes complex projects feasible. At GEXP Software, we build immersive 3D experiences with Three.js for client projects — from morphing wireframe heroes to interactive product configurators. These libraries make the difference between a weekend prototype and a production-grade experience.",
+  "total_items": 25,
+  "categories": [
+    {
+      "name": "React Integration",
+      "description": "Libraries that bridge Three.js with React's component model for declarative 3D scene development.",
+      "items": [
+        {
+          "name": "React Three Fiber (R3F)",
+          "description": "A React renderer for Three.js that lets you build 3D scenes with JSX components. Manages the render loop, handles disposal, and integrates with React's lifecycle seamlessly.",
+          "url": "https://docs.pmnd.rs/react-three-fiber",
+          "tags": ["react", "renderer", "declarative", "jsx"],
+          "pricing": "open-source",
+          "highlight": "Write Three.js scenes as React components with full lifecycle management"
+        },
+        {
+          "name": "Drei",
+          "description": "Collection of 150+ useful helpers for React Three Fiber — cameras, controls, loaders, abstractions, and shaders. Think of it as the lodash of 3D React development.",
+          "url": "https://github.com/pmndrs/drei",
+          "tags": ["helpers", "abstractions", "controls", "loaders"],
+          "pricing": "open-source",
+          "highlight": "150+ ready-to-use helpers that save hundreds of hours"
+        },
+        {
+          "name": "React Three Rapier",
+          "description": "React Three Fiber bindings for the Rapier physics engine. Add realistic physics simulations to your 3D scenes with declarative React components — colliders, rigid bodies, and joints.",
+          "url": "https://github.com/pmndrs/react-three-rapier",
+          "tags": ["physics", "rapier", "react", "simulation"],
+          "pricing": "open-source",
+          "highlight": "Declarative physics with JSX — just wrap meshes in RigidBody"
+        },
+        {
+          "name": "Leva",
+          "description": "React-first GUI for tweaking parameters in real-time. Add a debug panel to your R3F scenes with one hook call — essential for dialing in materials, lights, and animations.",
+          "url": "https://github.com/pmndrs/leva",
+          "tags": ["gui", "debugging", "tweaking", "development"],
+          "pricing": "open-source",
+          "highlight": "One-line debug panels for live-tweaking any parameter"
+        },
+        {
+          "name": "React Three A11y",
+          "description": "Accessibility tools for React Three Fiber scenes. Adds screen reader announcements, focus management, and keyboard navigation to 3D elements that are otherwise invisible to assistive technology.",
+          "url": "https://github.com/pmndrs/react-three-a11y",
+          "tags": ["accessibility", "screen-reader", "a11y", "react"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "React Postprocessing",
+          "description": "React Three Fiber wrapper for the postprocessing library. Add bloom, depth of field, chromatic aberration, and other effects as JSX components with automatic render pass management.",
+          "url": "https://github.com/pmndrs/react-postprocessing",
+          "tags": ["post-processing", "effects", "bloom", "react"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Shaders & Materials",
+      "description": "Libraries for creating custom shaders, materials, and visual effects in Three.js.",
+      "items": [
+        {
+          "name": "Lamina",
+          "description": "Layer-based shader material system for React Three Fiber. Stack material layers like Photoshop layers — combine noise, gradients, fresnel, and textures without writing GLSL.",
+          "url": "https://github.com/pmndrs/lamina",
+          "tags": ["shaders", "materials", "layers", "no-glsl"],
+          "pricing": "open-source",
+          "highlight": "Stack shader layers like Photoshop — no GLSL required"
+        },
+        {
+          "name": "glslify",
+          "description": "Module system for GLSL shaders that lets you import and compose shader functions from npm. Break complex shaders into reusable pieces instead of copy-pasting GLSL snippets.",
+          "url": "https://github.com/glslify/glslify",
+          "tags": ["glsl", "modules", "shaders", "npm"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "CustomShaderMaterial (CSM)",
+          "description": "Extend Three.js built-in materials with custom shader code. Add vertex displacement or custom fragment effects while keeping lighting, shadows, and PBR features working correctly.",
+          "url": "https://github.com/FarazzShawororth/three-custom-shader-material",
+          "tags": ["shaders", "materials", "custom", "extend"],
+          "pricing": "open-source",
+          "highlight": "Extend MeshStandardMaterial with custom shaders while keeping PBR"
+        },
+        {
+          "name": "Three.js Shader Chunks",
+          "description": "Collection of reusable GLSL shader functions for noise, distortion, color manipulation, and math utilities. Copy-paste these chunks into your shaders for common effects.",
+          "url": "https://github.com/mrdoob/three.js/tree/dev/src/renderers/shaders/ShaderChunk",
+          "tags": ["glsl", "noise", "utilities", "built-in"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "THREE.MeshLine",
+          "description": "Draw thick lines with custom widths, tapers, and textures in Three.js. The default Three.js LineBasicMaterial only renders 1px lines — this library makes beautiful line geometry possible.",
+          "url": "https://github.com/spite/THREE.MeshLine",
+          "tags": ["lines", "geometry", "rendering", "thick-lines"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Post-Processing & Effects",
+      "description": "Libraries for adding visual effects, post-processing passes, and screen-space effects to Three.js scenes.",
+      "items": [
+        {
+          "name": "postprocessing",
+          "description": "High-performance post-processing library that replaces Three.js's built-in EffectComposer. Merges compatible effects into single shader passes for dramatically better performance.",
+          "url": "https://github.com/pmndrs/postprocessing",
+          "tags": ["post-processing", "performance", "effects", "bloom"],
+          "pricing": "open-source",
+          "highlight": "Merges effects into single passes — 2-3x faster than EffectComposer"
+        },
+        {
+          "name": "N8AO",
+          "description": "State-of-the-art ambient occlusion for Three.js that produces physically accurate contact shadows. Significantly higher quality than Three.js's built-in SSAO with similar performance cost.",
+          "url": "https://github.com/N8python/n8ao",
+          "tags": ["ambient-occlusion", "ssao", "shadows", "realistic"],
+          "pricing": "open-source",
+          "highlight": "Film-quality ambient occlusion at real-time performance"
+        },
+        {
+          "name": "three-good-godrays",
+          "description": "Volumetric light scattering (god rays) for Three.js with physically-based attenuation. Creates dramatic light shafts streaming through geometry with minimal performance impact.",
+          "url": "https://github.com/ycw/three-good-godrays",
+          "tags": ["volumetric-light", "god-rays", "atmosphere", "effects"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "three-noise",
+          "description": "GPU-accelerated noise functions for Three.js including Simplex, Perlin, Worley, and FBM. Generate noise textures on the GPU for terrain generation, displacement maps, and procedural effects.",
+          "url": "https://github.com/FarazzShawororth/THREE-CustomShaderMaterial",
+          "tags": ["noise", "procedural", "gpu", "terrain"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Physics & Simulation",
+      "description": "Physics engines and simulation libraries for creating interactive, physically accurate 3D experiences.",
+      "items": [
+        {
+          "name": "Rapier",
+          "description": "Rust-powered physics engine compiled to WebAssembly for blazing-fast simulation. Handles rigid bodies, colliders, joints, and character controllers with deterministic results.",
+          "url": "https://rapier.rs",
+          "tags": ["physics", "wasm", "rust", "rigid-body", "deterministic"],
+          "pricing": "open-source",
+          "highlight": "WASM-powered physics — 10x faster than JavaScript physics engines"
+        },
+        {
+          "name": "Cannon-es",
+          "description": "Lightweight JavaScript physics engine forked from Cannon.js with TypeScript support and active maintenance. Good balance of features and bundle size for simpler physics needs.",
+          "url": "https://github.com/pmndrs/cannon-es",
+          "tags": ["physics", "lightweight", "javascript", "maintained"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "three-mesh-bvh",
+          "description": "Bounding Volume Hierarchy acceleration for Three.js raycasting and collision detection. Makes raycasting against complex meshes 100x faster — essential for interactive scenes with detailed geometry.",
+          "url": "https://github.com/gkjohnson/three-mesh-bvh",
+          "tags": ["raycasting", "collision", "performance", "bvh"],
+          "pricing": "open-source",
+          "highlight": "100x faster raycasting against complex mesh geometry"
+        },
+        {
+          "name": "Oimo.js",
+          "description": "Lightweight 3D physics engine for JavaScript with simple API and small footprint. When you need basic rigid body physics without the complexity of Rapier or the size of Ammo.js.",
+          "url": "https://github.com/lo-th/Oimo.js",
+          "tags": ["physics", "lightweight", "simple", "rigid-body"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Loading & Optimization",
+      "description": "Libraries for loading 3D assets, optimizing geometry, and improving rendering performance in Three.js applications.",
+      "items": [
+        {
+          "name": "gltfjsx",
+          "description": "CLI tool that converts GLTF models into clean React Three Fiber JSX components. Generates typed, tree-shakeable components from your 3D models with proper refs and animation support.",
+          "url": "https://github.com/pmndrs/gltfjsx",
+          "tags": ["gltf", "code-generation", "react", "models"],
+          "pricing": "open-source",
+          "highlight": "Converts GLTF models into typed React components automatically"
+        },
+        {
+          "name": "gltfpack",
+          "description": "Meshoptimizer-based tool that compresses GLTF models by 50-90% through mesh quantization, texture compression, and geometry optimization. Essential for web-ready 3D assets.",
+          "url": "https://github.com/zeux/meshoptimizer/tree/master/gltf",
+          "tags": ["optimization", "compression", "gltf", "performance"],
+          "pricing": "open-source",
+          "highlight": "Compress GLTF files by 50-90% for web delivery"
+        },
+        {
+          "name": "three-stdlib",
+          "description": "Stand-alone version of Three.js examples/jsm modules as proper npm packages with TypeScript types. Import only the loaders and controls you need without bundling all of examples.",
+          "url": "https://github.com/pmndrs/three-stdlib",
+          "tags": ["utilities", "tree-shakeable", "typescript", "modules"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Theatre.js",
+          "description": "Motion design editor for Three.js and React Three Fiber with a visual timeline. Animate camera paths, object transforms, and material properties with a professional keyframe editor.",
+          "url": "https://www.theatrejs.com",
+          "tags": ["animation", "timeline", "keyframes", "motion-design"],
+          "pricing": "open-source",
+          "highlight": "Visual keyframe editor for 3D animations — like After Effects for WebGL"
+        },
+        {
+          "name": "Spline",
+          "description": "3D design tool with direct React and Three.js export. Design scenes visually and export them as optimized code — bridging the gap between 3D designers and developers.",
+          "url": "https://spline.design",
+          "tags": ["design-tool", "visual", "export", "collaboration"],
+          "pricing": "freemium",
+          "highlight": "Visual 3D design with direct React code export"
+        },
+        {
+          "name": "three-perf",
+          "description": "Performance monitoring panel for Three.js and React Three Fiber. Shows draw calls, triangles, textures, shader programs, and frame time — the GPU stats you need to optimize scenes.",
+          "url": "https://github.com/utsuboco/three-perf",
+          "tags": ["performance", "monitoring", "debugging", "gpu-stats"],
+          "pricing": "open-source"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-libraries-for-react",
+    "best-libraries-for-nextjs",
+    "best-tools-for-react",
+    "best-libraries-for-typescript"
+  ]
+}

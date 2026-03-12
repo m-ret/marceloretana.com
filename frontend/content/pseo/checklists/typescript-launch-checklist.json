@@ -1,0 +1,249 @@
+{
+  "meta": {
+    "niche": "typescript",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "typescript-launch-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "TypeScript Project Checklist: 26 Essential Steps",
+    "description": "Set up your TypeScript project for success with this 26-step checklist. Covers tsconfig, strict mode, type safety, tooling, and production builds.",
+    "keywords": [
+      "typescript checklist",
+      "typescript project setup",
+      "typescript best practices",
+      "tsconfig best practices",
+      "typescript strict mode",
+      "typescript production"
+    ]
+  },
+  "introduction": "A well-configured TypeScript project catches bugs at compile time that would otherwise become runtime crashes in production. But TypeScript's flexibility means it is easy to leave safety gaps — loose tsconfig settings, implicit any types, and missing strict checks silently undermine your type safety. This 26-step checklist ensures your TypeScript configuration and codebase are production-grade.",
+  "total_items": 26,
+  "estimated_time": "2-3 hours",
+  "sections": [
+    {
+      "name": "tsconfig.json Configuration",
+      "description": "Configure your TypeScript compiler for maximum type safety and optimal output.",
+      "items": [
+        {
+          "id": "ts-launch-1",
+          "text": "Enable strict mode in tsconfig.json",
+          "description": "Set `strict: true` in compilerOptions. This enables strictNullChecks, noImplicitAny, strictFunctionTypes, strictBindCallApply, and more. Each flag catches a different class of bugs — strict mode is the single most important TypeScript configuration.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-launch-2",
+          "text": "Enable noUncheckedIndexedAccess",
+          "description": "Set `noUncheckedIndexedAccess: true` so array and object index access returns `T | undefined` instead of `T`. Without this, `arr[0]` is typed as the element type even when the array could be empty, leading to runtime crashes.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-launch-3",
+          "text": "Configure path aliases for clean imports",
+          "description": "Set `paths` in tsconfig.json to map `@/*` to `./src/*`. This eliminates fragile relative imports like `../../../../utils/helpers`. Ensure your bundler (Vite, webpack, Next.js) is also configured to resolve these aliases.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-4",
+          "text": "Set target and lib to match your runtime environment",
+          "description": "Set `target` to your minimum supported environment (es2022 for modern browsers, es2020 for Node 14+). Set `lib` to include DOM types for browser projects or exclude them for Node projects. Mismatched settings cause type errors or missing API types.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-5",
+          "text": "Enable incremental builds for faster compilation",
+          "description": "Set `incremental: true` and optionally `tsBuildInfoFile` to enable incremental compilation. TypeScript caches type-checking results and only rechecks changed files. This can reduce build times by 50-80% on large projects.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Type Safety & Patterns",
+      "description": "Enforce type safety patterns that prevent runtime errors and improve code reliability.",
+      "items": [
+        {
+          "id": "ts-launch-6",
+          "text": "Eliminate all uses of 'any' type",
+          "description": "Search for `: any`, `as any`, and `<any>` in your codebase. Replace with proper types, `unknown` (for truly unknown values that need type narrowing), or generic type parameters. Every `any` is a hole in your type safety.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-launch-7",
+          "text": "Use discriminated unions for state modeling",
+          "description": "Model complex states with discriminated unions instead of optional properties. For example, `{ status: 'loading' } | { status: 'success', data: T } | { status: 'error', error: Error }` forces handling every state. Optional properties allow impossible states like `{ loading: true, error: Error }`.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-8",
+          "text": "Validate external data at runtime boundaries",
+          "description": "Use Zod, Valibot, or io-ts to validate API responses, form inputs, and environment variables at runtime. TypeScript types are erased at runtime — a type assertion on an API response provides zero protection against malformed data.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-launch-9",
+          "text": "Use const assertions and enums correctly",
+          "description": "Prefer `as const` assertions over enums for string literals — they produce zero runtime code and work with type narrowing. Use `satisfies` operator to validate object shapes while preserving literal types. Reserve numeric enums for cases needing reverse mapping.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-10",
+          "text": "Avoid type assertions (as) unless absolutely necessary",
+          "description": "Type assertions (`value as Type`) bypass the type checker. Each assertion is a promise to the compiler that you know better — and you might be wrong. Use type guards, `instanceof`, or `in` operator for runtime-safe type narrowing instead.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-11",
+          "text": "Define explicit return types for public API functions",
+          "description": "Add return type annotations to exported functions and methods. Inferred return types can change accidentally when implementation changes, silently breaking consumers. Explicit return types act as contracts and improve IDE documentation.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Tooling & Developer Experience",
+      "description": "Set up tooling that enforces type safety automatically and improves developer productivity.",
+      "items": [
+        {
+          "id": "ts-launch-12",
+          "text": "Add tsc --noEmit to your CI pipeline",
+          "description": "Run `tsc --noEmit` in CI to catch type errors before merging. Many bundlers (Vite, esbuild, SWC) skip type checking for speed — they strip types without verifying them. CI type checking is your safety net.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-launch-13",
+          "text": "Configure ESLint with typescript-eslint",
+          "description": "Install `@typescript-eslint/eslint-plugin` and enable type-aware rules like `no-floating-promises`, `no-misused-promises`, `strict-boolean-expressions`, and `no-unnecessary-condition`. These catch bugs that the TypeScript compiler alone does not flag.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-launch-14",
+          "text": "Set up pre-commit hooks for type checking",
+          "description": "Use Husky + lint-staged to run type checking on staged files before every commit. This catches type errors at commit time instead of in CI, shortening the feedback loop from minutes to seconds.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-15",
+          "text": "Configure VS Code settings for optimal TypeScript DX",
+          "description": "Add workspace settings to enable `typescript.preferences.importModuleSpecifier: 'non-relative'`, auto-import suggestions, organize imports on save, and inlay hints for parameter names. Share settings via `.vscode/settings.json` in your repo.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "ts-launch-16",
+          "text": "Install type definitions for all dependencies",
+          "description": "Run `tsc` and fix all 'Could not find a declaration file' errors. Install `@types/` packages for dependencies that do not ship their own types. For untyped libraries, create a `declarations.d.ts` with minimal module declarations.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Code Organization & Architecture",
+      "description": "Structure your TypeScript project for maintainability, discoverability, and team scalability.",
+      "items": [
+        {
+          "id": "ts-launch-17",
+          "text": "Organize types into dedicated type files",
+          "description": "Create `types.ts` or `types/` directories for shared types. Colocate component-specific types with their components. Avoid a single massive `types.ts` file — split by domain (user.types.ts, order.types.ts).",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-18",
+          "text": "Use barrel exports judiciously",
+          "description": "Barrel files (`index.ts` with re-exports) simplify imports but can defeat tree shaking and slow down TypeScript compilation. Use them for public API boundaries, not for every directory. Deep imports are often better for bundler optimization.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-19",
+          "text": "Define branded types for domain primitives",
+          "description": "Create branded types for IDs, emails, and other domain values: `type UserId = string & { readonly brand: unique symbol }`. This prevents accidentally passing an OrderId where a UserId is expected, catching logic errors at compile time.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "ts-launch-20",
+          "text": "Set up project references for monorepo or large projects",
+          "description": "Use TypeScript project references with `composite: true` and a root `tsconfig.json` with `references`. This enables incremental builds per package, faster type checking, and proper dependency boundaries in multi-package projects.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "ts-launch-21",
+          "text": "Use generics for reusable, type-safe abstractions",
+          "description": "Apply generics to utility functions, hooks, and components that work with multiple types. For example, a `useFetch<T>` hook or a `DataTable<T>` component. Generics preserve type information through abstraction layers without requiring `any`.",
+          "difficulty": "advanced",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Production Readiness",
+      "description": "Final checks to ensure your TypeScript project builds correctly and runs safely in production.",
+      "items": [
+        {
+          "id": "ts-launch-22",
+          "text": "Verify production build compiles without errors",
+          "description": "Run your full build pipeline (bundler + tsc) targeting production. Resolve all errors. Some type errors only appear in production builds due to different tsconfig settings for dev vs prod (e.g., declaration file generation).",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-launch-23",
+          "text": "Audit all type-only imports use 'import type'",
+          "description": "Use `import type { MyType }` for types to ensure they are fully erased in the output. This prevents circular dependency issues and can reduce bundle size. Enable `verbatimModuleSyntax: true` in tsconfig to enforce this.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-24",
+          "text": "Validate environment variables with typed schemas",
+          "description": "Create a validated env config using Zod or t3-env that parses `process.env` at startup and fails fast with clear error messages if required variables are missing. Export typed env values instead of accessing `process.env` directly throughout your code.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-25",
+          "text": "Ensure error handling preserves type information",
+          "description": "Catch blocks receive `unknown` in strict mode. Always narrow error types with `instanceof Error` or a type guard. Create custom error classes for domain-specific errors so catch blocks can handle them differently based on type.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-launch-26",
+          "text": "Run dependency audit for type-related vulnerabilities",
+          "description": "Check that `@types/` packages are up to date with their corresponding runtime packages. Outdated type definitions can introduce incorrect types that mask bugs. Run `npm outdated` filtered to `@types/` scope.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Enable `strict: true` from the very first day of your project. Retrofitting strict mode on an existing codebase requires fixing hundreds of errors at once — it is orders of magnitude easier to start strict.",
+    "Use the `satisfies` operator (TypeScript 5.0+) instead of type annotations when you want both type validation and literal type preservation. `const config = { ... } satisfies Config` validates the shape while preserving autocomplete for specific keys.",
+    "Configure `noUncheckedIndexedAccess` early. It changes array access from `T` to `T | undefined`, which initially feels annoying but catches real null-reference bugs that cause production crashes.",
+    "The `typescript-eslint` type-aware rules (`no-floating-promises`, `no-misused-promises`, `strict-boolean-expressions`) catch entire categories of bugs that the TypeScript compiler does not flag. They are worth the slower lint time."
+  ],
+  "related_slugs": [
+    "nextjs-launch-checklist",
+    "react-launch-checklist",
+    "nodejs-security-checklist"
+  ]
+}

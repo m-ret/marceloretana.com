@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-libraries-for-nextjs",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Libraries for Next.js in 2026",
+    "description": "Curated list of the best Next.js libraries for authentication, data fetching, UI, forms, and state management. Vetted by full-stack engineers.",
+    "keywords": [
+      "next.js libraries",
+      "best nextjs packages",
+      "nextjs authentication",
+      "nextjs ui libraries",
+      "nextjs data fetching",
+      "nextjs forms",
+      "nextjs state management",
+      "react server components libraries"
+    ]
+  },
+  "introduction": "Next.js has matured into the default framework for production React apps, but choosing the right companion libraries can make or break your developer experience. We use many of these daily at GEXP Software and have tested them across dozens of production deployments. Here are the libraries that consistently deliver results in 2026.",
+  "total_items": 24,
+  "categories": [
+    {
+      "name": "Authentication & Authorization",
+      "description": "Libraries that handle user sign-up, login, sessions, and role-based access control in Next.js applications.",
+      "items": [
+        {
+          "name": "Auth.js (NextAuth v5)",
+          "description": "The de facto authentication library for Next.js, supporting 80+ OAuth providers, database sessions, and JWT. Its deep integration with App Router and middleware makes protected routes trivial to implement.",
+          "url": "https://authjs.dev",
+          "tags": ["authentication", "oauth", "sessions", "middleware"],
+          "pricing": "open-source",
+          "highlight": "Built-in App Router and Edge Runtime support"
+        },
+        {
+          "name": "Clerk",
+          "description": "Drop-in authentication with pre-built UI components, multi-factor auth, and organization management. Ideal when you need polished auth flows without building them from scratch.",
+          "url": "https://clerk.com",
+          "tags": ["authentication", "user-management", "mfa", "organizations"],
+          "pricing": "freemium",
+          "highlight": "Pre-built <SignIn /> and <UserProfile /> components"
+        },
+        {
+          "name": "Lucia",
+          "description": "A lightweight, session-based authentication library that gives you full control over your auth logic without vendor lock-in. Perfect for developers who want to understand every line of their auth code.",
+          "url": "https://lucia-auth.com",
+          "tags": ["authentication", "sessions", "lightweight"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Kinde",
+          "description": "Authentication and user management platform with a generous free tier and built-in feature flags. The Next.js SDK handles everything from social login to fine-grained permissions.",
+          "url": "https://kinde.com",
+          "tags": ["authentication", "feature-flags", "permissions"],
+          "pricing": "freemium",
+          "highlight": "Built-in feature flags alongside auth"
+        }
+      ]
+    },
+    {
+      "name": "Data Fetching & State Management",
+      "description": "Libraries for server state synchronization, client-side caching, and global state management optimized for the Next.js App Router.",
+      "items": [
+        {
+          "name": "TanStack Query (React Query)",
+          "description": "The gold standard for server state management with automatic caching, background refetching, and optimistic updates. Its devtools make debugging data flows painless.",
+          "url": "https://tanstack.com/query",
+          "tags": ["data-fetching", "caching", "server-state", "devtools"],
+          "pricing": "open-source",
+          "highlight": "Streaming SSR support with hydration boundaries"
+        },
+        {
+          "name": "Zustand",
+          "description": "A tiny, fast state management library with a hook-based API that requires zero boilerplate. Works seamlessly with React Server Components because it stays out of the render path until you need it.",
+          "url": "https://github.com/pmndrs/zustand",
+          "tags": ["state-management", "hooks", "lightweight"],
+          "pricing": "open-source",
+          "highlight": "Under 1KB gzipped with no providers needed"
+        },
+        {
+          "name": "Jotai",
+          "description": "Primitive and flexible atomic state management inspired by Recoil but without the boilerplate. Excellent for when you need granular reactivity without re-rendering entire component trees.",
+          "url": "https://jotai.org",
+          "tags": ["state-management", "atomic", "typescript"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "nuqs",
+          "description": "Type-safe search params state management for Next.js that keeps URL state in sync with your components. Handles serialization, validation, and history management automatically.",
+          "url": "https://nuqs.47ng.com",
+          "tags": ["url-state", "search-params", "type-safe"],
+          "pricing": "open-source",
+          "highlight": "Keeps URL params as the single source of truth"
+        },
+        {
+          "name": "SWR",
+          "description": "Vercel's own stale-while-revalidate data fetching library with a minimal API surface. Perfect for simpler data fetching needs where TanStack Query feels like overkill.",
+          "url": "https://swr.vercel.app",
+          "tags": ["data-fetching", "caching", "vercel"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "UI Component Libraries",
+      "description": "Component libraries and design systems that integrate cleanly with Next.js, Tailwind CSS, and React Server Components.",
+      "items": [
+        {
+          "name": "shadcn/ui",
+          "description": "Not a component library you install — it's a collection of beautifully designed, accessible components you copy into your project and own completely. Built on Radix UI and Tailwind CSS.",
+          "url": "https://ui.shadcn.com",
+          "tags": ["ui-components", "tailwind", "radix", "accessible"],
+          "pricing": "open-source",
+          "highlight": "You own the code — no dependency to update"
+        },
+        {
+          "name": "Radix UI",
+          "description": "Unstyled, accessible UI primitives that handle all the complex interaction patterns (modals, dropdowns, tabs) so you can focus on design. The foundation that shadcn/ui is built on.",
+          "url": "https://www.radix-ui.com",
+          "tags": ["primitives", "accessible", "unstyled", "headless"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Next UI",
+          "description": "A modern React UI library with beautiful defaults, built on top of Tailwind CSS and React Aria for accessibility. Offers both styled and unstyled component variants.",
+          "url": "https://nextui.org",
+          "tags": ["ui-components", "tailwind", "accessible", "themed"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Ark UI",
+          "description": "Headless UI components from the creators of Chakra UI, designed for maximum flexibility. Supports React, Solid, and Vue with identical APIs across frameworks.",
+          "url": "https://ark-ui.com",
+          "tags": ["headless", "accessible", "multi-framework"],
+          "pricing": "open-source",
+          "highlight": "State machines power every component for predictable behavior"
+        },
+        {
+          "name": "cmdk",
+          "description": "A fast, composable command palette component for React. Drop it into any Next.js app to give users a Spotlight-style search and command interface.",
+          "url": "https://cmdk.paco.me",
+          "tags": ["command-palette", "search", "keyboard-navigation"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Forms & Validation",
+      "description": "Libraries for building performant forms with client and server-side validation in Next.js applications.",
+      "items": [
+        {
+          "name": "React Hook Form",
+          "description": "The most performant form library for React, using uncontrolled components to minimize re-renders. Integrates perfectly with Server Actions via its progressive enhancement support.",
+          "url": "https://react-hook-form.com",
+          "tags": ["forms", "validation", "performance"],
+          "pricing": "open-source",
+          "highlight": "Near-zero re-renders even in complex forms"
+        },
+        {
+          "name": "Zod",
+          "description": "TypeScript-first schema validation that works on both client and server. Define your schema once and use it for form validation, API validation, and type inference simultaneously.",
+          "url": "https://zod.dev",
+          "tags": ["validation", "typescript", "schema"],
+          "pricing": "open-source",
+          "highlight": "Infers TypeScript types directly from schemas"
+        },
+        {
+          "name": "Conform",
+          "description": "A progressive enhancement-first form library built specifically for React Server Actions. Forms work without JavaScript and upgrade seamlessly when JS loads.",
+          "url": "https://conform.guide",
+          "tags": ["forms", "server-actions", "progressive-enhancement"],
+          "pricing": "open-source",
+          "highlight": "Designed from the ground up for Server Actions"
+        },
+        {
+          "name": "Valibot",
+          "description": "A modular schema validation library that's up to 98% smaller than Zod thanks to its tree-shakeable architecture. Same DX as Zod but dramatically less bundle impact.",
+          "url": "https://valibot.dev",
+          "tags": ["validation", "lightweight", "tree-shakeable", "typescript"],
+          "pricing": "open-source",
+          "highlight": "Modular design makes it up to 98% smaller than alternatives"
+        }
+      ]
+    },
+    {
+      "name": "Animation & Motion",
+      "description": "Libraries for building smooth, performant animations and transitions in Next.js applications.",
+      "items": [
+        {
+          "name": "Framer Motion",
+          "description": "The most popular React animation library with a declarative API for layout animations, gestures, and scroll-triggered effects. Its AnimatePresence component handles exit animations that are otherwise impossible in React.",
+          "url": "https://www.framer.com/motion",
+          "tags": ["animation", "gestures", "layout-animation"],
+          "pricing": "open-source",
+          "highlight": "AnimatePresence handles exit animations seamlessly"
+        },
+        {
+          "name": "GSAP",
+          "description": "The industry-standard animation platform with unmatched performance and timeline control. ScrollTrigger makes scroll-driven animations trivial, and it handles edge cases no other library covers.",
+          "url": "https://gsap.com",
+          "tags": ["animation", "scroll", "timeline", "performance"],
+          "pricing": "freemium",
+          "highlight": "ScrollTrigger plugin for professional scroll animations"
+        },
+        {
+          "name": "Lenis",
+          "description": "A lightweight smooth scroll library that provides buttery smooth scrolling without fighting the browser. Works beautifully alongside GSAP ScrollTrigger and Framer Motion.",
+          "url": "https://lenis.darkroom.engineering",
+          "tags": ["smooth-scroll", "performance", "lightweight"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "AutoAnimate",
+          "description": "Add animations to your app with a single line of code. It automatically animates elements as they're added, removed, or rearranged in the DOM — zero configuration required.",
+          "url": "https://auto-animate.formkit.com",
+          "tags": ["animation", "automatic", "zero-config"],
+          "pricing": "open-source",
+          "highlight": "One line of code for automatic list and layout animations"
+        },
+        {
+          "name": "React Spring",
+          "description": "Spring-physics based animation library that produces natural-feeling motion. Great for interactive UI elements where physics-based easing feels more organic than cubic bezier curves.",
+          "url": "https://www.react-spring.dev",
+          "tags": ["animation", "spring-physics", "interactive"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Motion One",
+          "description": "A tiny animation library built on the Web Animations API for maximum performance. At under 3KB, it's perfect when you need smooth animations without the weight of larger libraries.",
+          "url": "https://motion.dev",
+          "tags": ["animation", "web-animations-api", "lightweight"],
+          "pricing": "open-source",
+          "highlight": "Built on native Web Animations API for hardware-accelerated performance"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-tools-for-nextjs",
+    "best-libraries-for-react",
+    "best-libraries-for-tailwindcss",
+    "best-libraries-for-typescript"
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-an-ecommerce-store-with-nextjs",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build an E-commerce Store with Next.js | Full Guide",
+    "description": "Build a high-performance e-commerce store with Next.js, Shopify Storefront API, cart functionality, and Stripe checkout integration.",
+    "keywords": [
+      "nextjs ecommerce",
+      "build online store nextjs",
+      "nextjs shopify",
+      "headless commerce nextjs",
+      "nextjs stripe ecommerce",
+      "react ecommerce tutorial"
+    ]
+  },
+  "introduction": "Headless e-commerce separates your storefront from your backend, letting you build a fast, custom shopping experience while leveraging battle-tested commerce infrastructure for inventory, payments, and fulfillment. Next.js is the ideal frontend for headless commerce because server components fetch product data without exposing API keys, and static generation makes product pages load instantly. This guide builds a fully functional store with the Shopify Storefront API, a cart system, and Stripe-powered checkout.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for Next.js development and build tooling.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Shopify Partner Account",
+      "description": "Create a free Shopify development store with the Storefront API enabled to manage products and inventory.",
+      "url": "https://www.shopify.com/partners"
+    },
+    {
+      "name": "Stripe Account",
+      "description": "For processing payments at checkout. Free to create with test mode available.",
+      "url": "https://dashboard.stripe.com/register"
+    },
+    {
+      "name": "TypeScript Fundamentals",
+      "description": "Familiarity with TypeScript types, interfaces, and async/await patterns."
+    }
+  ],
+  "estimated_time": "6-8 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Scaffold the Next.js Project and Install Dependencies",
+      "description": "Create a new Next.js application with the App Router and install the Shopify Storefront API client. The commerce project structure separates lib utilities, components, and app routes for clean architecture as the store grows.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npx create-next-app@latest my-store \\\n  --typescript \\\n  --tailwind \\\n  --eslint \\\n  --app \\\n  --src-dir\n\ncd my-store\nnpm install @shopify/storefront-api-client\nnpm install zustand  # For cart state management"
+      },
+      "tips": [
+        "Zustand is a lightweight state manager ideal for cart state — it avoids the boilerplate of Context API for global state.",
+        "Create a .env.local file with SHOPIFY_STOREFRONT_ACCESS_TOKEN and SHOPIFY_STORE_DOMAIN."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Set Up the Shopify Storefront API Client",
+      "description": "Create a typed API client that communicates with the Shopify Storefront API using GraphQL. The Storefront API is read-only for product data, which means your access token is safe to use in server components. Define reusable GraphQL fragments for products and variants.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/lib/shopify.ts\nimport { createStorefrontApiClient } from \"@shopify/storefront-api-client\";\n\nconst client = createStorefrontApiClient({\n  storeDomain: process.env.SHOPIFY_STORE_DOMAIN!,\n  apiVersion: \"2025-01\",\n  publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!,\n});\n\nconst PRODUCT_FRAGMENT = `\n  fragment ProductFields on Product {\n    id\n    title\n    handle\n    description\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n    images(first: 4) {\n      edges {\n        node {\n          url\n          altText\n          width\n          height\n        }\n      }\n    }\n    variants(first: 10) {\n      edges {\n        node {\n          id\n          title\n          availableForSale\n          price {\n            amount\n            currencyCode\n          }\n        }\n      }\n    }\n  }\n`;\n\nexport async function getProducts() {\n  const { data } = await client.request(\n    `query { products(first: 20) { edges { node { ...ProductFields } } } } ${PRODUCT_FRAGMENT}`\n  );\n  return data?.products.edges.map((edge: { node: unknown }) => edge.node) ?? [];\n}\n\nexport async function getProductByHandle(handle: string) {\n  const { data } = await client.request(\n    `query($handle: String!) { product(handle: $handle) { ...ProductFields } } ${PRODUCT_FRAGMENT}`,\n    { variables: { handle } }\n  );\n  return data?.product ?? null;\n}",
+        "filename": "src/lib/shopify.ts"
+      },
+      "tips": [
+        "Use GraphQL fragments to keep your product queries DRY across listing and detail pages.",
+        "Cache product data with Next.js fetch caching or unstable_cache for faster builds."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Build the Product Listing Page",
+      "description": "Create a server component that fetches all products from Shopify and displays them in a responsive grid. Each product card shows the image, title, price, and a link to the detail page. Server components mean no loading spinners — the data is fetched and rendered on the server before the HTML reaches the browser.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/app/products/page.tsx\nimport Image from \"next/image\";\nimport Link from \"next/link\";\nimport { getProducts } from \"@/lib/shopify\";\n\nexport const metadata = {\n  title: \"Products | My Store\",\n  description: \"Browse our collection of products.\",\n};\n\nexport default async function ProductsPage() {\n  const products = await getProducts();\n\n  return (\n    <main className=\"mx-auto max-w-7xl px-4 py-16\">\n      <h1 className=\"mb-12 text-4xl font-bold\">Products</h1>\n      <div className=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3\">\n        {products.map((product: any) => (\n          <Link\n            key={product.id}\n            href={`/products/${product.handle}`}\n            className=\"group rounded-lg border p-4 transition hover:shadow-lg\"\n          >\n            {product.images.edges[0] && (\n              <Image\n                src={product.images.edges[0].node.url}\n                alt={product.images.edges[0].node.altText ?? product.title}\n                width={400}\n                height={400}\n                className=\"aspect-square w-full rounded object-cover\"\n              />\n            )}\n            <h2 className=\"mt-4 text-lg font-semibold group-hover:text-blue-600\">\n              {product.title}\n            </h2>\n            <p className=\"mt-1 text-gray-600\">\n              ${product.priceRange.minVariantPrice.amount}\n            </p>\n          </Link>\n        ))}\n      </div>\n    </main>\n  );\n}",
+        "filename": "src/app/products/page.tsx"
+      }
+    },
+    {
+      "number": 4,
+      "title": "Create the Product Detail Page with Variant Selection",
+      "description": "Build a dynamic product page that displays images, description, variant options, and an add-to-cart button. The page uses generateStaticParams to pre-render every product at build time. Variant selection is handled by a client component that updates the selected variant and price.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/app/products/[handle]/page.tsx\nimport { getProducts, getProductByHandle } from \"@/lib/shopify\";\nimport { notFound } from \"next/navigation\";\nimport Image from \"next/image\";\nimport { AddToCart } from \"@/components/AddToCart\";\n\nexport async function generateStaticParams() {\n  const products = await getProducts();\n  return products.map((p: any) => ({ handle: p.handle }));\n}\n\nexport async function generateMetadata({ params }: { params: { handle: string } }) {\n  const product = await getProductByHandle(params.handle);\n  if (!product) return {};\n  return {\n    title: `${product.title} | My Store`,\n    description: product.description?.slice(0, 160),\n    openGraph: {\n      images: product.images.edges[0]?.node.url ? [product.images.edges[0].node.url] : [],\n    },\n  };\n}\n\nexport default async function ProductPage({ params }: { params: { handle: string } }) {\n  const product = await getProductByHandle(params.handle);\n  if (!product) notFound();\n\n  const variants = product.variants.edges.map((e: any) => e.node);\n\n  return (\n    <main className=\"mx-auto max-w-6xl px-4 py-16\">\n      <div className=\"grid gap-12 md:grid-cols-2\">\n        <div className=\"space-y-4\">\n          {product.images.edges.map((edge: any, i: number) => (\n            <Image\n              key={i}\n              src={edge.node.url}\n              alt={edge.node.altText ?? product.title}\n              width={edge.node.width}\n              height={edge.node.height}\n              className=\"w-full rounded-lg\"\n              priority={i === 0}\n            />\n          ))}\n        </div>\n        <div>\n          <h1 className=\"text-3xl font-bold\">{product.title}</h1>\n          <p className=\"mt-2 text-2xl\">\n            ${product.priceRange.minVariantPrice.amount}\n          </p>\n          <p className=\"mt-4 text-gray-600\">{product.description}</p>\n          <AddToCart variants={variants} />\n        </div>\n      </div>\n    </main>\n  );\n}",
+        "filename": "src/app/products/[handle]/page.tsx"
+      },
+      "tips": [
+        "Use the priority prop on the first product image for LCP optimization.",
+        "Add JSON-LD Product schema for rich snippets in search results."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Implement the Cart with Zustand",
+      "description": "Build a client-side cart using Zustand for state management with localStorage persistence. The cart store handles adding items, removing items, updating quantities, and calculating totals. Zustand's persist middleware ensures the cart survives page refreshes without a backend.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/lib/cart-store.ts\n\"use client\";\nimport { create } from \"zustand\";\nimport { persist } from \"zustand/middleware\";\n\nexport interface CartItem {\n  variantId: string;\n  title: string;\n  variantTitle: string;\n  price: number;\n  quantity: number;\n  image?: string;\n}\n\ninterface CartStore {\n  items: CartItem[];\n  addItem: (item: Omit<CartItem, \"quantity\">) => void;\n  removeItem: (variantId: string) => void;\n  updateQuantity: (variantId: string, quantity: number) => void;\n  clearCart: () => void;\n  total: () => number;\n}\n\nexport const useCartStore = create<CartStore>()(\n  persist(\n    (set, get) => ({\n      items: [],\n      addItem: (item) =>\n        set((state) => {\n          const existing = state.items.find((i) => i.variantId === item.variantId);\n          if (existing) {\n            return {\n              items: state.items.map((i) =>\n                i.variantId === item.variantId\n                  ? { ...i, quantity: i.quantity + 1 }\n                  : i\n              ),\n            };\n          }\n          return { items: [...state.items, { ...item, quantity: 1 }] };\n        }),\n      removeItem: (variantId) =>\n        set((state) => ({\n          items: state.items.filter((i) => i.variantId !== variantId),\n        })),\n      updateQuantity: (variantId, quantity) =>\n        set((state) => ({\n          items: quantity <= 0\n            ? state.items.filter((i) => i.variantId !== variantId)\n            : state.items.map((i) =>\n                i.variantId === variantId ? { ...i, quantity } : i\n              ),\n        })),\n      clearCart: () => set({ items: [] }),\n      total: () =>\n        get().items.reduce((sum, item) => sum + item.price * item.quantity, 0),\n    }),\n    { name: \"cart-storage\" }\n  )\n);",
+        "filename": "src/lib/cart-store.ts"
+      },
+      "tips": [
+        "Zustand's persist middleware uses localStorage by default — cart items survive page refreshes.",
+        "Use the 'total' method as a computed property rather than storing it to avoid sync issues."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Build the Checkout API with Stripe",
+      "description": "Create a server-side API route that takes the cart items, creates line items for Stripe, and returns a Checkout Session URL. Stripe Checkout handles the entire payment form including address collection, tax calculation, and receipt emails. This keeps your app PCI-compliant without handling any card data.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/app/api/checkout/route.ts\nimport { NextRequest, NextResponse } from \"next/server\";\nimport Stripe from \"stripe\";\n\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);\n\nexport async function POST(req: NextRequest) {\n  const { items } = await req.json();\n\n  if (!items?.length) {\n    return NextResponse.json({ error: \"Cart is empty\" }, { status: 400 });\n  }\n\n  const session = await stripe.checkout.sessions.create({\n    mode: \"payment\",\n    payment_method_types: [\"card\"],\n    shipping_address_collection: {\n      allowed_countries: [\"US\", \"CA\", \"GB\", \"AU\"],\n    },\n    line_items: items.map((item: any) => ({\n      price_data: {\n        currency: \"usd\",\n        product_data: {\n          name: `${item.title} - ${item.variantTitle}`,\n          images: item.image ? [item.image] : [],\n        },\n        unit_amount: Math.round(item.price * 100),\n      },\n      quantity: item.quantity,\n    })),\n    success_url: `${process.env.NEXT_PUBLIC_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,\n    cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart`,\n  });\n\n  return NextResponse.json({ url: session.url });\n}",
+        "filename": "src/app/api/checkout/route.ts"
+      },
+      "tips": [
+        "Always validate cart items on the server — never trust client-side prices.",
+        "Use Stripe's automatic tax calculation to handle sales tax across different jurisdictions."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Add Product Search and Filtering",
+      "description": "Implement a search bar and category filters using URL search params and server components. By storing filter state in the URL, search results are shareable and work without JavaScript. The Shopify Storefront API supports full-text search and filtering by product type, vendor, and price range.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/components/SearchBar.tsx\n\"use client\";\nimport { useRouter, useSearchParams } from \"next/navigation\";\nimport { useState, useTransition } from \"react\";\n\nexport function SearchBar() {\n  const router = useRouter();\n  const searchParams = useSearchParams();\n  const [isPending, startTransition] = useTransition();\n  const [query, setQuery] = useState(searchParams.get(\"q\") ?? \"\");\n\n  function handleSearch(e: React.FormEvent) {\n    e.preventDefault();\n    startTransition(() => {\n      const params = new URLSearchParams(searchParams.toString());\n      if (query) {\n        params.set(\"q\", query);\n      } else {\n        params.delete(\"q\");\n      }\n      router.push(`/products?${params.toString()}`);\n    });\n  }\n\n  return (\n    <form onSubmit={handleSearch} className=\"mb-8\">\n      <div className=\"flex gap-2\">\n        <input\n          type=\"search\"\n          value={query}\n          onChange={(e) => setQuery(e.target.value)}\n          placeholder=\"Search products...\"\n          className=\"flex-1 rounded-lg border px-4 py-2\"\n        />\n        <button\n          type=\"submit\"\n          className=\"rounded-lg bg-black px-6 py-2 text-white\"\n          disabled={isPending}\n        >\n          {isPending ? \"Searching...\" : \"Search\"}\n        </button>\n      </div>\n    </form>\n  );\n}",
+        "filename": "src/components/SearchBar.tsx"
+      },
+      "tips": [
+        "Use useTransition to show a pending state during search navigation without blocking user input.",
+        "Debounce the search input for instant search — but use form submission for accessibility."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Deploy and Configure Production Settings",
+      "description": "Deploy to Vercel with environment variables for Shopify and Stripe, configure webhooks for order fulfillment, and set up Incremental Static Regeneration to keep product data fresh. ISR lets you revalidate product pages on a schedule without rebuilding the entire site.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "# Deploy to Vercel\nnpx vercel\n\n# Set production environment variables\nvercel env add SHOPIFY_STORE_DOMAIN\nvercel env add SHOPIFY_STOREFRONT_ACCESS_TOKEN\nvercel env add STRIPE_SECRET_KEY\nvercel env add STRIPE_WEBHOOK_SECRET\nvercel env add NEXT_PUBLIC_URL\n\n# Deploy to production\nvercel --prod"
+      },
+      "tips": [
+        "Add revalidate: 3600 to your product pages to refresh data every hour without a full rebuild.",
+        "Set up Shopify webhooks to trigger on-demand revalidation when products are updated.",
+        "Add Vercel Analytics to track conversion rates and Core Web Vitals for your store."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add product reviews using a headless review platform like Judge.me or Stamped.",
+    "Implement wishlist functionality with Zustand and localStorage persistence.",
+    "Add email notifications for order confirmation and shipping updates with Resend.",
+    "Implement A/B testing on product pages to optimize conversion rates."
+  ],
+  "related_slugs": [
+    "build-a-saas-with-nextjs",
+    "build-a-dashboard-with-nextjs",
+    "build-a-landing-page-with-tailwindcss"
+  ]
+}

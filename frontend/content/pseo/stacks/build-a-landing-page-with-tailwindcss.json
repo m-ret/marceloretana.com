@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "niche": "tailwindcss",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-landing-page-with-tailwindcss",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a Landing Page with Tailwind CSS | Conversion-Ready",
+    "description": "Build a high-converting landing page with Tailwind CSS featuring a hero section, features grid, testimonials, pricing, and CTA.",
+    "keywords": [
+      "tailwind css landing page",
+      "build landing page tailwind",
+      "tailwind css tutorial",
+      "landing page template",
+      "tailwind responsive design",
+      "conversion landing page"
+    ]
+  },
+  "introduction": "A well-designed landing page is the highest-ROI page on any website. Tailwind CSS lets you build one rapidly without switching between HTML and CSS files, and its utility-first approach makes responsive design straightforward. This guide builds a complete, conversion-optimized landing page with a hero section, features grid, social proof, pricing table, FAQ, and call-to-action — all fully responsive and production-ready.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for Tailwind CSS CLI and the Vite development server.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Basic HTML Knowledge",
+      "description": "Understanding of semantic HTML elements, forms, and document structure."
+    },
+    {
+      "name": "A Text Editor",
+      "description": "VS Code with the Tailwind CSS IntelliSense extension gives you autocomplete for every Tailwind class.",
+      "url": "https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss"
+    }
+  ],
+  "estimated_time": "2-3 hours",
+  "difficulty": "beginner",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Set Up the Project with Vite and Tailwind CSS",
+      "description": "Create a lightweight project using Vite as the development server and Tailwind CSS v4 for styling. Vite gives you instant hot module replacement, and Tailwind CSS v4 requires zero configuration — just import it in your CSS file. No tailwind.config.js needed.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npm create vite@latest my-landing -- --template vanilla-ts\ncd my-landing\nnpm install\nnpm install tailwindcss @tailwindcss/vite\n\n# Update vite.config.ts to include the Tailwind plugin"
+      },
+      "tips": [
+        "Tailwind CSS v4 uses a CSS-first configuration approach — customize your theme with @theme in your CSS file.",
+        "Install the Tailwind CSS IntelliSense extension in VS Code for class autocomplete and hover previews."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Configure Tailwind CSS v4 with Custom Theme",
+      "description": "Set up your CSS file with Tailwind CSS v4 imports and define your custom theme using the @theme directive. Unlike v3, Tailwind v4 does not need a JavaScript config file. All theme customization happens in CSS, making it simpler and faster. Define your brand colors, fonts, and spacing scale.",
+      "code_snippet": {
+        "language": "css",
+        "code": "/* src/style.css */\n@import \"tailwindcss\";\n\n@theme {\n  --color-brand: #6366f1;\n  --color-brand-dark: #4f46e5;\n  --color-brand-light: #a5b4fc;\n  --color-surface: #fafafa;\n  --font-sans: \"Inter\", system-ui, sans-serif;\n  --font-display: \"Cal Sans\", \"Inter\", sans-serif;\n}\n\n/* Smooth scroll for anchor links */\nhtml {\n  scroll-behavior: smooth;\n}",
+        "filename": "src/style.css"
+      },
+      "tips": [
+        "Use --color-brand consistently throughout the page for visual coherence.",
+        "Add Google Fonts in your HTML <head> for the custom font families defined in @theme."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Build the Hero Section",
+      "description": "Create a compelling hero section with a headline, subheadline, call-to-action buttons, and a product screenshot or illustration. The hero is the first thing visitors see, so it must communicate your value proposition in under 5 seconds. Use Tailwind's responsive utilities for mobile-first design.",
+      "code_snippet": {
+        "language": "html",
+        "code": "<section class=\"relative overflow-hidden bg-white\">\n  <div class=\"mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8\">\n    <div class=\"mx-auto max-w-2xl text-center\">\n      <p class=\"text-sm font-semibold uppercase tracking-wider text-brand\">\n        Launch faster, grow faster\n      </p>\n      <h1 class=\"mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl\">\n        Build your next project\n        <span class=\"text-brand\">in half the time</span>\n      </h1>\n      <p class=\"mt-6 text-lg leading-relaxed text-gray-600\">\n        The all-in-one platform that gives you everything you need to\n        ship products faster. From idea to production in days, not months.\n      </p>\n      <div class=\"mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center\">\n        <a href=\"#pricing\"\n          class=\"rounded-lg bg-brand px-8 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-dark transition\">\n          Start free trial\n        </a>\n        <a href=\"#demo\"\n          class=\"rounded-lg border border-gray-300 px-8 py-3.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition\">\n          Watch demo &rarr;\n        </a>\n      </div>\n      <p class=\"mt-4 text-xs text-gray-400\">No credit card required. 14-day free trial.</p>\n    </div>\n    <div class=\"mt-16\">\n      <img\n        src=\"/screenshot.png\"\n        alt=\"Product dashboard screenshot\"\n        class=\"mx-auto rounded-xl border shadow-2xl\"\n        width=\"1200\"\n        height=\"675\"\n      />\n    </div>\n  </div>\n</section>",
+        "filename": "index.html"
+      },
+      "tips": [
+        "Use sm:flex-row to stack buttons vertically on mobile and horizontally on desktop.",
+        "Add 'No credit card required' below the CTA to reduce friction."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Create the Features Grid",
+      "description": "Build a features section that highlights 3-6 key benefits of your product. Use a CSS grid that adapts from one column on mobile to three columns on desktop. Each feature card includes an icon, title, and description. Keep descriptions short — two sentences maximum.",
+      "code_snippet": {
+        "language": "html",
+        "code": "<section id=\"features\" class=\"bg-surface py-24\">\n  <div class=\"mx-auto max-w-7xl px-4 sm:px-6 lg:px-8\">\n    <div class=\"mx-auto max-w-2xl text-center\">\n      <h2 class=\"text-3xl font-bold text-gray-900 sm:text-4xl\">\n        Everything you need to ship\n      </h2>\n      <p class=\"mt-4 text-lg text-gray-600\">\n        Powerful features that save you weeks of development time.\n      </p>\n    </div>\n    <div class=\"mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3\">\n      <div class=\"rounded-xl border bg-white p-8 transition hover:shadow-lg\">\n        <div class=\"flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10\">\n          <svg class=\"h-6 w-6 text-brand\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M13 10V3L4 14h7v7l9-11h-7z\" />\n          </svg>\n        </div>\n        <h3 class=\"mt-4 text-lg font-semibold text-gray-900\">Lightning Fast</h3>\n        <p class=\"mt-2 text-gray-600\">\n          Built on edge infrastructure for sub-50ms response times worldwide.\n        </p>\n      </div>\n      <div class=\"rounded-xl border bg-white p-8 transition hover:shadow-lg\">\n        <div class=\"flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10\">\n          <svg class=\"h-6 w-6 text-brand\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z\" />\n          </svg>\n        </div>\n        <h3 class=\"mt-4 text-lg font-semibold text-gray-900\">Secure by Default</h3>\n        <p class=\"mt-2 text-gray-600\">\n          SOC 2 compliant with end-to-end encryption and role-based access control.\n        </p>\n      </div>\n      <div class=\"rounded-xl border bg-white p-8 transition hover:shadow-lg\">\n        <div class=\"flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10\">\n          <svg class=\"h-6 w-6 text-brand\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z\" />\n          </svg>\n        </div>\n        <h3 class=\"mt-4 text-lg font-semibold text-gray-900\">Fully Customizable</h3>\n        <p class=\"mt-2 text-gray-600\">\n          Extend with plugins, custom integrations, and a developer-friendly API.\n        </p>\n      </div>\n    </div>\n  </div>\n</section>",
+        "filename": "index.html"
+      },
+      "tips": [
+        "Use bg-brand/10 (10% opacity of brand color) for icon backgrounds to maintain visual consistency.",
+        "Keep feature descriptions to 1-2 sentences — visitors scan, they don't read."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Add Social Proof with Testimonials",
+      "description": "Build a testimonial section with customer quotes, names, photos, and company logos. Social proof is one of the strongest conversion drivers on a landing page. Use a grid layout for multiple testimonials and highlight one featured testimonial with a larger card.",
+      "code_snippet": {
+        "language": "html",
+        "code": "<section class=\"bg-white py-24\">\n  <div class=\"mx-auto max-w-7xl px-4 sm:px-6 lg:px-8\">\n    <div class=\"mx-auto max-w-2xl text-center\">\n      <h2 class=\"text-3xl font-bold text-gray-900 sm:text-4xl\">\n        Trusted by developers worldwide\n      </h2>\n      <p class=\"mt-4 text-lg text-gray-600\">\n        See what our customers are saying about their experience.\n      </p>\n    </div>\n    <div class=\"mt-16 grid gap-8 md:grid-cols-3\">\n      <div class=\"rounded-xl border p-8\">\n        <div class=\"flex gap-1 text-yellow-400\">\n          <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>\n        </div>\n        <blockquote class=\"mt-4 text-gray-700\">\n          &ldquo;We shipped our MVP in 2 weeks instead of 2 months.\n          The developer experience is outstanding.&rdquo;\n        </blockquote>\n        <div class=\"mt-6 flex items-center gap-3\">\n          <img src=\"/avatars/sarah.jpg\" alt=\"Sarah Chen\" class=\"h-10 w-10 rounded-full\" />\n          <div>\n            <p class=\"text-sm font-semibold\">Sarah Chen</p>\n            <p class=\"text-xs text-gray-500\">CTO, TechStartup</p>\n          </div>\n        </div>\n      </div>\n      <div class=\"rounded-xl border p-8\">\n        <div class=\"flex gap-1 text-yellow-400\">\n          <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>\n        </div>\n        <blockquote class=\"mt-4 text-gray-700\">\n          &ldquo;The best investment we made this year. Our team's\n          productivity doubled within the first month.&rdquo;\n        </blockquote>\n        <div class=\"mt-6 flex items-center gap-3\">\n          <img src=\"/avatars/marcus.jpg\" alt=\"Marcus Johnson\" class=\"h-10 w-10 rounded-full\" />\n          <div>\n            <p class=\"text-sm font-semibold\">Marcus Johnson</p>\n            <p class=\"text-xs text-gray-500\">Lead Developer, ScaleApp</p>\n          </div>\n        </div>\n      </div>\n      <div class=\"rounded-xl border p-8\">\n        <div class=\"flex gap-1 text-yellow-400\">\n          <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>\n        </div>\n        <blockquote class=\"mt-4 text-gray-700\">\n          &ldquo;Finally, a tool that doesn't get in your way.\n          Clean API, great docs, and amazing support.&rdquo;\n        </blockquote>\n        <div class=\"mt-6 flex items-center gap-3\">\n          <img src=\"/avatars/elena.jpg\" alt=\"Elena Petrov\" class=\"h-10 w-10 rounded-full\" />\n          <div>\n            <p class=\"text-sm font-semibold\">Elena Petrov</p>\n            <p class=\"text-xs text-gray-500\">Founder, DevTools Inc</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>",
+        "filename": "index.html"
+      },
+      "tips": [
+        "Use real photos and full names — stock photos and initials destroy credibility.",
+        "Include company names and titles to add authority to the testimonials."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Build the Pricing Table",
+      "description": "Create a pricing section with 2-3 tiers that makes the recommended plan visually prominent. The middle or most popular plan should be highlighted with a different background or border color. Include a feature comparison list and clear CTA buttons for each tier.",
+      "code_snippet": {
+        "language": "html",
+        "code": "<section id=\"pricing\" class=\"bg-surface py-24\">\n  <div class=\"mx-auto max-w-7xl px-4 sm:px-6 lg:px-8\">\n    <div class=\"mx-auto max-w-2xl text-center\">\n      <h2 class=\"text-3xl font-bold text-gray-900 sm:text-4xl\">Simple, transparent pricing</h2>\n      <p class=\"mt-4 text-lg text-gray-600\">No hidden fees. Cancel anytime.</p>\n    </div>\n    <div class=\"mt-16 grid gap-8 lg:grid-cols-3\">\n      <!-- Starter -->\n      <div class=\"rounded-xl border bg-white p-8\">\n        <h3 class=\"text-lg font-semibold\">Starter</h3>\n        <p class=\"mt-2 text-sm text-gray-500\">For individuals and side projects.</p>\n        <p class=\"mt-6\"><span class=\"text-4xl font-bold\">$0</span><span class=\"text-gray-500\">/month</span></p>\n        <ul class=\"mt-8 space-y-3 text-sm text-gray-600\">\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> 1 project</li>\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> 1,000 API calls/month</li>\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> Community support</li>\n        </ul>\n        <a href=\"#\" class=\"mt-8 block rounded-lg border border-brand px-6 py-3 text-center text-sm font-semibold text-brand hover:bg-brand/5 transition\">\n          Get started free\n        </a>\n      </div>\n      <!-- Pro (Highlighted) -->\n      <div class=\"relative rounded-xl border-2 border-brand bg-white p-8 shadow-lg\">\n        <span class=\"absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand px-4 py-1 text-xs font-semibold text-white\">\n          Most Popular\n        </span>\n        <h3 class=\"text-lg font-semibold\">Pro</h3>\n        <p class=\"mt-2 text-sm text-gray-500\">For growing teams and startups.</p>\n        <p class=\"mt-6\"><span class=\"text-4xl font-bold\">$29</span><span class=\"text-gray-500\">/month</span></p>\n        <ul class=\"mt-8 space-y-3 text-sm text-gray-600\">\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> Unlimited projects</li>\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> 100,000 API calls/month</li>\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> Priority support</li>\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> Custom integrations</li>\n        </ul>\n        <a href=\"#\" class=\"mt-8 block rounded-lg bg-brand px-6 py-3 text-center text-sm font-semibold text-white hover:bg-brand-dark transition\">\n          Start free trial\n        </a>\n      </div>\n      <!-- Enterprise -->\n      <div class=\"rounded-xl border bg-white p-8\">\n        <h3 class=\"text-lg font-semibold\">Enterprise</h3>\n        <p class=\"mt-2 text-sm text-gray-500\">For large organizations.</p>\n        <p class=\"mt-6\"><span class=\"text-4xl font-bold\">Custom</span></p>\n        <ul class=\"mt-8 space-y-3 text-sm text-gray-600\">\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> Everything in Pro</li>\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> Unlimited API calls</li>\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> Dedicated support</li>\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> SLA guarantee</li>\n          <li class=\"flex gap-2\"><span class=\"text-brand\">&#10003;</span> Custom onboarding</li>\n        </ul>\n        <a href=\"#\" class=\"mt-8 block rounded-lg border border-gray-300 px-6 py-3 text-center text-sm font-semibold text-gray-700 hover:bg-gray-50 transition\">\n          Contact sales\n        </a>\n      </div>\n    </div>\n  </div>\n</section>",
+        "filename": "index.html"
+      },
+      "tips": [
+        "Highlight the tier you want most people to choose with a different border color and a 'Most Popular' badge.",
+        "Keep pricing simple — too many tiers or add-ons confuse visitors and reduce conversions."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Add the Final CTA and Footer",
+      "description": "Close the page with a strong call-to-action section that repeats your main value proposition and includes the primary conversion button. Follow it with a footer containing navigation links, social icons, and legal links. The final CTA captures visitors who have scrolled through the entire page and are ready to take action.",
+      "code_snippet": {
+        "language": "html",
+        "code": "<!-- Final CTA -->\n<section class=\"bg-gray-900 py-24\">\n  <div class=\"mx-auto max-w-4xl px-4 text-center\">\n    <h2 class=\"text-3xl font-bold text-white sm:text-4xl\">\n      Ready to ship faster?\n    </h2>\n    <p class=\"mt-4 text-lg text-gray-300\">\n      Join thousands of developers who build with us every day.\n    </p>\n    <div class=\"mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center\">\n      <a href=\"#\" class=\"rounded-lg bg-brand px-8 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark transition\">\n        Start your free trial\n      </a>\n      <a href=\"#\" class=\"rounded-lg border border-gray-600 px-8 py-3.5 text-sm font-semibold text-gray-300 hover:border-gray-400 transition\">\n        Talk to sales\n      </a>\n    </div>\n  </div>\n</section>\n\n<!-- Footer -->\n<footer class=\"border-t border-gray-200 bg-white py-12\">\n  <div class=\"mx-auto max-w-7xl px-4 sm:px-6 lg:px-8\">\n    <div class=\"grid gap-8 sm:grid-cols-2 lg:grid-cols-4\">\n      <div>\n        <h3 class=\"text-sm font-semibold text-gray-900\">Product</h3>\n        <ul class=\"mt-4 space-y-2 text-sm text-gray-600\">\n          <li><a href=\"#features\" class=\"hover:text-gray-900\">Features</a></li>\n          <li><a href=\"#pricing\" class=\"hover:text-gray-900\">Pricing</a></li>\n          <li><a href=\"#\" class=\"hover:text-gray-900\">Changelog</a></li>\n          <li><a href=\"#\" class=\"hover:text-gray-900\">Documentation</a></li>\n        </ul>\n      </div>\n      <div>\n        <h3 class=\"text-sm font-semibold text-gray-900\">Company</h3>\n        <ul class=\"mt-4 space-y-2 text-sm text-gray-600\">\n          <li><a href=\"#\" class=\"hover:text-gray-900\">About</a></li>\n          <li><a href=\"#\" class=\"hover:text-gray-900\">Blog</a></li>\n          <li><a href=\"#\" class=\"hover:text-gray-900\">Careers</a></li>\n        </ul>\n      </div>\n      <div>\n        <h3 class=\"text-sm font-semibold text-gray-900\">Legal</h3>\n        <ul class=\"mt-4 space-y-2 text-sm text-gray-600\">\n          <li><a href=\"#\" class=\"hover:text-gray-900\">Privacy</a></li>\n          <li><a href=\"#\" class=\"hover:text-gray-900\">Terms</a></li>\n        </ul>\n      </div>\n      <div>\n        <h3 class=\"text-sm font-semibold text-gray-900\">Connect</h3>\n        <ul class=\"mt-4 space-y-2 text-sm text-gray-600\">\n          <li><a href=\"#\" class=\"hover:text-gray-900\">Twitter</a></li>\n          <li><a href=\"#\" class=\"hover:text-gray-900\">GitHub</a></li>\n          <li><a href=\"#\" class=\"hover:text-gray-900\">Discord</a></li>\n        </ul>\n      </div>\n    </div>\n    <div class=\"mt-12 border-t pt-8 text-center text-sm text-gray-400\">\n      <p>&copy; 2026 YourCompany. All rights reserved.</p>\n    </div>\n  </div>\n</footer>",
+        "filename": "index.html"
+      },
+      "tips": [
+        "Use a dark background for the final CTA to create visual contrast and draw attention.",
+        "The footer should repeat important links but not distract from the CTA above it.",
+        "Test the page on mobile — at least 60% of landing page traffic comes from mobile devices."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add scroll animations with CSS @keyframes or a lightweight library like Motion One.",
+    "Implement A/B testing on the headline and CTA copy using Vercel's Edge Config.",
+    "Connect a form to an email marketing tool like ConvertKit or Mailchimp for lead capture.",
+    "Optimize for Core Web Vitals by lazy-loading images below the fold and using font-display: swap."
+  ],
+  "related_slugs": [
+    "build-a-portfolio-with-astro",
+    "build-a-blog-with-nextjs",
+    "build-a-blog-with-astro"
+  ]
+}

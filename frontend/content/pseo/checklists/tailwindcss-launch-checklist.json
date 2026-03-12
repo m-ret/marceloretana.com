@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "niche": "tailwindcss",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "tailwindcss-launch-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Tailwind CSS Launch Checklist: 25 Essential Steps",
+    "description": "Launch your Tailwind CSS project with confidence. 25 steps covering purging, theming, responsive design, accessibility, and production optimization.",
+    "keywords": [
+      "tailwind css checklist",
+      "tailwindcss launch checklist",
+      "tailwind css best practices",
+      "tailwind css production",
+      "tailwind css optimization",
+      "tailwind css responsive design"
+    ]
+  },
+  "introduction": "Tailwind CSS gives you incredible speed in development, but shipping to production requires a different set of checks. Unused classes bloating your CSS, inconsistent spacing values, missing dark mode support, and responsive breakpoint gaps can all undermine the final product. This 24-step checklist ensures your Tailwind project is polished, performant, and production-ready.",
+  "total_items": 25,
+  "estimated_time": "2-3 hours",
+  "sections": [
+    {
+      "name": "Configuration & Theme",
+      "description": "Ensure your Tailwind configuration is set up for production with a consistent, maintainable design system.",
+      "items": [
+        {
+          "id": "tw-launch-1",
+          "text": "Define a complete custom theme with design tokens",
+          "description": "Extend (do not override) the default theme with your brand colors, spacing scale, font families, and border radii. Use semantic names like `primary`, `surface`, `destructive` instead of raw color values. This makes the design system consistent and refactorable.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "tw-launch-2",
+          "text": "Configure content paths to include all template files",
+          "description": "In Tailwind v4, ensure your CSS imports cover all files that use Tailwind classes. In v3, configure `content` in tailwind.config.js to include all jsx, tsx, html, and mdx files. Missing paths cause classes to be purged from production CSS.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "tw-launch-3",
+          "text": "Set up CSS custom properties for dynamic theming",
+          "description": "Define colors as CSS custom properties (`--color-primary: 204 100% 40%`) and reference them in your Tailwind theme. This enables runtime theme switching (dark mode, user preferences) without generating duplicate utility classes.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-4",
+          "text": "Remove unused custom utilities and components",
+          "description": "Audit your `@layer components` and `@layer utilities` directives for classes you defined but never use. Custom layers bypass tree-shaking — unused custom classes end up in your production CSS.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-5",
+          "text": "Verify consistent spacing and sizing scale",
+          "description": "Audit your templates for arbitrary values like `p-[13px]` or `mt-[7px]`. Replace them with the nearest Tailwind scale value (p-3, mt-2). Arbitrary values break visual rhythm and make the design harder to maintain.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Responsive Design",
+      "description": "Verify your layout works flawlessly across all screen sizes, from mobile to ultra-wide displays.",
+      "items": [
+        {
+          "id": "tw-launch-6",
+          "text": "Test every page at all default breakpoints",
+          "description": "Resize your browser through sm (640px), md (768px), lg (1024px), xl (1280px), and 2xl (1536px). Also test at 320px for small phones. Look for horizontal overflow, overlapping elements, and text that becomes unreadable.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "tw-launch-7",
+          "text": "Verify mobile-first class ordering",
+          "description": "Tailwind is mobile-first — base classes apply to all sizes, and breakpoint prefixes override upward. Verify you are not overriding mobile styles unintentionally. Read your classes left to right: base, then sm:, md:, lg:, xl:.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-8",
+          "text": "Test touch targets on mobile viewports",
+          "description": "Buttons, links, and interactive elements should be at least 44x44px on touch devices. Use `min-h-11 min-w-11` (44px) as minimum sizes. Small touch targets cause frustration and are flagged by Lighthouse accessibility audits.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-9",
+          "text": "Handle container and max-width constraints",
+          "description": "Use `container mx-auto` or `max-w-7xl mx-auto` to prevent content from stretching across ultra-wide displays. Set appropriate padding (`px-4 sm:px-6 lg:px-8`) so content does not touch screen edges on any device.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-10",
+          "text": "Test responsive typography scaling",
+          "description": "Verify headings and body text are readable at all breakpoints. Use responsive text sizes like `text-2xl md:text-4xl lg:text-5xl` for headings. Ensure line lengths stay between 45-75 characters for readability using `max-w-prose` or similar constraints.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Dark Mode & Accessibility",
+      "description": "Ensure your design works in dark mode and meets accessibility requirements for color contrast and interaction.",
+      "items": [
+        {
+          "id": "tw-launch-11",
+          "text": "Implement dark mode with consistent contrast ratios",
+          "description": "Add `dark:` variants for all color-dependent classes. Do not just invert colors — redesign for dark backgrounds. Verify all text meets WCAG AA contrast ratios (4.5:1 for normal text, 3:1 for large text) in both modes.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-12",
+          "text": "Add focus-visible styles for keyboard navigation",
+          "description": "Use `focus-visible:ring-2 focus-visible:ring-primary` on all interactive elements. The default browser focus ring is often removed by CSS resets. Without visible focus indicators, keyboard users cannot navigate your site.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "tw-launch-13",
+          "text": "Use sr-only for screen reader content",
+          "description": "Add `sr-only` class to text that provides context for screen readers but should be visually hidden. Icon-only buttons, for example, need `<span class='sr-only'>Close menu</span>` so screen readers announce the button's purpose.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-14",
+          "text": "Verify color is not the only indicator of state",
+          "description": "Do not rely solely on color to communicate errors, success, or selection. Add icons, text labels, or border changes alongside color changes. Color-blind users (8% of men) cannot distinguish red from green reliably.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-15",
+          "text": "Test with prefers-reduced-motion",
+          "description": "Wrap animations in `motion-safe:` or use `motion-reduce:` to disable or simplify animations for users who have enabled reduced motion in their OS settings. This includes transitions, transforms, and scroll-triggered animations.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Production CSS Optimization",
+      "description": "Minimize your production CSS bundle size and ensure only the styles you use are shipped.",
+      "items": [
+        {
+          "id": "tw-launch-16",
+          "text": "Verify production CSS size is under 30KB gzipped",
+          "description": "After building, check your CSS file size. A well-configured Tailwind project should produce 10-30KB gzipped CSS. If larger, check for safelist overuse, unused custom utilities, or third-party CSS that should be loaded separately.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "tw-launch-17",
+          "text": "Avoid safelisting classes unless absolutely necessary",
+          "description": "Safelisted classes are never purged, even if unused. Common misuse: safelisting all color variants 'just in case'. Instead, use complete class names in your code (`bg-red-500` not `bg-${color}-500`) so the scanner can find them.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-18",
+          "text": "Extract repeated class patterns into components",
+          "description": "When you find the same long string of Tailwind classes repeated 3+ times, extract them into a React component or use `@apply` in a CSS layer. This improves maintainability and can reduce HTML size in server-rendered apps.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-19",
+          "text": "Enable CSS minification in your build pipeline",
+          "description": "Ensure your build tool (PostCSS, Vite, webpack) minifies CSS output. Modern tools do this by default in production mode. Verify by checking the built CSS file — it should be a single line with no comments or whitespace.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-19b",
+          "text": "Avoid dynamic class name construction",
+          "description": "Never build class names dynamically like `bg-${color}-500` — Tailwind's compiler cannot detect these and will purge them from production CSS. Always use complete, literal class strings. If you need dynamic styles, use a mapping object that maps values to full class names.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "name": "Code Quality & Maintainability",
+      "description": "Set up tooling and conventions that keep your Tailwind codebase maintainable as it grows.",
+      "items": [
+        {
+          "id": "tw-launch-20",
+          "text": "Install and configure Prettier with tailwindcss plugin",
+          "description": "Add `prettier-plugin-tailwindcss` to automatically sort your Tailwind classes in a consistent order. This eliminates class ordering debates, makes diffs cleaner, and helps developers find specific utilities quickly.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-21",
+          "text": "Set up Tailwind CSS IntelliSense in your editor",
+          "description": "Install the official Tailwind CSS IntelliSense VS Code extension. It provides autocomplete, syntax highlighting, linting, and hover previews for all utility classes. This catches typos and invalid classes during development.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "tw-launch-22",
+          "text": "Document your design token decisions",
+          "description": "Create a reference page or Storybook story showing all your custom colors, spacing values, and typography scale. This helps new team members use the design system correctly instead of inventing arbitrary values.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "tw-launch-23",
+          "text": "Audit for Tailwind v3 to v4 migration issues",
+          "description": "If upgrading to Tailwind v4, check for breaking changes: config file format changed, `@tailwind` directives replaced with `@import 'tailwindcss'`, arbitrary values syntax updated, and some utility names changed. Run the official migration tool.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "tw-launch-24",
+          "text": "Test with CSS-disabled and slow-connection scenarios",
+          "description": "Disable CSS in your browser and verify the page is still usable (proper heading hierarchy, logical content order). Test on slow 3G to ensure CSS loads quickly. A utility-first approach means your HTML is semantic even without styles.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Use `clsx` or `tailwind-merge` to handle conditional class names cleanly. `tailwind-merge` is especially useful because it intelligently resolves conflicting Tailwind classes (e.g., `p-2` and `p-4` resolves to `p-4`).",
+    "Set up a design token file that maps your brand values to Tailwind theme extensions. When the design changes, update tokens in one place instead of searching through hundreds of components.",
+    "The Prettier Tailwind plugin is the single best quality-of-life improvement for Tailwind projects. Install it on day one — retrofitting class order on an existing project creates noisy diffs.",
+    "Use the `@screen` directive or `theme()` function in custom CSS to reference your Tailwind breakpoints. This prevents breakpoint values from diverging between your Tailwind utilities and custom CSS."
+  ],
+  "related_slugs": [
+    "react-launch-checklist",
+    "nextjs-launch-checklist",
+    "react-accessibility-checklist"
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "niche": "typescript",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-libraries-for-typescript",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Libraries for TypeScript in 2026",
+    "description": "Top TypeScript libraries for validation, utilities, API clients, error handling, and advanced type patterns. Handpicked by TypeScript-first developers.",
+    "keywords": [
+      "typescript libraries",
+      "typescript validation",
+      "typescript utilities",
+      "typescript error handling",
+      "typescript api client",
+      "typescript type utilities",
+      "best typescript packages"
+    ]
+  },
+  "introduction": "TypeScript has become the default for serious JavaScript development, and the best libraries are now designed TypeScript-first — not with types bolted on as an afterthought. At GEXP Software, every project starts with TypeScript and we select libraries that leverage the type system fully. These are the packages that make TypeScript development a joy.",
+  "total_items": 27,
+  "categories": [
+    {
+      "name": "Validation & Schemas",
+      "description": "Libraries for runtime validation, schema definition, and type inference that bridge the gap between TypeScript types and runtime checks.",
+      "items": [
+        {
+          "name": "Zod",
+          "description": "The most popular TypeScript-first schema validation library. Define schemas once and automatically infer TypeScript types from them — no duplication between runtime checks and compile-time types.",
+          "url": "https://zod.dev",
+          "tags": ["validation", "schema", "type-inference", "runtime-checks"],
+          "pricing": "open-source",
+          "highlight": "Define once, get both runtime validation and TypeScript types"
+        },
+        {
+          "name": "Valibot",
+          "description": "Modular validation library that's up to 98% smaller than Zod through tree-shaking. Each validation function is a separate import, so you only ship what you use.",
+          "url": "https://valibot.dev",
+          "tags": ["validation", "modular", "tree-shakeable", "lightweight"],
+          "pricing": "open-source",
+          "highlight": "Same DX as Zod at a fraction of the bundle size"
+        },
+        {
+          "name": "ArkType",
+          "description": "Runtime validation with syntax that mirrors TypeScript's own type syntax. Write validation schemas that look like TypeScript types — dramatically lower learning curve for TypeScript developers.",
+          "url": "https://arktype.io",
+          "tags": ["validation", "typescript-syntax", "runtime", "type-safe"],
+          "pricing": "open-source",
+          "highlight": "Validation syntax that mirrors TypeScript type syntax"
+        },
+        {
+          "name": "TypeBox",
+          "description": "JSON Schema builder with TypeScript type inference. Creates JSON Schema-compliant validators that work with standard JSON Schema tools while providing full TypeScript types.",
+          "url": "https://github.com/sinclairzx81/typebox",
+          "tags": ["json-schema", "validation", "standards-compliant", "type-inference"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Effect Schema",
+          "description": "Schema validation from the Effect ecosystem with bidirectional transformations — encode and decode data between runtime and domain types. Integrates with Effect's error handling and composition.",
+          "url": "https://effect.website/docs/schema/introduction",
+          "tags": ["validation", "transformation", "effect", "bidirectional"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Type Utilities & Helpers",
+      "description": "Libraries that extend TypeScript's type system with advanced utility types, type guards, and compile-time helpers.",
+      "items": [
+        {
+          "name": "ts-pattern",
+          "description": "Exhaustive pattern matching for TypeScript that brings ML-style match expressions to your code. Handle every case of a discriminated union with compile-time exhaustiveness checking.",
+          "url": "https://github.com/gvergnaud/ts-pattern",
+          "tags": ["pattern-matching", "type-narrowing", "exhaustive", "unions"],
+          "pricing": "open-source",
+          "highlight": "Exhaustive pattern matching with compile-time guarantees"
+        },
+        {
+          "name": "type-fest",
+          "description": "Collection of 200+ essential TypeScript utility types that extend the built-in ones. Includes types like `SetRequired`, `PartialDeep`, `Jsonify`, and `Simplify` that you'll use everywhere.",
+          "url": "https://github.com/sindresorhus/type-fest",
+          "tags": ["utility-types", "type-helpers", "advanced-types"],
+          "pricing": "open-source",
+          "highlight": "200+ utility types that fill gaps in TypeScript's built-in types"
+        },
+        {
+          "name": "ts-reset",
+          "description": "Fixes TypeScript's built-in type definitions to be stricter and more useful. Makes `.json()` return `unknown` instead of `any`, `.filter(Boolean)` properly narrows types, and more.",
+          "url": "https://github.com/mattpocock/ts-reset",
+          "tags": ["type-fixes", "strict", "built-in-overrides"],
+          "pricing": "open-source",
+          "highlight": "Fixes .json() returning any and .filter(Boolean) not narrowing"
+        },
+        {
+          "name": "tiny-invariant",
+          "description": "Tiny assertion function that narrows TypeScript types at runtime. Assert that a value is truthy and TypeScript narrows the type for all subsequent code — cleaner than manual type guards.",
+          "url": "https://github.com/alexreardon/tiny-invariant",
+          "tags": ["assertions", "type-narrowing", "runtime-checks", "tiny"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "ts-essentials",
+          "description": "All essential TypeScript types in one place — DeepReadonly, DeepPartial, DeepRequired, Opaque types, and branded types. Complements type-fest with different advanced type patterns.",
+          "url": "https://github.com/ts-essentials/ts-essentials",
+          "tags": ["utility-types", "deep-types", "branded-types", "opaque"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Error Handling & Control Flow",
+      "description": "Libraries for structured error handling, result types, and functional control flow in TypeScript applications.",
+      "items": [
+        {
+          "name": "Effect",
+          "description": "A comprehensive TypeScript framework for building reliable, composable applications. Provides typed errors, dependency injection, concurrency, streaming, and observability in a unified system.",
+          "url": "https://effect.website",
+          "tags": ["framework", "typed-errors", "concurrency", "composition"],
+          "pricing": "open-source",
+          "highlight": "Typed errors + DI + concurrency in one coherent system"
+        },
+        {
+          "name": "neverthrow",
+          "description": "Result type implementation for TypeScript that makes error handling explicit. Functions return `Result<T, E>` instead of throwing, forcing callers to handle both success and failure cases.",
+          "url": "https://github.com/supermacro/neverthrow",
+          "tags": ["result-type", "error-handling", "explicit", "functional"],
+          "pricing": "open-source",
+          "highlight": "Forces explicit error handling — no more uncaught exceptions"
+        },
+        {
+          "name": "ts-results",
+          "description": "Rust-inspired Result and Option types for TypeScript. Brings Rust's error handling ergonomics to TypeScript with `.map()`, `.andThen()`, and `.unwrapOr()` for clean error chaining.",
+          "url": "https://github.com/vultix/ts-results",
+          "tags": ["result-type", "option-type", "rust-inspired", "functional"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Zod Error",
+          "description": "Utility for creating human-readable error messages from Zod validation failures. Transforms nested Zod errors into clean, user-facing messages suitable for form displays.",
+          "url": "https://github.com/causaly/zod-validation-error",
+          "tags": ["error-messages", "zod", "user-facing", "validation"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "p-* utilities (p-limit, p-retry, p-queue)",
+          "description": "Collection of promise utility modules for controlling concurrency, adding retries, and managing async queues. Each module is tiny and focused — import only the async pattern you need.",
+          "url": "https://github.com/sindresorhus/p-limit",
+          "tags": ["async", "promises", "concurrency", "retry", "queue"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "HTTP & API Clients",
+      "description": "Type-safe HTTP clients and API integration libraries designed for TypeScript applications.",
+      "items": [
+        {
+          "name": "tRPC",
+          "description": "End-to-end type-safe APIs where the server defines procedures and the client gets full autocompletion without code generation. Change a server response type and the client immediately shows type errors.",
+          "url": "https://trpc.io",
+          "tags": ["api", "type-safe", "rpc", "full-stack"],
+          "pricing": "open-source",
+          "highlight": "Change server types and client code instantly shows errors"
+        },
+        {
+          "name": "openapi-typescript",
+          "description": "Generates TypeScript types from OpenAPI 3.x schemas with zero runtime overhead. Pair with openapi-fetch for a fully type-safe HTTP client generated from your API spec.",
+          "url": "https://openapi-ts.dev",
+          "tags": ["openapi", "code-generation", "type-safe", "zero-runtime"],
+          "pricing": "open-source",
+          "highlight": "Generate types from OpenAPI specs with zero runtime cost"
+        },
+        {
+          "name": "Ky",
+          "description": "Tiny, elegant HTTP client built on the Fetch API with retry logic, timeout handling, and JSON parsing. Like a modern, TypeScript-first alternative to Axios without the bloat.",
+          "url": "https://github.com/sindresorhus/ky",
+          "tags": ["http-client", "fetch", "retry", "lightweight"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Zodios",
+          "description": "Type-safe API client that uses Zod schemas to validate both request and response data at runtime. Define your API contract once and get type-safe requests with runtime validation.",
+          "url": "https://www.zodios.org",
+          "tags": ["api-client", "zod", "type-safe", "runtime-validation"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Hono Client",
+          "description": "Type-safe RPC client for Hono APIs that shares types between server and client. Similar to tRPC but for Hono's web framework, giving end-to-end type safety with zero code generation.",
+          "url": "https://hono.dev/docs/guides/rpc",
+          "tags": ["api-client", "hono", "rpc", "type-safe"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "oRPC",
+          "description": "End-to-end type-safe APIs built on web standards with OpenAPI compatibility. Combines tRPC's developer experience with REST-friendly output that generates OpenAPI documentation automatically.",
+          "url": "https://orpc.unnoq.com",
+          "tags": ["api", "type-safe", "openapi", "web-standards"],
+          "pricing": "open-source",
+          "highlight": "tRPC-like DX with automatic OpenAPI spec generation"
+        }
+      ]
+    },
+    {
+      "name": "Data & Utility Libraries",
+      "description": "General-purpose TypeScript utility libraries for data manipulation, functional programming, and common operations.",
+      "items": [
+        {
+          "name": "Remeda",
+          "description": "TypeScript-first utility library designed as a modern Lodash alternative. Every function is fully typed, tree-shakeable, and supports both data-first and data-last (pipe) calling styles.",
+          "url": "https://remedajs.com",
+          "tags": ["utilities", "functional", "pipe", "tree-shakeable"],
+          "pricing": "open-source",
+          "highlight": "Lodash alternative with perfect TypeScript types and pipe support"
+        },
+        {
+          "name": "Temporal (tc39 proposal / polyfill)",
+          "description": "The upcoming standard for date/time handling in JavaScript with a proper TypeScript API. Use the polyfill now to get immutable, timezone-aware date operations that will become a language standard.",
+          "url": "https://tc39.es/proposal-temporal/docs",
+          "tags": ["dates", "temporal", "standard", "timezone"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "nanoid",
+          "description": "Tiny, secure, URL-friendly unique string ID generator. At 130 bytes, it's 60% smaller than UUID while generating IDs with equal or better collision resistance.",
+          "url": "https://github.com/ai/nanoid",
+          "tags": ["id-generation", "unique-id", "url-friendly", "tiny"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "superjson",
+          "description": "Serializes JavaScript values that JSON.stringify can't handle — Date, Map, Set, BigInt, RegExp, and more. Essential for sending rich data types between server and client in full-stack TypeScript apps.",
+          "url": "https://github.com/flightcontrol-hq/superjson",
+          "tags": ["serialization", "json", "dates", "maps", "sets"],
+          "pricing": "open-source",
+          "highlight": "Serialize Date, Map, Set, BigInt — everything JSON can't"
+        },
+        {
+          "name": "devalue",
+          "description": "Like JSON.stringify but handles cyclical references, Maps, Sets, Dates, RegExps, and BigInts. Used by SvelteKit for serializing server data — smaller output than superjson.",
+          "url": "https://github.com/Rich-Harris/devalue",
+          "tags": ["serialization", "cyclical", "compact", "sveltekit"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "typeschema",
+          "description": "Universal adapter for TypeScript validation libraries — use Zod, Yup, ArkType, Valibot, or any other validator through a single interface. Swap validation libraries without changing your code.",
+          "url": "https://typeschema.com",
+          "tags": ["adapter", "validation", "universal", "interop"],
+          "pricing": "open-source",
+          "highlight": "Swap between Zod, Valibot, ArkType without code changes"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-libraries-for-react",
+    "best-libraries-for-nextjs",
+    "best-tools-for-nodejs",
+    "best-tools-for-react"
+  ]
+}

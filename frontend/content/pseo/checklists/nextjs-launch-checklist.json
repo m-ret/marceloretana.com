@@ -1,0 +1,304 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "nextjs-launch-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Next.js Launch Checklist: 33 Essential Steps",
+    "description": "Complete Next.js launch checklist covering performance, SEO, security, and deployment. Ship your Next.js app with confidence using these 33 steps.",
+    "keywords": [
+      "nextjs launch checklist",
+      "nextjs deployment checklist",
+      "nextjs production readiness",
+      "next.js go live checklist",
+      "nextjs best practices",
+      "nextjs pre-launch"
+    ]
+  },
+  "introduction": "Launching a Next.js application without a thorough checklist is a recipe for post-launch fires. This checklist covers every critical area — from build configuration and caching to security headers and monitoring — so nothing slips through the cracks. Use it as your final gate before pushing to production.",
+  "total_items": 33,
+  "estimated_time": "3-4 hours",
+  "sections": [
+    {
+      "name": "Build & Configuration",
+      "description": "Ensure your Next.js project is properly configured for a production build with optimal settings.",
+      "items": [
+        {
+          "id": "nextjs-launch-1",
+          "text": "Run a clean production build with no warnings",
+          "description": "Execute `next build` and resolve every warning. TypeScript errors, missing dependencies, and deprecated API usage all surface here. A clean build log means fewer surprises in production.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-2",
+          "text": "Configure environment variables for production",
+          "description": "Verify all required env vars are set in your hosting platform. Use `NEXT_PUBLIC_` prefix only for client-safe values. Never expose API keys, database URLs, or secrets to the browser bundle.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-3",
+          "text": "Set up next.config.js output mode correctly",
+          "description": "Choose between `standalone` (for Docker/self-hosted), default (Vercel), or `export` (static). The wrong output mode causes deployment failures or missing server-side features.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-4",
+          "text": "Enable strict mode in React",
+          "description": "Set `reactStrictMode: true` in next.config.js. Strict mode catches unsafe lifecycles, legacy API usage, and side-effect issues during development that would cause bugs in production.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-5",
+          "text": "Remove all console.log and debugging code",
+          "description": "Search for `console.log`, `console.warn`, `debugger` statements and remove them. Use a proper logging library like Pino for server-side logs that you actually want in production.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-6",
+          "text": "Verify TypeScript strict mode is enabled",
+          "description": "Set `strict: true` in tsconfig.json. This enables strictNullChecks, noImplicitAny, and other flags that catch runtime errors at compile time. Fixing these before launch prevents null reference crashes.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Performance & Optimization",
+      "description": "Optimize your Next.js app for fast load times, efficient rendering, and smooth user experience.",
+      "items": [
+        {
+          "id": "nextjs-launch-7",
+          "text": "Optimize images with next/image",
+          "description": "Replace all `<img>` tags with the `next/image` component. Configure `sizes` prop for responsive images, set `priority` on above-the-fold images, and use WebP/AVIF formats via the built-in image optimizer.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-8",
+          "text": "Implement dynamic imports for heavy components",
+          "description": "Use `next/dynamic` with `{ ssr: false }` for client-only components like charts, maps, or rich text editors. This reduces initial bundle size and improves Time to Interactive.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-9",
+          "text": "Analyze bundle size with @next/bundle-analyzer",
+          "description": "Install and run `@next/bundle-analyzer` to visualize your JavaScript bundles. Look for unexpectedly large dependencies, duplicate packages, and code that should be lazy-loaded.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-10",
+          "text": "Configure font loading with next/font",
+          "description": "Use `next/font/google` or `next/font/local` to self-host fonts with automatic subsetting. This eliminates render-blocking font requests to Google Fonts and prevents layout shift from font swaps.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-11",
+          "text": "Set up ISR or on-demand revalidation for dynamic content",
+          "description": "Use `revalidate` in fetch options or `revalidatePath`/`revalidateTag` for content that changes periodically. This gives you static-site speed with dynamic content freshness.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-12",
+          "text": "Run Lighthouse audit and fix Core Web Vitals",
+          "description": "Achieve green scores for LCP (<2.5s), FID (<100ms), and CLS (<0.1). Use Chrome DevTools Lighthouse panel or PageSpeed Insights. Focus on the largest contentful paint element first — it has the biggest impact.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "name": "SEO & Metadata",
+      "description": "Configure search engine optimization essentials so your Next.js site ranks well from day one.",
+      "items": [
+        {
+          "id": "nextjs-launch-13",
+          "text": "Set up metadata API with generateMetadata for all routes",
+          "description": "Use the Next.js Metadata API in each layout.tsx and page.tsx. Include unique title, description, and Open Graph tags per route. Dynamic routes should use `generateMetadata` to create page-specific metadata.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-14",
+          "text": "Create a dynamic sitemap.xml",
+          "description": "Add a `sitemap.ts` file in your app directory that exports a default function returning all routes. Include lastModified dates and priority values. Submit the sitemap to Google Search Console after launch.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-15",
+          "text": "Add robots.txt with proper directives",
+          "description": "Create a `robots.ts` file or static `robots.txt` in your app directory. Allow crawling of public pages, disallow admin routes and API endpoints, and reference your sitemap URL.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-16",
+          "text": "Implement canonical URLs on every page",
+          "description": "Set `alternates.canonical` in your metadata to prevent duplicate content issues. This is especially important if your site is accessible via www and non-www, or via HTTP and HTTPS.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-17",
+          "text": "Add structured data with JSON-LD",
+          "description": "Add Organization, WebSite, and page-specific schemas (Article, Product, FAQ) as JSON-LD script tags. Use Google's Rich Results Test to validate. Structured data improves click-through rates from search results.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Security & Headers",
+      "description": "Harden your Next.js application against common web vulnerabilities before exposing it to the internet.",
+      "items": [
+        {
+          "id": "nextjs-launch-18",
+          "text": "Configure security headers in next.config.js",
+          "description": "Add headers for X-Content-Type-Options (nosniff), X-Frame-Options (DENY), Referrer-Policy (strict-origin-when-cross-origin), and Permissions-Policy. Use securityheaders.com to verify your score after deployment.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-19",
+          "text": "Set up Content Security Policy",
+          "description": "Define a strict CSP that whitelists only trusted script and style sources. Start with report-only mode to catch violations, then enforce. Use nonces for inline scripts via Next.js middleware.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-20",
+          "text": "Validate and sanitize all user inputs",
+          "description": "Use Zod or Yup schemas in Server Actions and API routes. Never trust client-side validation alone. Sanitize HTML inputs with DOMPurify to prevent XSS attacks.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-21",
+          "text": "Implement rate limiting on API routes",
+          "description": "Use a library like `rate-limiter-flexible` or Upstash Redis to limit requests per IP on sensitive endpoints like login, contact forms, and API routes. This prevents brute force and DDoS attacks.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-22",
+          "text": "Ensure HTTPS is enforced with HSTS",
+          "description": "Enable HTTP Strict Transport Security header with a max-age of at least one year. Most hosting platforms handle SSL, but verify the HSTS header is present so browsers never downgrade to HTTP.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Deployment & Monitoring",
+      "description": "Set up reliable deployment pipelines and monitoring so you catch issues before your users do.",
+      "items": [
+        {
+          "id": "nextjs-launch-23",
+          "text": "Set up CI/CD pipeline with automated tests",
+          "description": "Configure GitHub Actions or similar to run lint, type-check, and tests on every PR. Block merges to main if any check fails. This catches regressions before they reach production.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-24",
+          "text": "Configure error monitoring with Sentry",
+          "description": "Install `@sentry/nextjs` and configure both client and server error tracking. Set up source maps upload in your build step. Create alert rules for new errors and error spikes.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-25",
+          "text": "Set up analytics tracking",
+          "description": "Implement Vercel Analytics, Google Analytics 4, or Plausible. Use the Next.js Script component with `strategy='afterInteractive'` for third-party analytics to avoid blocking page load.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-26",
+          "text": "Configure custom 404 and 500 error pages",
+          "description": "Create `not-found.tsx` and `error.tsx` files in your app directory. These should match your site's design, provide helpful navigation, and include a way for users to report issues.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-27",
+          "text": "Set up uptime monitoring",
+          "description": "Use a service like UptimeRobot, Better Stack, or Checkly to monitor your production URL. Configure alerts via Slack, email, or SMS so you know within minutes if your site goes down.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-28",
+          "text": "Test deployment rollback procedure",
+          "description": "Verify you can roll back to a previous deployment quickly. On Vercel, test the instant rollback feature. For self-hosted, ensure your Docker images or build artifacts are versioned and retrievable.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Final Pre-Launch Checks",
+      "description": "Last-minute verifications to catch anything that slipped through earlier checks.",
+      "items": [
+        {
+          "id": "nextjs-launch-29",
+          "text": "Test all forms and interactive elements end-to-end",
+          "description": "Submit every form, click every button, test every dropdown. Verify emails are sent, data is saved, and success/error states display correctly. Test on mobile devices, not just desktop.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-launch-30",
+          "text": "Verify responsive design across breakpoints",
+          "description": "Test at 320px, 375px, 768px, 1024px, 1280px, and 1536px widths. Check for horizontal overflow, overlapping text, and broken layouts. Use Chrome DevTools device toolbar for quick testing.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-31",
+          "text": "Verify favicon, OG images, and social sharing metadata",
+          "description": "Check that your favicon displays correctly in browser tabs, and Open Graph images render properly when sharing on Twitter, LinkedIn, and messaging apps. Use tools like opengraph.xyz or the Twitter Card Validator to preview before launch.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-32",
+          "text": "Check all internal and external links for 404s",
+          "description": "Run a link checker like `broken-link-checker` or Screaming Frog against your staging environment. Dead links hurt SEO and frustrate users. Pay special attention to links in footer navigation, blog posts, and documentation pages.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-launch-33",
+          "text": "Test loading performance on throttled network connections",
+          "description": "Use Chrome DevTools Network throttling to simulate slow 3G and fast 3G connections. Verify that the page remains usable, loading states appear promptly, and critical content is visible within 3 seconds even on slow connections.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Run `next build` locally before every production deployment — it catches errors that `next dev` silently ignores, including missing environment variables and invalid dynamic route configurations.",
+    "Use Vercel's preview deployments to test every PR in a production-like environment. Share preview URLs with stakeholders for approval before merging to main.",
+    "Set up a staging environment that mirrors production exactly, including environment variables, database connections, and third-party integrations. Never test integrations for the first time in production.",
+    "Add Web Vitals reporting to your analytics from day one. Use `next/web-vitals` or Vercel's built-in Speed Insights to track real-user performance metrics over time."
+  ],
+  "related_slugs": [
+    "nextjs-seo-checklist",
+    "nextjs-performance-checklist",
+    "typescript-launch-checklist"
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "niche": "runtime",
+    "type": "comparison",
+    "locale": "en",
+    "slug": "nodejs-vs-bun",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Node.js vs Bun: Which Is Better for JavaScript Runtime in 2026?",
+    "description": "Node.js vs Bun compared on performance, compatibility, tooling, and production readiness. An honest guide to choosing your JavaScript runtime in 2026.",
+    "keywords": [
+      "node.js vs bun",
+      "bun vs node",
+      "best javascript runtime 2026",
+      "bun runtime review",
+      "nodejs alternative",
+      "bun performance"
+    ]
+  },
+  "tools": [
+    {
+      "name": "Node.js",
+      "slug": "nodejs",
+      "tagline": "JavaScript runtime built on Chrome's V8 engine",
+      "website": "https://nodejs.org",
+      "category": "JavaScript Runtime"
+    },
+    {
+      "name": "Bun",
+      "slug": "bun",
+      "tagline": "Incredibly fast JavaScript runtime, bundler, and toolkit",
+      "website": "https://bun.sh",
+      "category": "JavaScript Runtime & Toolkit"
+    }
+  ],
+  "introduction": "Node.js has been the default JavaScript server runtime for 15 years, powering millions of production applications. Bun arrived in 2023 with a radical promise: dramatically faster performance by using JavaScriptCore (Safari's engine) instead of V8, plus built-in bundling, testing, and package management. In 2026, Bun has matured significantly — but Node.js hasn't been standing still, with native TypeScript support, a built-in test runner, and continued V8 optimizations making it faster than ever.",
+  "categories": [
+    {
+      "name": "Performance",
+      "criteria": [
+        {
+          "criterion": "Startup Time",
+          "tool_a": {
+            "score": 5,
+            "detail": "Node.js startup takes 30-100ms depending on module count. Native ESM is faster than CommonJS but still not instant. For serverless cold starts, this overhead is meaningful."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Bun starts in ~5-10ms — 5-10x faster than Node. Built in Zig with JavaScriptCore, optimized for instant startup. This makes a real difference for CLI tools, serverless functions, and dev tooling."
+          }
+        },
+        {
+          "criterion": "HTTP Server Throughput",
+          "tool_a": {
+            "score": 7,
+            "detail": "Node.js with undici or fastify handles ~50-80K requests/sec. The Event Loop model is proven at scale. libuv is battle-tested. Not the fastest, but performance is rarely the bottleneck in real apps."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Bun.serve() benchmarks at 150-250K requests/sec in synthetic tests — 2-4x Node.js. Built-in HTTP server avoids the framework overhead. Real-world gains are smaller but measurably faster."
+          }
+        },
+        {
+          "criterion": "Package Installation Speed",
+          "tool_a": {
+            "score": 5,
+            "detail": "npm is slow. Yarn is faster. pnpm is good. But all three are JavaScript-based package managers with inherent overhead. Installing a fresh Next.js project takes 15-30 seconds."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "bun install uses a global binary cache, hardlinks, and native code to install packages in 1-3 seconds for most projects. A fresh Next.js install completes before you finish reading the output. Genuinely game-changing."
+          }
+        },
+        {
+          "criterion": "TypeScript Execution",
+          "tool_a": {
+            "score": 7,
+            "detail": "Node.js 22+ has native TypeScript support (--experimental-strip-types). No more ts-node or tsx needed for basic TS files. Type stripping is fast but doesn't support all TS features (decorators, enums with values)."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Native TypeScript execution since day one. No configuration, no transpilation step — just bun run file.ts. Supports all TypeScript syntax including decorators and const enums. Zero friction."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Compatibility & Ecosystem",
+      "criteria": [
+        {
+          "criterion": "npm Package Compatibility",
+          "tool_a": {
+            "score": 10,
+            "detail": "100% compatible with all npm packages — it's the reference implementation. Every package on npm was tested against Node.js. This is the standard everything else is measured against."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "~95%+ compatibility with the npm ecosystem. Most popular packages work perfectly. Edge cases exist with native modules (node-gyp), some Node.js-specific APIs, and packages that depend on V8 internals."
+          }
+        },
+        {
+          "criterion": "Node.js API Coverage",
+          "tool_a": {
+            "score": 10,
+            "detail": "Complete implementation of all Node.js APIs: fs, net, http, crypto, child_process, worker_threads, streams, etc. It is the API. Documentation is extensive for every module."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Implements most Node.js APIs but gaps remain. dns, vm, and some crypto edge cases have partial implementations. node:test is supported. Bun's compatibility has improved dramatically but isn't 100%."
+          }
+        },
+        {
+          "criterion": "Framework Support",
+          "tool_a": {
+            "score": 10,
+            "detail": "Every framework supports Node.js: Next.js, Remix, Express, Fastify, NestJS, Hono, Nuxt, SvelteKit, Astro. Node.js is the guaranteed deployment target for all JavaScript frameworks."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Next.js, Nuxt, SvelteKit, Astro, Hono, and Elysia work well on Bun. Express and Fastify work with minor caveats. Some framework features (ISR, specific middleware) may behave differently."
+          }
+        },
+        {
+          "criterion": "Native Module Support",
+          "tool_a": {
+            "score": 9,
+            "detail": "node-gyp and N-API support native C/C++ addons. Mature ecosystem for native modules (bcrypt, sharp, better-sqlite3). Compilation can be painful but the ecosystem handles it."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Native module support via N-API is improving but not complete. Some packages that use node-gyp don't compile. Bun provides built-in alternatives for common native modules (SQLite, crypto) to mitigate this."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Built-In Tooling",
+      "criteria": [
+        {
+          "criterion": "Test Runner",
+          "tool_a": {
+            "score": 7,
+            "detail": "node:test is built-in since Node 20. Supports describe/it, assertions, mocking, and coverage. Functional but less feature-rich than Jest or Vitest. Most teams still use a third-party test runner."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "bun:test is fast — runs Jest-compatible tests 5-10x faster than Jest. Supports expect(), mocking, snapshots, and watch mode. Compatible with existing test files. Speed alone makes it worth switching."
+          }
+        },
+        {
+          "criterion": "Bundler",
+          "tool_a": {
+            "score": 3,
+            "detail": "No built-in bundler. You choose from webpack, Vite, Rollup, esbuild, turbopack, or Parcel. The JavaScript build tool ecosystem is fragmented and requires configuration expertise."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Built-in bundler (Bun.build) handles transpilation, tree-shaking, minification, and code splitting. Not as feature-rich as webpack or Vite for complex setups, but handles 80% of bundling needs with zero config."
+          }
+        },
+        {
+          "criterion": "Package Manager",
+          "tool_a": {
+            "score": 6,
+            "detail": "npm is included but slow. Most developers install yarn or pnpm separately. The default package management experience is Node.js's weakest point — three competing managers, none built into the runtime."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "bun install is the fastest package manager available. Compatible with package.json, workspaces, and lock files. Global cache with hardlinks. No separate tool to install — it's part of the runtime."
+          }
+        },
+        {
+          "criterion": "Watch Mode & Dev Experience",
+          "tool_a": {
+            "score": 7,
+            "detail": "node --watch for file watching (stable in Node 22). Basic but functional. Most developers use nodemon or tsx watch. No built-in hot module replacement for servers."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "bun --watch and bun --hot for file watching and hot reloading. HMR preserves state between reloads. Fast restarts due to instant startup. The development loop is noticeably faster."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Production & Deployment",
+      "criteria": [
+        {
+          "criterion": "Production Battle-Testing",
+          "tool_a": {
+            "score": 10,
+            "detail": "15 years of production use by Netflix, PayPal, LinkedIn, Walmart, NASA, and millions of applications. Every production edge case has been encountered and fixed. The most battle-tested JavaScript runtime."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Production-ready for many use cases but still discovering edge cases at scale. Companies like Vercel and Jarred Sumner's team use it in production. Less battle-tested for high-stakes financial or healthcare applications."
+          }
+        },
+        {
+          "criterion": "Hosting & Platform Support",
+          "tool_a": {
+            "score": 10,
+            "detail": "Supported everywhere: AWS Lambda, Vercel, Railway, Render, Fly.io, Heroku, Azure, GCP, DigitalOcean, any VPS. Node.js is the universal deployment target for JavaScript."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Growing platform support: Railway, Fly.io, Render, and Docker deployments work well. AWS Lambda support exists but isn't as mature. Some platforms don't officially support Bun yet."
+          }
+        },
+        {
+          "criterion": "Debugging & Profiling",
+          "tool_a": {
+            "score": 9,
+            "detail": "Chrome DevTools integration via --inspect. V8's profiler, heap snapshots, flame charts are mature and well-documented. APM tools (Datadog, New Relic, Sentry) have first-class Node.js support."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Web Inspector support via --inspect (JavaScriptCore's debugger). Less polished than Chrome DevTools for Node. APM tool support is growing but some tools don't have Bun-specific adapters yet."
+          }
+        },
+        {
+          "criterion": "Long-Running Process Stability",
+          "tool_a": {
+            "score": 10,
+            "detail": "Rock-solid for long-running servers, workers, and background processes. V8's garbage collector is tuned for server workloads. Memory management and event loop behavior are thoroughly understood."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Stable for most server workloads but occasionally surfaces memory leaks or unexpected behavior under sustained load. JavaScriptCore's GC is tuned for browser use cases. The runtime is maturing but not yet at Node.js's level."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "Node.js for production stability, Bun for developer speed",
+    "best_for": {
+      "production reliability": "Node.js",
+      "ecosystem compatibility": "Node.js",
+      "enterprise deployment": "Node.js",
+      "startup speed": "Bun",
+      "package installation": "Bun",
+      "TypeScript execution": "Bun",
+      "test runner speed": "Bun",
+      "CLI tools": "Bun",
+      "developer experience": "Bun",
+      "serverless cold starts": "Bun"
+    },
+    "summary": "In 2026, this isn't an either/or choice for many teams. Bun's speed advantages in package management, startup time, TypeScript execution, and testing are real and significant for developer experience. Node.js's compatibility, stability, and universal platform support make it the safer production deployment target. A pragmatic approach: use Bun for development (bun install, bun test, bun run) and deploy on Node.js for production. As Bun's compatibility and battle-testing continue to improve, the case for using it end-to-end gets stronger every quarter."
+  },
+  "related_slugs": ["supabase-vs-firebase", "nextjs-vs-remix"]
+}

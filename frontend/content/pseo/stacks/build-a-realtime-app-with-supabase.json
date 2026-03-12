@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "niche": "supabase",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-realtime-app-with-supabase",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a Realtime App with Supabase | Live Data Guide",
+    "description": "Build a realtime collaborative app with Supabase featuring live database subscriptions, authentication, row-level security, and presence.",
+    "keywords": [
+      "supabase realtime",
+      "build realtime app",
+      "supabase tutorial",
+      "supabase react",
+      "realtime database",
+      "supabase authentication",
+      "live data app",
+      "supabase row level security"
+    ]
+  },
+  "introduction": "Realtime features like live chat, collaborative editing, and live dashboards used to require complex WebSocket infrastructure. Supabase makes realtime accessible by providing database change listeners, presence tracking, and broadcast channels out of the box — all backed by a full PostgreSQL database with row-level security. This guide builds a collaborative task board where multiple users see changes instantly, with authentication and fine-grained access control.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for the React development environment and build tools.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Supabase Account",
+      "description": "Create a free Supabase project to get a PostgreSQL database, authentication, and realtime subscriptions.",
+      "url": "https://supabase.com/dashboard"
+    },
+    {
+      "name": "React Fundamentals",
+      "description": "Understanding of React components, hooks (useState, useEffect), and the context API."
+    },
+    {
+      "name": "Basic SQL Knowledge",
+      "description": "Familiarity with CREATE TABLE, SELECT, INSERT, and UPDATE statements for setting up database tables.",
+      "url": "https://www.postgresqltutorial.com/"
+    }
+  ],
+  "estimated_time": "4-5 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Create the Supabase Project and Database Schema",
+      "description": "Set up a new Supabase project and create the database tables using the SQL editor. The task board needs tables for boards, columns, tasks, and board memberships. Enable Realtime on the tasks table so changes are broadcast to all connected clients automatically.",
+      "code_snippet": {
+        "language": "sql",
+        "code": "-- Create tables for the task board\nCREATE TABLE boards (\n  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,\n  name TEXT NOT NULL,\n  owner_id UUID REFERENCES auth.users(id) NOT NULL,\n  created_at TIMESTAMPTZ DEFAULT now()\n);\n\nCREATE TABLE columns (\n  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,\n  board_id UUID REFERENCES boards(id) ON DELETE CASCADE NOT NULL,\n  name TEXT NOT NULL,\n  position INTEGER NOT NULL DEFAULT 0\n);\n\nCREATE TABLE tasks (\n  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,\n  column_id UUID REFERENCES columns(id) ON DELETE CASCADE NOT NULL,\n  title TEXT NOT NULL,\n  description TEXT,\n  assignee_id UUID REFERENCES auth.users(id),\n  position INTEGER NOT NULL DEFAULT 0,\n  created_at TIMESTAMPTZ DEFAULT now(),\n  updated_at TIMESTAMPTZ DEFAULT now()\n);\n\nCREATE TABLE board_members (\n  board_id UUID REFERENCES boards(id) ON DELETE CASCADE,\n  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,\n  role TEXT DEFAULT 'member' CHECK (role IN ('owner', 'member', 'viewer')),\n  PRIMARY KEY (board_id, user_id)\n);\n\n-- Enable Realtime for tasks table\nALTER PUBLICATION supabase_realtime ADD TABLE tasks;",
+        "filename": "supabase/migrations/001_schema.sql"
+      },
+      "tips": [
+        "Enable Realtime only on tables that need it — each realtime subscription consumes a WebSocket connection.",
+        "Use UUID primary keys instead of serial integers for better distributed system compatibility."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Set Up Row-Level Security Policies",
+      "description": "Enable row-level security (RLS) on all tables and create policies that control who can read and modify data. RLS runs at the database level, so it protects your data regardless of how clients connect. Board members can view and edit tasks, while viewers can only read them.",
+      "code_snippet": {
+        "language": "sql",
+        "code": "-- Enable RLS on all tables\nALTER TABLE boards ENABLE ROW LEVEL SECURITY;\nALTER TABLE columns ENABLE ROW LEVEL SECURITY;\nALTER TABLE tasks ENABLE ROW LEVEL SECURITY;\nALTER TABLE board_members ENABLE ROW LEVEL SECURITY;\n\n-- Boards: members can view, owners can update/delete\nCREATE POLICY \"Members can view boards\" ON boards\n  FOR SELECT USING (\n    id IN (SELECT board_id FROM board_members WHERE user_id = auth.uid())\n  );\n\nCREATE POLICY \"Authenticated users can create boards\" ON boards\n  FOR INSERT WITH CHECK (auth.uid() = owner_id);\n\n-- Tasks: board members can CRUD tasks\nCREATE POLICY \"Board members can view tasks\" ON tasks\n  FOR SELECT USING (\n    column_id IN (\n      SELECT c.id FROM columns c\n      JOIN board_members bm ON bm.board_id = c.board_id\n      WHERE bm.user_id = auth.uid()\n    )\n  );\n\nCREATE POLICY \"Board members can insert tasks\" ON tasks\n  FOR INSERT WITH CHECK (\n    column_id IN (\n      SELECT c.id FROM columns c\n      JOIN board_members bm ON bm.board_id = c.board_id\n      WHERE bm.user_id = auth.uid() AND bm.role IN ('owner', 'member')\n    )\n  );\n\nCREATE POLICY \"Board members can update tasks\" ON tasks\n  FOR UPDATE USING (\n    column_id IN (\n      SELECT c.id FROM columns c\n      JOIN board_members bm ON bm.board_id = c.board_id\n      WHERE bm.user_id = auth.uid() AND bm.role IN ('owner', 'member')\n    )\n  );",
+        "filename": "supabase/migrations/002_rls.sql"
+      },
+      "tips": [
+        "Always enable RLS before your app goes to production — without it, any authenticated user can access all data.",
+        "Test RLS policies using the Supabase Dashboard's SQL editor with 'SET ROLE authenticated' and 'SET request.jwt.claims'."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Scaffold the React App and Configure Supabase Client",
+      "description": "Create a React application with Vite and set up the Supabase client. The Supabase JavaScript client handles authentication, database queries, and realtime subscriptions through a single import. Create a shared client instance that is used throughout the application.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npm create vite@latest task-board -- --template react-ts\ncd task-board\nnpm install @supabase/supabase-js\nnpm install"
+      },
+      "tips": [
+        "Store your Supabase URL and anon key in environment variables — the anon key is safe to expose because RLS protects your data."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Implement Authentication with Supabase Auth",
+      "description": "Set up authentication using Supabase Auth's built-in email/password and OAuth providers. Supabase Auth handles user registration, login, password reset, and session management. The auth state is stored in localStorage and synced across tabs automatically. Create an auth context to share the user session throughout your React component tree.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/lib/supabase.ts\nimport { createClient } from \"@supabase/supabase-js\";\nimport type { Database } from \"./database.types\";\n\nexport const supabase = createClient<Database>(\n  import.meta.env.VITE_SUPABASE_URL,\n  import.meta.env.VITE_SUPABASE_ANON_KEY\n);\n\n// src/hooks/useAuth.ts\nimport { useEffect, useState } from \"react\";\nimport { supabase } from \"../lib/supabase\";\nimport type { User } from \"@supabase/supabase-js\";\n\nexport function useAuth() {\n  const [user, setUser] = useState<User | null>(null);\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() => {\n    supabase.auth.getSession().then(({ data: { session } }) => {\n      setUser(session?.user ?? null);\n      setLoading(false);\n    });\n\n    const { data: { subscription } } = supabase.auth.onAuthStateChange(\n      (_event, session) => {\n        setUser(session?.user ?? null);\n      }\n    );\n\n    return () => subscription.unsubscribe();\n  }, []);\n\n  const signIn = (email: string, password: string) =>\n    supabase.auth.signInWithPassword({ email, password });\n\n  const signUp = (email: string, password: string) =>\n    supabase.auth.signUp({ email, password });\n\n  const signOut = () => supabase.auth.signOut();\n\n  return { user, loading, signIn, signUp, signOut };\n}",
+        "filename": "src/hooks/useAuth.ts"
+      },
+      "tips": [
+        "Use onAuthStateChange to react to login/logout events across browser tabs.",
+        "Generate TypeScript types from your Supabase schema with 'npx supabase gen types typescript' for full type safety."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Build the Task Board with Realtime Subscriptions",
+      "description": "Create the main board component that loads tasks from the database and subscribes to realtime changes. When any user creates, updates, or deletes a task, all connected clients see the change instantly without refreshing. Supabase Realtime uses PostgreSQL's LISTEN/NOTIFY under the hood.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/hooks/useTasks.ts\nimport { useEffect, useState, useCallback } from \"react\";\nimport { supabase } from \"../lib/supabase\";\n\ninterface Task {\n  id: string;\n  column_id: string;\n  title: string;\n  description: string | null;\n  position: number;\n  assignee_id: string | null;\n}\n\nexport function useTasks(boardId: string) {\n  const [tasks, setTasks] = useState<Task[]>([]);\n  const [loading, setLoading] = useState(true);\n\n  // Fetch initial tasks\n  useEffect(() => {\n    async function fetchTasks() {\n      const { data } = await supabase\n        .from(\"tasks\")\n        .select(\"*\")\n        .in(\n          \"column_id\",\n          (await supabase.from(\"columns\").select(\"id\").eq(\"board_id\", boardId)).data?.map((c) => c.id) ?? []\n        )\n        .order(\"position\");\n\n      setTasks(data ?? []);\n      setLoading(false);\n    }\n    fetchTasks();\n  }, [boardId]);\n\n  // Subscribe to realtime changes\n  useEffect(() => {\n    const channel = supabase\n      .channel(`board-${boardId}`)\n      .on(\n        \"postgres_changes\",\n        { event: \"INSERT\", schema: \"public\", table: \"tasks\" },\n        (payload) => {\n          setTasks((prev) => [...prev, payload.new as Task]);\n        }\n      )\n      .on(\n        \"postgres_changes\",\n        { event: \"UPDATE\", schema: \"public\", table: \"tasks\" },\n        (payload) => {\n          setTasks((prev) =>\n            prev.map((t) => (t.id === (payload.new as Task).id ? (payload.new as Task) : t))\n          );\n        }\n      )\n      .on(\n        \"postgres_changes\",\n        { event: \"DELETE\", schema: \"public\", table: \"tasks\" },\n        (payload) => {\n          setTasks((prev) => prev.filter((t) => t.id !== (payload.old as Task).id));\n        }\n      )\n      .subscribe();\n\n    return () => {\n      supabase.removeChannel(channel);\n    };\n  }, [boardId]);\n\n  const addTask = useCallback(\n    async (columnId: string, title: string) => {\n      await supabase.from(\"tasks\").insert({\n        column_id: columnId,\n        title,\n        position: tasks.filter((t) => t.column_id === columnId).length,\n      });\n    },\n    [tasks]\n  );\n\n  return { tasks, loading, addTask };\n}",
+        "filename": "src/hooks/useTasks.ts"
+      },
+      "tips": [
+        "Clean up realtime subscriptions in the useEffect return function to prevent memory leaks.",
+        "Filter realtime events by board ID to avoid processing updates from other boards."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Add Presence Tracking for Online Users",
+      "description": "Implement presence tracking so users can see who else is viewing the same board in real time. Supabase Presence uses the same WebSocket connection as realtime subscriptions, so there is no additional infrastructure cost. Each user's cursor position or selected task can be shared with the presence payload.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/hooks/usePresence.ts\nimport { useEffect, useState } from \"react\";\nimport { supabase } from \"../lib/supabase\";\nimport type { RealtimeChannel } from \"@supabase/supabase-js\";\n\ninterface PresenceState {\n  userId: string;\n  email: string;\n  color: string;\n  online_at: string;\n}\n\nconst COLORS = [\"#ef4444\", \"#3b82f6\", \"#22c55e\", \"#eab308\", \"#a855f7\", \"#ec4899\"];\n\nexport function usePresence(boardId: string, userId: string, email: string) {\n  const [onlineUsers, setOnlineUsers] = useState<PresenceState[]>([]);\n\n  useEffect(() => {\n    const channel: RealtimeChannel = supabase.channel(`presence-${boardId}`, {\n      config: { presence: { key: userId } },\n    });\n\n    channel\n      .on(\"presence\", { event: \"sync\" }, () => {\n        const state = channel.presenceState<PresenceState>();\n        const users = Object.values(state)\n          .flat()\n          .map((s) => ({\n            userId: s.userId,\n            email: s.email,\n            color: s.color,\n            online_at: s.online_at,\n          }));\n        setOnlineUsers(users);\n      })\n      .subscribe(async (status) => {\n        if (status === \"SUBSCRIBED\") {\n          await channel.track({\n            userId,\n            email,\n            color: COLORS[Math.floor(Math.random() * COLORS.length)],\n            online_at: new Date().toISOString(),\n          });\n        }\n      });\n\n    return () => {\n      channel.untrack();\n      supabase.removeChannel(channel);\n    };\n  }, [boardId, userId, email]);\n\n  return onlineUsers;\n}",
+        "filename": "src/hooks/usePresence.ts"
+      },
+      "tips": [
+        "Assign each user a random color for their presence indicator — this creates a visual distinction in the UI.",
+        "Call untrack() in the cleanup function so users disappear from the presence list when they leave the page."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Build the Board UI with Drag and Drop",
+      "description": "Create the visual board with columns and draggable task cards. When a task is dragged to a new column or position, update the database and let the realtime subscription broadcast the change to all clients. This creates a seamless collaborative experience where everyone sees moves instantly.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/components/Board.tsx\nimport { useState } from \"react\";\nimport { useTasks } from \"../hooks/useTasks\";\nimport { usePresence } from \"../hooks/usePresence\";\nimport { useAuth } from \"../hooks/useAuth\";\nimport { supabase } from \"../lib/supabase\";\n\ninterface Column {\n  id: string;\n  name: string;\n  position: number;\n}\n\nexport function Board({ boardId, columns }: { boardId: string; columns: Column[] }) {\n  const { user } = useAuth();\n  const { tasks, loading, addTask } = useTasks(boardId);\n  const onlineUsers = usePresence(boardId, user!.id, user!.email!);\n  const [newTaskTitle, setNewTaskTitle] = useState<Record<string, string>>({});\n\n  async function handleMoveTask(taskId: string, newColumnId: string, newPosition: number) {\n    await supabase\n      .from(\"tasks\")\n      .update({ column_id: newColumnId, position: newPosition, updated_at: new Date().toISOString() })\n      .eq(\"id\", taskId);\n  }\n\n  if (loading) return <div className=\"p-8\">Loading board...</div>;\n\n  return (\n    <div>\n      <div className=\"mb-4 flex items-center gap-2\">\n        <span className=\"text-sm text-gray-500\">Online:</span>\n        {onlineUsers.map((u) => (\n          <span\n            key={u.userId}\n            className=\"inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white\"\n            style={{ backgroundColor: u.color }}\n            title={u.email}\n          >\n            {u.email[0].toUpperCase()}\n          </span>\n        ))}\n      </div>\n      <div className=\"flex gap-4 overflow-x-auto pb-4\">\n        {columns\n          .sort((a, b) => a.position - b.position)\n          .map((column) => (\n            <div key={column.id} className=\"w-72 flex-shrink-0 rounded-lg bg-gray-100 p-4\">\n              <h3 className=\"mb-3 font-semibold text-gray-700\">{column.name}</h3>\n              <div className=\"space-y-2\">\n                {tasks\n                  .filter((t) => t.column_id === column.id)\n                  .sort((a, b) => a.position - b.position)\n                  .map((task) => (\n                    <div\n                      key={task.id}\n                      draggable\n                      onDragStart={(e) => e.dataTransfer.setData(\"taskId\", task.id)}\n                      className=\"cursor-grab rounded-lg border bg-white p-3 shadow-sm hover:shadow-md active:cursor-grabbing\"\n                    >\n                      <p className=\"text-sm\">{task.title}</p>\n                    </div>\n                  ))}\n              </div>\n              <form\n                className=\"mt-3\"\n                onSubmit={(e) => {\n                  e.preventDefault();\n                  const title = newTaskTitle[column.id]?.trim();\n                  if (title) {\n                    addTask(column.id, title);\n                    setNewTaskTitle((prev) => ({ ...prev, [column.id]: \"\" }));\n                  }\n                }}\n              >\n                <input\n                  type=\"text\"\n                  value={newTaskTitle[column.id] ?? \"\"}\n                  onChange={(e) =>\n                    setNewTaskTitle((prev) => ({ ...prev, [column.id]: e.target.value }))\n                  }\n                  placeholder=\"Add a task...\"\n                  className=\"w-full rounded border px-3 py-2 text-sm\"\n                />\n              </form>\n            </div>\n          ))}\n      </div>\n    </div>\n  );\n}",
+        "filename": "src/components/Board.tsx"
+      },
+      "tips": [
+        "Use the HTML5 Drag and Drop API for simplicity, or upgrade to @dnd-kit for a more polished experience.",
+        "Optimistically update the local state before the database write for instant visual feedback."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Deploy with Supabase Edge Functions",
+      "description": "Deploy your React frontend to Vercel or Netlify, and add Supabase Edge Functions for server-side logic like sending notifications when tasks are assigned. Edge Functions run on Deno Deploy, close to your users, with access to your Supabase database and auth context.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// supabase/functions/task-assigned/index.ts\nimport { serve } from \"https://deno.land/std@0.168.0/http/server.ts\";\nimport { createClient } from \"https://esm.sh/@supabase/supabase-js@2\";\n\nserve(async (req) => {\n  const { taskId, assigneeId } = await req.json();\n\n  const supabase = createClient(\n    Deno.env.get(\"SUPABASE_URL\")!,\n    Deno.env.get(\"SUPABASE_SERVICE_ROLE_KEY\")!\n  );\n\n  // Get task and assignee details\n  const [{ data: task }, { data: assignee }] = await Promise.all([\n    supabase.from(\"tasks\").select(\"title\").eq(\"id\", taskId).single(),\n    supabase.auth.admin.getUserById(assigneeId),\n  ]);\n\n  if (!task || !assignee.user) {\n    return new Response(\"Not found\", { status: 404 });\n  }\n\n  // Send notification via email API (e.g., Resend)\n  await fetch(\"https://api.resend.com/emails\", {\n    method: \"POST\",\n    headers: {\n      Authorization: `Bearer ${Deno.env.get(\"RESEND_API_KEY\")}`,\n      \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify({\n      from: \"notifications@yourapp.com\",\n      to: assignee.user.email,\n      subject: `You've been assigned: ${task.title}`,\n      text: `A task has been assigned to you: ${task.title}`,\n    }),\n  });\n\n  return new Response(JSON.stringify({ success: true }), {\n    headers: { \"Content-Type\": \"application/json\" },\n  });\n});",
+        "filename": "supabase/functions/task-assigned/index.ts"
+      },
+      "tips": [
+        "Deploy Edge Functions with 'supabase functions deploy task-assigned'.",
+        "Use the service role key in Edge Functions for admin operations — never expose it to the client.",
+        "Set up a database webhook trigger to call your Edge Function automatically when tasks are updated."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add file attachments to tasks using Supabase Storage with signed upload URLs.",
+    "Implement activity logs that track every change to a task with the user who made it.",
+    "Build a notification center with read/unread state using Supabase Realtime broadcast.",
+    "Add keyboard shortcuts for power users to create, move, and assign tasks without the mouse."
+  ],
+  "related_slugs": [
+    "build-a-saas-with-nextjs",
+    "build-a-dashboard-with-nextjs",
+    "build-an-api-with-bun"
+  ]
+}

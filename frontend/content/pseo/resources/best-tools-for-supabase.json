@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "niche": "supabase",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-tools-for-supabase",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Tools for Supabase in 2026",
+    "description": "Top Supabase tools for admin panels, migrations, testing, auth, and real-time features. Curated by developers building full-stack apps with Supabase.",
+    "keywords": [
+      "supabase tools",
+      "supabase admin panel",
+      "supabase migration tools",
+      "supabase testing",
+      "supabase auth",
+      "supabase real-time",
+      "supabase database tools"
+    ]
+  },
+  "introduction": "Supabase has become the go-to open-source Firebase alternative, offering Postgres, authentication, real-time subscriptions, storage, and edge functions in one platform. The ecosystem of companion tools has grown rapidly to fill gaps and extend capabilities. Here are the tools we use at GEXP Software to build production Supabase applications efficiently.",
+  "total_items": 24,
+  "categories": [
+    {
+      "name": "Database Management & Admin",
+      "description": "Tools for managing, visualizing, and administering Supabase PostgreSQL databases.",
+      "items": [
+        {
+          "name": "Supabase Studio",
+          "description": "Supabase's built-in dashboard with a table editor, SQL editor, and real-time log viewer. The table editor makes database management accessible to non-technical team members who need to view and edit data.",
+          "url": "https://supabase.com/dashboard",
+          "tags": ["admin", "table-editor", "sql-editor", "built-in"],
+          "pricing": "freemium",
+          "highlight": "Spreadsheet-like table editor for non-technical team members"
+        },
+        {
+          "name": "Supabase CLI",
+          "description": "Official CLI for local development, database migrations, type generation, and edge function management. Run a full Supabase stack locally with `supabase start` for offline development.",
+          "url": "https://supabase.com/docs/guides/cli",
+          "tags": ["cli", "migrations", "local-development", "official"],
+          "pricing": "open-source",
+          "highlight": "Full local Supabase stack with one command"
+        },
+        {
+          "name": "pgAdmin",
+          "description": "The most feature-rich PostgreSQL administration tool with query builder, ERD visualization, and server monitoring. Connect it to your Supabase database for advanced operations beyond Studio.",
+          "url": "https://www.pgadmin.org",
+          "tags": ["postgres", "admin", "erd", "monitoring"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "DBeaver",
+          "description": "Universal database management tool that connects to Supabase's PostgreSQL with full SQL editing, data export, and ER diagram generation. Ideal for developers managing multiple database types.",
+          "url": "https://dbeaver.io",
+          "tags": ["database-client", "sql-editor", "multi-database", "er-diagrams"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Supabase Schema",
+          "description": "Visual schema designer that generates Supabase-compatible SQL migrations. Design your database visually with tables, relationships, and RLS policies, then export migration files.",
+          "url": "https://supabase-schema.vercel.app",
+          "tags": ["schema-design", "visual", "migrations", "erd"],
+          "pricing": "free"
+        },
+        {
+          "name": "Drizzle Studio",
+          "description": "Lightweight database browser from the Drizzle ORM team that connects to your Supabase Postgres. Faster and more focused than pgAdmin for everyday data browsing and editing tasks.",
+          "url": "https://orm.drizzle.team/drizzle-studio/overview",
+          "tags": ["database-browser", "lightweight", "drizzle", "postgres"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Type Safety & Code Generation",
+      "description": "Tools that generate TypeScript types, client code, and API interfaces from your Supabase database schema.",
+      "items": [
+        {
+          "name": "Supabase Type Generator",
+          "description": "Official CLI command that generates TypeScript types from your database schema. Run `supabase gen types typescript` and get full type safety for every table, view, and function.",
+          "url": "https://supabase.com/docs/guides/api/rest/generating-types",
+          "tags": ["typescript", "code-generation", "type-safety", "official"],
+          "pricing": "open-source",
+          "highlight": "Auto-generated types for every table, view, and RPC function"
+        },
+        {
+          "name": "Drizzle ORM",
+          "description": "TypeScript ORM with first-class Supabase support that provides type-safe queries without code generation. Define your schema in TypeScript and get autocompletion for every query.",
+          "url": "https://orm.drizzle.team",
+          "tags": ["orm", "type-safe", "queries", "migrations"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Prisma",
+          "description": "Schema-first ORM that connects to Supabase's PostgreSQL with introspection support. Pull your existing Supabase schema into a Prisma schema and get a type-safe client instantly.",
+          "url": "https://www.prisma.io",
+          "tags": ["orm", "schema-first", "introspection", "type-safe"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Kysely",
+          "description": "Type-safe SQL query builder that pairs beautifully with Supabase-generated types. Write raw SQL with full TypeScript autocompletion when you need queries the Supabase client can't express.",
+          "url": "https://kysely.dev",
+          "tags": ["query-builder", "type-safe", "sql", "advanced-queries"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "supabase-js",
+          "description": "Official JavaScript/TypeScript client library for Supabase with real-time subscriptions, authentication, storage, and database operations. The primary interface for frontend applications.",
+          "url": "https://github.com/supabase/supabase-js",
+          "tags": ["client", "typescript", "real-time", "official"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Authentication & Security",
+      "description": "Tools and libraries that extend Supabase's built-in authentication with additional providers, UI components, and security features.",
+      "items": [
+        {
+          "name": "Supabase Auth UI",
+          "description": "Pre-built React authentication components that connect to Supabase Auth. Drop in a styled login form with social providers, magic links, and password reset in minutes.",
+          "url": "https://supabase.com/docs/guides/auth/auth-helpers/auth-ui",
+          "tags": ["auth", "ui-components", "react", "social-login"],
+          "pricing": "open-source",
+          "highlight": "Pre-built login/signup forms with social provider buttons"
+        },
+        {
+          "name": "Supabase Auth Helpers",
+          "description": "Framework-specific authentication utilities for Next.js, SvelteKit, and Remix. Handles cookie-based sessions, server-side auth, and middleware protection patterns.",
+          "url": "https://supabase.com/docs/guides/auth/auth-helpers",
+          "tags": ["auth", "nextjs", "sveltekit", "ssr"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "supabase-swr",
+          "description": "SWR hooks for Supabase that combine real-time subscriptions with stale-while-revalidate caching. Automatically refetches data when Supabase broadcasts changes.",
+          "url": "https://github.com/tmm/supabase-swr",
+          "tags": ["swr", "real-time", "caching", "hooks"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Row Level Security Policies Generator",
+          "description": "Supabase's built-in RLS policy editor with templates for common patterns — owner-only access, team access, public read, and admin override. Essential for securing your data layer.",
+          "url": "https://supabase.com/docs/guides/auth/row-level-security",
+          "tags": ["security", "rls", "policies", "authorization"],
+          "pricing": "open-source",
+          "highlight": "Built-in policy templates for common authorization patterns"
+        }
+      ]
+    },
+    {
+      "name": "Edge Functions & Backend",
+      "description": "Tools for building, testing, and deploying serverless functions and backend logic on the Supabase platform.",
+      "items": [
+        {
+          "name": "Supabase Edge Functions",
+          "description": "Deno-based serverless functions that run on Supabase's global edge network. Write TypeScript functions that execute close to your users with direct access to your Supabase database.",
+          "url": "https://supabase.com/docs/guides/functions",
+          "tags": ["edge-functions", "serverless", "deno", "typescript"],
+          "pricing": "freemium",
+          "highlight": "Deno-based TypeScript functions on a global edge network"
+        },
+        {
+          "name": "Supabase Realtime",
+          "description": "Real-time engine that broadcasts database changes, presence information, and custom events over WebSockets. Build collaborative features like live cursors, chat, and multiplayer without external services.",
+          "url": "https://supabase.com/docs/guides/realtime",
+          "tags": ["real-time", "websockets", "presence", "broadcast"],
+          "pricing": "freemium",
+          "highlight": "Database change broadcasts + presence + custom events"
+        },
+        {
+          "name": "Supabase Storage",
+          "description": "S3-compatible object storage with built-in image transformations. Upload, serve, and transform images with automatic CDN distribution and fine-grained RLS-based access control.",
+          "url": "https://supabase.com/docs/guides/storage",
+          "tags": ["storage", "s3", "image-transforms", "cdn"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Supabase Cron (pg_cron)",
+          "description": "Schedule recurring tasks directly in your database using pg_cron extension. Run cleanup jobs, aggregate data, or trigger edge functions on a schedule without external cron services.",
+          "url": "https://supabase.com/docs/guides/database/extensions/pg_cron",
+          "tags": ["cron", "scheduling", "postgres", "automation"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Testing & Development",
+      "description": "Tools for testing Supabase integrations, seeding databases, and streamlining the development workflow.",
+      "items": [
+        {
+          "name": "Supabase Local Development",
+          "description": "Run a complete Supabase stack locally with Docker — database, auth, storage, edge functions, and Studio dashboard. Develop and test everything offline before deploying.",
+          "url": "https://supabase.com/docs/guides/cli/local-development",
+          "tags": ["local-development", "docker", "offline", "testing"],
+          "pricing": "open-source",
+          "highlight": "Full Supabase stack running locally on Docker"
+        },
+        {
+          "name": "Snaplet",
+          "description": "Database snapshot and seeding tool that creates realistic test data from your Supabase schema. Generates type-safe seed scripts with referential integrity preserved.",
+          "url": "https://www.snaplet.dev",
+          "tags": ["seeding", "testing", "snapshots", "realistic-data"],
+          "pricing": "freemium",
+          "highlight": "Generate realistic test data that respects foreign keys"
+        },
+        {
+          "name": "Supabase Branching",
+          "description": "Create isolated database branches for feature development, like git branches for your database. Each branch gets its own Supabase instance with migrations tracked independently.",
+          "url": "https://supabase.com/docs/guides/platform/branching",
+          "tags": ["branching", "preview", "isolation", "ci"],
+          "pricing": "paid",
+          "highlight": "Git-like branching for your database — one branch per PR"
+        },
+        {
+          "name": "pgTAP",
+          "description": "TAP-compliant testing framework that runs unit tests directly inside PostgreSQL. Write tests for your RLS policies, functions, and triggers that execute within the database itself.",
+          "url": "https://pgtap.org",
+          "tags": ["testing", "postgres", "unit-tests", "rls-testing"],
+          "pricing": "open-source",
+          "highlight": "Test RLS policies and database functions inside PostgreSQL"
+        },
+        {
+          "name": "Supabase Bootstrap",
+          "description": "Starter templates and quickstart guides for common Supabase + framework combinations. Scaffold a full-stack app with auth, database, and storage pre-configured in minutes.",
+          "url": "https://supabase.com/docs/guides/getting-started/quickstarts",
+          "tags": ["starter", "templates", "quickstart", "scaffolding"],
+          "pricing": "free"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-tools-for-nextjs",
+    "best-tools-for-nodejs",
+    "best-libraries-for-typescript",
+    "best-tools-for-react"
+  ]
+}

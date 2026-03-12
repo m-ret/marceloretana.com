@@ -1,0 +1,251 @@
+{
+  "meta": {
+    "niche": "frontend",
+    "type": "comparison",
+    "locale": "en",
+    "slug": "react-vs-vue",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "React vs Vue: Which Is Better for Frontend Development in 2026?",
+    "description": "React vs Vue in 2026 — an honest comparison of performance, ecosystem, learning curve, and when to use each for your next frontend project.",
+    "keywords": [
+      "react vs vue",
+      "vue vs react",
+      "best frontend framework 2026",
+      "react or vue",
+      "frontend framework comparison"
+    ]
+  },
+  "tools": [
+    {
+      "name": "React",
+      "slug": "react",
+      "tagline": "The library for building user interfaces",
+      "website": "https://react.dev",
+      "category": "UI Library"
+    },
+    {
+      "name": "Vue",
+      "slug": "vue",
+      "tagline": "The progressive JavaScript framework",
+      "website": "https://vuejs.org",
+      "category": "Progressive Framework"
+    }
+  ],
+  "introduction": "React and Vue are the two most popular choices for building modern frontend applications. React, backed by Meta, pioneered component-based UI development and dominates the job market. Vue, created by Evan You, prioritizes developer ergonomics and a gentler learning curve. In 2026, both are mature and capable — React 19 brought Server Components mainstream while Vue 3.5+ refined the Composition API and Vapor Mode promises compiled reactivity without the virtual DOM.",
+  "categories": [
+    {
+      "name": "Core Architecture",
+      "criteria": [
+        {
+          "criterion": "Reactivity Model",
+          "tool_a": {
+            "score": 7,
+            "detail": "Unidirectional data flow with hooks (useState, useReducer). Re-renders the entire component on state change, relying on virtual DOM diffing and React.memo for optimization. Requires careful memoization."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Fine-grained reactivity via Proxy-based refs and reactive objects. Only the specific DOM nodes that depend on changed data update — no virtual DOM diff needed. Vapor Mode (opt-in) compiles away the vDOM entirely."
+          }
+        },
+        {
+          "criterion": "Component Model",
+          "tool_a": {
+            "score": 8,
+            "detail": "Function components with hooks. JSX gives you full JavaScript expressiveness in templates. Composition is achieved through custom hooks. The model is simple but requires discipline to avoid prop drilling."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Single File Components (.vue) with <template>, <script setup>, and <style scoped>. Clear separation of concerns within a single file. Composables (similar to hooks) handle shared logic. Two-way binding with v-model."
+          }
+        },
+        {
+          "criterion": "State Management",
+          "tool_a": {
+            "score": 7,
+            "detail": "No official solution beyond useState/useContext. Community options: Zustand (lightweight), Jotai (atomic), Redux Toolkit (enterprise). The paradox of choice means teams debate state management endlessly."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Pinia is Vue's official state management — type-safe, devtools integrated, SSR-ready, and simple. One clear choice eliminates decision fatigue. Vue's reactivity means you sometimes don't need a store at all."
+          }
+        },
+        {
+          "criterion": "TypeScript Integration",
+          "tool_a": {
+            "score": 8,
+            "detail": "Good TypeScript support but hooks can be tricky to type correctly. Generic components, forwardRef typing, and context typing require boilerplate. Getting better with each React version."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Vue 3 was built with TypeScript. <script setup lang='ts'> provides excellent inference. defineProps with TypeScript types, generic components, and Pinia are all fully typed with minimal boilerplate."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Developer Experience",
+      "criteria": [
+        {
+          "criterion": "Learning Curve",
+          "tool_a": {
+            "score": 6,
+            "detail": "JSX is intuitive once you're past the initial confusion, but hooks have subtle gotchas (stale closures, dependency arrays, rules of hooks). useEffect alone has generated thousands of debugging blog posts."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Template syntax is close to HTML — designers can read it. Composition API is straightforward. Reactivity 'just works' without memoization. The official tutorial is one of the best onboarding experiences in web dev."
+          }
+        },
+        {
+          "criterion": "Tooling & DevTools",
+          "tool_a": {
+            "score": 8,
+            "detail": "React DevTools are mature. Profiler helps identify re-render issues. Strict Mode catches bugs early. Fast Refresh is reliable. The ecosystem of IDE extensions and linting rules is extensive."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Vue DevTools v7 is outstanding — component tree, state inspector, timeline, Pinia integration, router visualization. Volar provides best-in-class IDE support for .vue files with template type-checking."
+          }
+        },
+        {
+          "criterion": "Boilerplate & Verbosity",
+          "tool_a": {
+            "score": 6,
+            "detail": "Hooks require explicit imports for everything. useCallback, useMemo, and React.memo add noise. A typical component has more ceremony than the equivalent Vue component."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "<script setup> eliminates boilerplate — no return statements, no defineComponent, auto-imports for Vue APIs. A Vue component doing the same thing as a React component is typically 30-40% less code."
+          }
+        },
+        {
+          "criterion": "Styling Solutions",
+          "tool_a": {
+            "score": 7,
+            "detail": "No built-in styling solution. CSS Modules, Tailwind, styled-components, CSS-in-JS — pick your poison. Each has tradeoffs and the community is fragmented on best practices."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "<style scoped> provides component-scoped CSS out of the box with zero config. CSS Modules also work. You can use Tailwind too, but having a good default means less decision fatigue."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ecosystem & Adoption",
+      "criteria": [
+        {
+          "criterion": "Job Market",
+          "tool_a": {
+            "score": 10,
+            "detail": "Dominates the frontend job market globally. 3-4x more React jobs than Vue. Nearly every major tech company uses React. If employability is your priority, React is the safer bet."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Strong in Asia (especially China), Europe, and startups. Growing but still significantly behind React in job listings, particularly in North America and enterprise settings."
+          }
+        },
+        {
+          "criterion": "Component Libraries",
+          "tool_a": {
+            "score": 10,
+            "detail": "Unmatched: shadcn/ui, Radix Primitives, Headless UI, Mantine, Chakra UI, Ant Design. shadcn/ui alone has changed how developers think about component libraries."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "PrimeVue, Vuetify, Naive UI, Element Plus are all solid. But nothing matches shadcn/ui's copy-paste model or Radix's accessibility-first primitives. The gap is closing but real."
+          }
+        },
+        {
+          "criterion": "Meta-Frameworks",
+          "tool_a": {
+            "score": 9,
+            "detail": "Next.js is the dominant meta-framework. Remix, Gatsby, and others provide alternatives. The meta-framework ecosystem is mature with clear winners."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Nuxt is excellent and arguably has better DX than Next.js (auto-imports, modules, Nuxt Content). But there's only one option — no real Vue equivalent to the Next.js vs Remix choice."
+          }
+        },
+        {
+          "criterion": "Third-Party SDK Support",
+          "tool_a": {
+            "score": 10,
+            "detail": "Every SaaS, auth provider, analytics tool, and payment processor ships a React SDK first. Stripe, Clerk, Auth0, Sentry — React is always the primary target."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Many SDKs are React-only or React-first with Vue as an afterthought. You often end up wrapping vanilla JS libraries yourself or using community-maintained Vue wrappers."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Performance & Production",
+      "criteria": [
+        {
+          "criterion": "Runtime Performance",
+          "tool_a": {
+            "score": 7,
+            "detail": "Virtual DOM diffing has overhead. React 19's compiler (React Forget) auto-memoizes but isn't perfect. Complex UIs with frequent updates can feel sluggish without optimization work."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Fine-grained reactivity updates only what changed — no diffing needed. Vapor Mode (2026) compiles templates to direct DOM operations, rivaling Solid.js performance. Measurably faster in benchmarks."
+          }
+        },
+        {
+          "criterion": "Bundle Size",
+          "tool_a": {
+            "score": 6,
+            "detail": "React + ReactDOM is ~42KB gzipped. Plus hooks aren't tree-shakeable from the core runtime. This is the baseline tax before your application code."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Vue 3's runtime is ~33KB gzipped with excellent tree-shaking. The Composition API compiles to smaller output. Vapor Mode promises even smaller bundles by skipping the vDOM runtime."
+          }
+        },
+        {
+          "criterion": "Server-Side Rendering",
+          "tool_a": {
+            "score": 9,
+            "detail": "React Server Components are a paradigm shift — server-only code never reaches the client. Streaming SSR, Suspense boundaries, and progressive hydration are production-ready."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Solid SSR support via Nuxt and Vite SSR. No equivalent to React Server Components. Vue's SSR is straightforward but doesn't offer the same granularity of server/client code splitting."
+          }
+        },
+        {
+          "criterion": "Mobile & Cross-Platform",
+          "tool_a": {
+            "score": 9,
+            "detail": "React Native is the leading cross-platform mobile framework. Learn React, build for web and mobile. Expo makes React Native development genuinely pleasant in 2026."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "No first-party mobile framework. NativeScript-Vue exists but lacks momentum. Capacitor can wrap Vue web apps but it's not true native. This is Vue's biggest weakness for multi-platform teams."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "React for career and ecosystem, Vue for developer happiness",
+    "best_for": {
+      "job market": "React",
+      "enterprise adoption": "React",
+      "learning to code": "Vue",
+      "developer experience": "Vue",
+      "runtime performance": "Vue",
+      "mobile apps": "React",
+      "third-party integrations": "React",
+      "small team productivity": "Vue",
+      "cross-platform": "React"
+    },
+    "summary": "React wins on ecosystem breadth, job market dominance, and cross-platform reach. If you're building a career or staffing a large team, React is the pragmatic choice. Vue wins on developer experience, learning curve, performance, and elegance — it's genuinely more enjoyable to write. For a small team or solo developer building a web application, Vue with Nuxt can be remarkably productive. The 'best' choice depends entirely on your context: team size, hiring plans, project requirements, and whether you need React Native."
+  },
+  "related_slugs": ["react-vs-svelte", "nextjs-vs-nuxt", "nextjs-vs-astro"]
+}

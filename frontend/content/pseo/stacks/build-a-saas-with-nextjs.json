@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-saas-with-nextjs",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a SaaS with Next.js | Full Stack Guide",
+    "description": "Learn how to build a production-ready SaaS application with Next.js, Stripe billing, authentication, and a multi-tenant database architecture.",
+    "keywords": [
+      "nextjs saas",
+      "build saas nextjs",
+      "nextjs stripe integration",
+      "saas boilerplate nextjs",
+      "nextjs authentication",
+      "multi-tenant nextjs",
+      "saas starter kit"
+    ]
+  },
+  "introduction": "Building a SaaS product requires more than just a frontend — you need authentication, billing, database multi-tenancy, and a deployment pipeline that scales. Next.js gives you server components, API routes, and middleware that handle all of these concerns in a single framework. This guide walks you through building a functional SaaS application with user authentication, Stripe subscription billing, and a PostgreSQL database.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Next.js 15 requires Node.js 20 or later for full compatibility with server components and the App Router.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Stripe Account",
+      "description": "You need a Stripe account (free to create) with API keys for handling subscription billing.",
+      "url": "https://dashboard.stripe.com/register"
+    },
+    {
+      "name": "PostgreSQL Database",
+      "description": "A PostgreSQL instance for storing users, subscriptions, and application data. Neon or Supabase offer free tiers.",
+      "url": "https://neon.tech"
+    },
+    {
+      "name": "Basic TypeScript Knowledge",
+      "description": "Familiarity with TypeScript interfaces, generics, and async/await patterns."
+    }
+  ],
+  "estimated_time": "6-8 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Scaffold the Next.js Project with TypeScript",
+      "description": "Create a new Next.js application using the App Router with TypeScript, Tailwind CSS, and ESLint preconfigured. The App Router gives you React Server Components by default, which reduces client-side JavaScript and improves performance for your SaaS landing pages and dashboard.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npx create-next-app@latest my-saas \\\n  --typescript \\\n  --tailwind \\\n  --eslint \\\n  --app \\\n  --src-dir \\\n  --import-alias \"@/*\"\n\ncd my-saas\nnpm install @prisma/client stripe next-auth@beta\nnpm install -D prisma"
+      },
+      "tips": [
+        "Use the --src-dir flag to keep your project root clean as the codebase grows.",
+        "Pin your Next.js version in package.json to avoid unexpected breaking changes in production."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Set Up Prisma with a Multi-Tenant Schema",
+      "description": "Initialize Prisma and define your database schema with User, Account, Subscription, and Organization models. The Organization model enables multi-tenancy so each customer's data stays isolated. Prisma gives you type-safe database queries that integrate perfectly with TypeScript.",
+      "code_snippet": {
+        "language": "prisma",
+        "code": "// prisma/schema.prisma\ngenerator client {\n  provider = \"prisma-client-js\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id            String   @id @default(cuid())\n  email         String   @unique\n  name          String?\n  organizationId String?\n  organization  Organization? @relation(fields: [organizationId], references: [id])\n  createdAt     DateTime @default(now())\n  updatedAt     DateTime @updatedAt\n}\n\nmodel Organization {\n  id               String   @id @default(cuid())\n  name             String\n  stripeCustomerId String?  @unique\n  users            User[]\n  subscription     Subscription?\n  createdAt        DateTime @default(now())\n}\n\nmodel Subscription {\n  id                   String   @id @default(cuid())\n  organizationId       String   @unique\n  organization         Organization @relation(fields: [organizationId], references: [id])\n  stripeSubscriptionId String   @unique\n  stripePriceId        String\n  status               String\n  currentPeriodEnd     DateTime\n  createdAt            DateTime @default(now())\n  updatedAt            DateTime @updatedAt\n}",
+        "filename": "prisma/schema.prisma"
+      },
+      "tips": [
+        "Run 'npx prisma db push' during development for quick schema changes, and switch to migrations before production.",
+        "Add an index on organizationId for every table that stores tenant data to keep queries fast."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Configure Authentication with NextAuth.js",
+      "description": "Set up NextAuth.js v5 with the Prisma adapter to handle user sign-up, login, and session management. NextAuth supports OAuth providers, magic links, and credentials-based auth. Using the Prisma adapter means user sessions are stored in your database automatically.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/lib/auth.ts\nimport NextAuth from \"next-auth\";\nimport GitHub from \"next-auth/providers/github\";\nimport { PrismaAdapter } from \"@auth/prisma-adapter\";\nimport { prisma } from \"@/lib/prisma\";\n\nexport const { handlers, auth, signIn, signOut } = NextAuth({\n  adapter: PrismaAdapter(prisma),\n  providers: [\n    GitHub({\n      clientId: process.env.GITHUB_ID!,\n      clientSecret: process.env.GITHUB_SECRET!,\n    }),\n  ],\n  callbacks: {\n    async session({ session, user }) {\n      const dbUser = await prisma.user.findUnique({\n        where: { id: user.id },\n        include: { organization: { include: { subscription: true } } },\n      });\n      session.user.organizationId = dbUser?.organizationId ?? null;\n      session.user.plan = dbUser?.organization?.subscription?.status ?? \"free\";\n      return session;\n    },\n  },\n});",
+        "filename": "src/lib/auth.ts"
+      },
+      "tips": [
+        "Add multiple OAuth providers (Google, GitHub) to reduce friction during sign-up.",
+        "Store the user's subscription status in the session to avoid extra database queries on every page load."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Build the Pricing Page with Stripe Checkout",
+      "description": "Create a pricing page that displays your subscription tiers and redirects users to Stripe Checkout when they select a plan. Stripe Checkout handles the entire payment flow including card validation, 3D Secure, and receipts. You define your products and prices in the Stripe Dashboard and reference them by price ID.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/app/api/checkout/route.ts\nimport { NextRequest, NextResponse } from \"next/server\";\nimport Stripe from \"stripe\";\nimport { auth } from \"@/lib/auth\";\n\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);\n\nexport async function POST(req: NextRequest) {\n  const session = await auth();\n  if (!session?.user?.email) {\n    return NextResponse.json({ error: \"Unauthorized\" }, { status: 401 });\n  }\n\n  const { priceId } = await req.json();\n\n  const checkoutSession = await stripe.checkout.sessions.create({\n    mode: \"subscription\",\n    payment_method_types: [\"card\"],\n    line_items: [{ price: priceId, quantity: 1 }],\n    customer_email: session.user.email,\n    success_url: `${process.env.NEXT_PUBLIC_URL}/dashboard?success=true`,\n    cancel_url: `${process.env.NEXT_PUBLIC_URL}/pricing?canceled=true`,\n    metadata: {\n      userId: session.user.id,\n    },\n  });\n\n  return NextResponse.json({ url: checkoutSession.url });\n}",
+        "filename": "src/app/api/checkout/route.ts"
+      },
+      "tips": [
+        "Always use Stripe Checkout instead of building your own payment form — it handles PCI compliance for you.",
+        "Test with Stripe's test card number 4242424242424242 before going live."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Handle Stripe Webhooks for Subscription Events",
+      "description": "Create a webhook endpoint that listens for Stripe events like successful payments, subscription cancellations, and payment failures. This keeps your database in sync with Stripe's billing state. Stripe signs every webhook payload so you can verify its authenticity.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/app/api/webhooks/stripe/route.ts\nimport { NextRequest, NextResponse } from \"next/server\";\nimport Stripe from \"stripe\";\nimport { prisma } from \"@/lib/prisma\";\n\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);\n\nexport async function POST(req: NextRequest) {\n  const body = await req.text();\n  const signature = req.headers.get(\"stripe-signature\")!;\n\n  let event: Stripe.Event;\n  try {\n    event = stripe.webhooks.constructEvent(\n      body,\n      signature,\n      process.env.STRIPE_WEBHOOK_SECRET!\n    );\n  } catch {\n    return NextResponse.json({ error: \"Invalid signature\" }, { status: 400 });\n  }\n\n  if (event.type === \"checkout.session.completed\") {\n    const session = event.data.object as Stripe.Checkout.Session;\n    const subscription = await stripe.subscriptions.retrieve(\n      session.subscription as string\n    );\n\n    await prisma.subscription.upsert({\n      where: { stripeSubscriptionId: subscription.id },\n      update: {\n        status: subscription.status,\n        stripePriceId: subscription.items.data[0].price.id,\n        currentPeriodEnd: new Date(subscription.current_period_end * 1000),\n      },\n      create: {\n        stripeSubscriptionId: subscription.id,\n        organizationId: session.metadata!.organizationId!,\n        status: subscription.status,\n        stripePriceId: subscription.items.data[0].price.id,\n        currentPeriodEnd: new Date(subscription.current_period_end * 1000),\n      },\n    });\n  }\n\n  return NextResponse.json({ received: true });\n}",
+        "filename": "src/app/api/webhooks/stripe/route.ts"
+      },
+      "tips": [
+        "Use the Stripe CLI to forward webhooks to localhost during development: 'stripe listen --forward-to localhost:3000/api/webhooks/stripe'.",
+        "Always handle idempotency — Stripe may send the same event more than once."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Build the Dashboard with Role-Based Access",
+      "description": "Create a protected dashboard layout using Next.js middleware that checks authentication and subscription status. Server components fetch data directly from Prisma without an API layer, reducing latency. The dashboard layout includes a sidebar, header, and content area that adapts based on the user's plan.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/middleware.ts\nimport { auth } from \"@/lib/auth\";\nimport { NextResponse } from \"next/server\";\n\nexport default auth((req) => {\n  const isLoggedIn = !!req.auth;\n  const isOnDashboard = req.nextUrl.pathname.startsWith(\"/dashboard\");\n\n  if (isOnDashboard && !isLoggedIn) {\n    return NextResponse.redirect(new URL(\"/login\", req.url));\n  }\n\n  return NextResponse.next();\n});\n\nexport const config = {\n  matcher: [\"/dashboard/:path*\"],\n};",
+        "filename": "src/middleware.ts"
+      },
+      "tips": [
+        "Use Next.js middleware for authentication checks — it runs on the edge and blocks unauthorized requests before they reach your server components.",
+        "Fetch subscription data in the dashboard layout (not each page) so child routes inherit the billing context."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Add a Customer Portal for Billing Management",
+      "description": "Integrate Stripe's Customer Portal so users can update their payment method, change plans, and view invoices without you building any billing UI. You create a portal session and redirect the user to it. Stripe handles everything and redirects them back to your app when they're done.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/app/api/portal/route.ts\nimport { NextResponse } from \"next/server\";\nimport Stripe from \"stripe\";\nimport { auth } from \"@/lib/auth\";\nimport { prisma } from \"@/lib/prisma\";\n\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);\n\nexport async function POST() {\n  const session = await auth();\n  if (!session?.user) {\n    return NextResponse.json({ error: \"Unauthorized\" }, { status: 401 });\n  }\n\n  const user = await prisma.user.findUnique({\n    where: { id: session.user.id },\n    include: { organization: true },\n  });\n\n  if (!user?.organization?.stripeCustomerId) {\n    return NextResponse.json({ error: \"No billing account\" }, { status: 400 });\n  }\n\n  const portalSession = await stripe.billingPortal.sessions.create({\n    customer: user.organization.stripeCustomerId,\n    return_url: `${process.env.NEXT_PUBLIC_URL}/dashboard/settings`,\n  });\n\n  return NextResponse.json({ url: portalSession.url });\n}",
+        "filename": "src/app/api/portal/route.ts"
+      },
+      "tips": [
+        "Configure your Stripe Customer Portal settings in the Stripe Dashboard to control which actions users can take.",
+        "Add a 'Manage Billing' button in your dashboard settings page that calls this endpoint."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Deploy to Vercel with Environment Variables",
+      "description": "Deploy your SaaS to Vercel with all required environment variables configured. Vercel's integration with Next.js gives you automatic preview deployments for every pull request, edge middleware, and serverless functions. Set up your production domain and configure Stripe webhooks to point to it.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "# Install Vercel CLI and deploy\nnpm install -g vercel\nvercel\n\n# Set environment variables\nvercel env add DATABASE_URL\nvercel env add STRIPE_SECRET_KEY\nvercel env add STRIPE_WEBHOOK_SECRET\nvercel env add GITHUB_ID\nvercel env add GITHUB_SECRET\nvercel env add NEXTAUTH_SECRET\nvercel env add NEXT_PUBLIC_URL\n\n# Deploy to production\nvercel --prod"
+      },
+      "tips": [
+        "Generate NEXTAUTH_SECRET with 'openssl rand -base64 32' — never reuse secrets across environments.",
+        "Set up separate Stripe webhook endpoints for preview and production deployments.",
+        "Use Vercel's built-in Postgres (powered by Neon) for zero-config database provisioning."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add team invitations with email-based onboarding flows using Resend or SendGrid.",
+    "Implement usage-based billing by tracking API calls or storage per organization.",
+    "Add an admin panel with user impersonation for customer support.",
+    "Set up monitoring with Sentry for error tracking and Vercel Analytics for performance."
+  ],
+  "related_slugs": [
+    "build-a-dashboard-with-nextjs",
+    "build-an-ecommerce-store-with-nextjs",
+    "build-a-realtime-app-with-supabase"
+  ]
+}

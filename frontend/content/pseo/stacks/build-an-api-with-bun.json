@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "niche": "bun",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-an-api-with-bun",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build an API with Bun | Fast TypeScript Server Guide",
+    "description": "Build a high-performance REST API with Bun's native HTTP server, TypeScript, SQLite, and JWT authentication in under 3 hours.",
+    "keywords": [
+      "bun api",
+      "build api bun",
+      "bun http server",
+      "bun rest api",
+      "bun typescript",
+      "bun sqlite",
+      "fast api javascript"
+    ]
+  },
+  "introduction": "Bun is a JavaScript runtime designed for speed. Its built-in HTTP server, native SQLite driver, and first-class TypeScript support mean you can build a complete API without installing any external dependencies. Bun's HTTP server handles over 100,000 requests per second on modest hardware, making it one of the fastest options for building APIs in the JavaScript ecosystem. This guide builds a complete REST API with CRUD operations, JWT authentication, validation, and error handling.",
+  "prerequisites": [
+    {
+      "name": "Bun 1.1+",
+      "description": "Install Bun, the all-in-one JavaScript runtime with built-in bundler, test runner, and package manager.",
+      "url": "https://bun.sh"
+    },
+    {
+      "name": "Basic TypeScript Knowledge",
+      "description": "Bun runs TypeScript natively without a compilation step, so familiarity with TypeScript syntax is helpful."
+    },
+    {
+      "name": "REST API Concepts",
+      "description": "Understanding of HTTP methods (GET, POST, PUT, DELETE), status codes, and JSON request/response patterns."
+    }
+  ],
+  "estimated_time": "2-3 hours",
+  "difficulty": "beginner",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Initialize the Bun Project",
+      "description": "Create a new Bun project with TypeScript configuration. Bun has its own init command that generates a minimal project with package.json and tsconfig.json. No build step is needed because Bun executes TypeScript directly.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "mkdir my-api && cd my-api\nbun init -y\nmkdir -p src/{routes,middleware,db}"
+      },
+      "tips": [
+        "Bun runs .ts files natively — no need for ts-node, tsx, or a TypeScript build step.",
+        "Use 'bun run --hot src/index.ts' for hot reloading during development."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Create the HTTP Server with Routing",
+      "description": "Build a lightweight HTTP server using Bun.serve() with a pattern-matching router. Bun's native HTTP server is built on top of uWebSockets, giving you exceptional performance. The router maps URL patterns and HTTP methods to handler functions without any external framework.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/index.ts\nimport { handleUsers } from \"./routes/users\";\nimport { handleAuth } from \"./routes/auth\";\n\nconst PORT = Number(Bun.env.PORT) || 3000;\n\nBun.serve({\n  port: PORT,\n  async fetch(req) {\n    const url = new URL(req.url);\n    const path = url.pathname;\n\n    // CORS headers\n    if (req.method === \"OPTIONS\") {\n      return new Response(null, {\n        headers: {\n          \"Access-Control-Allow-Origin\": \"*\",\n          \"Access-Control-Allow-Methods\": \"GET, POST, PUT, DELETE, OPTIONS\",\n          \"Access-Control-Allow-Headers\": \"Content-Type, Authorization\",\n        },\n      });\n    }\n\n    try {\n      // Route matching\n      if (path.startsWith(\"/api/auth\")) {\n        return await handleAuth(req, url);\n      }\n      if (path.startsWith(\"/api/users\")) {\n        return await handleUsers(req, url);\n      }\n\n      // Health check\n      if (path === \"/health\") {\n        return Response.json({ status: \"ok\", uptime: process.uptime() });\n      }\n\n      return Response.json({ error: \"Not Found\" }, { status: 404 });\n    } catch (error) {\n      console.error(\"Unhandled error:\", error);\n      return Response.json(\n        { error: \"Internal Server Error\" },\n        { status: 500 }\n      );\n    }\n  },\n});\n\nconsole.log(`API server running on http://localhost:${PORT}`);",
+        "filename": "src/index.ts"
+      },
+      "tips": [
+        "Bun.serve() returns a Server object you can use to gracefully shut down with server.stop().",
+        "The fetch handler uses the Web Standard Request/Response APIs — the same you would use in a Service Worker."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Set Up SQLite with Bun's Native Driver",
+      "description": "Use Bun's built-in SQLite driver for zero-dependency database access. Bun's SQLite is implemented in native code and is significantly faster than node-sqlite3 or better-sqlite3. Create a database helper with type-safe query methods and automatic table creation.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/db/index.ts\nimport { Database } from \"bun:sqlite\";\n\nconst db = new Database(\"data.db\", { create: true });\n\n// Enable WAL mode for better concurrent read performance\ndb.run(\"PRAGMA journal_mode = WAL\");\n\n// Create tables\ndb.run(`\n  CREATE TABLE IF NOT EXISTS users (\n    id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),\n    email TEXT UNIQUE NOT NULL,\n    name TEXT NOT NULL,\n    password_hash TEXT NOT NULL,\n    role TEXT DEFAULT 'user',\n    created_at TEXT DEFAULT (datetime('now')),\n    updated_at TEXT DEFAULT (datetime('now'))\n  )\n`);\n\ndb.run(`\n  CREATE TABLE IF NOT EXISTS posts (\n    id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),\n    title TEXT NOT NULL,\n    content TEXT NOT NULL,\n    author_id TEXT NOT NULL REFERENCES users(id),\n    published INTEGER DEFAULT 0,\n    created_at TEXT DEFAULT (datetime('now')),\n    updated_at TEXT DEFAULT (datetime('now'))\n  )\n`);\n\nexport { db };\n\n// Type-safe query helpers\nexport interface User {\n  id: string;\n  email: string;\n  name: string;\n  password_hash: string;\n  role: string;\n  created_at: string;\n  updated_at: string;\n}\n\nexport interface Post {\n  id: string;\n  title: string;\n  content: string;\n  author_id: string;\n  published: number;\n  created_at: string;\n  updated_at: string;\n}",
+        "filename": "src/db/index.ts"
+      },
+      "tips": [
+        "WAL (Write-Ahead Logging) mode allows concurrent reads while writing — essential for API workloads.",
+        "Bun's SQLite uses prepared statements by default, which prevents SQL injection and improves performance."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Implement JWT Authentication",
+      "description": "Build authentication endpoints for user registration and login using Bun's built-in password hashing and a lightweight JWT library. Bun provides Bun.password.hash() and Bun.password.verify() which use bcrypt under the hood. JWTs are signed with HMAC-SHA256 for stateless authentication.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/routes/auth.ts\nimport { db } from \"../db\";\nimport type { User } from \"../db\";\nimport { signToken, verifyToken } from \"../middleware/jwt\";\n\nexport async function handleAuth(req: Request, url: URL): Promise<Response> {\n  if (req.method === \"POST\" && url.pathname === \"/api/auth/register\") {\n    const body = await req.json();\n    const { email, name, password } = body;\n\n    if (!email || !name || !password) {\n      return Response.json(\n        { error: \"email, name, and password are required\" },\n        { status: 400 }\n      );\n    }\n\n    const existing = db\n      .query<User, [string]>(\"SELECT * FROM users WHERE email = ?\")\n      .get(email);\n    if (existing) {\n      return Response.json(\n        { error: \"Email already registered\" },\n        { status: 409 }\n      );\n    }\n\n    const passwordHash = await Bun.password.hash(password, {\n      algorithm: \"bcrypt\",\n      cost: 10,\n    });\n\n    const stmt = db.prepare(\n      \"INSERT INTO users (email, name, password_hash) VALUES (?, ?, ?) RETURNING id, email, name, role\"\n    );\n    const user = stmt.get(email, name, passwordHash) as User;\n    const token = await signToken({ userId: user.id, role: user.role });\n\n    return Response.json({ user: { id: user.id, email: user.email, name: user.name }, token });\n  }\n\n  if (req.method === \"POST\" && url.pathname === \"/api/auth/login\") {\n    const { email, password } = await req.json();\n\n    const user = db\n      .query<User, [string]>(\"SELECT * FROM users WHERE email = ?\")\n      .get(email);\n    if (!user) {\n      return Response.json({ error: \"Invalid credentials\" }, { status: 401 });\n    }\n\n    const valid = await Bun.password.verify(password, user.password_hash);\n    if (!valid) {\n      return Response.json({ error: \"Invalid credentials\" }, { status: 401 });\n    }\n\n    const token = await signToken({ userId: user.id, role: user.role });\n    return Response.json({ user: { id: user.id, email: user.email, name: user.name }, token });\n  }\n\n  return Response.json({ error: \"Not Found\" }, { status: 404 });\n}",
+        "filename": "src/routes/auth.ts"
+      },
+      "tips": [
+        "Bun.password.hash() uses bcrypt by default with a configurable cost factor — 10 is a good balance of security and speed.",
+        "Never return the password_hash in API responses — select only the fields you need."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Build the JWT Middleware",
+      "description": "Create a JWT utility module for signing and verifying tokens. Use the Web Crypto API (available in Bun) for HMAC-SHA256 signing, which is more portable than Node.js crypto. The middleware extracts the Bearer token from the Authorization header and validates it.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/middleware/jwt.ts\nconst SECRET = new TextEncoder().encode(\n  Bun.env.JWT_SECRET || \"change-me-in-production\"\n);\n\ninterface TokenPayload {\n  userId: string;\n  role: string;\n}\n\nexport async function signToken(payload: TokenPayload): Promise<string> {\n  const header = btoa(JSON.stringify({ alg: \"HS256\", typ: \"JWT\" }));\n  const body = btoa(\n    JSON.stringify({ ...payload, iat: Math.floor(Date.now() / 1000), exp: Math.floor(Date.now() / 1000) + 86400 })\n  );\n  const data = `${header}.${body}`;\n\n  const key = await crypto.subtle.importKey(\n    \"raw\",\n    SECRET,\n    { name: \"HMAC\", hash: \"SHA-256\" },\n    false,\n    [\"sign\"]\n  );\n  const signature = await crypto.subtle.sign(\"HMAC\", key, new TextEncoder().encode(data));\n  const sig = btoa(String.fromCharCode(...new Uint8Array(signature)));\n\n  return `${data}.${sig}`;\n}\n\nexport async function verifyToken(token: string): Promise<TokenPayload | null> {\n  try {\n    const [header, body, sig] = token.split(\".\");\n    const data = `${header}.${body}`;\n\n    const key = await crypto.subtle.importKey(\n      \"raw\",\n      SECRET,\n      { name: \"HMAC\", hash: \"SHA-256\" },\n      false,\n      [\"verify\"]\n    );\n    const signature = Uint8Array.from(atob(sig), (c) => c.charCodeAt(0));\n    const valid = await crypto.subtle.verify(\"HMAC\", key, signature, new TextEncoder().encode(data));\n    if (!valid) return null;\n\n    const payload = JSON.parse(atob(body));\n    if (payload.exp < Math.floor(Date.now() / 1000)) return null;\n\n    return { userId: payload.userId, role: payload.role };\n  } catch {\n    return null;\n  }\n}\n\nexport async function authenticate(req: Request): Promise<TokenPayload | null> {\n  const auth = req.headers.get(\"Authorization\");\n  if (!auth?.startsWith(\"Bearer \")) return null;\n  return verifyToken(auth.slice(7));\n}",
+        "filename": "src/middleware/jwt.ts"
+      },
+      "tips": [
+        "Always set a JWT expiration (exp claim) — 24 hours is reasonable for API tokens.",
+        "Use a strong, random JWT_SECRET in production — generate one with 'openssl rand -base64 32'."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Build CRUD Routes for Users",
+      "description": "Create a complete set of CRUD endpoints for the users resource. Each route checks authentication, validates input, and returns appropriate HTTP status codes. The route handler pattern extracts the resource ID from the URL path for single-resource operations.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/routes/users.ts\nimport { db } from \"../db\";\nimport type { User } from \"../db\";\nimport { authenticate } from \"../middleware/jwt\";\n\nexport async function handleUsers(req: Request, url: URL): Promise<Response> {\n  const auth = await authenticate(req);\n  if (!auth) {\n    return Response.json({ error: \"Unauthorized\" }, { status: 401 });\n  }\n\n  const idMatch = url.pathname.match(/^\\/api\\/users\\/([a-f0-9]+)$/);\n  const userId = idMatch?.[1];\n\n  // GET /api/users — List all users\n  if (req.method === \"GET\" && !userId) {\n    const page = Number(url.searchParams.get(\"page\")) || 1;\n    const limit = Math.min(Number(url.searchParams.get(\"limit\")) || 20, 100);\n    const offset = (page - 1) * limit;\n\n    const users = db\n      .query<Omit<User, \"password_hash\">, [number, number]>(\n        \"SELECT id, email, name, role, created_at FROM users LIMIT ? OFFSET ?\"\n      )\n      .all(limit, offset);\n\n    const total = db.query<{ count: number }, []>(\"SELECT COUNT(*) as count FROM users\").get()!;\n\n    return Response.json({\n      data: users,\n      pagination: { page, limit, total: total.count },\n    });\n  }\n\n  // GET /api/users/:id — Get single user\n  if (req.method === \"GET\" && userId) {\n    const user = db\n      .query<Omit<User, \"password_hash\">, [string]>(\n        \"SELECT id, email, name, role, created_at FROM users WHERE id = ?\"\n      )\n      .get(userId);\n\n    if (!user) {\n      return Response.json({ error: \"User not found\" }, { status: 404 });\n    }\n    return Response.json({ data: user });\n  }\n\n  // PUT /api/users/:id — Update user\n  if (req.method === \"PUT\" && userId) {\n    if (auth.userId !== userId && auth.role !== \"admin\") {\n      return Response.json({ error: \"Forbidden\" }, { status: 403 });\n    }\n\n    const { name } = await req.json();\n    db.run(\n      \"UPDATE users SET name = ?, updated_at = datetime('now') WHERE id = ?\",\n      [name, userId]\n    );\n\n    return Response.json({ message: \"Updated\" });\n  }\n\n  // DELETE /api/users/:id — Delete user\n  if (req.method === \"DELETE\" && userId) {\n    if (auth.role !== \"admin\") {\n      return Response.json({ error: \"Forbidden\" }, { status: 403 });\n    }\n\n    db.run(\"DELETE FROM users WHERE id = ?\", [userId]);\n    return Response.json({ message: \"Deleted\" });\n  }\n\n  return Response.json({ error: \"Method not allowed\" }, { status: 405 });\n}",
+        "filename": "src/routes/users.ts"
+      },
+      "tips": [
+        "Always cap the pagination limit to prevent clients from requesting all records at once.",
+        "Return 403 Forbidden (not 404) when a user tries to access another user's data — this is clearer for API consumers."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Add Input Validation and Error Handling",
+      "description": "Create a validation helper that checks request bodies against expected schemas. Proper validation prevents malformed data from reaching your database and gives API consumers clear error messages. Use a lightweight approach with TypeScript type guards rather than pulling in a heavy validation library.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/middleware/validate.ts\ntype ValidationRule = {\n  field: string;\n  type: \"string\" | \"number\" | \"boolean\" | \"email\";\n  required?: boolean;\n  minLength?: number;\n  maxLength?: number;\n};\n\ninterface ValidationError {\n  field: string;\n  message: string;\n}\n\nexport function validate(\n  data: Record<string, unknown>,\n  rules: ValidationRule[]\n): ValidationError[] {\n  const errors: ValidationError[] = [];\n\n  for (const rule of rules) {\n    const value = data[rule.field];\n\n    if (rule.required && (value === undefined || value === null || value === \"\")) {\n      errors.push({ field: rule.field, message: `${rule.field} is required` });\n      continue;\n    }\n\n    if (value === undefined || value === null) continue;\n\n    if (rule.type === \"email\" && typeof value === \"string\") {\n      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n      if (!emailRegex.test(value)) {\n        errors.push({ field: rule.field, message: \"Invalid email format\" });\n      }\n    }\n\n    if (rule.type === \"string\" && typeof value !== \"string\") {\n      errors.push({ field: rule.field, message: `${rule.field} must be a string` });\n    }\n\n    if (rule.minLength && typeof value === \"string\" && value.length < rule.minLength) {\n      errors.push({\n        field: rule.field,\n        message: `${rule.field} must be at least ${rule.minLength} characters`,\n      });\n    }\n\n    if (rule.maxLength && typeof value === \"string\" && value.length > rule.maxLength) {\n      errors.push({\n        field: rule.field,\n        message: `${rule.field} must be at most ${rule.maxLength} characters`,\n      });\n    }\n  }\n\n  return errors;\n}\n\n// Usage:\n// const errors = validate(body, [\n//   { field: \"email\", type: \"email\", required: true },\n//   { field: \"name\", type: \"string\", required: true, minLength: 2 },\n//   { field: \"password\", type: \"string\", required: true, minLength: 8 },\n// ]);\n// if (errors.length) return Response.json({ errors }, { status: 400 });",
+        "filename": "src/middleware/validate.ts"
+      },
+      "tips": [
+        "Return all validation errors at once, not just the first one — this is a better UX for API consumers.",
+        "For production APIs, consider using Zod for schema validation — it works great with Bun."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Run Tests and Deploy",
+      "description": "Write API tests using Bun's built-in test runner and deploy the API. Bun includes a Jest-compatible test runner that is significantly faster than Jest or Vitest. Tests can make real HTTP requests to your server for integration testing. Deploy to any VPS, Docker container, or Fly.io.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/index.test.ts\nimport { expect, test, describe, beforeAll, afterAll } from \"bun:test\";\n\nconst BASE_URL = \"http://localhost:3001\";\nlet server: ReturnType<typeof Bun.serve>;\nlet authToken: string;\n\nbeforeAll(async () => {\n  // Start server on test port\n  process.env.PORT = \"3001\";\n  server = (await import(\"./index\")).default;\n});\n\nafterAll(() => {\n  server?.stop();\n});\n\ndescribe(\"Auth\", () => {\n  test(\"POST /api/auth/register creates a user\", async () => {\n    const res = await fetch(`${BASE_URL}/api/auth/register`, {\n      method: \"POST\",\n      headers: { \"Content-Type\": \"application/json\" },\n      body: JSON.stringify({\n        email: \"test@example.com\",\n        name: \"Test User\",\n        password: \"securepassword123\",\n      }),\n    });\n\n    expect(res.status).toBe(200);\n    const data = await res.json();\n    expect(data.token).toBeDefined();\n    expect(data.user.email).toBe(\"test@example.com\");\n    authToken = data.token;\n  });\n\n  test(\"POST /api/auth/login returns a token\", async () => {\n    const res = await fetch(`${BASE_URL}/api/auth/login`, {\n      method: \"POST\",\n      headers: { \"Content-Type\": \"application/json\" },\n      body: JSON.stringify({\n        email: \"test@example.com\",\n        password: \"securepassword123\",\n      }),\n    });\n\n    expect(res.status).toBe(200);\n    const data = await res.json();\n    expect(data.token).toBeDefined();\n  });\n});\n\ndescribe(\"Users\", () => {\n  test(\"GET /api/users requires auth\", async () => {\n    const res = await fetch(`${BASE_URL}/api/users`);\n    expect(res.status).toBe(401);\n  });\n\n  test(\"GET /api/users returns users when authenticated\", async () => {\n    const res = await fetch(`${BASE_URL}/api/users`, {\n      headers: { Authorization: `Bearer ${authToken}` },\n    });\n    expect(res.status).toBe(200);\n    const data = await res.json();\n    expect(data.data).toBeArray();\n  });\n});",
+        "filename": "src/index.test.ts"
+      },
+      "tips": [
+        "Run tests with 'bun test' — it discovers and runs all .test.ts files automatically.",
+        "Deploy to Fly.io with 'fly launch' for a managed server, or use Docker: 'FROM oven/bun:1' as your base image.",
+        "Bun's SQLite file (data.db) persists to disk — mount a volume in your deployment for data durability."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add rate limiting middleware to protect against abuse and DDoS attacks.",
+    "Implement request logging with structured JSON output for debugging and monitoring.",
+    "Add WebSocket support using Bun.serve's built-in WebSocket API for real-time features.",
+    "Set up OpenAPI/Swagger documentation generation for your API endpoints."
+  ],
+  "related_slugs": [
+    "build-a-realtime-app-with-supabase",
+    "build-a-saas-with-nextjs",
+    "build-a-dashboard-with-nextjs"
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "meta": {
+    "niche": "nodejs",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "nodejs-security-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Node.js Security Checklist: 28 Essential Steps",
+    "description": "Secure your Node.js application with this 28-step checklist. Covers authentication, input validation, dependency auditing, headers, and runtime hardening.",
+    "keywords": [
+      "nodejs security checklist",
+      "node.js security best practices",
+      "nodejs authentication security",
+      "nodejs vulnerability prevention",
+      "express security",
+      "nodejs production security"
+    ]
+  },
+  "introduction": "Node.js applications are prime targets for attackers because they often serve as API gateways, handle authentication, and process sensitive data. A single vulnerability — an unsanitized input, a misconfigured CORS policy, or an outdated dependency — can compromise your entire system. This 28-step checklist covers every security layer from input validation to runtime hardening.",
+  "total_items": 28,
+  "estimated_time": "4-6 hours",
+  "sections": [
+    {
+      "name": "Authentication & Authorization",
+      "description": "Implement secure authentication flows and enforce proper authorization checks throughout your application.",
+      "items": [
+        {
+          "id": "node-sec-1",
+          "text": "Hash passwords with bcrypt or Argon2",
+          "description": "Never store plaintext passwords. Use bcrypt with a cost factor of 12+ or Argon2id (preferred). Both are designed to be computationally expensive, making brute-force attacks impractical. Never use MD5, SHA-1, or SHA-256 for passwords — they are too fast.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-2",
+          "text": "Implement JWT tokens with short expiration and refresh flow",
+          "description": "Set JWT access token expiration to 15 minutes maximum. Use refresh tokens stored in httpOnly cookies with longer expiration. Implement token rotation — issue a new refresh token with each use and invalidate the old one to detect token theft.",
+          "difficulty": "advanced",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-3",
+          "text": "Add rate limiting to authentication endpoints",
+          "description": "Limit login attempts to 5-10 per minute per IP and per account. Use `rate-limiter-flexible` with Redis for distributed rate limiting. Implement progressive delays (1s, 2s, 4s, 8s) after failed attempts. This prevents credential stuffing and brute-force attacks.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-4",
+          "text": "Enforce authorization checks on every protected endpoint",
+          "description": "Use middleware to verify JWT tokens and check user roles/permissions before processing requests. Never rely on client-side route protection alone — attackers can call your API directly. Test authorization with tools like Burp Suite or custom scripts.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-5",
+          "text": "Implement CSRF protection for cookie-based sessions",
+          "description": "If using cookies for authentication, implement CSRF tokens using the double-submit cookie pattern or the synchronizer token pattern. Libraries like `csurf` (for Express) or built-in CSRF protection in frameworks like Fastify handle this. SameSite=Strict cookies add defense in depth.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Input Validation & Injection Prevention",
+      "description": "Validate, sanitize, and escape all input to prevent injection attacks across every vector.",
+      "items": [
+        {
+          "id": "node-sec-6",
+          "text": "Validate all request input with a schema library",
+          "description": "Use Zod, Joi, or Yup to validate request body, query parameters, URL parameters, and headers. Define strict schemas that reject unexpected fields. Never trust client input — validate on the server even if you validate on the client.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-7",
+          "text": "Prevent SQL injection with parameterized queries",
+          "description": "Never concatenate user input into SQL strings. Use parameterized queries (`$1`, `?` placeholders) with your database driver or an ORM like Prisma, Drizzle, or Knex. Even a single unparameterized query is a complete database compromise waiting to happen.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-8",
+          "text": "Prevent NoSQL injection in MongoDB queries",
+          "description": "Sanitize query objects to prevent operator injection. An attacker sending `{ '$gt': '' }` as a password field bypasses authentication. Use `mongo-sanitize` or validate that input values are strings/numbers, never objects.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-9",
+          "text": "Sanitize HTML output to prevent XSS",
+          "description": "Use DOMPurify or sanitize-html when rendering user-generated content. Set Content-Type headers correctly. In template engines, use auto-escaping (enabled by default in EJS, Pug, Handlebars). Never insert raw user input into HTML, JavaScript, or CSS contexts.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-10",
+          "text": "Prevent command injection in child processes",
+          "description": "Never pass user input to `exec()` or `spawn()` with shell option. Use `execFile()` with argument arrays instead of string concatenation. If shell execution is necessary, use a strict allowlist of permitted commands and arguments.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "node-sec-11",
+          "text": "Limit request body size and file upload sizes",
+          "description": "Set `express.json({ limit: '100kb' })` and configure file upload limits with Multer or Busboy. Without limits, attackers can exhaust server memory with massive payloads. Set limits appropriate to your use case — most API requests should be under 1MB.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "HTTP Security Headers",
+      "description": "Configure HTTP headers that protect against common web attacks at the browser level.",
+      "items": [
+        {
+          "id": "node-sec-12",
+          "text": "Set up Helmet.js for security headers",
+          "description": "Install `helmet` middleware to set secure defaults for 15+ HTTP headers. It configures Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, and more. Customize the defaults for your specific needs rather than starting from scratch.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-13",
+          "text": "Configure Content Security Policy",
+          "description": "Define a strict CSP that whitelists only trusted script and style sources. Start with `default-src 'self'` and add exceptions as needed. Use `report-uri` or `report-to` to catch violations before they affect users. Test with CSP Evaluator (csp-evaluator.withgoogle.com).",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "node-sec-14",
+          "text": "Configure CORS with specific allowed origins",
+          "description": "Use the `cors` package with an explicit allowlist of origins. Never use `origin: '*'` in production for APIs that use cookies or authentication. Validate the Origin header against your allowlist and return the matching origin, not a wildcard.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-15",
+          "text": "Enable HSTS with long max-age",
+          "description": "Set `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`. This tells browsers to always use HTTPS. After testing, submit your domain to the HSTS preload list (hstspreload.org) for permanent HTTPS enforcement.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "node-sec-16",
+          "text": "Set secure cookie attributes",
+          "description": "Set all cookies with `Secure` (HTTPS only), `HttpOnly` (no JavaScript access), `SameSite=Strict` or `Lax`, and appropriate `Path` and `Domain`. Use `__Host-` prefix for cookies that should only be set by the host and sent over HTTPS.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Dependency & Supply Chain Security",
+      "description": "Protect against vulnerabilities in third-party packages, which are the most common attack vector in Node.js.",
+      "items": [
+        {
+          "id": "node-sec-17",
+          "text": "Run npm audit and fix all high/critical vulnerabilities",
+          "description": "Execute `npm audit` and address all high and critical severity issues. Use `npm audit fix` for compatible patches. For breaking changes, evaluate if the vulnerable code path is actually used in your application before upgrading.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-18",
+          "text": "Set up automated dependency scanning in CI",
+          "description": "Use GitHub Dependabot, Snyk, or Socket.dev to scan for vulnerable dependencies on every PR and get alerts for new vulnerabilities in existing dependencies. Automated scanning catches issues between manual audits.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "node-sec-19",
+          "text": "Pin dependency versions with lockfile",
+          "description": "Commit your `package-lock.json` or `bun.lockb` and use `npm ci` (not `npm install`) in CI. This ensures reproducible builds and prevents unexpected updates. Unlocked dependencies can silently introduce vulnerable or malicious code.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "node-sec-20",
+          "text": "Review new dependencies before adding them",
+          "description": "Before `npm install`, check the package on npmjs.com for maintenance activity, download counts, and open issues. Use Socket.dev to detect supply chain risks like install scripts, network access, or obfuscated code. One malicious package compromises everything.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "node-sec-21",
+          "text": "Remove unused dependencies",
+          "description": "Run `npx depcheck` to find packages in package.json that are never imported. Unused dependencies increase your attack surface without providing value. Each dependency is code you did not write running with your application's permissions.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Runtime Hardening & Monitoring",
+      "description": "Protect your Node.js application at runtime with proper error handling, logging, and process management.",
+      "items": [
+        {
+          "id": "node-sec-22",
+          "text": "Never expose stack traces or error details to clients",
+          "description": "In production, return generic error messages to API clients (`Internal Server Error`) and log the full error details server-side. Stack traces reveal file paths, dependency versions, and internal logic that attackers use to find vulnerabilities.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-23",
+          "text": "Implement structured logging with sensitive data redaction",
+          "description": "Use Pino or Winston for structured JSON logging. Configure redaction for passwords, tokens, credit card numbers, and PII. Use log levels (error, warn, info, debug) and only enable debug in non-production environments.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "node-sec-24",
+          "text": "Store secrets in environment variables, never in code",
+          "description": "Never commit API keys, database passwords, or JWT secrets to source control. Use environment variables, a secrets manager (AWS Secrets Manager, HashiCorp Vault), or encrypted .env files. Add `.env` to `.gitignore` and verify it is not tracked.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "node-sec-25",
+          "text": "Run Node.js with least-privilege permissions",
+          "description": "Run your Node.js process as a non-root user in Docker. Set `USER node` in your Dockerfile. Restrict file system access to only required directories. Use Node.js permission model (--experimental-permission) for fine-grained control in Node 20+.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "node-sec-26",
+          "text": "Set up health check and graceful shutdown",
+          "description": "Implement a `/health` endpoint that checks database connectivity and critical services. Handle SIGTERM and SIGINT signals to close database connections, finish in-flight requests, and exit cleanly. Graceful shutdown prevents data corruption during deployments.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "node-sec-27",
+          "text": "Monitor for anomalous behavior and security events",
+          "description": "Set up alerts for unusual patterns: spike in 401/403 responses, many requests from a single IP, unexpected outbound network calls, or CPU/memory spikes. Use a SIEM or application monitoring tool to correlate events and detect attacks in progress.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "node-sec-28",
+          "text": "Keep Node.js runtime updated to latest LTS",
+          "description": "Run the latest LTS version of Node.js and update promptly when security patches are released. Subscribe to the Node.js security mailing list. EOL Node.js versions receive no security patches, leaving known vulnerabilities unpatched indefinitely.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Security is not a one-time checklist — schedule quarterly security audits to re-run dependency scans, review new endpoints, and test authentication flows. Threats evolve continuously.",
+    "Use OWASP ZAP or Burp Suite Community Edition to run automated security scans against your staging environment. These tools find vulnerabilities that code review misses, including misconfigured headers and injection points.",
+    "Implement defense in depth: do not rely on a single security control. Combine input validation, parameterized queries, output encoding, CSP headers, and monitoring. Each layer catches what the others miss.",
+    "Subscribe to security advisories for every critical dependency in your stack. GitHub's Dependabot alerts and Snyk's vulnerability database provide early warning for newly discovered vulnerabilities.",
+    "Conduct a threat modeling exercise before launch. Map your data flows, identify trust boundaries, and enumerate potential attack vectors. This systematic approach catches security gaps that checklists alone miss."
+  ],
+  "related_slugs": [
+    "nextjs-launch-checklist",
+    "typescript-launch-checklist",
+    "react-launch-checklist"
+  ]
+}

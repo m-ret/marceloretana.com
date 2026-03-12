@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "niche": "supabase",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "supabase-launch-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Supabase Launch Checklist: 25 Essential Steps",
+    "description": "Launch your Supabase project securely with this 25-step checklist. Covers RLS policies, auth config, database design, edge functions, and monitoring.",
+    "keywords": [
+      "supabase launch checklist",
+      "supabase production checklist",
+      "supabase rls",
+      "supabase security",
+      "supabase best practices",
+      "supabase deployment"
+    ]
+  },
+  "introduction": "Supabase makes it fast to build full-stack applications, but its ease of use can mask critical security and performance gaps. Row Level Security policies, authentication configuration, database indexing, and proper API key management all need careful attention before going live. This 25-step checklist covers everything you need to verify before exposing your Supabase project to real users.",
+  "total_items": 25,
+  "estimated_time": "3-4 hours",
+  "sections": [
+    {
+      "name": "Row Level Security & Authorization",
+      "description": "Configure RLS policies to protect your data — the most critical security layer in any Supabase application.",
+      "items": [
+        {
+          "id": "supa-launch-1",
+          "text": "Enable RLS on every table",
+          "description": "Go to your Supabase dashboard or run `ALTER TABLE table_name ENABLE ROW LEVEL SECURITY` on every table. Tables without RLS enabled are publicly accessible to anyone with your anon key. There are zero valid reasons to leave RLS disabled in production.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-2",
+          "text": "Write explicit RLS policies for every table",
+          "description": "Each table needs SELECT, INSERT, UPDATE, and DELETE policies. Default with RLS enabled is deny-all, which is safe but means nothing works. Write the minimum necessary policies. Test each policy in the SQL editor with `SET LOCAL role = 'authenticated'`.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-3",
+          "text": "Test RLS policies with different user roles",
+          "description": "Verify that users can only access their own data, admins can access all data, and unauthenticated users see only public data. Test edge cases: can user A update user B's record? Can a deleted user's token still access data? Use the Supabase SQL editor to test.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-4",
+          "text": "Use auth.uid() in policies instead of trusting client data",
+          "description": "Always reference `auth.uid()` in RLS policies to identify the current user. Never trust a `user_id` column passed in the request body — it can be spoofed. The policy `USING (user_id = auth.uid())` ensures users can only access their own rows.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-5",
+          "text": "Restrict service_role key usage to server-side only",
+          "description": "The `service_role` key bypasses all RLS policies. Never expose it in client-side code, environment variables accessible to the browser, or public repositories. Use it only in server-side code, Edge Functions, or backend services.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "name": "Authentication Configuration",
+      "description": "Configure Supabase Auth with secure defaults and proper provider settings.",
+      "items": [
+        {
+          "id": "supa-launch-6",
+          "text": "Configure email confirmation for new signups",
+          "description": "Enable email confirmation in Authentication > Settings. Without it, anyone can create accounts with fake email addresses. Customize the confirmation email template with your brand and a clear call to action.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-7",
+          "text": "Set up proper redirect URLs for auth flows",
+          "description": "Configure your production domain in Authentication > URL Configuration. Add all valid redirect URLs (login, callback, password reset). Remove localhost URLs before going live. Unrestricted redirects enable open redirect attacks.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-8",
+          "text": "Configure OAuth providers with production credentials",
+          "description": "If using Google, GitHub, or other OAuth providers, create production OAuth applications (not development ones). Set correct redirect URIs, configure consent screens, and verify domain ownership. Test the complete flow on your production domain.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-9",
+          "text": "Implement proper session management",
+          "description": "Set appropriate JWT expiry times (3600s default is usually fine). Implement token refresh logic using `supabase.auth.onAuthStateChange`. Handle expired sessions gracefully — redirect to login with a clear message, do not show cryptic errors.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-10",
+          "text": "Add rate limiting to auth endpoints",
+          "description": "Supabase has built-in rate limits, but verify they are configured appropriately in your project settings. For additional protection, add rate limiting in your Edge Functions or middleware for custom auth flows. Monitor for brute-force login attempts.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Database Design & Performance",
+      "description": "Optimize your PostgreSQL database for production workloads with proper indexing and query design.",
+      "items": [
+        {
+          "id": "supa-launch-11",
+          "text": "Add indexes to columns used in WHERE clauses and JOINs",
+          "description": "Run `EXPLAIN ANALYZE` on your most frequent queries. Add indexes to columns used in WHERE, JOIN, ORDER BY, and RLS policy conditions. Missing indexes cause full table scans that become catastrophically slow as data grows.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-12",
+          "text": "Add indexes on columns referenced in RLS policies",
+          "description": "RLS policy conditions like `user_id = auth.uid()` run on every query. Without an index on `user_id`, each query performs a full table scan even for single-row lookups. This is the most common performance bottleneck in Supabase apps.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-13",
+          "text": "Set up foreign key constraints",
+          "description": "Define foreign key relationships between tables to ensure referential integrity. Use `ON DELETE CASCADE` for child records that should be deleted with their parent. Foreign keys prevent orphaned records that cause application errors.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-14",
+          "text": "Use database functions for complex operations",
+          "description": "Move multi-step operations (transfer funds, update inventory) into PostgreSQL functions. Database functions run atomically within a transaction, preventing partial updates. Call them with `supabase.rpc('function_name', params)` from your client.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-15",
+          "text": "Configure connection pooling for production",
+          "description": "Use the pooled connection string (port 6543) for serverless environments and Edge Functions, not the direct connection (port 5432). Direct connections are limited and can be exhausted by serverless function cold starts, causing connection errors.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "API & Edge Functions",
+      "description": "Secure and optimize your Supabase API and Edge Functions for production traffic.",
+      "items": [
+        {
+          "id": "supa-launch-16",
+          "text": "Disable unused Supabase features and APIs",
+          "description": "If you do not use Realtime, disable it in project settings. If certain tables should not be accessible via the REST API, revoke permissions from the `anon` and `authenticated` roles. Every enabled feature is an attack surface.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-17",
+          "text": "Validate inputs in Edge Functions",
+          "description": "Use Zod or similar to validate request bodies, query parameters, and headers in every Edge Function. Never trust client input. Return 400 with clear error messages for validation failures. This prevents injection attacks and data corruption.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-18",
+          "text": "Set up proper CORS for Edge Functions",
+          "description": "Configure CORS headers in your Edge Functions to allow requests only from your production domain. Return appropriate headers for preflight OPTIONS requests. Never use `*` for Access-Control-Allow-Origin in authenticated Edge Functions.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-19",
+          "text": "Handle Edge Function errors gracefully",
+          "description": "Wrap Edge Function logic in try-catch blocks. Return structured error responses with appropriate HTTP status codes. Log errors server-side with context (user ID, request params). Never return raw error messages or stack traces to clients.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-20",
+          "text": "Use environment secrets for sensitive config in Edge Functions",
+          "description": "Store API keys, webhook secrets, and third-party credentials as Supabase Edge Function secrets using `supabase secrets set`. Never hardcode secrets in function code. Access them via `Deno.env.get('SECRET_NAME')` at runtime.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "name": "Monitoring, Backups & Operations",
+      "description": "Set up operational safeguards so you can monitor, recover, and maintain your Supabase project in production.",
+      "items": [
+        {
+          "id": "supa-launch-21",
+          "text": "Enable and verify database backups",
+          "description": "Supabase Pro plans include daily backups. Verify backups are enabled in your project settings. For critical data, set up Point-in-Time Recovery (PITR). Test your recovery process by restoring a backup to a separate project before you need it in an emergency.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "supa-launch-22",
+          "text": "Set up monitoring and alerting",
+          "description": "Monitor database size, connection count, API request volume, and error rates in the Supabase dashboard. Set up external monitoring with tools like Better Stack or Checkly to alert you when your API becomes unresponsive.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-23",
+          "text": "Implement database migrations with version control",
+          "description": "Use `supabase db diff` and `supabase migration new` to create migration files. Commit them to your repository. Never make schema changes directly in the production dashboard — all changes should go through migrations for reproducibility and rollback capability.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-24",
+          "text": "Configure Supabase project for the right region and plan",
+          "description": "Choose a Supabase region closest to your users for lowest latency. Upgrade to a Pro plan for production — the free tier has limitations on backups, bandwidth, and uptime SLAs that are unacceptable for production applications.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "supa-launch-25",
+          "text": "Set up a staging environment with linked project",
+          "description": "Create a separate Supabase project for staging. Use `supabase link` to connect your CLI. Run all migrations on staging first, test with realistic data, and verify before applying to production. This catches migration issues before they affect real users.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "The most common Supabase security mistake is leaving RLS disabled or writing overly permissive policies. Treat RLS policy writing like writing authentication middleware — every policy should be reviewed and tested.",
+    "Use `supabase db lint` to check for common issues like missing indexes on foreign keys, tables without RLS, and unindexed columns in RLS policies. Run it as part of your CI pipeline.",
+    "Enable Supabase's built-in Postgres logging to track slow queries. Go to Database > Settings and enable `log_min_duration_statement` set to 1000ms. Review slow query logs weekly during the first month after launch.",
+    "Use the Supabase CLI for local development (`supabase start`) instead of developing against your production database. Local development gives you a full Supabase stack including Auth, Storage, and Edge Functions.",
+    "Before launch, use the Supabase Launch Checklist in the dashboard (Settings > Launch Checklist) to verify your project configuration. It checks for common security and performance issues automatically."
+  ],
+  "related_slugs": [
+    "nodejs-security-checklist",
+    "nextjs-launch-checklist",
+    "typescript-launch-checklist"
+  ]
+}

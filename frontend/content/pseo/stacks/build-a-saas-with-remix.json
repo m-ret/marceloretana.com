@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "niche": "remix",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-saas-with-remix",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a SaaS with Remix | Full Stack Guide",
+    "description": "Build a production-ready SaaS application with Remix using loaders, actions, Prisma ORM, and Stripe billing with progressive enhancement.",
+    "keywords": [
+      "remix saas",
+      "build saas remix",
+      "remix full stack",
+      "remix stripe integration",
+      "remix prisma",
+      "remix authentication",
+      "remix run tutorial"
+    ]
+  },
+  "introduction": "Remix takes a web-standards-first approach to building full-stack applications. Instead of client-side state management, Remix uses loaders for data fetching and actions for mutations — both running on the server. This means your SaaS works without JavaScript enabled and progressively enhances when it loads. This guide builds a SaaS application with cookie-based authentication, Prisma for database access, and Stripe for subscription billing.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for Remix and its Vite-based build system.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "PostgreSQL Database",
+      "description": "A PostgreSQL instance for storing users and subscriptions. Neon or Railway offer free tiers for development.",
+      "url": "https://neon.tech"
+    },
+    {
+      "name": "Stripe Account",
+      "description": "For processing subscription payments. Test mode is available immediately after registration.",
+      "url": "https://dashboard.stripe.com/register"
+    },
+    {
+      "name": "React and TypeScript Fundamentals",
+      "description": "Remix uses React for UI rendering and TypeScript for type safety across the full stack."
+    }
+  ],
+  "estimated_time": "6-8 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Scaffold the Remix Project",
+      "description": "Create a new Remix application using the latest Vite-based template. Remix now uses Vite as its compiler, which gives you fast HMR, better build performance, and access to the Vite plugin ecosystem. Install Prisma for database access and bcryptjs for password hashing.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npx create-remix@latest my-saas --template remix-run/remix/templates/vite\ncd my-saas\nnpm install @prisma/client stripe bcryptjs\nnpm install -D prisma @types/bcryptjs tailwindcss @tailwindcss/vite"
+      },
+      "tips": [
+        "Remix with Vite supports hot module replacement for instant feedback during development.",
+        "Add Tailwind CSS as a Vite plugin in vite.config.ts for zero-config styling."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Set Up the Database Schema with Prisma",
+      "description": "Initialize Prisma and define your data models for users, organizations, and subscriptions. Remix's loader/action pattern works naturally with Prisma because all database operations happen on the server. Define your schema with relations between users and their subscription state.",
+      "code_snippet": {
+        "language": "prisma",
+        "code": "// prisma/schema.prisma\ngenerator client {\n  provider = \"prisma-client-js\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id             String   @id @default(cuid())\n  email          String   @unique\n  passwordHash   String\n  name           String?\n  organizationId String?\n  organization   Organization? @relation(fields: [organizationId], references: [id])\n  createdAt      DateTime @default(now())\n  updatedAt      DateTime @updatedAt\n}\n\nmodel Organization {\n  id               String   @id @default(cuid())\n  name             String\n  stripeCustomerId String?  @unique\n  users            User[]\n  subscription     Subscription?\n  createdAt        DateTime @default(now())\n}\n\nmodel Subscription {\n  id                   String   @id @default(cuid())\n  organizationId       String   @unique\n  organization         Organization @relation(fields: [organizationId], references: [id])\n  stripeSubscriptionId String   @unique\n  stripePriceId        String\n  status               String\n  currentPeriodEnd     DateTime\n  createdAt            DateTime @default(now())\n  updatedAt            DateTime @updatedAt\n}",
+        "filename": "prisma/schema.prisma"
+      },
+      "tips": [
+        "Run 'npx prisma db push' to sync the schema to your database during development.",
+        "Create a singleton Prisma client in app/lib/db.server.ts — the .server suffix ensures it never leaks to the client bundle."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Build Cookie-Based Authentication",
+      "description": "Implement sign-up and login using Remix's built-in cookie session storage. Unlike JWT-based auth, cookie sessions are httpOnly and secure by default, preventing XSS attacks. Remix actions handle form submissions on the server, so authentication works even without JavaScript enabled in the browser.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// app/lib/session.server.ts\nimport { createCookieSessionStorage, redirect } from \"@remix-run/node\";\nimport { prisma } from \"./db.server\";\nimport bcrypt from \"bcryptjs\";\n\nconst sessionStorage = createCookieSessionStorage({\n  cookie: {\n    name: \"__session\",\n    httpOnly: true,\n    maxAge: 60 * 60 * 24 * 30, // 30 days\n    path: \"/\",\n    sameSite: \"lax\",\n    secrets: [process.env.SESSION_SECRET!],\n    secure: process.env.NODE_ENV === \"production\",\n  },\n});\n\nexport async function createUserSession(userId: string, redirectTo: string) {\n  const session = await sessionStorage.getSession();\n  session.set(\"userId\", userId);\n  return redirect(redirectTo, {\n    headers: { \"Set-Cookie\": await sessionStorage.commitSession(session) },\n  });\n}\n\nexport async function requireUser(request: Request) {\n  const session = await sessionStorage.getSession(request.headers.get(\"Cookie\"));\n  const userId = session.get(\"userId\");\n  if (!userId) throw redirect(\"/login\");\n\n  const user = await prisma.user.findUnique({\n    where: { id: userId },\n    include: { organization: { include: { subscription: true } } },\n  });\n  if (!user) throw redirect(\"/login\");\n  return user;\n}\n\nexport async function login(email: string, password: string) {\n  const user = await prisma.user.findUnique({ where: { email } });\n  if (!user) return null;\n  const isValid = await bcrypt.compare(password, user.passwordHash);\n  return isValid ? user : null;\n}",
+        "filename": "app/lib/session.server.ts"
+      },
+      "tips": [
+        "The .server.ts suffix guarantees this file is never included in client bundles — Remix enforces this at build time.",
+        "Use bcrypt with a salt factor of 10-12 for password hashing — it is intentionally slow to resist brute force attacks."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Create the Login and Signup Routes",
+      "description": "Build login and signup pages using Remix actions for form handling. Remix actions receive the form data, validate it, and either return errors or redirect on success. Because this uses standard HTML forms, the authentication flow works without any client-side JavaScript — progressive enhancement at its best.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// app/routes/login.tsx\nimport type { ActionFunctionArgs, MetaFunction } from \"@remix-run/node\";\nimport { Form, useActionData } from \"@remix-run/react\";\nimport { login, createUserSession } from \"~/lib/session.server\";\n\nexport const meta: MetaFunction = () => [\n  { title: \"Login | My SaaS\" },\n];\n\nexport async function action({ request }: ActionFunctionArgs) {\n  const formData = await request.formData();\n  const email = String(formData.get(\"email\"));\n  const password = String(formData.get(\"password\"));\n\n  if (!email || !password) {\n    return { error: \"Email and password are required.\" };\n  }\n\n  const user = await login(email, password);\n  if (!user) {\n    return { error: \"Invalid email or password.\" };\n  }\n\n  return createUserSession(user.id, \"/dashboard\");\n}\n\nexport default function LoginPage() {\n  const actionData = useActionData<typeof action>();\n\n  return (\n    <main className=\"flex min-h-screen items-center justify-center\">\n      <Form method=\"post\" className=\"w-full max-w-sm space-y-4\">\n        <h1 className=\"text-2xl font-bold\">Login</h1>\n        {actionData?.error && (\n          <p className=\"text-sm text-red-600\">{actionData.error}</p>\n        )}\n        <input\n          type=\"email\"\n          name=\"email\"\n          placeholder=\"Email\"\n          required\n          className=\"w-full rounded border px-3 py-2\"\n        />\n        <input\n          type=\"password\"\n          name=\"password\"\n          placeholder=\"Password\"\n          required\n          className=\"w-full rounded border px-3 py-2\"\n        />\n        <button\n          type=\"submit\"\n          className=\"w-full rounded bg-black py-2 text-white hover:bg-gray-800\"\n        >\n          Sign in\n        </button>\n        <p className=\"text-center text-sm text-gray-600\">\n          Don't have an account? <a href=\"/signup\" className=\"text-blue-600\">Sign up</a>\n        </p>\n      </Form>\n    </main>\n  );\n}",
+        "filename": "app/routes/login.tsx"
+      }
+    },
+    {
+      "number": 5,
+      "title": "Build the Dashboard with Loaders",
+      "description": "Create a protected dashboard route using Remix loaders. The loader runs on every request, checks authentication, and fetches the user's data and subscription status. If the user is not authenticated, the loader redirects to login. Nested routes let you build a dashboard layout with sidebar navigation shared across all dashboard pages.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// app/routes/dashboard.tsx\nimport type { LoaderFunctionArgs } from \"@remix-run/node\";\nimport { Outlet, useLoaderData, NavLink } from \"@remix-run/react\";\nimport { requireUser } from \"~/lib/session.server\";\n\nexport async function loader({ request }: LoaderFunctionArgs) {\n  const user = await requireUser(request);\n  return {\n    user: {\n      name: user.name,\n      email: user.email,\n      plan: user.organization?.subscription?.status ?? \"free\",\n    },\n  };\n}\n\nexport default function DashboardLayout() {\n  const { user } = useLoaderData<typeof loader>();\n\n  return (\n    <div className=\"flex min-h-screen\">\n      <aside className=\"w-64 border-r bg-gray-50 p-6\">\n        <p className=\"mb-1 font-semibold\">{user.name}</p>\n        <p className=\"mb-6 text-sm text-gray-500\">{user.plan} plan</p>\n        <nav className=\"space-y-2\">\n          <NavLink to=\"/dashboard\" end className={({ isActive }) =>\n            `block rounded px-3 py-2 ${isActive ? \"bg-black text-white\" : \"hover:bg-gray-200\"}`\n          }>\n            Overview\n          </NavLink>\n          <NavLink to=\"/dashboard/settings\" className={({ isActive }) =>\n            `block rounded px-3 py-2 ${isActive ? \"bg-black text-white\" : \"hover:bg-gray-200\"}`\n          }>\n            Settings\n          </NavLink>\n          <NavLink to=\"/dashboard/billing\" className={({ isActive }) =>\n            `block rounded px-3 py-2 ${isActive ? \"bg-black text-white\" : \"hover:bg-gray-200\"}`\n          }>\n            Billing\n          </NavLink>\n        </nav>\n      </aside>\n      <main className=\"flex-1 p-8\">\n        <Outlet />\n      </main>\n    </div>\n  );\n}",
+        "filename": "app/routes/dashboard.tsx"
+      },
+      "tips": [
+        "Remix nested routes automatically share the parent layout — child routes render inside the <Outlet /> component.",
+        "Loaders run in parallel for nested routes, so parent and child data loading happens concurrently."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Integrate Stripe Billing with Actions",
+      "description": "Create a billing route that handles Stripe Checkout session creation using a Remix action. When users click 'Upgrade', the form submits to the action, which creates a Stripe Checkout session and redirects them to Stripe's hosted payment page. This pattern works without JavaScript because it uses standard HTTP redirects.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// app/routes/dashboard.billing.tsx\nimport type { ActionFunctionArgs, LoaderFunctionArgs } from \"@remix-run/node\";\nimport { Form, useLoaderData } from \"@remix-run/react\";\nimport { redirect } from \"@remix-run/node\";\nimport { requireUser } from \"~/lib/session.server\";\nimport Stripe from \"stripe\";\n\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);\n\nexport async function loader({ request }: LoaderFunctionArgs) {\n  const user = await requireUser(request);\n  return {\n    plan: user.organization?.subscription?.status ?? \"free\",\n    currentPeriodEnd: user.organization?.subscription?.currentPeriodEnd,\n  };\n}\n\nexport async function action({ request }: ActionFunctionArgs) {\n  const user = await requireUser(request);\n  const formData = await request.formData();\n  const priceId = String(formData.get(\"priceId\"));\n\n  const session = await stripe.checkout.sessions.create({\n    mode: \"subscription\",\n    payment_method_types: [\"card\"],\n    customer_email: user.email,\n    line_items: [{ price: priceId, quantity: 1 }],\n    success_url: `${process.env.APP_URL}/dashboard/billing?success=true`,\n    cancel_url: `${process.env.APP_URL}/dashboard/billing`,\n    metadata: { userId: user.id },\n  });\n\n  return redirect(session.url!);\n}\n\nexport default function BillingPage() {\n  const { plan, currentPeriodEnd } = useLoaderData<typeof loader>();\n\n  return (\n    <div>\n      <h2 className=\"text-2xl font-bold\">Billing</h2>\n      <p className=\"mt-2 text-gray-600\">\n        Current plan: <strong>{plan}</strong>\n      </p>\n      {plan === \"free\" ? (\n        <div className=\"mt-8 grid gap-4 md:grid-cols-2\">\n          <Form method=\"post\" className=\"rounded-lg border p-6\">\n            <h3 className=\"text-lg font-semibold\">Pro — $29/mo</h3>\n            <p className=\"mt-2 text-gray-600\">Unlimited projects, priority support.</p>\n            <input type=\"hidden\" name=\"priceId\" value=\"price_pro_monthly\" />\n            <button type=\"submit\" className=\"mt-4 rounded bg-black px-4 py-2 text-white\">\n              Upgrade to Pro\n            </button>\n          </Form>\n        </div>\n      ) : (\n        <p className=\"mt-4 text-sm text-gray-500\">\n          Renews on {new Date(currentPeriodEnd!).toLocaleDateString()}\n        </p>\n      )}\n    </div>\n  );\n}",
+        "filename": "app/routes/dashboard.billing.tsx"
+      },
+      "tips": [
+        "Remix actions use standard HTML forms, so billing upgrades work even if JavaScript fails to load.",
+        "Replace 'price_pro_monthly' with your actual Stripe Price ID from the Stripe Dashboard."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Handle Stripe Webhooks",
+      "description": "Create a resource route (no UI) that receives Stripe webhook events and updates subscription records in your database. Resource routes in Remix export only a loader or action without a default component, making them perfect for API endpoints like webhooks.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// app/routes/api.webhooks.stripe.ts\nimport type { ActionFunctionArgs } from \"@remix-run/node\";\nimport Stripe from \"stripe\";\nimport { prisma } from \"~/lib/db.server\";\n\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);\n\nexport async function action({ request }: ActionFunctionArgs) {\n  const payload = await request.text();\n  const signature = request.headers.get(\"stripe-signature\")!;\n\n  let event: Stripe.Event;\n  try {\n    event = stripe.webhooks.constructEvent(\n      payload,\n      signature,\n      process.env.STRIPE_WEBHOOK_SECRET!\n    );\n  } catch {\n    return new Response(\"Invalid signature\", { status: 400 });\n  }\n\n  switch (event.type) {\n    case \"customer.subscription.created\":\n    case \"customer.subscription.updated\": {\n      const sub = event.data.object as Stripe.Subscription;\n      await prisma.subscription.upsert({\n        where: { stripeSubscriptionId: sub.id },\n        update: {\n          status: sub.status,\n          stripePriceId: sub.items.data[0].price.id,\n          currentPeriodEnd: new Date(sub.current_period_end * 1000),\n        },\n        create: {\n          stripeSubscriptionId: sub.id,\n          organizationId: sub.metadata.organizationId!,\n          status: sub.status,\n          stripePriceId: sub.items.data[0].price.id,\n          currentPeriodEnd: new Date(sub.current_period_end * 1000),\n        },\n      });\n      break;\n    }\n    case \"customer.subscription.deleted\": {\n      const sub = event.data.object as Stripe.Subscription;\n      await prisma.subscription.update({\n        where: { stripeSubscriptionId: sub.id },\n        data: { status: \"canceled\" },\n      });\n      break;\n    }\n  }\n\n  return new Response(\"OK\", { status: 200 });\n}",
+        "filename": "app/routes/api.webhooks.stripe.ts"
+      },
+      "tips": [
+        "Remix resource routes with dot notation (api.webhooks.stripe) map to /api/webhooks/stripe.",
+        "Always verify the webhook signature to prevent spoofed events."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Deploy to Fly.io or Vercel",
+      "description": "Deploy your Remix SaaS to a production environment. Fly.io runs your app as a long-lived server (good for WebSockets and background jobs), while Vercel runs each route as a serverless function. Both work well with Remix — choose based on your architecture needs.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "# Option 1: Deploy to Fly.io\nnpm install -D @flydotio/dockerfile-node\nfly launch\nfly secrets set DATABASE_URL=\"...\"\nfly secrets set STRIPE_SECRET_KEY=\"...\"\nfly secrets set SESSION_SECRET=\"...\"\nfly deploy\n\n# Option 2: Deploy to Vercel\nnpm install @vercel/remix\nnpx vercel --prod"
+      },
+      "tips": [
+        "Fly.io is better for SaaS apps that need WebSockets, cron jobs, or long-running processes.",
+        "Run database migrations in your deployment pipeline, not manually: 'npx prisma migrate deploy'.",
+        "Set up Stripe webhook endpoints for both staging and production environments."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add team management with invite links and role-based permissions (admin, member, viewer).",
+    "Implement real-time features using Remix's defer and streaming for live dashboard updates.",
+    "Add transactional emails for onboarding sequences and billing notifications with Resend.",
+    "Build an API with resource routes for third-party integrations and mobile apps."
+  ],
+  "related_slugs": [
+    "build-a-saas-with-nextjs",
+    "build-a-dashboard-with-nextjs",
+    "build-a-realtime-app-with-supabase"
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "niche": "react",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "react-launch-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "React Launch Checklist: 32 Essential Steps",
+    "description": "Ship your React app confidently with this 32-step launch checklist. Covers build config, testing, accessibility, performance, security, and deployment.",
+    "keywords": [
+      "react launch checklist",
+      "react deployment checklist",
+      "react production readiness",
+      "react best practices",
+      "react go live",
+      "react app checklist"
+    ]
+  },
+  "introduction": "Launching a React application involves more than passing your test suite. From build optimization and error boundaries to accessibility compliance and security hardening, there are dozens of details that can make or break your launch. This 30-step checklist ensures your React app is production-grade across every dimension.",
+  "total_items": 32,
+  "estimated_time": "3-5 hours",
+  "sections": [
+    {
+      "name": "Build & Configuration",
+      "description": "Verify your React project is properly configured for a production build with no warnings or misconfigurations.",
+      "items": [
+        {
+          "id": "react-launch-1",
+          "text": "Run production build with zero errors and warnings",
+          "description": "Execute your build command and resolve every warning. Build warnings often indicate actual bugs — unused imports, missing keys, deprecated APIs — that manifest as runtime issues in production.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-2",
+          "text": "Enable React Strict Mode",
+          "description": "Wrap your root component with `<React.StrictMode>`. It double-invokes effects and renders in development to catch impure components, missing cleanup functions, and deprecated API usage before they cause production bugs.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-3",
+          "text": "Verify production environment variables",
+          "description": "Ensure all API URLs, feature flags, and configuration values are set for production. Check that development-only variables (debug flags, test API keys) are not leaking into the production bundle.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-4",
+          "text": "Remove all console.log statements and debug code",
+          "description": "Search for console.log, console.warn, debugger statements, and TODO comments. Use an ESLint rule like `no-console` set to error for production builds. Debug output in production leaks implementation details.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-5",
+          "text": "Configure source maps for production debugging",
+          "description": "Generate source maps during build but do not serve them publicly. Upload them to your error tracking service (Sentry, Bugsnag) so stack traces are readable. Use hidden-source-map mode in your bundler.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-6",
+          "text": "Set up path aliases for clean imports",
+          "description": "Configure `@/` or `~/` path aliases in your tsconfig.json and bundler config. This eliminates fragile relative imports like `../../../components/Button` and makes refactoring easier post-launch.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Error Handling & Resilience",
+      "description": "Make your app resilient to runtime errors, network failures, and edge cases that only appear in production.",
+      "items": [
+        {
+          "id": "react-launch-7",
+          "text": "Add Error Boundaries around critical UI sections",
+          "description": "Wrap major sections (sidebar, main content, widgets) with Error Boundaries so a crash in one section does not take down the entire page. Show a meaningful fallback UI with a retry button, not a white screen.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-8",
+          "text": "Handle loading and error states for all data fetches",
+          "description": "Every component that fetches data should handle loading (skeleton or spinner), error (retry button with error message), and empty (helpful empty state) scenarios. Use React Query or SWR for built-in state management.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-9",
+          "text": "Implement global error tracking",
+          "description": "Set up Sentry, Bugsnag, or similar to capture unhandled errors and promise rejections. Configure user context, breadcrumbs, and source maps. Set up alerts for new error types and error rate spikes.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-10",
+          "text": "Add offline detection and graceful degradation",
+          "description": "Listen for `online`/`offline` events and show a banner when the user loses connection. Queue failed requests for retry when connectivity returns. Use the `navigator.onLine` API for initial state.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "react-launch-11",
+          "text": "Test edge cases: empty data, long strings, special characters",
+          "description": "Test with empty arrays, null values, extremely long text, Unicode characters, and RTL text. These edge cases cause layout breaks, truncation bugs, and crashes that only appear with real user data.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Testing & Quality",
+      "description": "Verify your application works correctly across different scenarios, browsers, and devices before going live.",
+      "items": [
+        {
+          "id": "react-launch-12",
+          "text": "Achieve meaningful test coverage for critical paths",
+          "description": "Write integration tests for your core user flows — signup, login, checkout, main feature usage. Use React Testing Library for component tests that verify behavior, not implementation. Aim for 80% coverage on critical paths.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-13",
+          "text": "Run end-to-end tests with Playwright or Cypress",
+          "description": "Write E2E tests for your 5-10 most important user journeys. Run them against your staging environment before every release. E2E tests catch integration issues that unit tests miss — broken API contracts, auth flows, navigation.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-14",
+          "text": "Test across major browsers and devices",
+          "description": "Test on Chrome, Firefox, Safari, and Edge at minimum. Test on iOS Safari and Android Chrome for mobile. Use BrowserStack or LambdaTest for devices you do not have. Safari WebKit differences cause the most cross-browser bugs.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-15",
+          "text": "Verify all forms validate correctly",
+          "description": "Test every form with empty submissions, invalid email formats, too-short passwords, special characters, and SQL injection attempts. Verify that validation messages are clear and that the form prevents submission until all errors are fixed.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-16",
+          "text": "Run ESLint and TypeScript checks with zero errors",
+          "description": "Configure ESLint with `eslint-plugin-react-hooks` and `eslint-plugin-jsx-a11y`. Run `tsc --noEmit` to verify type safety. Both should be part of your CI pipeline and block deployments on failure.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Performance Optimization",
+      "description": "Optimize your React app's load time and runtime performance before real users hit it.",
+      "items": [
+        {
+          "id": "react-launch-17",
+          "text": "Code-split routes with React.lazy and Suspense",
+          "description": "Wrap route components with `React.lazy(() => import('./Page'))` and a `<Suspense>` boundary. This splits your bundle per route so users only download the code for the page they are visiting.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-18",
+          "text": "Optimize images with responsive srcsets",
+          "description": "Serve images at appropriate sizes for each viewport. Use `<picture>` with WebP/AVIF sources and fallback. Add `loading='lazy'` to below-the-fold images and `fetchpriority='high'` to hero images.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-19",
+          "text": "Audit and reduce bundle size",
+          "description": "Use `source-map-explorer` or `webpack-bundle-analyzer` to visualize your bundle. Target under 200KB gzipped for initial load. Look for large dependencies, duplicated packages, and unused exports.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-20",
+          "text": "Profile with React DevTools and fix performance issues",
+          "description": "Use the React DevTools Profiler to record user interactions and identify components that re-render unnecessarily. Fix with React.memo, useMemo, or by restructuring state to minimize re-render scope.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-21",
+          "text": "Preload critical assets",
+          "description": "Add `<link rel='preload'>` for fonts, critical CSS, and above-the-fold images. Use `<link rel='prefetch'>` for likely next-page resources. This tells the browser to start fetching before the rendering code requests them.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Security & Deployment",
+      "description": "Harden your application against common vulnerabilities and set up a reliable deployment pipeline.",
+      "items": [
+        {
+          "id": "react-launch-22",
+          "text": "Sanitize all user-generated content",
+          "description": "Never use `dangerouslySetInnerHTML` with unsanitized input. If you must render HTML, sanitize it with DOMPurify first. This prevents XSS attacks where attackers inject malicious scripts through form inputs or URL parameters.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-23",
+          "text": "Secure API communication with HTTPS and CORS",
+          "description": "Ensure all API requests use HTTPS. Configure your API's CORS policy to only allow requests from your production domain. Never use `Access-Control-Allow-Origin: *` in production.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-24",
+          "text": "Implement proper authentication token storage",
+          "description": "Store JWTs in httpOnly cookies, not localStorage. localStorage is accessible to any JavaScript on the page, including XSS payloads. HttpOnly cookies are invisible to client-side JavaScript.",
+          "difficulty": "advanced",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-25",
+          "text": "Set up CI/CD pipeline with automated checks",
+          "description": "Configure GitHub Actions to run lint, type-check, tests, and build on every PR. Add Lighthouse CI for performance regression detection. Block merges when any check fails.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-26",
+          "text": "Configure CDN caching with proper cache headers",
+          "description": "Set long cache TTLs (1 year) for hashed static assets (JS, CSS, images). Set short TTLs or no-cache for HTML files. This ensures users get updated HTML that references the latest asset hashes.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-27",
+          "text": "Run npm audit and fix vulnerabilities",
+          "description": "Execute `npm audit` and address all high and critical severity vulnerabilities. Use `npm audit fix` for compatible updates. For breaking changes, evaluate each package and update manually or find alternatives.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Final Pre-Launch Verification",
+      "description": "Last round of checks to catch anything missed in earlier stages.",
+      "items": [
+        {
+          "id": "react-launch-28",
+          "text": "Test all user flows end-to-end on staging",
+          "description": "Walk through every major user journey on your staging environment: registration, login, core features, payment, logout. Test on both mobile and desktop. Have someone outside the development team do this too.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-launch-29",
+          "text": "Verify analytics and tracking are firing correctly",
+          "description": "Open your analytics tool's real-time view and navigate through your staging site. Verify page views, events, and conversions are tracked. Missing analytics on launch day means losing data you can never recover.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-30",
+          "text": "Set up uptime and performance monitoring",
+          "description": "Configure uptime monitoring (Better Stack, UptimeRobot) and real-user monitoring (Sentry Performance, Datadog RUM). Set alert thresholds for response time degradation and error rate spikes.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-31",
+          "text": "Verify SEO essentials: meta tags, OG images, and canonical URLs",
+          "description": "Check every page for unique title tags, meta descriptions under 160 characters, Open Graph images for social sharing, and canonical URLs. Missing meta tags on launch day means search engines index incomplete information that is hard to correct later.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-launch-32",
+          "text": "Prepare a rollback plan and document the deployment process",
+          "description": "Write down the exact steps to revert to the previous version if something goes wrong. Include database migration rollbacks, feature flag toggles, and DNS changes. Under launch-day pressure, a documented rollback plan prevents panicked improvisation.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Create a staging environment that mirrors production exactly — same hosting, same environment variables, same third-party integrations. Test every deployment on staging before promoting to production.",
+    "Use feature flags (LaunchDarkly, Unleash, or a simple JSON config) to decouple deployment from release. Deploy code to production with features disabled, then enable them gradually.",
+    "Schedule your launch for a Tuesday or Wednesday morning, never Friday afternoon. You want maximum team availability if issues arise, and weekday traffic patterns help you spot anomalies quickly.",
+    "Keep a launch day runbook with step-by-step deployment instructions, rollback procedures, and emergency contacts. Under pressure, you will forget obvious steps.",
+    "Set up a dedicated Slack channel or war room for launch day. Centralize all communication — scattered discussions across DMs and threads cause confusion and slow response times."
+  ],
+  "related_slugs": [
+    "react-performance-checklist",
+    "react-accessibility-checklist",
+    "nextjs-launch-checklist"
+  ]
+}

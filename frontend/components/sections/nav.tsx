@@ -10,6 +10,7 @@ const menuLinks = [
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "/blog", label: "Blog" },
+  { href: "/resources", label: "Resources" },
   { href: "#contact", label: "Contact" },
 ];
 

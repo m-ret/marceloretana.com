@@ -1,0 +1,64 @@
+{
+  "types": [
+    {
+      "slug": "comparison",
+      "name": "Comparison",
+      "name_es": "Comparacion",
+      "route": "/compare",
+      "content_dir": "comparisons",
+      "description": "Side-by-side comparison of two tools, frameworks, or approaches",
+      "description_es": "Comparacion lado a lado de dos herramientas, frameworks o enfoques",
+      "title_template": {
+        "en": "{tool_a} vs {tool_b}: Which Is Better for {use_case} in 2026?",
+        "es": "{tool_a} vs {tool_b}: Cual Es Mejor para {use_case} en 2026?"
+      },
+      "target_pages": { "en": 30, "es": 30 },
+      "schema_org_type": "Product"
+    },
+    {
+      "slug": "checklist",
+      "name": "Checklist",
+      "name_es": "Checklist",
+      "route": "/checklist",
+      "content_dir": "checklists",
+      "description": "Interactive checklist with sections, items, and progress tracking",
+      "description_es": "Lista interactiva con secciones, items y seguimiento de progreso",
+      "title_template": {
+        "en": "{niche} {topic} Checklist: {count} Essential Steps",
+        "es": "Checklist de {topic} para {niche}: {count} Pasos Esenciales"
+      },
+      "target_pages": { "en": 50, "es": 50 },
+      "schema_org_type": "HowTo"
+    },
+    {
+      "slug": "resource",
+      "name": "Resource List",
+      "name_es": "Lista de Recursos",
+      "route": "/resources",
+      "content_dir": "resources",
+      "description": "Curated list of tools, libraries, or resources for a specific niche",
+      "description_es": "Lista curada de herramientas, bibliotecas o recursos para un nicho especifico",
+      "title_template": {
+        "en": "Best {category} for {niche} in 2026",
+        "es": "Mejores {category} para {niche} en 2026"
+      },
+      "target_pages": { "en": 100, "es": 100 },
+      "schema_org_type": "ItemList"
+    },
+    {
+      "slug": "stack",
+      "name": "Stack Guide",
+      "name_es": "Guia de Stack",
+      "route": "/learn",
+      "content_dir": "stacks",
+      "description": "Step-by-step guide to building a project with a specific technology stack",
+      "description_es": "Guia paso a paso para construir un proyecto con un stack tecnologico especifico",
+      "title_template": {
+        "en": "How to Build {project_type} with {stack}",
+        "es": "Como Construir {project_type} con {stack}"
+      },
+      "target_pages": { "en": 40, "es": 40 },
+      "schema_org_type": "HowTo"
+    }
+  ]
+}

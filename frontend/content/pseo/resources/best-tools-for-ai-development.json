@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "niche": "ai-development",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-tools-for-ai-development",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Tools for AI Development in 2026",
+    "description": "Top AI development tools for LLM integration, vector databases, prompt engineering, and AI-powered coding. Curated by engineers building AI products.",
+    "keywords": [
+      "ai development tools",
+      "llm tools",
+      "ai coding tools",
+      "vector database",
+      "prompt engineering",
+      "ai sdk",
+      "ai agent tools",
+      "rag tools"
+    ]
+  },
+  "introduction": "AI has moved from experimental to essential in software development — both as a tool developers use and as a capability they build into products. The landscape of AI development tools is evolving weekly, making it hard to know what's battle-tested versus hype. At GEXP Software, we integrate AI capabilities into client applications and use AI tools in our own workflow. These are the tools that deliver real value.",
+  "total_items": 26,
+  "categories": [
+    {
+      "name": "LLM SDKs & Frameworks",
+      "description": "Libraries and frameworks for integrating large language models into applications with structured output, streaming, and tool use.",
+      "items": [
+        {
+          "name": "Vercel AI SDK",
+          "description": "Unified TypeScript SDK for building AI-powered applications with React Server Components and streaming UI. Supports OpenAI, Anthropic, Google, and 20+ providers through a single API.",
+          "url": "https://sdk.vercel.ai",
+          "tags": ["sdk", "streaming", "react", "multi-provider", "typescript"],
+          "pricing": "open-source",
+          "highlight": "Stream AI responses directly into React Server Components"
+        },
+        {
+          "name": "LangChain.js",
+          "description": "JavaScript framework for building LLM applications with chains, agents, and RAG pipelines. Provides abstractions for common AI patterns while maintaining flexibility for custom implementations.",
+          "url": "https://js.langchain.com",
+          "tags": ["framework", "chains", "agents", "rag", "javascript"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Instructor",
+          "description": "Library for extracting structured data from LLMs using Zod schemas. Define the shape of your output in TypeScript and get validated, typed responses every time — no prompt parsing needed.",
+          "url": "https://instructor-ai.github.io/instructor-js",
+          "tags": ["structured-output", "zod", "validation", "typescript"],
+          "pricing": "open-source",
+          "highlight": "Define output schema with Zod — get validated structured data"
+        },
+        {
+          "name": "Anthropic SDK",
+          "description": "Official TypeScript SDK for Claude with streaming, tool use, and vision capabilities. Clean API design with full type safety for building applications powered by Claude models.",
+          "url": "https://github.com/anthropics/anthropic-sdk-typescript",
+          "tags": ["claude", "anthropic", "sdk", "streaming", "tools"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "OpenAI SDK",
+          "description": "Official Node.js library for the OpenAI API with streaming, function calling, and assistants support. The most widely-used LLM SDK with extensive documentation and examples.",
+          "url": "https://github.com/openai/openai-node",
+          "tags": ["openai", "gpt", "sdk", "assistants", "function-calling"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Mastra",
+          "description": "TypeScript framework for building AI agents and workflows with built-in tool calling, memory, and evaluation. Designed for production agent systems, not just chat interfaces.",
+          "url": "https://mastra.ai",
+          "tags": ["agents", "workflows", "tools", "typescript", "production"],
+          "pricing": "open-source",
+          "highlight": "Production-ready AI agent framework with built-in evaluation"
+        }
+      ]
+    },
+    {
+      "name": "Vector Databases & RAG",
+      "description": "Vector storage, embedding, and retrieval augmented generation tools for building knowledge-powered AI applications.",
+      "items": [
+        {
+          "name": "Pinecone",
+          "description": "Managed vector database purpose-built for AI applications with sub-100ms query latency at any scale. Handles embedding storage, similarity search, and metadata filtering without infrastructure management.",
+          "url": "https://www.pinecone.io",
+          "tags": ["vector-database", "managed", "similarity-search", "scalable"],
+          "pricing": "freemium",
+          "highlight": "Sub-100ms vector search at billion-scale with zero infrastructure"
+        },
+        {
+          "name": "Chroma",
+          "description": "Open-source embedding database that runs in-memory, locally, or in the cloud. The simplest way to add vector search to your application — pip install and go.",
+          "url": "https://www.trychroma.com",
+          "tags": ["vector-database", "open-source", "local", "simple"],
+          "pricing": "open-source",
+          "highlight": "Runs embedded in your app — no external service needed"
+        },
+        {
+          "name": "Supabase pgvector",
+          "description": "Vector similarity search built into Supabase's PostgreSQL using the pgvector extension. Store embeddings alongside your application data without adding another database.",
+          "url": "https://supabase.com/docs/guides/ai/vector-columns",
+          "tags": ["vector-search", "postgres", "supabase", "integrated"],
+          "pricing": "freemium",
+          "highlight": "Vector search in your existing Postgres — no new database"
+        },
+        {
+          "name": "LlamaIndex",
+          "description": "Data framework for connecting LLMs with your private data through indexing, retrieval, and query engines. Ingests documents, builds indexes, and answers questions over your knowledge base.",
+          "url": "https://www.llamaindex.ai",
+          "tags": ["rag", "indexing", "data-ingestion", "query-engine"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Unstructured",
+          "description": "Document processing library that extracts text and metadata from PDFs, images, HTML, Word docs, and 30+ file formats. The preprocessing step that makes RAG pipelines actually work with real-world documents.",
+          "url": "https://unstructured.io",
+          "tags": ["document-processing", "extraction", "pdf", "preprocessing"],
+          "pricing": "freemium",
+          "highlight": "Extract clean text from any document format for RAG pipelines"
+        }
+      ]
+    },
+    {
+      "name": "AI-Powered Coding Tools",
+      "description": "Tools that use AI to assist with code writing, review, debugging, and development workflows.",
+      "items": [
+        {
+          "name": "Claude Code",
+          "description": "Anthropic's agentic coding tool that operates directly in your terminal. Reads your codebase, makes multi-file changes, runs tests, and handles complex refactoring tasks autonomously.",
+          "url": "https://docs.anthropic.com/en/docs/claude-code",
+          "tags": ["coding-assistant", "terminal", "agentic", "anthropic"],
+          "pricing": "paid",
+          "highlight": "Agentic coding in your terminal with full codebase context"
+        },
+        {
+          "name": "GitHub Copilot",
+          "description": "AI pair programmer that suggests code completions, entire functions, and test cases as you type. Integrated into VS Code, JetBrains, and Neovim with workspace-aware context.",
+          "url": "https://github.com/features/copilot",
+          "tags": ["code-completion", "ide", "pair-programming", "suggestions"],
+          "pricing": "paid"
+        },
+        {
+          "name": "Cursor",
+          "description": "AI-native code editor built on VS Code with deep LLM integration. Features include codebase-aware chat, multi-file editing, and a compose mode that lets AI make changes across your project.",
+          "url": "https://cursor.com",
+          "tags": ["editor", "ai-native", "multi-file", "codebase-aware"],
+          "pricing": "freemium",
+          "highlight": "AI-native editor with codebase-wide understanding"
+        },
+        {
+          "name": "Codeium / Windsurf",
+          "description": "Free AI code completion and chat with support for 70+ languages. The Windsurf editor adds agentic capabilities with cascading actions that handle multi-step coding tasks.",
+          "url": "https://codeium.com",
+          "tags": ["code-completion", "free", "multi-language", "agentic"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Aider",
+          "description": "Terminal-based AI pair programmer that edits your local files with git integration. Supports multiple LLMs and automatically creates git commits for every change it makes.",
+          "url": "https://aider.chat",
+          "tags": ["terminal", "git-integration", "pair-programming", "multi-llm"],
+          "pricing": "open-source",
+          "highlight": "Auto-commits every AI change with meaningful messages"
+        }
+      ]
+    },
+    {
+      "name": "Prompt Engineering & Evaluation",
+      "description": "Tools for designing, testing, versioning, and evaluating LLM prompts and AI application outputs.",
+      "items": [
+        {
+          "name": "Langfuse",
+          "description": "Open-source LLM observability platform for tracing, evaluating, and debugging AI applications. See every prompt, completion, latency, and cost in a detailed trace view.",
+          "url": "https://langfuse.com",
+          "tags": ["observability", "tracing", "evaluation", "open-source"],
+          "pricing": "freemium",
+          "highlight": "Full trace visibility for every LLM call — prompts, completions, costs"
+        },
+        {
+          "name": "Braintrust",
+          "description": "AI evaluation and observability platform with human and AI-powered scoring, dataset management, and prompt playground. Ship AI features with confidence using systematic evaluation.",
+          "url": "https://www.braintrust.dev",
+          "tags": ["evaluation", "scoring", "datasets", "prompt-testing"],
+          "pricing": "freemium",
+          "highlight": "Systematic AI evaluation with human and automated scoring"
+        },
+        {
+          "name": "Helicone",
+          "description": "LLM proxy and observability layer that sits between your app and the LLM provider. Adds caching, rate limiting, cost tracking, and analytics without changing your code.",
+          "url": "https://www.helicone.ai",
+          "tags": ["proxy", "caching", "cost-tracking", "observability"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Promptfoo",
+          "description": "Open-source tool for testing and evaluating LLM prompts systematically. Define test cases, run them against multiple models, and compare results side-by-side in a web UI.",
+          "url": "https://www.promptfoo.dev",
+          "tags": ["testing", "evaluation", "comparison", "open-source"],
+          "pricing": "open-source",
+          "highlight": "Compare prompt performance across models side-by-side"
+        },
+        {
+          "name": "LangSmith",
+          "description": "LangChain's platform for debugging, testing, and monitoring LLM applications. Provides production-grade tracing with detailed latency breakdowns for every chain and agent step.",
+          "url": "https://smith.langchain.com",
+          "tags": ["debugging", "tracing", "monitoring", "langchain"],
+          "pricing": "freemium"
+        }
+      ]
+    },
+    {
+      "name": "AI Infrastructure & Deployment",
+      "description": "Tools for deploying, serving, and managing AI models and AI-powered applications in production.",
+      "items": [
+        {
+          "name": "Ollama",
+          "description": "Run open-source LLMs locally with a simple command-line interface. Download and run Llama, Mistral, Gemma, and dozens of other models on your machine for development and testing.",
+          "url": "https://ollama.com",
+          "tags": ["local-llm", "open-source", "self-hosted", "cli"],
+          "pricing": "open-source",
+          "highlight": "Run Llama, Mistral, and other LLMs locally with one command"
+        },
+        {
+          "name": "Replicate",
+          "description": "Cloud platform for running open-source AI models via API. Run Stable Diffusion, Whisper, LLaMA, and thousands of other models without managing GPU infrastructure.",
+          "url": "https://replicate.com",
+          "tags": ["model-hosting", "api", "gpu", "open-source-models"],
+          "pricing": "paid"
+        },
+        {
+          "name": "Hugging Face",
+          "description": "The central hub for AI models, datasets, and spaces. Host models, share datasets, and deploy ML applications. Its Transformers.js library brings model inference directly to the browser.",
+          "url": "https://huggingface.co",
+          "tags": ["model-hub", "datasets", "community", "deployment"],
+          "pricing": "freemium",
+          "highlight": "Largest open-source AI model hub with 500K+ models"
+        },
+        {
+          "name": "Together AI",
+          "description": "Fast inference platform for open-source LLMs with OpenAI-compatible API. Run Llama, Mixtral, and other models at scale with competitive pricing and low latency.",
+          "url": "https://www.together.ai",
+          "tags": ["inference", "api", "open-source-models", "fast"],
+          "pricing": "paid"
+        },
+        {
+          "name": "Modal",
+          "description": "Serverless cloud for running GPU workloads — fine-tuning, batch inference, and custom model serving. Write Python functions and they run on GPUs in the cloud with automatic scaling.",
+          "url": "https://modal.com",
+          "tags": ["gpu-cloud", "serverless", "fine-tuning", "batch-inference"],
+          "pricing": "paid",
+          "highlight": "Serverless GPU functions — deploy with a Python decorator"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-tools-for-nextjs",
+    "best-libraries-for-typescript",
+    "best-tools-for-nodejs",
+    "best-tools-for-supabase"
+  ]
+}

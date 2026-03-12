@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "comparison",
+    "locale": "en",
+    "slug": "nextjs-vs-nuxt",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Next.js vs Nuxt: Which Is Better for Web Development in 2026?",
+    "description": "Next.js (React) vs Nuxt (Vue) — a practical comparison covering performance, DX, ecosystem, and which framework fits your project and team best.",
+    "keywords": [
+      "next.js vs nuxt",
+      "nuxt vs nextjs",
+      "react vs vue framework",
+      "best web framework 2026",
+      "nuxt 4 vs next.js"
+    ]
+  },
+  "tools": [
+    {
+      "name": "Next.js",
+      "slug": "nextjs",
+      "tagline": "The React framework for production web applications",
+      "website": "https://nextjs.org",
+      "category": "Full-Stack React Framework"
+    },
+    {
+      "name": "Nuxt",
+      "slug": "nuxt",
+      "tagline": "The intuitive Vue framework for full-stack web apps",
+      "website": "https://nuxt.com",
+      "category": "Full-Stack Vue Framework"
+    }
+  ],
+  "introduction": "Next.js and Nuxt are the premier meta-frameworks for React and Vue respectively. They solve the same problem — making it easy to build performant, SEO-friendly, full-stack web applications — but inherit fundamentally different component models. Choosing between them often means choosing between React and Vue, which shapes everything from how you write components to who you can hire. In 2026, both are mature, production-ready, and used by major companies worldwide.",
+  "categories": [
+    {
+      "name": "Performance",
+      "criteria": [
+        {
+          "criterion": "Server-Side Rendering",
+          "tool_a": {
+            "score": 9,
+            "detail": "React Server Components eliminate client-side hydration for server-only code. Streaming SSR delivers content progressively. The RSC model is innovative but complex to reason about."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Universal rendering with hybrid mode (SSR + SWR caching). Nuxt 4's rendering engine is fast and predictable. No RSC equivalent, but the simpler hydration model avoids many of Next.js's gotchas."
+          }
+        },
+        {
+          "criterion": "Client-Side Bundle Size",
+          "tool_a": {
+            "score": 7,
+            "detail": "React's runtime is ~42KB gzipped. Server Components help reduce client JS, but any interactive component still ships React. Tree-shaking is good but the baseline is higher."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Vue 3's runtime is ~33KB gzipped with better tree-shaking. The Composition API compiles more efficiently than hooks. Auto-imports mean you only ship what you use."
+          }
+        },
+        {
+          "criterion": "Static Generation",
+          "tool_a": {
+            "score": 9,
+            "detail": "ISR (Incremental Static Regeneration) is unique to Next.js — regenerate pages in the background without full rebuilds. generateStaticParams handles dynamic routes at build time."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "nuxt generate creates fully static sites. Route rules allow per-route rendering strategies (SSR, SWR, static, prerender). Hybrid rendering is flexible but ISR requires Vercel or Netlify-specific config."
+          }
+        },
+        {
+          "criterion": "Image Optimization",
+          "tool_a": {
+            "score": 9,
+            "detail": "next/image is battle-tested: automatic WebP/AVIF, lazy loading, blur placeholders, responsive srcsets. Works best with Vercel's image CDN but self-hostable."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Nuxt Image provides similar features via nuxt-img and nuxt-picture components. Supports IPX (self-hosted), Cloudinary, Imgix, and other providers. Slightly less polished than Next.js's solution."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Developer Experience",
+      "criteria": [
+        {
+          "criterion": "Learning Curve",
+          "tool_a": {
+            "score": 5,
+            "detail": "React itself has a moderate learning curve, but Next.js App Router adds significant complexity. Server vs Client Components, caching strategies, and server actions create many decision points."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Vue is widely considered easier to learn than React. Nuxt's conventions (auto-imports, file-based routing, composables directory) reduce boilerplate. The mental model is more straightforward."
+          }
+        },
+        {
+          "criterion": "Auto-Imports & Conventions",
+          "tool_a": {
+            "score": 6,
+            "detail": "No auto-imports — you explicitly import React hooks, components, and utilities. This is more verbose but makes dependencies explicit. Some teams prefer this clarity."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Auto-imports everything: Vue APIs, composables, components, and utilities. Zero import statements needed in most files. The components/ and composables/ directories are auto-scanned."
+          }
+        },
+        {
+          "criterion": "DevTools",
+          "tool_a": {
+            "score": 8,
+            "detail": "React DevTools is mature and widely used. Next.js adds build analysis, route debugging, and Turbopack integration. The ecosystem of debugging tools is extensive."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Nuxt DevTools is exceptional — inspect routes, components, composables, state, API calls, and config in a unified panel. Vue DevTools v7 with the timeline and component inspector is best-in-class."
+          }
+        },
+        {
+          "criterion": "Module Ecosystem",
+          "tool_a": {
+            "score": 7,
+            "detail": "No official plugin/module system. You configure features manually via next.config.js, middleware, and third-party packages. This is flexible but means more setup for common features."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Nuxt Modules are a killer feature. One-line installation of auth, i18n, content, SEO, analytics, and 200+ community modules. nuxi module add handles everything — config changes included."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ecosystem & Community",
+      "criteria": [
+        {
+          "criterion": "Job Market & Hiring",
+          "tool_a": {
+            "score": 10,
+            "detail": "React dominates the job market. Next.js is the most requested React framework in job listings. Finding developers with Next.js experience is significantly easier than any alternative."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Vue has a strong community but smaller job market outside of Asia and Europe. Nuxt jobs exist but are far fewer than Next.js positions. Hiring Vue developers is harder in North America."
+          }
+        },
+        {
+          "criterion": "Third-Party Libraries",
+          "tool_a": {
+            "score": 10,
+            "detail": "The React ecosystem is unmatched: shadcn/ui, Radix, TanStack, tRPC, Clerk, thousands of battle-tested libraries. Nearly every SaaS provides a React SDK first."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Vue has quality libraries (VueUse, PrimeVue, Vuetify) but fewer options. Some React-first libraries have Vue ports, but they often lag behind. The gap has narrowed but still exists."
+          }
+        },
+        {
+          "criterion": "Corporate Backing & Longevity",
+          "tool_a": {
+            "score": 9,
+            "detail": "Backed by Vercel with significant VC funding. React itself is maintained by Meta. Next.js is used by Netflix, TikTok, Nike, and major enterprises. Long-term stability is not a concern."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Maintained by the NuxtLabs team and funded through NuxtLabs (raised $2M). Vue is primarily maintained by Evan You's team. Smaller than Meta/Vercel but sustainable and community-driven."
+          }
+        },
+        {
+          "criterion": "Documentation",
+          "tool_a": {
+            "score": 8,
+            "detail": "Comprehensive docs that cover everything but can be overwhelming. The App Router and Pages Router having separate docs sections adds confusion for newcomers."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Excellent, well-organized documentation with clear examples. The Nuxt docs follow Vue's tradition of being beginner-friendly. Migration guides and upgrade tooling are well-maintained."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Use Case Fit",
+      "criteria": [
+        {
+          "criterion": "Enterprise Applications",
+          "tool_a": {
+            "score": 9,
+            "detail": "The default choice for enterprise React apps. Strong TypeScript support, mature auth solutions, and proven at massive scale. Most enterprise teams already have React expertise."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Capable of enterprise work — GitLab's frontend is Vue. But fewer enterprise-specific libraries, smaller talent pool, and some resistance from CTOs who default to React."
+          }
+        },
+        {
+          "criterion": "Startup MVPs",
+          "tool_a": {
+            "score": 8,
+            "detail": "Fast to prototype with extensive starter templates and Vercel integration. But the complexity of App Router can slow down small teams unfamiliar with the patterns."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Nuxt's conventions and auto-imports let you ship faster. Less boilerplate, simpler mental model. A solo developer or small team can move very quickly with Nuxt."
+          }
+        },
+        {
+          "criterion": "Content-Heavy Sites",
+          "tool_a": {
+            "score": 7,
+            "detail": "Works with headless CMS integrations but has no built-in content management. You need to choose and configure a CMS, MDX pipeline, or custom solution."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Nuxt Content is excellent — file-based CMS with Markdown/YAML, MongoDB-like query API, full-text search, and automatic navigation generation. Ideal for docs and blog sites."
+          }
+        },
+        {
+          "criterion": "E-commerce",
+          "tool_a": {
+            "score": 9,
+            "detail": "Strong e-commerce story: Vercel Commerce, Shopify Hydrogen integration, Saleor, Medusa. ISR is perfect for product catalogs that update frequently."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Works for e-commerce but fewer dedicated solutions. Shopify and Medusa have Vue integrations but they're not as polished as their React counterparts."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "Next.js for ecosystem, Nuxt for developer experience",
+    "best_for": {
+      "developer experience": "Nuxt",
+      "learning curve": "Nuxt",
+      "job market": "Next.js",
+      "enterprise applications": "Next.js",
+      "rapid prototyping": "Nuxt",
+      "e-commerce": "Next.js",
+      "content sites": "Nuxt",
+      "third-party integrations": "Next.js"
+    },
+    "summary": "This comparison is really React vs Vue with extra steps. Next.js wins on ecosystem size, job market, and enterprise adoption — if your team knows React, it's the obvious choice. Nuxt wins on developer experience, learning curve, and convention-over-configuration productivity — if you're starting fresh or have a small team, Nuxt lets you ship faster with less ceremony. Both are production-ready and used by large companies. The best choice depends more on your team's existing skills than on technical merit."
+  },
+  "related_slugs": ["nextjs-vs-astro", "nextjs-vs-remix", "react-vs-vue"]
+}

@@ -6,6 +6,41 @@ const config = {
   changefreq: "weekly",
   priority: 0.7,
   exclude: ["/api/*"],
+  additionalPaths: async (config) => {
+    const fs = require("fs");
+    const path = require("path");
+    const PSEO_DIR = path.join(process.cwd(), "content/pseo");
+
+    function getSlugs(contentDir) {
+      const dir = path.join(PSEO_DIR, contentDir);
+      if (!fs.existsSync(dir)) return [];
+      return fs
+        .readdirSync(dir)
+        .filter((f) => f.endsWith(".json"))
+        .map((f) => f.replace(/\.json$/, ""));
+    }
+
+    const routes = [
+      { contentDir: "comparisons", routePrefix: "/compare" },
+      { contentDir: "checklists", routePrefix: "/checklist" },
+      { contentDir: "resources", routePrefix: "/resources" },
+      { contentDir: "stacks", routePrefix: "/learn" },
+    ];
+
+    const paths = [];
+    for (const { contentDir, routePrefix } of routes) {
+      const slugs = getSlugs(contentDir);
+      for (const slug of slugs) {
+        paths.push({
+          loc: `${routePrefix}/${slug}`,
+          changefreq: "weekly",
+          priority: 0.7,
+          lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+        });
+      }
+    }
+    return paths;
+  },
   robotsTxtOptions: {
     policies: [
       {
@@ -60,6 +95,17 @@ const config = {
       changefreq = "daily";
     } else if (path.startsWith("/blog/")) {
       priority = 0.8;
+      changefreq = "weekly";
+    } else if (path === "/resources") {
+      priority = 0.8;
+      changefreq = "weekly";
+    } else if (
+      path.startsWith("/compare/") ||
+      path.startsWith("/checklist/") ||
+      path.startsWith("/resources/") ||
+      path.startsWith("/learn/")
+    ) {
+      priority = 0.7;
       changefreq = "weekly";
     }
 

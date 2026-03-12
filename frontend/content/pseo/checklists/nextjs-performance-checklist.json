@@ -1,0 +1,264 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "nextjs-performance-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Next.js Performance Checklist: 28 Essential Steps",
+    "description": "Optimize your Next.js app speed with this 28-step performance checklist. Covers bundle size, rendering strategies, caching, images, and Core Web Vitals.",
+    "keywords": [
+      "nextjs performance checklist",
+      "next.js performance optimization",
+      "nextjs speed optimization",
+      "nextjs bundle size",
+      "nextjs core web vitals",
+      "react performance",
+      "nextjs caching"
+    ]
+  },
+  "introduction": "A fast Next.js application is not just about user experience — it directly impacts SEO rankings, conversion rates, and bounce rates. Every 100ms of load time improvement can increase conversions by up to 1%. This checklist covers every performance lever available in Next.js, from rendering strategies and caching to image optimization and bundle analysis.",
+  "total_items": 28,
+  "estimated_time": "3-4 hours",
+  "sections": [
+    {
+      "name": "Rendering & Data Fetching",
+      "description": "Choose the right rendering strategy for each page to minimize server response times and maximize cacheability.",
+      "items": [
+        {
+          "id": "nextjs-perf-1",
+          "text": "Use Server Components by default, Client Components only when needed",
+          "description": "Server Components send zero JavaScript to the browser. Only add 'use client' for components that need interactivity (onClick, useState, useEffect). Moving a component from client to server can reduce its JavaScript cost to zero bytes.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-perf-2",
+          "text": "Implement static generation for content pages",
+          "description": "Use `generateStaticParams` to pre-render pages at build time. Static pages are served from CDN cache with near-zero TTFB. Even pages with periodic updates should use ISR with `revalidate` rather than full server rendering.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-perf-3",
+          "text": "Enable Partial Prerendering for mixed static/dynamic pages",
+          "description": "Use PPR (Next.js 14+) to statically render the shell of a page while streaming dynamic parts. Wrap dynamic content in `<Suspense>` boundaries. This gives CDN-speed initial loads with real-time data where needed.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-perf-4",
+          "text": "Add Suspense boundaries for streaming",
+          "description": "Wrap slow data-fetching components in `<Suspense>` with meaningful fallback UIs. This lets Next.js stream the page shell immediately while expensive database queries or API calls complete, dramatically improving perceived load time.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-5",
+          "text": "Parallelize independent data fetches",
+          "description": "Use `Promise.all()` for data fetches that don't depend on each other. Sequential fetches in a Server Component create a waterfall — three 200ms fetches in sequence take 600ms, but in parallel only 200ms.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-6",
+          "text": "Avoid unnecessary dynamic rendering",
+          "description": "Check your build output for pages marked as 'dynamic'. Functions like `cookies()`, `headers()`, and unscoped `searchParams` force dynamic rendering. Move these calls to the smallest possible component wrapped in Suspense.",
+          "difficulty": "advanced",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Bundle Size & Code Splitting",
+      "description": "Reduce the amount of JavaScript shipped to the browser to improve load times and interactivity.",
+      "items": [
+        {
+          "id": "nextjs-perf-7",
+          "text": "Analyze your bundle with @next/bundle-analyzer",
+          "description": "Add `@next/bundle-analyzer` to your project and run `ANALYZE=true next build`. Look for dependencies over 50KB, duplicate packages, and code that should be lazy-loaded. This visual treemap reveals optimization opportunities invisible in code.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-perf-8",
+          "text": "Dynamic import heavy client components",
+          "description": "Use `next/dynamic` for components like charts (recharts: 200KB+), code editors (Monaco: 5MB+), maps (Leaflet: 140KB+), and rich text editors. Add `{ loading: () => <Skeleton /> }` to show placeholder UI during load.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-perf-9",
+          "text": "Replace large libraries with lighter alternatives",
+          "description": "Swap moment.js (300KB) for date-fns (tree-shakeable) or dayjs (2KB). Replace lodash (72KB) with individual lodash-es imports. Use bundlephobia.com to compare package sizes before adding new dependencies.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-10",
+          "text": "Enable tree shaking for all imports",
+          "description": "Use named imports (`import { Button } from 'ui-lib'`) instead of default imports of entire modules. Verify your dependencies support ES modules. Add `sideEffects: false` to your package.json if your code has no import side effects.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-11",
+          "text": "Audit and remove unused dependencies",
+          "description": "Run `npx depcheck` to find unused packages in your project. Remove them from package.json. Unused dependencies still affect install time, and some may contribute dead code if they are imported indirectly.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Image & Asset Optimization",
+      "description": "Optimize images, fonts, and static assets — often the largest payload on any web page.",
+      "items": [
+        {
+          "id": "nextjs-perf-12",
+          "text": "Use next/image for all images",
+          "description": "The `next/image` component automatically resizes, converts to WebP/AVIF, and lazy-loads images. Set `sizes` prop to match your layout breakpoints so the browser downloads only the size it needs.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-perf-13",
+          "text": "Mark above-the-fold images with priority prop",
+          "description": "Add `priority` to your hero image and any images visible without scrolling. This disables lazy loading and adds a preload hint, ensuring these images load as fast as possible. Only use on 1-2 images per page.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-perf-14",
+          "text": "Self-host fonts with next/font",
+          "description": "Use `next/font/google` or `next/font/local` to self-host fonts. This eliminates the render-blocking request to Google Fonts, adds automatic font subsetting, and applies `font-display: swap` for zero layout shift.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-15",
+          "text": "Optimize SVG assets",
+          "description": "Run SVGs through SVGO to remove unnecessary metadata and reduce file size by 20-60%. For icons, consider using an SVG sprite or an icon library like Lucide that tree-shakes unused icons.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-perf-16",
+          "text": "Configure image CDN for external images",
+          "description": "Add trusted image domains to `images.remotePatterns` in next.config.js. For CMS-hosted images, consider using a dedicated image CDN like Cloudinary or imgix that handles format conversion and resizing at the edge.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Caching & Revalidation",
+      "description": "Leverage Next.js caching layers to minimize redundant work and serve responses as fast as possible.",
+      "items": [
+        {
+          "id": "nextjs-perf-17",
+          "text": "Configure fetch cache strategies per request",
+          "description": "Use `{ cache: 'force-cache' }` for rarely-changing data and `{ next: { revalidate: 3600 } }` for hourly updates. Avoid `{ cache: 'no-store' }` unless data must be real-time — it bypasses all caching layers.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-perf-18",
+          "text": "Implement on-demand revalidation with revalidateTag",
+          "description": "Tag your fetch requests with `{ next: { tags: ['products'] } }` and call `revalidateTag('products')` from a webhook when CMS content updates. This gives you instant content updates without sacrificing cache performance.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-19",
+          "text": "Use React cache() for request deduplication",
+          "description": "Wrap data-fetching functions with React's `cache()` to deduplicate identical requests within a single render pass. If three components need the same user data, the database query runs only once.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-20",
+          "text": "Set appropriate Cache-Control headers for static assets",
+          "description": "Next.js automatically adds immutable cache headers to hashed static assets. For custom API routes returning cacheable data, manually set `Cache-Control: public, s-maxage=3600, stale-while-revalidate=86400` headers.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-perf-21",
+          "text": "Implement unstable_cache for database queries",
+          "description": "Use `unstable_cache` (or the stable version when available) to cache ORM/database query results in the Next.js data cache. Tag cached queries for on-demand revalidation when the underlying data changes.",
+          "difficulty": "advanced",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Core Web Vitals & Runtime Performance",
+      "description": "Monitor and optimize the metrics that Google uses as ranking signals and that directly impact user experience.",
+      "items": [
+        {
+          "id": "nextjs-perf-22",
+          "text": "Measure real-user Core Web Vitals with web-vitals library",
+          "description": "Use the `web-vitals` library or Vercel Speed Insights to collect real-user LCP, INP, and CLS data. Lab tests alone miss device-specific and network-specific performance issues that real users experience.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-perf-23",
+          "text": "Optimize Interaction to Next Paint (INP)",
+          "description": "Audit click and input handlers for long-running synchronous work. Use `useTransition` for non-urgent updates, `useDeferredValue` for expensive re-renders, and `requestIdleCallback` for background work. Target INP under 200ms.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-24",
+          "text": "Prevent layout shifts from dynamic content",
+          "description": "Reserve space for images with `width`/`height` props, ads with min-height CSS, and skeleton loaders that match final content dimensions. Use `transform` animations instead of properties that trigger layout recalculation.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-25",
+          "text": "Defer non-critical third-party scripts",
+          "description": "Load analytics, chat widgets, A/B testing, and social embeds with `next/script strategy='lazyOnload'`. This delays their execution until after the page is fully interactive, keeping your main thread free for user interactions.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-perf-26",
+          "text": "Use React.memo and useMemo strategically",
+          "description": "Profile with React DevTools Profiler before memoizing. Wrap expensive list renders and complex calculations with `useMemo`. Use `React.memo` for components that re-render with the same props. Avoid premature optimization — memoization has its own cost.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-perf-27",
+          "text": "Implement virtualized lists for large datasets",
+          "description": "Use `@tanstack/react-virtual` or `react-window` for lists with 100+ items. Virtualization renders only visible items, reducing DOM nodes from thousands to dozens and keeping scroll performance smooth.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-perf-28",
+          "text": "Set up performance budgets in CI",
+          "description": "Use Lighthouse CI or bundlewatch to enforce performance budgets on every PR. Set thresholds for JavaScript bundle size (e.g., max 250KB gzipped), Lighthouse performance score (e.g., min 90), and LCP (e.g., max 2.5s).",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Start your performance work by profiling with Chrome DevTools Performance tab, not by guessing. The bottleneck is rarely where you think it is — measure first, then optimize.",
+    "Use Vercel's Speed Insights or the web-vitals library to track real-user metrics. Lab benchmarks like Lighthouse miss real-world conditions like slow 3G networks and low-end Android devices.",
+    "The single highest-impact performance optimization in most Next.js apps is moving components from Client to Server Components. Audit every 'use client' directive and ask if it is truly necessary.",
+    "Set up @next/bundle-analyzer as part of your regular development workflow. Check it before and after adding any new dependency to understand the bundle size impact immediately."
+  ],
+  "related_slugs": [
+    "nextjs-launch-checklist",
+    "nextjs-seo-checklist",
+    "react-performance-checklist"
+  ]
+}

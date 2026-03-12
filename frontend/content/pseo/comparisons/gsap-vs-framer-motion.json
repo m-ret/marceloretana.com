@@ -1,0 +1,263 @@
+{
+  "meta": {
+    "niche": "animation",
+    "type": "comparison",
+    "locale": "en",
+    "slug": "gsap-vs-framer-motion",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "GSAP vs Framer Motion: Which Is Better for Web Animation in 2026?",
+    "description": "GSAP vs Framer Motion compared on animation power, React integration, performance, and learning curve. Find the right animation library for your project.",
+    "keywords": [
+      "gsap vs framer motion",
+      "framer motion vs gsap",
+      "best web animation library 2026",
+      "react animation library",
+      "gsap or framer motion"
+    ]
+  },
+  "tools": [
+    {
+      "name": "GSAP",
+      "slug": "gsap",
+      "tagline": "Professional-grade JavaScript animation for the modern web",
+      "website": "https://gsap.com",
+      "category": "Animation Library"
+    },
+    {
+      "name": "Framer Motion",
+      "slug": "framer-motion",
+      "tagline": "A production-ready motion library for React",
+      "website": "https://motion.dev",
+      "category": "React Animation Library"
+    }
+  ],
+  "introduction": "GSAP and Framer Motion are the two most popular animation libraries for web development, but they serve different audiences. GSAP is a framework-agnostic powerhouse used by award-winning agencies and creative studios for complex, timeline-based animations. Framer Motion (now just Motion) is React-native, declarative, and designed for UI transitions and micro-interactions. Your choice depends on whether you're building a creative showcase or a polished product interface.",
+  "categories": [
+    {
+      "name": "Animation Power & Flexibility",
+      "criteria": [
+        {
+          "criterion": "Timeline & Sequencing",
+          "tool_a": {
+            "score": 10,
+            "detail": "GSAP Timeline is unmatched for complex sequenced animations. Nest timelines, use relative positioning ('+=0.5', '<'), label-based jumping, and scrub through timelines with ScrollTrigger. Hollywood-level choreography."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "No built-in timeline concept. AnimatePresence handles enter/exit. You can sequence with delays and orchestrate children, but complex multi-element choreography requires manual coordination with stagger arrays."
+          }
+        },
+        {
+          "criterion": "Scroll-Driven Animation",
+          "tool_a": {
+            "score": 10,
+            "detail": "ScrollTrigger is the industry standard for scroll-based animation. Pin elements, scrub through animations, snap to sections, parallax effects, horizontal scrolling. No other library comes close to its scroll capabilities."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "useScroll and useTransform provide basic scroll-linked animations. whileInView triggers viewport-based animations. Functional for simple scroll effects but can't match ScrollTrigger for complex scroll narratives."
+          }
+        },
+        {
+          "criterion": "SVG & Path Animation",
+          "tool_a": {
+            "score": 10,
+            "detail": "DrawSVG, MorphSVG, and MotionPath plugins handle sophisticated SVG animation: draw paths, morph between shapes, animate along curves. These plugins are used in production by Disney, Nike, and major brands."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Basic SVG animation via style properties (pathLength, opacity, transforms). No built-in morphing or draw-on effects. Complex SVG work requires combining Motion with manual SVG manipulation."
+          }
+        },
+        {
+          "criterion": "Physics-Based Animation",
+          "tool_a": {
+            "score": 6,
+            "detail": "Supports easing functions and some physics-like behavior with CustomEase and Inertia plugin. But true spring physics and gesture-based physics aren't GSAP's strength — you'd use CSS or another library."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Spring physics is a first-class primitive. type='spring' with configurable stiffness, damping, and mass. Gesture-driven physics (drag with momentum, snap to points) feels natural. This is Framer Motion's core strength."
+          }
+        },
+        {
+          "criterion": "3D & WebGL Integration",
+          "tool_a": {
+            "score": 9,
+            "detail": "Animates any JavaScript property — works seamlessly with Three.js, PixiJS, and Canvas. GSAP doesn't care about the rendering target. gsap.to(mesh.position, {x: 5}) just works with Three.js objects."
+          },
+          "tool_b": {
+            "score": 4,
+            "detail": "Designed for DOM elements. Works with React Three Fiber through community adapters but it's not natural. For WebGL/Canvas animation, you're fighting the library's React-DOM assumptions."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Developer Experience",
+      "criteria": [
+        {
+          "criterion": "React Integration",
+          "tool_a": {
+            "score": 6,
+            "detail": "useGSAP hook and gsap.context() handle React lifecycle cleanup. Works but requires understanding refs, cleanup patterns, and when to use useLayoutEffect vs useEffect. Not declarative — imperative by nature."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Built for React. <motion.div> is a drop-in replacement for <div>. animate, initial, exit, whileHover — all declarative props. AnimatePresence for mount/unmount. No refs, no cleanup, no imperative code needed."
+          }
+        },
+        {
+          "criterion": "Learning Curve",
+          "tool_a": {
+            "score": 6,
+            "detail": "Simple API for basic animations (gsap.to, gsap.from), but mastering timelines, ScrollTrigger, and the plugin ecosystem takes weeks. The documentation is thorough but the surface area is large."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Trivially easy for basic animations — add animate={{opacity: 1}} to a motion.div. Intermediate features (layout animations, shared layout) are well-documented. Advanced patterns are achievable within days."
+          }
+        },
+        {
+          "criterion": "Layout Animations",
+          "tool_a": {
+            "score": 5,
+            "detail": "No built-in layout animation. FLIP (First-Last-Invert-Play) animations require Flip plugin and manual orchestration. Animating between CSS layouts (e.g., grid reordering) takes significant effort."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "layout prop on motion components automatically animates between layout states. Reorder a list, toggle between grid and list view, expand a card — add layout and it animates smoothly. Magic."
+          }
+        },
+        {
+          "criterion": "Bundle Size",
+          "tool_a": {
+            "score": 7,
+            "detail": "Core GSAP is ~24KB gzipped. Adding ScrollTrigger (~10KB), DrawSVG, and other plugins increases the footprint. Tree-shaking works but most projects use enough features that the full bundle ships."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "~33KB gzipped for the full bundle. The new Motion (v11+) broke out into smaller packages and improved tree-shaking significantly. Still, for simple animations, it's a hefty library to ship."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Performance",
+      "criteria": [
+        {
+          "criterion": "Animation Frame Performance",
+          "tool_a": {
+            "score": 10,
+            "detail": "GSAP's ticker is hand-optimized for 60fps animation. Batches DOM reads/writes, uses requestAnimationFrame efficiently, and avoids layout thrashing. 20+ years of performance optimization by GreenSock."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Good performance for typical UI animations. Spring animations can be computationally expensive with many simultaneous elements. Complex layout animations occasionally drop frames on lower-end devices."
+          }
+        },
+        {
+          "criterion": "Many Simultaneous Animations",
+          "tool_a": {
+            "score": 10,
+            "detail": "Handles hundreds of simultaneous tweens without breaking a sweat. Particle systems, data visualizations, and complex multi-element animations run smoothly. This is what GSAP was built for."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Performance degrades with many simultaneous spring animations (50+). Each motion component creates its own animation loop. For particle-like effects or large stagger groups, GSAP is significantly faster."
+          }
+        },
+        {
+          "criterion": "Server-Side Rendering Compatibility",
+          "tool_a": {
+            "score": 5,
+            "detail": "GSAP animations run client-side only. In Next.js, you must use 'use client' directives and suppress hydration mismatches. Server-rendered pages show unanimated state until JavaScript loads."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Motion components render their initial state on the server. The initial prop defines the server-rendered state, animate defines the target. Clean SSR with hydration-safe animations."
+          }
+        },
+        {
+          "criterion": "Will-Change & GPU Acceleration",
+          "tool_a": {
+            "score": 9,
+            "detail": "Automatically uses CSS transforms and GPU-composited properties. force3D option promotes elements to GPU layers. GSAP's internals know which properties are cheap to animate vs expensive."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Uses CSS transforms by default. Hardware-accelerated for transforms and opacity. Style prop animations can trigger layout/paint if you animate width, height, or other expensive properties."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ecosystem & Use Cases",
+      "criteria": [
+        {
+          "criterion": "Creative / Agency Websites",
+          "tool_a": {
+            "score": 10,
+            "detail": "The industry standard for award-winning websites (Awwwards, FWA). ScrollTrigger-driven narratives, complex timelines, SVG morphing, and cinematic transitions. If you're building a creative showcase, GSAP is the answer."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Not designed for creative showcase work. Lacks the timeline depth, scroll choreography, and SVG tools that agencies need. You can build nice micro-interactions but not Awwwards-level animation narratives."
+          }
+        },
+        {
+          "criterion": "Product UI / SaaS Apps",
+          "tool_a": {
+            "score": 5,
+            "detail": "Overkill for most product UIs. The imperative API adds complexity that isn't justified for hover effects, transitions, and notification animations. Most SaaS apps don't need GSAP's power."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Perfect for product interfaces. Hover states, page transitions, toast notifications, modal animations, drag-and-drop, accordion expand — all trivial with Motion's declarative API. Used by Vercel, Linear, and Stripe."
+          }
+        },
+        {
+          "criterion": "Framework Agnosticism",
+          "tool_a": {
+            "score": 10,
+            "detail": "Works with any framework or no framework: React, Vue, Svelte, Angular, vanilla JS, jQuery, Three.js. GSAP doesn't care about your rendering layer. Write once, animate anywhere."
+          },
+          "tool_b": {
+            "score": 4,
+            "detail": "React-only for the full feature set. Motion (v11+) has a vanilla JS API but it's newer and less capable than the React version. Vue and Svelte wrappers are community-maintained and lag behind."
+          }
+        },
+        {
+          "criterion": "Community & Resources",
+          "tool_a": {
+            "score": 9,
+            "detail": "Active GreenSock forums with expert help. Extensive CodePen collection with thousands of examples. Carl Schooff's and Cassie Evans's tutorials are industry-standard learning resources."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Strong React community adoption. Good documentation with examples. Matt Perry's blog posts explain the internals well. Fewer creative animation examples compared to GSAP's CodePen library."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "GSAP for creative animation, Framer Motion for React product UIs",
+    "best_for": {
+      "creative websites": "GSAP",
+      "scroll-driven narratives": "GSAP",
+      "SVG animation": "GSAP",
+      "timeline choreography": "GSAP",
+      "Three.js/WebGL": "GSAP",
+      "React UI transitions": "Framer Motion",
+      "layout animations": "Framer Motion",
+      "spring physics": "Framer Motion",
+      "declarative API": "Framer Motion",
+      "product/SaaS interfaces": "Framer Motion"
+    },
+    "summary": "These libraries serve different masters. GSAP is the professional animation toolkit — if you're building creative websites, interactive storytelling, or anything where animation IS the product, nothing else comes close. Framer Motion is the React UI animation library — if you're building a product interface and want polished transitions, layout animations, and gesture handling with minimal code, it's the obvious choice. Many creative agencies use both: GSAP for scroll-driven hero animations and page transitions, Motion for component-level UI interactions."
+  },
+  "related_slugs": ["react-vs-svelte", "nextjs-vs-astro"]
+}

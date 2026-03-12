@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "niche": "astro",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-portfolio-with-astro",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a Portfolio with Astro | Developer Portfolio Guide",
+    "description": "Build a fast, beautiful developer portfolio with Astro featuring project showcases, a blog section, and perfect Lighthouse scores.",
+    "keywords": [
+      "astro portfolio",
+      "developer portfolio astro",
+      "build portfolio website",
+      "astro personal site",
+      "portfolio template astro",
+      "static portfolio site"
+    ]
+  },
+  "introduction": "Your portfolio is your most important marketing tool as a developer or designer. Astro is the perfect framework for portfolios because it ships zero JavaScript by default, giving you a 100/100 Lighthouse score without any optimization work. You can still use React, Vue, or Svelte components where you need interactivity. This guide builds a complete portfolio with project showcases, an about page, a contact form, and smooth view transitions.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required to run Astro and its build tools.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Basic HTML and CSS",
+      "description": "Astro components use HTML-like syntax with scoped styles, so HTML and CSS knowledge is essential."
+    },
+    {
+      "name": "Project Screenshots or Mockups",
+      "description": "Prepare images or screenshots of 3-5 projects you want to showcase in your portfolio."
+    }
+  ],
+  "estimated_time": "3-4 hours",
+  "difficulty": "beginner",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Create the Astro Project with Tailwind CSS",
+      "description": "Scaffold a minimal Astro project and add Tailwind CSS for styling. Unlike the blog template, start with the minimal template so you control the entire structure. Add the sitemap integration for SEO and the image integration for automatic optimization.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npm create astro@latest my-portfolio -- --template minimal\ncd my-portfolio\nnpx astro add tailwind\nnpx astro add sitemap\nnpm install"
+      },
+      "tips": [
+        "The minimal template gives you a clean slate without any preset pages or components.",
+        "Set your site URL in astro.config.mjs immediately — it is needed for sitemap generation and canonical URLs."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Create the Base Layout with Navigation",
+      "description": "Build a reusable layout component with a responsive navigation bar, SEO meta tags, and a footer. Astro layouts use slots to wrap page content, similar to React children. The layout includes Open Graph tags for social sharing and a mobile-friendly hamburger menu.",
+      "code_snippet": {
+        "language": "astro",
+        "code": "---\n// src/layouts/BaseLayout.astro\ninterface Props {\n  title: string;\n  description: string;\n  image?: string;\n}\n\nconst { title, description, image = \"/og-image.jpg\" } = Astro.props;\nconst canonicalUrl = new URL(Astro.url.pathname, Astro.site);\n---\n\n<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>{title}</title>\n    <meta name=\"description\" content={description} />\n    <link rel=\"canonical\" href={canonicalUrl} />\n    <meta property=\"og:title\" content={title} />\n    <meta property=\"og:description\" content={description} />\n    <meta property=\"og:image\" content={new URL(image, Astro.site)} />\n    <meta property=\"og:type\" content=\"website\" />\n  </head>\n  <body class=\"bg-white text-gray-900 antialiased\">\n    <header class=\"fixed top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm\">\n      <nav class=\"mx-auto flex max-w-5xl items-center justify-between px-4 py-4\">\n        <a href=\"/\" class=\"text-xl font-bold\">YourName</a>\n        <ul class=\"flex gap-8 text-sm font-medium\">\n          <li><a href=\"/#projects\" class=\"hover:text-blue-600\">Projects</a></li>\n          <li><a href=\"/about\" class=\"hover:text-blue-600\">About</a></li>\n          <li><a href=\"/contact\" class=\"hover:text-blue-600\">Contact</a></li>\n        </ul>\n      </nav>\n    </header>\n    <main class=\"pt-16\">\n      <slot />\n    </main>\n    <footer class=\"border-t py-8 text-center text-sm text-gray-500\">\n      <p>&copy; {new Date().getFullYear()} YourName. All rights reserved.</p>\n    </footer>\n  </body>\n</html>",
+        "filename": "src/layouts/BaseLayout.astro"
+      },
+      "tips": [
+        "Use backdrop-blur-sm on the navbar for a frosted glass effect that keeps content readable underneath.",
+        "Add View Transitions later with a single component import for smooth page navigation."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Define a Project Content Collection",
+      "description": "Create a content collection for your portfolio projects with a typed schema. Each project has a title, description, tech stack, links, images, and display order. Content collections give you type safety and build-time validation for all your project data.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/content.config.ts\nimport { defineCollection, z } from \"astro:content\";\nimport { glob } from \"astro/loaders\";\n\nconst projects = defineCollection({\n  loader: glob({ pattern: \"**/*.md\", base: \"./src/content/projects\" }),\n  schema: z.object({\n    title: z.string(),\n    description: z.string(),\n    tech: z.array(z.string()),\n    image: z.string(),\n    liveUrl: z.string().url().optional(),\n    repoUrl: z.string().url().optional(),\n    featured: z.boolean().default(false),\n    order: z.number().default(0),\n  }),\n});\n\nexport const collections = { projects };",
+        "filename": "src/content.config.ts"
+      },
+      "tips": [
+        "Use the 'featured' flag to highlight your best 2-3 projects on the homepage.",
+        "The 'order' field lets you control project display order without renaming files."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Build the Homepage with Hero and Project Grid",
+      "description": "Create the homepage with a hero section introducing yourself and a grid of featured projects. The hero section should communicate who you are, what you do, and include a call-to-action. The project grid uses your content collection to display project cards with hover effects.",
+      "code_snippet": {
+        "language": "astro",
+        "code": "---\n// src/pages/index.astro\nimport BaseLayout from \"../layouts/BaseLayout.astro\";\nimport { getCollection } from \"astro:content\";\nimport { Image } from \"astro:assets\";\n\nconst projects = (await getCollection(\"projects\"))\n  .sort((a, b) => a.data.order - b.data.order);\nconst featured = projects.filter((p) => p.data.featured);\n---\n\n<BaseLayout title=\"YourName — Developer\" description=\"Full-stack developer building modern web applications.\">\n  <section class=\"mx-auto max-w-5xl px-4 py-24\">\n    <p class=\"text-sm font-medium uppercase tracking-wider text-blue-600\">Full-Stack Developer</p>\n    <h1 class=\"mt-4 text-5xl font-bold leading-tight md:text-6xl\">\n      I build web applications<br />that people love to use.\n    </h1>\n    <p class=\"mt-6 max-w-xl text-lg text-gray-600\">\n      Specializing in React, Next.js, and TypeScript. Currently available for\n      freelance projects and full-time opportunities.\n    </p>\n    <div class=\"mt-8 flex gap-4\">\n      <a href=\"/contact\" class=\"rounded-lg bg-black px-6 py-3 text-white hover:bg-gray-800\">\n        Get in touch\n      </a>\n      <a href=\"/#projects\" class=\"rounded-lg border px-6 py-3 hover:bg-gray-50\">\n        View projects\n      </a>\n    </div>\n  </section>\n\n  <section id=\"projects\" class=\"mx-auto max-w-5xl px-4 py-16\">\n    <h2 class=\"mb-12 text-3xl font-bold\">Featured Projects</h2>\n    <div class=\"grid gap-8 md:grid-cols-2\">\n      {featured.map((project) => (\n        <a\n          href={`/projects/${project.id}`}\n          class=\"group overflow-hidden rounded-xl border transition hover:shadow-xl\"\n        >\n          <img\n            src={project.data.image}\n            alt={project.data.title}\n            class=\"aspect-video w-full object-cover transition group-hover:scale-105\"\n          />\n          <div class=\"p-6\">\n            <h3 class=\"text-xl font-semibold\">{project.data.title}</h3>\n            <p class=\"mt-2 text-gray-600\">{project.data.description}</p>\n            <div class=\"mt-4 flex flex-wrap gap-2\">\n              {project.data.tech.map((t) => (\n                <span class=\"rounded bg-gray-100 px-2 py-1 text-xs\">{t}</span>\n              ))}\n            </div>\n          </div>\n        </a>\n      ))}\n    </div>\n  </section>\n</BaseLayout>",
+        "filename": "src/pages/index.astro"
+      }
+    },
+    {
+      "number": 5,
+      "title": "Create Individual Project Pages",
+      "description": "Build detail pages for each project using Astro's dynamic routing. Each page shows the full project description, tech stack, screenshots, and links to the live site and source code. Use getStaticPaths to generate a page for every project in your collection at build time.",
+      "code_snippet": {
+        "language": "astro",
+        "code": "---\n// src/pages/projects/[id].astro\nimport { getCollection, render } from \"astro:content\";\nimport BaseLayout from \"../../layouts/BaseLayout.astro\";\n\nexport async function getStaticPaths() {\n  const projects = await getCollection(\"projects\");\n  return projects.map((project) => ({\n    params: { id: project.id },\n    props: { project },\n  }));\n}\n\nconst { project } = Astro.props;\nconst { Content } = await render(project);\n---\n\n<BaseLayout title={project.data.title} description={project.data.description}>\n  <article class=\"mx-auto max-w-3xl px-4 py-16\">\n    <a href=\"/#projects\" class=\"text-sm text-gray-500 hover:text-gray-700\">\n      &larr; Back to projects\n    </a>\n    <h1 class=\"mt-6 text-4xl font-bold\">{project.data.title}</h1>\n    <div class=\"mt-4 flex flex-wrap gap-2\">\n      {project.data.tech.map((t) => (\n        <span class=\"rounded bg-gray-100 px-3 py-1 text-sm\">{t}</span>\n      ))}\n    </div>\n    <img\n      src={project.data.image}\n      alt={project.data.title}\n      class=\"mt-8 w-full rounded-xl\"\n    />\n    <div class=\"mt-6 flex gap-4\">\n      {project.data.liveUrl && (\n        <a href={project.data.liveUrl} target=\"_blank\" rel=\"noopener\"\n          class=\"rounded-lg bg-black px-6 py-2 text-white hover:bg-gray-800\">\n          View Live\n        </a>\n      )}\n      {project.data.repoUrl && (\n        <a href={project.data.repoUrl} target=\"_blank\" rel=\"noopener\"\n          class=\"rounded-lg border px-6 py-2 hover:bg-gray-50\">\n          Source Code\n        </a>\n      )}\n    </div>\n    <div class=\"prose prose-lg mt-8 max-w-none\">\n      <Content />\n    </div>\n  </article>\n</BaseLayout>",
+        "filename": "src/pages/projects/[id].astro"
+      },
+      "tips": [
+        "Write detailed case studies in the Markdown body — explain the problem, your approach, and the results.",
+        "Add before/after screenshots or performance comparisons to demonstrate impact."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Add View Transitions for Smooth Navigation",
+      "description": "Enable Astro's built-in View Transitions API for smooth, app-like page navigation without a JavaScript framework. Pages morph between each other with crossfade animations, and you can add per-element transitions for project images that expand from the grid to the detail page.",
+      "code_snippet": {
+        "language": "astro",
+        "code": "---\n// Add to src/layouts/BaseLayout.astro <head>\nimport { ViewTransitions } from \"astro:transitions\";\n---\n\n<!-- Inside <head> -->\n<ViewTransitions />\n\n<!-- On project card images, add transition:name -->\n<img\n  src={project.data.image}\n  alt={project.data.title}\n  class=\"aspect-video w-full object-cover\"\n  transition:name={`project-${project.id}`}\n/>\n\n<!-- On project detail page image, use same transition:name -->\n<img\n  src={project.data.image}\n  alt={project.data.title}\n  class=\"mt-8 w-full rounded-xl\"\n  transition:name={`project-${project.id}`}\n/>",
+        "filename": "src/layouts/BaseLayout.astro"
+      },
+      "tips": [
+        "Use the same transition:name on elements across pages to create morphing animations between them.",
+        "View Transitions work in Chrome, Edge, and Safari — Firefox falls back to standard navigation gracefully."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Deploy to Vercel or Netlify",
+      "description": "Deploy your portfolio to a global CDN for near-instant page loads worldwide. Astro's static output works on any hosting platform. Connect your custom domain and set up automatic deployments from your Git repository so every push updates your live site.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "# Build and verify locally\nnpm run build\nnpm run preview\n\n# Deploy to Vercel\nnpx astro add vercel\nnpx vercel --prod\n\n# Or deploy to Netlify\nnpx astro add netlify\nnpx netlify deploy --prod --dir=dist"
+      },
+      "tips": [
+        "Set up a custom domain — yourname.dev or yourname.com — for a professional impression.",
+        "Add Plausible or Fathom analytics to track which projects get the most views without compromising visitor privacy.",
+        "Run a Lighthouse audit after deploying — Astro portfolios should score 95+ across all categories."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add a blog section to your portfolio to demonstrate expertise and improve SEO.",
+    "Implement a dark mode toggle with Tailwind's dark: variant and localStorage persistence.",
+    "Add a resume/CV page with a downloadable PDF version.",
+    "Integrate a headless CMS like Tina for editing project content without touching code."
+  ],
+  "related_slugs": [
+    "build-a-blog-with-astro",
+    "build-a-blog-with-nextjs",
+    "build-a-landing-page-with-tailwindcss"
+  ]
+}

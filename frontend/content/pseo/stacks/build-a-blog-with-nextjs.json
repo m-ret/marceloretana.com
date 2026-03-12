@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-blog-with-nextjs",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a Blog with Next.js | Step-by-Step Guide",
+    "description": "Build a fast, SEO-friendly blog with Next.js using MDX for content, static generation for performance, and Tailwind CSS for styling.",
+    "keywords": [
+      "nextjs blog",
+      "build blog nextjs",
+      "nextjs mdx blog",
+      "static blog nextjs",
+      "nextjs blog tutorial",
+      "markdown blog react"
+    ]
+  },
+  "introduction": "A blog is one of the best ways to learn a framework and build your online presence at the same time. Next.js makes blogs fast by default with static generation, and MDX lets you write content in Markdown while embedding React components when you need interactivity. This guide builds a fully functional blog with MDX content, syntax highlighting, an RSS feed, and SEO metadata.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for Next.js and its build tooling.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Basic React Knowledge",
+      "description": "Understanding of components, props, and JSX syntax."
+    },
+    {
+      "name": "Familiarity with Markdown",
+      "description": "MDX extends Markdown, so knowing headings, links, lists, and code blocks is helpful.",
+      "url": "https://www.markdownguide.org/basic-syntax/"
+    }
+  ],
+  "estimated_time": "3-4 hours",
+  "difficulty": "beginner",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Create the Next.js Project",
+      "description": "Scaffold a new Next.js app with TypeScript and Tailwind CSS. The App Router with static generation is ideal for blogs because every page is pre-rendered at build time, giving you near-instant load times and excellent SEO.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npx create-next-app@latest my-blog \\\n  --typescript \\\n  --tailwind \\\n  --eslint \\\n  --app \\\n  --src-dir\n\ncd my-blog\nnpm install gray-matter next-mdx-remote reading-time"
+      },
+      "tips": [
+        "gray-matter parses YAML frontmatter from your MDX files, next-mdx-remote renders MDX on the server, and reading-time estimates article length."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Set Up the Content Directory with MDX Files",
+      "description": "Create a content directory at the project root for your blog posts. Each MDX file includes YAML frontmatter with metadata like title, date, description, and tags. This file-based approach means you can write posts in any text editor and version them with Git.",
+      "code_snippet": {
+        "language": "markdown",
+        "code": "---\ntitle: \"Getting Started with Next.js\"\ndate: \"2026-03-10\"\ndescription: \"A beginner-friendly introduction to building web apps with Next.js.\"\ntags: [\"nextjs\", \"react\", \"tutorial\"]\npublished: true\n---\n\n# Getting Started with Next.js\n\nNext.js is a React framework that gives you **server-side rendering**,\n**static generation**, and **API routes** out of the box.\n\n## Why Next.js?\n\n- File-based routing\n- Built-in image optimization\n- Zero-config TypeScript support\n\n```tsx\nexport default function Home() {\n  return <h1>Hello, Next.js!</h1>;\n}\n```",
+        "filename": "content/posts/getting-started-with-nextjs.mdx"
+      },
+      "tips": [
+        "Use a 'published' boolean in frontmatter to draft posts without deploying them.",
+        "Keep filenames URL-friendly — they become your slugs."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Build the Content Utility Functions",
+      "description": "Create helper functions that read MDX files from disk, parse their frontmatter, sort by date, and return typed post data. These utilities power both your blog index page and individual post pages. Using fs and path from Node.js works because these functions only run on the server during static generation.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/lib/posts.ts\nimport fs from \"fs\";\nimport path from \"path\";\nimport matter from \"gray-matter\";\nimport readingTime from \"reading-time\";\n\nconst postsDirectory = path.join(process.cwd(), \"content/posts\");\n\nexport interface Post {\n  slug: string;\n  title: string;\n  date: string;\n  description: string;\n  tags: string[];\n  published: boolean;\n  readingTime: string;\n  content: string;\n}\n\nexport function getAllPosts(): Post[] {\n  const files = fs.readdirSync(postsDirectory);\n\n  return files\n    .filter((file) => file.endsWith(\".mdx\"))\n    .map((file) => {\n      const slug = file.replace(/\\.mdx$/, \"\");\n      const raw = fs.readFileSync(path.join(postsDirectory, file), \"utf-8\");\n      const { data, content } = matter(raw);\n\n      return {\n        slug,\n        title: data.title,\n        date: data.date,\n        description: data.description,\n        tags: data.tags ?? [],\n        published: data.published ?? false,\n        readingTime: readingTime(content).text,\n        content,\n      };\n    })\n    .filter((post) => post.published)\n    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());\n}\n\nexport function getPostBySlug(slug: string): Post | undefined {\n  return getAllPosts().find((post) => post.slug === slug);\n}",
+        "filename": "src/lib/posts.ts"
+      }
+    },
+    {
+      "number": 4,
+      "title": "Create the Blog Index Page",
+      "description": "Build the main blog listing page as a server component that fetches all posts at build time. Each post card shows the title, date, reading time, description, and tags. Because this is a server component, there is zero client-side JavaScript — the page is pure HTML.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/app/blog/page.tsx\nimport Link from \"next/link\";\nimport { getAllPosts } from \"@/lib/posts\";\n\nexport const metadata = {\n  title: \"Blog\",\n  description: \"Articles about web development, React, and Next.js.\",\n};\n\nexport default function BlogPage() {\n  const posts = getAllPosts();\n\n  return (\n    <main className=\"mx-auto max-w-2xl px-4 py-16\">\n      <h1 className=\"mb-12 text-4xl font-bold\">Blog</h1>\n      <div className=\"space-y-10\">\n        {posts.map((post) => (\n          <article key={post.slug}>\n            <Link href={`/blog/${post.slug}`} className=\"group\">\n              <time className=\"text-sm text-gray-500\">{post.date}</time>\n              <span className=\"ml-2 text-sm text-gray-400\">\n                {post.readingTime}\n              </span>\n              <h2 className=\"mt-1 text-xl font-semibold group-hover:text-blue-600\">\n                {post.title}\n              </h2>\n              <p className=\"mt-2 text-gray-600\">{post.description}</p>\n            </Link>\n            <div className=\"mt-3 flex gap-2\">\n              {post.tags.map((tag) => (\n                <span\n                  key={tag}\n                  className=\"rounded bg-gray-100 px-2 py-1 text-xs text-gray-600\"\n                >\n                  {tag}\n                </span>\n              ))}\n            </div>\n          </article>\n        ))}\n      </div>\n    </main>\n  );\n}",
+        "filename": "src/app/blog/page.tsx"
+      }
+    },
+    {
+      "number": 5,
+      "title": "Create Dynamic Post Pages with MDX Rendering",
+      "description": "Build the individual blog post page using Next.js dynamic routes and generateStaticParams for static generation. The page fetches the MDX content, renders it with next-mdx-remote, and generates proper SEO metadata. Each post gets its own statically generated HTML page at build time.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/app/blog/[slug]/page.tsx\nimport { notFound } from \"next/navigation\";\nimport { MDXRemote } from \"next-mdx-remote/rsc\";\nimport { getAllPosts, getPostBySlug } from \"@/lib/posts\";\n\nexport function generateStaticParams() {\n  return getAllPosts().map((post) => ({ slug: post.slug }));\n}\n\nexport function generateMetadata({ params }: { params: { slug: string } }) {\n  const post = getPostBySlug(params.slug);\n  if (!post) return {};\n  return {\n    title: post.title,\n    description: post.description,\n    openGraph: {\n      title: post.title,\n      description: post.description,\n      type: \"article\",\n      publishedTime: post.date,\n    },\n  };\n}\n\nexport default function PostPage({ params }: { params: { slug: string } }) {\n  const post = getPostBySlug(params.slug);\n  if (!post) notFound();\n\n  return (\n    <article className=\"mx-auto max-w-2xl px-4 py-16\">\n      <header className=\"mb-8\">\n        <time className=\"text-sm text-gray-500\">{post.date}</time>\n        <span className=\"ml-2 text-sm text-gray-400\">{post.readingTime}</span>\n        <h1 className=\"mt-2 text-4xl font-bold\">{post.title}</h1>\n        <p className=\"mt-4 text-lg text-gray-600\">{post.description}</p>\n      </header>\n      <div className=\"prose prose-lg max-w-none\">\n        <MDXRemote source={post.content} />\n      </div>\n    </article>\n  );\n}",
+        "filename": "src/app/blog/[slug]/page.tsx"
+      },
+      "tips": [
+        "Install @tailwindcss/typography for the 'prose' class that beautifully styles rendered Markdown.",
+        "Add custom MDX components for callouts, code blocks with copy buttons, or embedded videos."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Add Syntax Highlighting with Rehype Pretty Code",
+      "description": "Install rehype-pretty-code to add VS Code-quality syntax highlighting to your code blocks. It uses Shiki under the hood, which means your code is highlighted at build time with no client-side JavaScript. The result is beautiful, accessible code blocks that load instantly.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// next.config.ts\nimport type { NextConfig } from \"next\";\nimport createMDX from \"@next/mdx\";\nimport rehypePrettyCode from \"rehype-pretty-code\";\n\nconst withMDX = createMDX({\n  options: {\n    rehypePlugins: [\n      [\n        rehypePrettyCode,\n        {\n          theme: \"github-dark\",\n          keepBackground: true,\n        },\n      ],\n    ],\n  },\n});\n\nconst nextConfig: NextConfig = {\n  pageExtensions: [\"ts\", \"tsx\", \"mdx\"],\n};\n\nexport default withMDX(nextConfig);",
+        "filename": "next.config.ts"
+      },
+      "tips": [
+        "Run 'npm install @next/mdx rehype-pretty-code shiki' to install the required packages.",
+        "Try different themes like 'one-dark-pro', 'dracula', or 'nord' to match your blog's design."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Generate an RSS Feed and Sitemap",
+      "description": "Create an RSS feed so readers can subscribe to your blog, and a sitemap so search engines can discover all your posts. Next.js App Router supports route handlers that return XML responses. Both files are generated dynamically from your posts data.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/app/feed.xml/route.ts\nimport { getAllPosts } from \"@/lib/posts\";\n\nexport function GET() {\n  const posts = getAllPosts();\n  const siteUrl = \"https://yourdomain.com\";\n\n  const rss = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n  <channel>\n    <title>My Blog</title>\n    <link>${siteUrl}</link>\n    <description>Articles about web development.</description>\n    <atom:link href=\"${siteUrl}/feed.xml\" rel=\"self\" type=\"application/rss+xml\"/>\n    ${posts\n      .map(\n        (post) => `\n    <item>\n      <title>${post.title}</title>\n      <link>${siteUrl}/blog/${post.slug}</link>\n      <description>${post.description}</description>\n      <pubDate>${new Date(post.date).toUTCString()}</pubDate>\n      <guid>${siteUrl}/blog/${post.slug}</guid>\n    </item>`\n      )\n      .join(\"\")}\n  </channel>\n</rss>`;\n\n  return new Response(rss, {\n    headers: { \"Content-Type\": \"application/xml\" },\n  });\n}",
+        "filename": "src/app/feed.xml/route.ts"
+      },
+      "tips": [
+        "Add a <link rel='alternate' type='application/rss+xml'> tag in your root layout to advertise the feed.",
+        "Use Next.js built-in sitemap.ts for generating sitemaps with typed exports."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add a newsletter subscription form with ConvertKit or Buttondown integration.",
+    "Implement full-text search using Pagefind or Algolia for client-side search.",
+    "Add view counts with Vercel KV or Upstash Redis to show popular posts.",
+    "Create category and tag archive pages for better content organization."
+  ],
+  "related_slugs": [
+    "build-a-blog-with-astro",
+    "build-a-portfolio-with-astro",
+    "build-a-landing-page-with-tailwindcss"
+  ]
+}

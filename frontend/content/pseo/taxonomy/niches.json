@@ -1,0 +1,945 @@
+{
+  "niches": [
+    {
+      "slug": "nextjs",
+      "name": "Next.js",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "React developers building production apps, agencies, SaaS founders",
+        "pain_points": "SSR complexity, deployment costs, App Router migration, bundle size, caching strategies",
+        "ecosystem": "Vercel, React Server Components, Turbopack, ISR, Middleware",
+        "competitors": ["nuxt", "remix", "astro", "sveltekit"],
+        "subtopics": [
+          "App Router",
+          "Server Components",
+          "ISR",
+          "Middleware",
+          "API Routes",
+          "Server Actions"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Next.js", "description": "The React framework for production" },
+        "es": { "label": "Next.js", "description": "El framework de React para produccion" }
+      }
+    },
+    {
+      "slug": "react",
+      "name": "React",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "Frontend developers, full-stack developers, bootcamp grads, agencies",
+        "pain_points": "State management complexity, re-render performance, choosing the right meta-framework",
+        "ecosystem": "Next.js, Remix, Vite, React Router, React Query, Zustand",
+        "competitors": ["vue", "svelte", "angular", "solid"],
+        "subtopics": [
+          "Hooks",
+          "Server Components",
+          "Suspense",
+          "Context",
+          "React 19",
+          "Concurrent Features"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "React",
+          "description": "A JavaScript library for building user interfaces"
+        },
+        "es": {
+          "label": "React",
+          "description": "Biblioteca de JavaScript para construir interfaces"
+        }
+      }
+    },
+    {
+      "slug": "vue",
+      "name": "Vue",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "Developers wanting progressive adoption, Laravel/PHP teams, small-to-mid teams",
+        "pain_points": "Vue 2 to 3 migration, Composition API learning curve, smaller job market than React",
+        "ecosystem": "Nuxt, Vite, Pinia, Vue Router, Vuetify",
+        "competitors": ["react", "svelte", "angular"],
+        "subtopics": ["Composition API", "Vue 3", "Reactivity", "SFC", "Teleport", "Provide/Inject"]
+      },
+      "locale": {
+        "en": { "label": "Vue", "description": "The progressive JavaScript framework" },
+        "es": { "label": "Vue", "description": "El framework progresivo de JavaScript" }
+      }
+    },
+    {
+      "slug": "svelte",
+      "name": "Svelte",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "Developers wanting less boilerplate, performance-focused teams, indie hackers",
+        "pain_points": "Smaller ecosystem, fewer jobs, Svelte 5 runes migration, limited enterprise adoption",
+        "ecosystem": "SvelteKit, Vite, Svelte 5 Runes",
+        "competitors": ["react", "vue", "solid"],
+        "subtopics": [
+          "Runes",
+          "SvelteKit",
+          "Transitions",
+          "Stores",
+          "Actions",
+          "Component Composition"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Svelte", "description": "Cybernetically enhanced web apps" },
+        "es": { "label": "Svelte", "description": "Aplicaciones web ciberneticamente mejoradas" }
+      }
+    },
+    {
+      "slug": "astro",
+      "name": "Astro",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "Content-focused sites, bloggers, documentation teams, marketing sites",
+        "pain_points": "Limited interactivity without islands, newer framework with evolving APIs",
+        "ecosystem": "Starlight, Content Collections, View Transitions, Islands Architecture",
+        "competitors": ["nextjs", "nuxt", "gatsby", "eleventy"],
+        "subtopics": [
+          "Islands Architecture",
+          "Content Collections",
+          "View Transitions",
+          "SSG",
+          "Hybrid Rendering"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Astro", "description": "The web framework for content-driven websites" },
+        "es": {
+          "label": "Astro",
+          "description": "El framework web para sitios impulsados por contenido"
+        }
+      }
+    },
+    {
+      "slug": "nuxt",
+      "name": "Nuxt",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "Vue developers needing SSR/SSG, agencies building Vue apps, enterprise Vue teams",
+        "pain_points": "Nuxt 2 to 3 migration, module compatibility, build times",
+        "ecosystem": "Vue 3, Nitro, UnJS, Nuxt Modules, Nuxt Content",
+        "competitors": ["nextjs", "sveltekit", "astro"],
+        "subtopics": [
+          "Nuxt 3",
+          "Nitro Server",
+          "Auto-imports",
+          "Modules",
+          "Nuxt Content",
+          "Hybrid Rendering"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Nuxt", "description": "The intuitive Vue framework" },
+        "es": { "label": "Nuxt", "description": "El framework intuitivo de Vue" }
+      }
+    },
+    {
+      "slug": "remix",
+      "name": "Remix",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "Full-stack React devs, teams wanting web-standard patterns, progressive enhancement fans",
+        "pain_points": "Shopify acquisition uncertainty, smaller community than Next.js, migration from React Router",
+        "ecosystem": "React Router v7, Vite, Web Fetch API, Progressive Enhancement",
+        "competitors": ["nextjs", "sveltekit", "nuxt"],
+        "subtopics": [
+          "Loaders",
+          "Actions",
+          "Nested Routes",
+          "Progressive Enhancement",
+          "React Router v7"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "Remix",
+          "description": "Full stack web framework built on web standards"
+        },
+        "es": { "label": "Remix", "description": "Framework full stack basado en estandares web" }
+      }
+    },
+    {
+      "slug": "claude-code",
+      "name": "Claude Code",
+      "category": "ai-dev-tools",
+      "context": {
+        "audience": "Developers using AI coding assistants, power users, CLI enthusiasts",
+        "pain_points": "Token costs, context window limits, hallucinations, learning CLI workflow",
+        "ecosystem": "Anthropic API, Claude models, MCP servers, hooks system",
+        "competitors": ["cursor", "github-copilot", "windsurf", "aider"],
+        "subtopics": ["MCP Servers", "Hooks", "Commands", "Agent SDK", "Memory System", "Subagents"]
+      },
+      "locale": {
+        "en": { "label": "Claude Code", "description": "Anthropic's official CLI for Claude" },
+        "es": { "label": "Claude Code", "description": "CLI oficial de Anthropic para Claude" }
+      }
+    },
+    {
+      "slug": "cursor",
+      "name": "Cursor",
+      "category": "ai-dev-tools",
+      "context": {
+        "audience": "VS Code users wanting AI-native IDE, teams adopting AI coding tools",
+        "pain_points": "Subscription cost, VS Code fork lag, context accuracy, privacy concerns",
+        "ecosystem": "VS Code extensions, Claude/GPT models, Composer, Tab completion",
+        "competitors": ["claude-code", "github-copilot", "windsurf"],
+        "subtopics": [
+          "Composer",
+          "Tab Completion",
+          "Chat",
+          "Rules for AI",
+          ".cursorrules",
+          "Model Selection"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Cursor", "description": "The AI-first code editor" },
+        "es": { "label": "Cursor", "description": "El editor de codigo AI-first" }
+      }
+    },
+    {
+      "slug": "github-copilot",
+      "name": "GitHub Copilot",
+      "category": "ai-dev-tools",
+      "context": {
+        "audience": "GitHub users, enterprise teams, developers wanting inline suggestions",
+        "pain_points": "Suggestion quality variance, privacy/IP concerns, cost for teams, limited context",
+        "ecosystem": "GitHub, VS Code, JetBrains, Neovim, Copilot Chat, Copilot Workspace",
+        "competitors": ["cursor", "claude-code", "windsurf"],
+        "subtopics": [
+          "Inline Suggestions",
+          "Copilot Chat",
+          "Copilot Workspace",
+          "Enterprise Features"
+        ]
+      },
+      "locale": {
+        "en": { "label": "GitHub Copilot", "description": "Your AI pair programmer" },
+        "es": { "label": "GitHub Copilot", "description": "Tu programador par con IA" }
+      }
+    },
+    {
+      "slug": "v0",
+      "name": "v0",
+      "category": "ai-dev-tools",
+      "context": {
+        "audience": "Designers, frontend devs, product managers prototyping UIs quickly",
+        "pain_points": "Output quality inconsistency, limited to React/Tailwind, no backend generation",
+        "ecosystem": "Vercel, shadcn/ui, Tailwind CSS, React",
+        "competitors": ["bolt", "lovable", "cursor"],
+        "subtopics": [
+          "UI Generation",
+          "Component Generation",
+          "Prompt Engineering",
+          "shadcn Integration"
+        ]
+      },
+      "locale": {
+        "en": { "label": "v0", "description": "Vercel's generative UI tool" },
+        "es": { "label": "v0", "description": "Herramienta de UI generativa de Vercel" }
+      }
+    },
+    {
+      "slug": "bolt",
+      "name": "Bolt",
+      "category": "ai-dev-tools",
+      "context": {
+        "audience": "Non-technical founders, rapid prototypers, hackathon participants",
+        "pain_points": "Code quality for production, limited customization, vendor lock-in",
+        "ecosystem": "StackBlitz, WebContainers, React, Various frameworks",
+        "competitors": ["v0", "lovable", "cursor"],
+        "subtopics": ["Full-Stack Generation", "WebContainers", "Deployment", "Prompt Patterns"]
+      },
+      "locale": {
+        "en": { "label": "Bolt", "description": "Build full-stack apps with AI" },
+        "es": { "label": "Bolt", "description": "Construye apps full-stack con IA" }
+      }
+    },
+    {
+      "slug": "windsurf",
+      "name": "Windsurf",
+      "category": "ai-dev-tools",
+      "context": {
+        "audience": "Developers wanting AI IDE with flow state, teams evaluating Cursor alternatives",
+        "pain_points": "Newer product with less polish, smaller community, Codeium heritage concerns",
+        "ecosystem": "VS Code fork, Cascade AI, Multiple models",
+        "competitors": ["cursor", "claude-code", "github-copilot"],
+        "subtopics": ["Cascade", "Flows", "AI Commands", "Context Engine"]
+      },
+      "locale": {
+        "en": { "label": "Windsurf", "description": "The AI IDE by Codeium" },
+        "es": { "label": "Windsurf", "description": "El IDE con IA de Codeium" }
+      }
+    },
+    {
+      "slug": "tailwindcss",
+      "name": "Tailwind CSS",
+      "category": "css-ui",
+      "context": {
+        "audience": "Frontend developers, full-stack teams, design systems teams",
+        "pain_points": "Verbose class strings, v3 to v4 migration, team style consistency, purge configuration",
+        "ecosystem": "Tailwind UI, Headless UI, shadcn/ui, DaisyUI",
+        "competitors": ["css-modules", "styled-components", "vanilla-extract", "panda-css"],
+        "subtopics": [
+          "v4",
+          "Theme Configuration",
+          "Custom Plugins",
+          "Dark Mode",
+          "Responsive Design",
+          "JIT"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Tailwind CSS", "description": "A utility-first CSS framework" },
+        "es": { "label": "Tailwind CSS", "description": "Un framework CSS utility-first" }
+      }
+    },
+    {
+      "slug": "shadcn-ui",
+      "name": "shadcn/ui",
+      "category": "css-ui",
+      "context": {
+        "audience": "React developers wanting composable, accessible UI components",
+        "pain_points": "Copy-paste model confusion, Radix dependency, customization overhead",
+        "ecosystem": "Radix UI, Tailwind CSS, React, Next.js, cmdk",
+        "competitors": ["chakra-ui", "mantine", "radix", "headless-ui"],
+        "subtopics": ["CLI", "Theming", "Component Customization", "Radix Primitives", "Dark Mode"]
+      },
+      "locale": {
+        "en": {
+          "label": "shadcn/ui",
+          "description": "Beautifully designed components built with Radix and Tailwind"
+        },
+        "es": {
+          "label": "shadcn/ui",
+          "description": "Componentes con diseno elegante usando Radix y Tailwind"
+        }
+      }
+    },
+    {
+      "slug": "threejs",
+      "name": "Three.js",
+      "category": "css-ui",
+      "context": {
+        "audience": "Creative developers, 3D web developers, interactive experience builders",
+        "pain_points": "Steep learning curve, performance optimization, WebGL debugging, mobile support",
+        "ecosystem": "React Three Fiber, Drei, Leva, Postprocessing, GSAP",
+        "competitors": ["babylon", "playcanvas", "aframe"],
+        "subtopics": [
+          "React Three Fiber",
+          "Shaders",
+          "Postprocessing",
+          "Performance",
+          "Animation",
+          "Physics"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Three.js", "description": "3D library for the web" },
+        "es": { "label": "Three.js", "description": "Biblioteca 3D para la web" }
+      }
+    },
+    {
+      "slug": "nodejs",
+      "name": "Node.js",
+      "category": "backend-infra",
+      "context": {
+        "audience": "Backend developers, full-stack JavaScript devs, API builders",
+        "pain_points": "Callback patterns, package management, security vulnerabilities, runtime performance vs Go/Rust",
+        "ecosystem": "Express, Fastify, Nest.js, npm, pnpm",
+        "competitors": ["bun", "deno"],
+        "subtopics": ["Express", "Fastify", "Streams", "Worker Threads", "ESM", "Native Fetch"]
+      },
+      "locale": {
+        "en": { "label": "Node.js", "description": "JavaScript runtime built on V8" },
+        "es": { "label": "Node.js", "description": "Runtime de JavaScript basado en V8" }
+      }
+    },
+    {
+      "slug": "bun",
+      "name": "Bun",
+      "category": "backend-infra",
+      "context": {
+        "audience": "Performance-focused JS devs, Node.js users wanting faster tooling, early adopters",
+        "pain_points": "Ecosystem compatibility gaps, production readiness concerns, Windows support",
+        "ecosystem": "Built-in bundler, test runner, package manager, SQLite",
+        "competitors": ["nodejs", "deno"],
+        "subtopics": [
+          "Bun Shell",
+          "Built-in Bundler",
+          "Bun Test",
+          "Package Manager",
+          "SQLite",
+          "Performance"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Bun", "description": "Incredibly fast JavaScript runtime" },
+        "es": { "label": "Bun", "description": "Runtime de JavaScript increiblemente rapido" }
+      }
+    },
+    {
+      "slug": "deno",
+      "name": "Deno",
+      "category": "backend-infra",
+      "context": {
+        "audience": "Security-conscious devs, TypeScript-first teams, edge computing developers",
+        "pain_points": "npm compatibility evolving, smaller ecosystem, adoption momentum",
+        "ecosystem": "Deno Deploy, Fresh, Oak, Standard Library, JSR",
+        "competitors": ["nodejs", "bun"],
+        "subtopics": [
+          "Deno 2",
+          "npm Compatibility",
+          "Deno Deploy",
+          "Fresh Framework",
+          "JSR",
+          "Permissions"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Deno", "description": "The next-generation JavaScript runtime" },
+        "es": { "label": "Deno", "description": "El runtime de JavaScript de nueva generacion" }
+      }
+    },
+    {
+      "slug": "vercel",
+      "name": "Vercel",
+      "category": "backend-infra",
+      "context": {
+        "audience": "Frontend teams deploying Next.js, JAMstack developers, startups",
+        "pain_points": "Pricing at scale, vendor lock-in, cold start times, bandwidth costs",
+        "ecosystem": "Next.js, v0, Edge Functions, KV, Blob, Postgres",
+        "competitors": ["netlify", "cloudflare-pages", "aws-amplify", "railway"],
+        "subtopics": [
+          "Edge Functions",
+          "Serverless Functions",
+          "KV",
+          "Blob Storage",
+          "Analytics",
+          "Deployment"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Vercel", "description": "The frontend cloud platform" },
+        "es": { "label": "Vercel", "description": "La plataforma cloud para frontend" }
+      }
+    },
+    {
+      "slug": "supabase",
+      "name": "Supabase",
+      "category": "backend-infra",
+      "context": {
+        "audience": "Indie hackers, startups, Firebase users wanting open-source alternative",
+        "pain_points": "Postgres complexity for beginners, pricing tiers, real-time scaling",
+        "ecosystem": "PostgreSQL, PostgREST, GoTrue, Realtime, Edge Functions",
+        "competitors": ["firebase", "appwrite", "neon", "planetscale"],
+        "subtopics": [
+          "Auth",
+          "Database",
+          "Storage",
+          "Realtime",
+          "Edge Functions",
+          "Row Level Security"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Supabase", "description": "The open-source Firebase alternative" },
+        "es": { "label": "Supabase", "description": "La alternativa open-source a Firebase" }
+      }
+    },
+    {
+      "slug": "firebase",
+      "name": "Firebase",
+      "category": "backend-infra",
+      "context": {
+        "audience": "Mobile developers, startups wanting fast prototyping, Google Cloud users",
+        "pain_points": "Vendor lock-in, pricing unpredictability, Firestore query limitations, NoSQL constraints",
+        "ecosystem": "Firestore, Authentication, Cloud Functions, Hosting, FCM",
+        "competitors": ["supabase", "appwrite", "aws-amplify"],
+        "subtopics": [
+          "Firestore",
+          "Authentication",
+          "Cloud Functions",
+          "Hosting",
+          "FCM",
+          "Analytics"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Firebase", "description": "Google's app development platform" },
+        "es": {
+          "label": "Firebase",
+          "description": "La plataforma de desarrollo de apps de Google"
+        }
+      }
+    },
+    {
+      "slug": "small-business-websites",
+      "name": "Small Business Websites",
+      "category": "business-niches",
+      "context": {
+        "audience": "Small business owners, local entrepreneurs, freelancers needing web presence",
+        "pain_points": "Budget constraints, technical overwhelm, maintaining the site, SEO basics",
+        "ecosystem": "WordPress, Squarespace, Wix, custom development, Google Business",
+        "competitors": [],
+        "subtopics": [
+          "Landing Pages",
+          "Local SEO",
+          "Contact Forms",
+          "Mobile Optimization",
+          "Google Business"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "Small Business Websites",
+          "description": "Web solutions for small businesses"
+        },
+        "es": {
+          "label": "Sitios Web para Pequenos Negocios",
+          "description": "Soluciones web para pequenos negocios"
+        }
+      }
+    },
+    {
+      "slug": "ecommerce",
+      "name": "E-commerce",
+      "category": "business-niches",
+      "context": {
+        "audience": "Online store owners, DTC brands, retailers going digital",
+        "pain_points": "Cart abandonment, payment integration, inventory management, shipping complexity",
+        "ecosystem": "Shopify, WooCommerce, Stripe, Medusa, Saleor",
+        "competitors": [],
+        "subtopics": [
+          "Headless Commerce",
+          "Payment Processing",
+          "Inventory",
+          "Shipping",
+          "Product Pages",
+          "Checkout"
+        ]
+      },
+      "locale": {
+        "en": { "label": "E-commerce", "description": "Online store solutions and platforms" },
+        "es": {
+          "label": "Comercio Electronico",
+          "description": "Soluciones y plataformas de tienda en linea"
+        }
+      }
+    },
+    {
+      "slug": "saas",
+      "name": "SaaS",
+      "category": "business-niches",
+      "context": {
+        "audience": "SaaS founders, startup CTOs, indie hackers building subscription products",
+        "pain_points": "Auth, billing, multi-tenancy, onboarding, churn, feature flags",
+        "ecosystem": "Stripe, Auth0, Clerk, LaunchDarkly, Segment",
+        "competitors": [],
+        "subtopics": [
+          "Authentication",
+          "Billing",
+          "Multi-tenancy",
+          "Onboarding",
+          "Analytics",
+          "Feature Flags"
+        ]
+      },
+      "locale": {
+        "en": { "label": "SaaS", "description": "Software as a Service development" },
+        "es": { "label": "SaaS", "description": "Desarrollo de Software como Servicio" }
+      }
+    },
+    {
+      "slug": "portfolios",
+      "name": "Portfolio Websites",
+      "category": "business-niches",
+      "context": {
+        "audience": "Designers, developers, photographers, creatives needing showcase sites",
+        "pain_points": "Standing out, performance with heavy media, keeping it updated",
+        "ecosystem": "Next.js, Astro, Framer, Webflow, custom builds",
+        "competitors": [],
+        "subtopics": [
+          "Performance",
+          "Animations",
+          "Image Optimization",
+          "Case Studies",
+          "Contact Forms"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "Portfolio Websites",
+          "description": "Showcase sites for creatives and professionals"
+        },
+        "es": {
+          "label": "Sitios Web de Portafolio",
+          "description": "Sitios de exhibicion para creativos y profesionales"
+        }
+      }
+    },
+    {
+      "slug": "restaurants",
+      "name": "Restaurant Websites",
+      "category": "business-niches",
+      "context": {
+        "audience": "Restaurant owners, food service businesses, cafe and bar owners",
+        "pain_points": "Online ordering integration, menu updates, reservation systems, local SEO",
+        "ecosystem": "Google Business, Yelp, UberEats, DoorDash, OpenTable",
+        "competitors": [],
+        "subtopics": [
+          "Online Ordering",
+          "Menu Management",
+          "Reservations",
+          "Local SEO",
+          "Google Maps"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "Restaurant Websites",
+          "description": "Web solutions for restaurants and food service"
+        },
+        "es": {
+          "label": "Sitios Web para Restaurantes",
+          "description": "Soluciones web para restaurantes y servicio de comida"
+        }
+      }
+    },
+    {
+      "slug": "real-estate",
+      "name": "Real Estate Websites",
+      "category": "business-niches",
+      "context": {
+        "audience": "Real estate agents, brokerages, property developers",
+        "pain_points": "MLS integration, property search UX, lead generation, IDX compliance",
+        "ecosystem": "IDX, MLS, Zillow API, Google Maps, CRM integration",
+        "competitors": [],
+        "subtopics": [
+          "Property Listings",
+          "Search Filters",
+          "Map Integration",
+          "Lead Capture",
+          "Virtual Tours"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "Real Estate Websites",
+          "description": "Web solutions for real estate professionals"
+        },
+        "es": {
+          "label": "Sitios Web Inmobiliarios",
+          "description": "Soluciones web para profesionales inmobiliarios"
+        }
+      }
+    },
+    {
+      "slug": "negocios-locales-cr",
+      "name": "Negocios Locales Costa Rica",
+      "category": "costa-rica",
+      "context": {
+        "audience": "Duenos de negocios locales en Costa Rica, emprendedores ticos",
+        "pain_points": "Presupuesto limitado, falta de conocimiento tecnico, competir con cadenas grandes",
+        "ecosystem": "Google Business, WhatsApp Business, SINPE Movil, redes sociales",
+        "competitors": [],
+        "subtopics": [
+          "Paginas Web",
+          "WhatsApp Integration",
+          "SINPE Movil",
+          "Google Maps",
+          "Redes Sociales"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "Local Businesses Costa Rica",
+          "description": "Web solutions for Costa Rican local businesses"
+        },
+        "es": {
+          "label": "Negocios Locales Costa Rica",
+          "description": "Soluciones web para negocios locales en Costa Rica"
+        }
+      }
+    },
+    {
+      "slug": "emprendedores-cr",
+      "name": "Emprendedores Costa Rica",
+      "category": "costa-rica",
+      "context": {
+        "audience": "Emprendedores y startups costarricenses, PYMES en crecimiento",
+        "pain_points": "Capital limitado, falta de presencia digital, competencia con empresas establecidas",
+        "ecosystem": "PROCOMER, MEIC, zona franca, aceleradoras locales",
+        "competitors": [],
+        "subtopics": [
+          "Landing Pages",
+          "E-commerce",
+          "Branding Digital",
+          "Marketing Digital",
+          "Apps Moviles"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "Entrepreneurs Costa Rica",
+          "description": "Digital solutions for Costa Rican entrepreneurs"
+        },
+        "es": {
+          "label": "Emprendedores Costa Rica",
+          "description": "Soluciones digitales para emprendedores costarricenses"
+        }
+      }
+    },
+    {
+      "slug": "pymes-cr",
+      "name": "PYMES Costa Rica",
+      "category": "costa-rica",
+      "context": {
+        "audience": "Pequenas y medianas empresas costarricenses, gerentes de PYMES",
+        "pain_points": "Digitalizacion, automatizacion, costos de tecnologia, falta de personal tecnico",
+        "ecosystem": "Facturacion electronica, SINPE, banca en linea, sistemas POS",
+        "competitors": [],
+        "subtopics": [
+          "Sistemas Web",
+          "Facturacion Electronica",
+          "CRM",
+          "Automatizacion",
+          "Presencia Digital"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "SMBs Costa Rica",
+          "description": "Technology solutions for Costa Rican SMBs"
+        },
+        "es": {
+          "label": "PYMES Costa Rica",
+          "description": "Soluciones tecnologicas para PYMES costarricenses"
+        }
+      }
+    },
+    {
+      "slug": "typescript",
+      "name": "TypeScript",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "JavaScript developers adopting type safety, enterprise teams, library authors",
+        "pain_points": "Configuration complexity, strict mode migration, type gymnastics, build times",
+        "ecosystem": "TSC, ts-node, tsx, Zod, tRPC",
+        "competitors": [],
+        "subtopics": [
+          "Generics",
+          "Utility Types",
+          "Declaration Files",
+          "tsconfig",
+          "Type Guards",
+          "Branded Types"
+        ]
+      },
+      "locale": {
+        "en": { "label": "TypeScript", "description": "Typed superset of JavaScript" },
+        "es": { "label": "TypeScript", "description": "Superconjunto tipado de JavaScript" }
+      }
+    },
+    {
+      "slug": "gsap",
+      "name": "GSAP",
+      "category": "css-ui",
+      "context": {
+        "audience": "Creative developers, motion designers, interactive website builders",
+        "pain_points": "License costs for commercial use, ScrollTrigger complexity, React integration",
+        "ecosystem": "ScrollTrigger, Flip, MotionPath, DrawSVG, SplitText",
+        "competitors": ["framer-motion", "motion-one", "animejs"],
+        "subtopics": [
+          "ScrollTrigger",
+          "Timelines",
+          "React Integration",
+          "Flip Plugin",
+          "Performance",
+          "SplitText"
+        ]
+      },
+      "locale": {
+        "en": { "label": "GSAP", "description": "Professional-grade animation library" },
+        "es": { "label": "GSAP", "description": "Biblioteca de animacion de grado profesional" }
+      }
+    },
+    {
+      "slug": "framer-motion",
+      "name": "Framer Motion",
+      "category": "css-ui",
+      "context": {
+        "audience": "React developers adding animations, product teams wanting polished UIs",
+        "pain_points": "Bundle size, performance with many animated elements, learning curve for complex animations",
+        "ecosystem": "React, AnimatePresence, LayoutGroup, motion values",
+        "competitors": ["gsap", "react-spring", "motion-one"],
+        "subtopics": [
+          "Layout Animations",
+          "Gestures",
+          "Variants",
+          "AnimatePresence",
+          "Scroll Animations"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "Framer Motion",
+          "description": "Production-ready motion library for React"
+        },
+        "es": {
+          "label": "Framer Motion",
+          "description": "Biblioteca de animacion para React lista para produccion"
+        }
+      }
+    },
+    {
+      "slug": "web-performance",
+      "name": "Web Performance",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "Frontend developers, SEO specialists, site reliability engineers",
+        "pain_points": "Core Web Vitals, bundle size, image optimization, third-party scripts",
+        "ecosystem": "Lighthouse, PageSpeed Insights, WebPageTest, Chrome DevTools",
+        "competitors": [],
+        "subtopics": [
+          "Core Web Vitals",
+          "Lazy Loading",
+          "Code Splitting",
+          "Image Optimization",
+          "Caching",
+          "CDN"
+        ]
+      },
+      "locale": {
+        "en": {
+          "label": "Web Performance",
+          "description": "Optimizing website speed and user experience"
+        },
+        "es": {
+          "label": "Rendimiento Web",
+          "description": "Optimizacion de velocidad y experiencia de usuario"
+        }
+      }
+    },
+    {
+      "slug": "seo",
+      "name": "SEO",
+      "category": "business-niches",
+      "context": {
+        "audience": "Marketers, business owners, developers implementing SEO, content creators",
+        "pain_points": "Algorithm changes, technical SEO complexity, content strategy, link building",
+        "ecosystem": "Google Search Console, Ahrefs, SEMrush, Screaming Frog",
+        "competitors": [],
+        "subtopics": [
+          "Technical SEO",
+          "On-page SEO",
+          "Structured Data",
+          "Sitemaps",
+          "Core Web Vitals",
+          "Local SEO"
+        ]
+      },
+      "locale": {
+        "en": { "label": "SEO", "description": "Search engine optimization strategies and tools" },
+        "es": {
+          "label": "SEO",
+          "description": "Estrategias y herramientas de optimizacion para buscadores"
+        }
+      }
+    },
+    {
+      "slug": "ai-development",
+      "name": "AI Development",
+      "category": "ai-dev-tools",
+      "context": {
+        "audience": "Developers building AI-powered apps, startups integrating LLMs, product teams",
+        "pain_points": "API costs, hallucinations, prompt engineering, model selection, latency",
+        "ecosystem": "OpenAI, Anthropic, Vercel AI SDK, LangChain, LlamaIndex",
+        "competitors": [],
+        "subtopics": [
+          "Prompt Engineering",
+          "RAG",
+          "Function Calling",
+          "Streaming",
+          "Embeddings",
+          "Fine-tuning"
+        ]
+      },
+      "locale": {
+        "en": { "label": "AI Development", "description": "Building AI-powered applications" },
+        "es": {
+          "label": "Desarrollo con IA",
+          "description": "Construccion de aplicaciones impulsadas por IA"
+        }
+      }
+    },
+    {
+      "slug": "stripe",
+      "name": "Stripe",
+      "category": "backend-infra",
+      "context": {
+        "audience": "SaaS founders, e-commerce developers, anyone integrating payments",
+        "pain_points": "Webhook handling, subscription edge cases, tax compliance, testing",
+        "ecosystem": "Stripe Elements, Checkout, Billing, Connect, Tax",
+        "competitors": ["paypal", "square", "lemonsqueezy"],
+        "subtopics": ["Checkout", "Subscriptions", "Webhooks", "Connect", "Elements", "Tax"]
+      },
+      "locale": {
+        "en": { "label": "Stripe", "description": "Payment infrastructure for the internet" },
+        "es": { "label": "Stripe", "description": "Infraestructura de pagos para internet" }
+      }
+    },
+    {
+      "slug": "testing",
+      "name": "Testing",
+      "category": "web-frameworks",
+      "context": {
+        "audience": "Developers, QA engineers, teams implementing CI/CD, TDD practitioners",
+        "pain_points": "Test flakiness, slow test suites, mocking complexity, E2E test maintenance",
+        "ecosystem": "Vitest, Jest, Playwright, Cypress, Testing Library",
+        "competitors": [],
+        "subtopics": [
+          "Unit Testing",
+          "Integration Testing",
+          "E2E Testing",
+          "Component Testing",
+          "TDD",
+          "Mocking"
+        ]
+      },
+      "locale": {
+        "en": { "label": "Testing", "description": "Software testing strategies and tools" },
+        "es": {
+          "label": "Testing",
+          "description": "Estrategias y herramientas de pruebas de software"
+        }
+      }
+    }
+  ],
+  "categories": [
+    {
+      "slug": "web-frameworks",
+      "name": "Web Frameworks & Tools",
+      "name_es": "Frameworks y Herramientas Web"
+    },
+    {
+      "slug": "ai-dev-tools",
+      "name": "AI Development Tools",
+      "name_es": "Herramientas de Desarrollo con IA"
+    },
+    { "slug": "css-ui", "name": "CSS & UI Libraries", "name_es": "CSS y Bibliotecas de UI" },
+    {
+      "slug": "backend-infra",
+      "name": "Backend & Infrastructure",
+      "name_es": "Backend e Infraestructura"
+    },
+    { "slug": "business-niches", "name": "Business Niches", "name_es": "Nichos de Negocio" },
+    { "slug": "costa-rica", "name": "Costa Rica", "name_es": "Costa Rica" }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "nextjs-seo-checklist",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Next.js SEO Checklist: 25 Essential Steps",
+    "description": "Optimize your Next.js app for search engines with this 25-step SEO checklist. Covers metadata, structured data, Core Web Vitals, and crawlability.",
+    "keywords": [
+      "nextjs seo checklist",
+      "next.js seo optimization",
+      "nextjs seo best practices",
+      "nextjs metadata",
+      "nextjs structured data",
+      "react seo"
+    ]
+  },
+  "introduction": "Next.js gives you powerful SEO primitives — server-side rendering, the Metadata API, and static generation — but you still need to use them correctly. This checklist walks through every SEO optimization available in Next.js, from technical foundations to structured data. Follow it to ensure search engines can discover, crawl, and rank your pages effectively.",
+  "total_items": 25,
+  "estimated_time": "2-3 hours",
+  "sections": [
+    {
+      "name": "Technical SEO Foundations",
+      "description": "Core technical requirements that search engine crawlers need to properly index your Next.js application.",
+      "items": [
+        {
+          "id": "nextjs-seo-1",
+          "text": "Ensure all public pages are server-rendered or statically generated",
+          "description": "Pages that need to be indexed must return complete HTML from the server. Use Server Components (default in App Router) or `generateStaticParams` for dynamic routes. Client-only rendered content is invisible to most crawlers.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-seo-2",
+          "text": "Create a comprehensive sitemap.ts",
+          "description": "Export a default function from `app/sitemap.ts` that returns all indexable URLs with lastModified dates, changeFrequency, and priority. For sites with 50,000+ URLs, use `generateSitemaps()` to create a sitemap index.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-seo-3",
+          "text": "Configure robots.ts with crawl directives",
+          "description": "Create `app/robots.ts` that returns rules for different user agents. Allow Googlebot access to all public pages, disallow /api and /admin routes, and include your sitemap URL. Test with Google's robots.txt tester.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-seo-4",
+          "text": "Set canonical URLs for every page",
+          "description": "Use `alternates.canonical` in your metadata config. Without canonicals, search engines may index duplicate versions of your pages (www vs non-www, trailing slash vs no trailing slash, query parameters).",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-5",
+          "text": "Implement proper redirects for moved or deleted pages",
+          "description": "Use `redirects()` in next.config.js or middleware for 301 permanent redirects. Every old URL that still gets traffic or has backlinks should redirect to the most relevant current page. Never let indexed pages return 404.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Metadata & Open Graph",
+      "description": "Configure page-level metadata that controls how your pages appear in search results and social media shares.",
+      "items": [
+        {
+          "id": "nextjs-seo-6",
+          "text": "Set unique title and description for every page",
+          "description": "Use the Metadata API to define a unique `title` (50-60 chars) and `description` (120-155 chars) per page. Duplicate titles across pages confuse search engines about which page to rank for a given query.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-seo-7",
+          "text": "Use generateMetadata for dynamic route metadata",
+          "description": "For dynamic routes like `/blog/[slug]`, export an async `generateMetadata` function that fetches the content and returns page-specific titles and descriptions. Static metadata on dynamic pages wastes ranking potential.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-seo-8",
+          "text": "Configure Open Graph tags for social sharing",
+          "description": "Set `openGraph.title`, `openGraph.description`, `openGraph.images`, and `openGraph.type` in your metadata. Test sharing on Facebook, Twitter, and LinkedIn. Use 1200x630px images for optimal display across platforms.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-9",
+          "text": "Generate dynamic OG images with next/og",
+          "description": "Use the `ImageResponse` API from `next/og` to create branded Open Graph images dynamically for each page. This ensures every shared link has a relevant, eye-catching preview image without manually creating hundreds of images.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-seo-10",
+          "text": "Set up metadata template for consistent title formatting",
+          "description": "Use `title.template` in your root layout metadata (e.g., `'%s | Your Brand'`) so every page title automatically includes your brand name. Set `title.default` as a fallback for pages without explicit titles.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Structured Data & Rich Results",
+      "description": "Add schema markup that helps search engines understand your content and display rich snippets in results.",
+      "items": [
+        {
+          "id": "nextjs-seo-11",
+          "text": "Add Organization schema to your root layout",
+          "description": "Include a JSON-LD script with `@type: Organization`, your company name, logo URL, social media profiles, and contact information. This establishes your brand entity in Google's Knowledge Graph.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-12",
+          "text": "Add WebSite schema with SearchAction",
+          "description": "Include WebSite schema with a `potentialAction` of type `SearchAction` if your site has search functionality. This can earn a search box directly in Google results for your brand.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-seo-13",
+          "text": "Implement page-specific structured data",
+          "description": "Add Article schema for blog posts, Product schema for product pages, FAQ schema for FAQ sections, and BreadcrumbList for navigation paths. Each schema type unlocks different rich result formats in search.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-14",
+          "text": "Validate all structured data with Google's Rich Results Test",
+          "description": "Test every schema type at search.google.com/test/rich-results. Fix all errors and warnings. Invalid structured data is ignored by search engines, wasting your implementation effort.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-15",
+          "text": "Add BreadcrumbList schema for navigation hierarchy",
+          "description": "Create a BreadcrumbList JSON-LD that mirrors your URL structure (Home > Category > Page). Breadcrumbs in search results improve click-through rates by showing users where the page fits in your site hierarchy.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Content & On-Page SEO",
+      "description": "Optimize your page content structure and HTML semantics for maximum search engine visibility.",
+      "items": [
+        {
+          "id": "nextjs-seo-16",
+          "text": "Use exactly one H1 tag per page",
+          "description": "Each page should have a single `<h1>` containing the primary keyword. Multiple H1s dilute heading hierarchy. Use H2-H6 for subheadings in proper nesting order. Never skip heading levels.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-seo-17",
+          "text": "Add descriptive alt text to all images",
+          "description": "Every `next/image` component needs an `alt` prop that describes the image content for screen readers and search engines. Include relevant keywords naturally, but never keyword-stuff. Decorative images should use `alt=''`.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-18",
+          "text": "Implement internal linking between related pages",
+          "description": "Use Next.js `Link` component to connect related pages. Internal links distribute page authority and help crawlers discover content. Each page should link to and be linked from at least 2-3 other pages.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-19",
+          "text": "Use semantic HTML elements throughout",
+          "description": "Structure pages with `<main>`, `<article>`, `<section>`, `<nav>`, `<header>`, and `<footer>` elements. Semantic HTML helps search engines understand content structure and importance, improving content classification.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-20",
+          "text": "Optimize URL slugs for readability and keywords",
+          "description": "Use descriptive, hyphenated slugs like `/blog/nextjs-seo-guide` instead of `/blog/12345` or `/blog/post?id=12345`. Short, keyword-rich URLs perform better in search rankings and are easier for users to share.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Performance for SEO",
+      "description": "Page speed directly impacts search rankings. Optimize Core Web Vitals to satisfy both users and Google.",
+      "items": [
+        {
+          "id": "nextjs-seo-21",
+          "text": "Achieve passing Core Web Vitals scores",
+          "description": "Target LCP under 2.5s, INP under 200ms, and CLS under 0.1. Use PageSpeed Insights to test both mobile and desktop. Google uses these metrics as ranking signals, and poor scores can push you below competitors.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-seo-22",
+          "text": "Optimize Largest Contentful Paint element",
+          "description": "Identify your LCP element (usually a hero image or heading) with Chrome DevTools. If it is an image, add `priority` prop to `next/image`. If it is text, ensure fonts load with `next/font` to eliminate font swap delays.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-seo-23",
+          "text": "Eliminate Cumulative Layout Shift",
+          "description": "Set explicit `width` and `height` on all images and videos. Use CSS `aspect-ratio` for responsive containers. Reserve space for dynamically loaded content like ads or embeds. Even small CLS adds up across page elements.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-24",
+          "text": "Minimize third-party script impact",
+          "description": "Load analytics, chat widgets, and tracking scripts with `next/script` using `strategy='lazyOnload'` or `strategy='afterInteractive'`. Third-party scripts are the most common cause of poor INP and LCP scores.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-seo-25",
+          "text": "Enable and verify page caching headers",
+          "description": "Check that static pages return proper `Cache-Control` headers. Vercel handles this automatically, but self-hosted deployments need explicit configuration. Use `stale-while-revalidate` for ISR pages to serve cached content while regenerating.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Submit your sitemap to Google Search Console immediately after launch, then monitor the Index Coverage report weekly for the first month to catch crawl errors early.",
+    "Use the `generateStaticParams` function to pre-render all dynamic routes at build time. Pre-rendered pages load faster and are more reliably indexed than server-rendered pages.",
+    "Install the Chrome extension 'Detailed SEO Extension' to quickly audit any page's meta tags, headings, and structured data without opening DevTools.",
+    "Set up Google Search Console alerts for manual actions, security issues, and significant traffic drops. Early detection of problems prevents long-term ranking damage.",
+    "Test your structured data with both Google's Rich Results Test and Schema.org's validator — they catch different types of errors."
+  ],
+  "related_slugs": [
+    "nextjs-launch-checklist",
+    "nextjs-performance-checklist",
+    "react-launch-checklist"
+  ]
+}

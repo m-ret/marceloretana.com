@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "niche": "ai-tools",
+    "type": "comparison",
+    "locale": "en",
+    "slug": "cursor-vs-claude-code",
+    "generated_at": "2026-03-11T00:00:00Z"
+  },
+  "seo": {
+    "title": "Cursor vs Claude Code: Which Is Better for AI-Assisted Coding in 2026?",
+    "description": "Cursor (AI-powered IDE) vs Claude Code (terminal-based AI agent) compared on coding ability, workflow integration, autonomy, and real-world productivity.",
+    "keywords": [
+      "cursor vs claude code",
+      "claude code vs cursor",
+      "best ai coding tool 2026",
+      "ai code editor comparison",
+      "cursor ide vs claude cli"
+    ]
+  },
+  "tools": [
+    {
+      "name": "Cursor",
+      "slug": "cursor",
+      "tagline": "The AI-first code editor built for pair programming with AI",
+      "website": "https://cursor.com",
+      "category": "AI Code Editor"
+    },
+    {
+      "name": "Claude Code",
+      "slug": "claude-code",
+      "tagline": "An agentic coding tool that lives in your terminal",
+      "website": "https://docs.anthropic.com/en/docs/claude-code",
+      "category": "AI Coding Agent"
+    }
+  ],
+  "introduction": "Cursor and Claude Code represent two fundamentally different philosophies for AI-assisted development. Cursor is a VS Code fork that embeds AI into every part of the IDE experience — autocomplete, inline edits, chat, and multi-file refactoring within a visual editor. Claude Code is a terminal-native agent that reads your codebase, plans changes, writes code, runs commands, and commits — all from the command line. The choice shapes not just your tools but how you think about coding with AI.",
+  "categories": [
+    {
+      "name": "AI Coding Capabilities",
+      "criteria": [
+        {
+          "criterion": "Code Generation Quality",
+          "tool_a": {
+            "score": 8,
+            "detail": "Access to multiple models (GPT-4o, Claude Sonnet/Opus, Gemini). Tab autocomplete is fast and context-aware. Quality depends on which model you select — Claude models tend to produce the best results."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Powered exclusively by Anthropic's Claude models (Sonnet for speed, Opus for complex tasks). Extended thinking mode reasons through architecture decisions before writing code. Output quality is consistently high for complex tasks."
+          }
+        },
+        {
+          "criterion": "Codebase Understanding",
+          "tool_a": {
+            "score": 8,
+            "detail": "Indexes your codebase for @codebase references. Can search across files with @file mentions. Context window is limited by the model — you manually guide what files to include."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Autonomously reads, searches, and greps your entire codebase. Understands project structure, follows imports, reads configs. CLAUDE.md files provide persistent project context. No manual file selection needed."
+          }
+        },
+        {
+          "criterion": "Multi-File Refactoring",
+          "tool_a": {
+            "score": 7,
+            "detail": "Composer mode handles multi-file edits in a visual diff view. Works well for 2-5 file changes. Can struggle with coherence across many files in large refactors. You review each file change individually."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Excels at sweeping refactors — rename a pattern across 50 files, migrate an API, restructure a module. Plans the full change set, executes it, and can run tests to verify. Handles large-scale changes naturally."
+          }
+        },
+        {
+          "criterion": "Autocomplete Speed",
+          "tool_a": {
+            "score": 10,
+            "detail": "Tab completion is Cursor's killer feature — sub-200ms suggestions that predict multi-line edits. Copilot++ understands your editing patterns. This alone justifies the switch from VS Code for many developers."
+          },
+          "tool_b": {
+            "score": 1,
+            "detail": "No autocomplete whatsoever. Claude Code is not an editor — it's an agent. You describe what you want and it writes complete implementations. There's no inline suggestion as you type."
+          }
+        },
+        {
+          "criterion": "Autonomous Execution",
+          "tool_a": {
+            "score": 5,
+            "detail": "Limited autonomy — you're driving the IDE and asking AI for specific help. Background agents exist but are newer and less mature. The workflow is fundamentally interactive and human-guided."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Full agentic autonomy. Give it a task and it plans, reads files, writes code, runs tests, fixes errors, and commits. Can run in headless mode for CI/CD. Handles multi-step tasks without intervention."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Workflow Integration",
+      "criteria": [
+        {
+          "criterion": "Editor Integration",
+          "tool_a": {
+            "score": 10,
+            "detail": "Is the editor. Full VS Code feature set with extensions, themes, debugger, terminal, git GUI. If you live in VS Code, Cursor is a seamless transition with AI superpowers added."
+          },
+          "tool_b": {
+            "score": 3,
+            "detail": "Terminal only — no visual editor, no syntax highlighting of files you're editing, no debugger GUI. You use Claude Code alongside your existing editor (VS Code, Neovim, etc.), not instead of it."
+          }
+        },
+        {
+          "criterion": "Terminal & Command Execution",
+          "tool_a": {
+            "score": 6,
+            "detail": "Has a built-in terminal but AI doesn't autonomously run commands. You can ask the AI to generate terminal commands, but you execute them manually. No automatic test running or build verification."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Native terminal integration. Runs build commands, executes tests, reads error output, and fixes issues in a loop. Can run your dev server, check linting, and verify changes work — all autonomously."
+          }
+        },
+        {
+          "criterion": "Git Workflow",
+          "tool_a": {
+            "score": 7,
+            "detail": "Standard VS Code git integration with AI-generated commit messages. No autonomous git operations. You stage, commit, and push through the GUI or terminal manually."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Creates branches, stages changes, writes conventional commit messages, and can create PRs via gh CLI. Understands git history and diff context. Full git workflow automation while respecting safety guardrails."
+          }
+        },
+        {
+          "criterion": "Project Configuration",
+          "tool_a": {
+            "score": 6,
+            "detail": ".cursorrules file provides project-level AI instructions. Useful but limited to a single file. No structured way to define project conventions, commands, or architecture decisions."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "CLAUDE.md files at project, directory, and user levels define conventions, commands, architecture decisions, and coding standards. The agent reads these on every session for consistent behavior."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pricing & Accessibility",
+      "criteria": [
+        {
+          "criterion": "Cost Structure",
+          "tool_a": {
+            "score": 7,
+            "detail": "$20/month Pro plan includes 500 fast completions and limited Composer/chat. $40/month Business. Power users hit rate limits and need to bring their own API keys for additional usage."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Requires Anthropic API key with pay-per-use pricing, or Max plan subscription. Heavy usage sessions can cost $5-30+ in API calls. No flat-rate option — costs scale with usage intensity."
+          }
+        },
+        {
+          "criterion": "Platform Support",
+          "tool_a": {
+            "score": 8,
+            "detail": "Desktop app for macOS, Windows, Linux. No web version. Based on Electron (VS Code). Works wherever VS Code works, including remote development via SSH."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Runs anywhere with a terminal — local, SSH, Docker, CI/CD pipelines, cloud VMs. No GUI dependency. Works on headless servers. Perfect for remote development and automation workflows."
+          }
+        },
+        {
+          "criterion": "Privacy & Security",
+          "tool_a": {
+            "score": 7,
+            "detail": "Code sent to AI model providers for processing. Privacy mode available in Business plan. SOC 2 certified. Code isn't stored for training, but it does leave your machine."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Code sent to Anthropic's API for processing. Enterprise plan offers zero data retention. Local tool execution means only code context sent to API, not your entire filesystem."
+          }
+        },
+        {
+          "criterion": "Extensibility",
+          "tool_a": {
+            "score": 8,
+            "detail": "Full VS Code extension ecosystem. Thousands of extensions work out of the box. Custom AI prompts and system messages configurable. Growing MCP (Model Context Protocol) support."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Custom slash commands, skill files, hooks system, and MCP server integration for extending capabilities. Community-built tools and integrations growing. Bash tool access means infinite extensibility."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Best Use Cases",
+      "criteria": [
+        {
+          "criterion": "Day-to-Day Feature Development",
+          "tool_a": {
+            "score": 9,
+            "detail": "Excellent for writing features in an interactive loop. Tab complete, ask questions, inline edit, repeat. The tight feedback loop of writing code with AI suggestions is genuinely productive."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Great for well-defined features but overkill for small tweaks. Best when you can describe the full feature and let it implement. Context switching between editor and terminal adds friction for small changes."
+          }
+        },
+        {
+          "criterion": "Large Refactors & Migrations",
+          "tool_a": {
+            "score": 5,
+            "detail": "Struggles with changes spanning many files. Composer works for small refactors but loses coherence at scale. You end up doing large migrations file by file with AI assistance."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "This is Claude Code's sweet spot. Migrate a codebase from Pages Router to App Router, update 100 API calls to a new SDK, rename a pattern everywhere — it handles the scope naturally."
+          }
+        },
+        {
+          "criterion": "Learning & Exploration",
+          "tool_a": {
+            "score": 9,
+            "detail": "Inline explanations, hover documentation, and conversational chat make learning in context seamless. You can highlight code and ask 'what does this do?' without leaving the editor."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Can explain code and architecture well, but the terminal interface is less discoverable for beginners. Great for understanding how a codebase works as a whole, less ideal for line-by-line learning."
+          }
+        },
+        {
+          "criterion": "CI/CD & Automation",
+          "tool_a": {
+            "score": 2,
+            "detail": "Desktop GUI app — cannot run in CI/CD pipelines, scripts, or automated workflows. Purely a developer-facing interactive tool."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Designed for headless operation. Run in CI to auto-fix lint errors, generate PR descriptions, review code, update docs. GitHub Actions integration is first-class. The agent paradigm enables true automation."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "Different tools for different workflows — many developers use both",
+    "best_for": {
+      "inline autocomplete": "Cursor",
+      "interactive coding": "Cursor",
+      "large refactors": "Claude Code",
+      "CI/CD automation": "Claude Code",
+      "codebase understanding": "Claude Code",
+      "learning new codebases": "Cursor",
+      "VS Code users": "Cursor",
+      "terminal-first developers": "Claude Code",
+      "headless/remote development": "Claude Code"
+    },
+    "summary": "These tools complement each other more than they compete. Cursor excels at the minute-to-minute coding experience — fast autocomplete, inline edits, and conversational help within a familiar IDE. Claude Code excels at higher-level tasks — understanding entire codebases, executing multi-step refactors, running tests, and automating workflows. Many productive developers use Cursor for daily coding and Claude Code for complex tasks, migrations, and automation. Your choice depends on whether you want AI enhancing your editor or an AI agent that operates alongside it."
+  },
+  "related_slugs": ["cursor-vs-github-copilot", "v0-vs-bolt"]
+}
