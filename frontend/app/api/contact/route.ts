@@ -28,11 +28,13 @@ export async function POST(req: Request) {
     }),
   });
 
+  const body = await res.json().catch(() => ({}));
+
   if (!res.ok) {
-    const error = await res.json().catch(() => ({}));
-    console.error("Unosend error:", error);
+    console.error("Unosend error:", res.status, body);
     return NextResponse.json({ error: "Failed to send message." }, { status: 500 });
   }
 
+  console.log("Unosend response:", res.status, body);
   return NextResponse.json({ success: true });
 }
