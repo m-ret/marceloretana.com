@@ -110,7 +110,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "GEXP Software",
   url: "https://gexpsoftware.com",
-  logo: "https://marceloretana.com/profile.jpeg",
+  logo: "https://marceloretana.com/profile.avif",
   founder: {
     "@type": "Person",
     name: "Marcelo Retana",
@@ -135,7 +135,7 @@ const jsonLd = {
   "@type": "Person",
   name: "Marcelo Retana",
   url: "https://marceloretana.com",
-  image: "https://marceloretana.com/profile.jpeg",
+  image: "https://marceloretana.com/profile.avif",
   jobTitle: "Full-Stack Developer & Founder",
   description:
     "Full-stack developer with 10+ years of experience building high-converting websites, web apps, mobile apps, and MVPs. Specializes in performance-first development with Next.js, SEO optimization, and AI search visibility.",

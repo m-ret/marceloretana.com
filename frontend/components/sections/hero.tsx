@@ -95,7 +95,7 @@ export function Hero() {
             <div className="relative w-full md:w-80 h-96 md:h-[520px] flex-shrink-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/profile.jpeg"
+                src="/profile.avif"
                 alt="Marcelo Retana"
                 className="w-full h-full object-cover object-top"
               />
