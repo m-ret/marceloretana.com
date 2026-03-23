@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "niche": "typescript",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "typescript-migration-checklist",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "TypeScript Migration Checklist: 25 Essential Steps",
+    "description": "Migrate your JavaScript project to TypeScript with this 25-step checklist. Covers tsconfig, strict mode, gradual adoption, and type safety patterns.",
+    "keywords": [
+      "typescript migration checklist",
+      "javascript to typescript",
+      "typescript migration guide",
+      "tsconfig setup",
+      "typescript strict mode",
+      "gradual typescript adoption",
+      "typescript conversion"
+    ]
+  },
+  "introduction": "Migrating a JavaScript codebase to TypeScript doesn't have to be a big-bang rewrite. The best migrations happen incrementally, file by file, with strict mode as the end goal. This checklist gives you a proven sequence for converting any JS project to TypeScript without breaking your team's velocity or your CI pipeline.",
+  "total_items": 25,
+  "estimated_time": "4-8 hours",
+  "sections": [
+    {
+      "name": "Project Setup & Configuration",
+      "description": "Get your TypeScript toolchain configured correctly before touching any source files.",
+      "items": [
+        {
+          "id": "ts-migration-1",
+          "text": "Install TypeScript and required dependencies",
+          "description": "Run `npm install -D typescript @types/node` and any framework-specific type packages (`@types/react`, `@types/express`, etc.). Pin the TypeScript version in package.json to avoid surprise breakages when a new release changes type inference behavior.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-migration-2",
+          "text": "Create a tsconfig.json with relaxed initial settings",
+          "description": "Run `npx tsc --init` and start with `strict: false`, `allowJs: true`, and `checkJs: false`. This lets you rename files to .ts/.tsx without immediately fixing every type error. You'll tighten these settings as the migration progresses.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-migration-3",
+          "text": "Configure path aliases to match existing imports",
+          "description": "Set `baseUrl` and `paths` in tsconfig.json to mirror any existing webpack or babel aliases (e.g., `@/` mapping to `src/`). Mismatched aliases cause import resolution failures that look like missing module errors.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-4",
+          "text": "Set target and module options for your runtime",
+          "description": "Choose `target` based on your minimum supported environment (e.g., `ES2020` for Node 14+, `ES2022` for modern browsers). Set `module` to match your bundler — `ESNext` for Vite/webpack, `NodeNext` for Node.js ESM projects. Wrong settings cause subtle runtime bugs.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-5",
+          "text": "Add TypeScript to your build pipeline",
+          "description": "Update your build scripts to run `tsc --noEmit` for type checking (let your bundler handle transpilation). Add a `typecheck` npm script and integrate it into your CI pipeline so type errors block PRs from the start.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "name": "Gradual File Conversion",
+      "description": "Convert files incrementally from JavaScript to TypeScript, starting with the easiest wins.",
+      "items": [
+        {
+          "id": "ts-migration-6",
+          "text": "Start by renaming utility and config files",
+          "description": "Rename pure utility files (helpers, constants, config) from .js to .ts first. These typically have simple types and few dependencies, giving your team quick wins and building confidence with the TypeScript workflow.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-7",
+          "text": "Convert shared type definitions and interfaces first",
+          "description": "Create a `types/` directory and define interfaces for your core domain objects (User, Product, APIResponse, etc.). Having shared types ready before converting components means you won't need `any` as a placeholder for common shapes.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-migration-8",
+          "text": "Migrate leaf modules before core modules",
+          "description": "Convert files that have no internal imports first (leaf nodes in your dependency graph), then work inward. This avoids cascading type errors from unconverted dependencies. Use a tool like `madge` to visualize your dependency graph.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-9",
+          "text": "Use declaration files for unconverted modules",
+          "description": "Create `.d.ts` files for JavaScript modules you haven't converted yet. Even a simple `declare module './legacy-module'` prevents import errors. Add basic type signatures as you learn how each module is actually used.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-10",
+          "text": "Convert test files alongside their source files",
+          "description": "When you convert `utils.js` to `utils.ts`, convert `utils.test.js` to `utils.test.ts` at the same time. Tests are the fastest way to validate that your type annotations match actual runtime behavior.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Type Safety Patterns",
+      "description": "Apply TypeScript patterns that catch real bugs and improve code maintainability.",
+      "items": [
+        {
+          "id": "ts-migration-11",
+          "text": "Replace type assertions with type guards",
+          "description": "Instead of `(value as User)`, write a type guard function like `function isUser(val: unknown): val is User`. Type assertions silence the compiler; type guards actually validate at runtime and narrow types safely.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-12",
+          "text": "Use unknown instead of any for external data",
+          "description": "Type API responses, JSON.parse results, and user input as `unknown` instead of `any`. This forces you to validate the shape before using it, catching malformed data at the boundary instead of deep in your business logic.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-migration-13",
+          "text": "Define discriminated unions for state management",
+          "description": "Model states like `{ status: 'loading' } | { status: 'success'; data: T } | { status: 'error'; error: Error }` instead of `{ loading: boolean; data?: T; error?: Error }`. Discriminated unions make impossible states unrepresentable.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-14",
+          "text": "Add return types to exported functions",
+          "description": "Explicitly annotate return types on all exported functions. This catches accidental return type changes and provides better error messages at the function definition rather than at distant call sites.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-15",
+          "text": "Use const assertions for literal types",
+          "description": "Add `as const` to configuration objects, route maps, and enum-like arrays. Without it, TypeScript widens `['admin', 'user']` to `string[]`, losing the ability to narrow on specific values in switch statements and conditionals.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Strict Mode Progression",
+      "description": "Incrementally enable strict compiler flags until you reach full strict mode.",
+      "items": [
+        {
+          "id": "ts-migration-16",
+          "text": "Enable noImplicitAny first",
+          "description": "This flag forces you to annotate parameters and variables that TypeScript can't infer. It's the single highest-value strict flag because implicit `any` silently disables type checking for everything it touches.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-migration-17",
+          "text": "Enable strictNullChecks",
+          "description": "This flag makes `null` and `undefined` their own types instead of assignable to everything. It catches the most common runtime error in JavaScript — accessing properties on null/undefined — at compile time. Expect many errors initially.",
+          "difficulty": "advanced",
+          "priority": "critical"
+        },
+        {
+          "id": "ts-migration-18",
+          "text": "Enable strictFunctionTypes",
+          "description": "This flag enforces contravariant parameter types in function assignments, catching subtle bugs where a callback expecting a specific type gets assigned a handler that assumes a broader type. It's usually low-friction to enable.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-19",
+          "text": "Enable noUncheckedIndexedAccess",
+          "description": "Array and object index access returns `T | undefined` instead of just `T`. This catches bugs like `items[0].name` when the array might be empty. It adds verbosity but prevents real production crashes.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "ts-migration-20",
+          "text": "Turn on full strict mode once all flags pass individually",
+          "description": "After enabling each strict flag one at a time, replace them all with `strict: true`. This ensures future TypeScript releases that add new strict checks are automatically applied. Document the migration date so the team knows when strict was achieved.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Cleanup & Validation",
+      "description": "Final steps to ensure the migration is complete, consistent, and sustainable.",
+      "items": [
+        {
+          "id": "ts-migration-21",
+          "text": "Audit and remove all remaining `any` types",
+          "description": "Search your codebase for `: any` and `as any`. Each one is a type-checking escape hatch that defeats the purpose of TypeScript. Replace with proper types, `unknown`, or generics. Track your `any` count as a migration metric.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-22",
+          "text": "Remove all @ts-ignore and @ts-expect-error comments",
+          "description": "These suppression comments were useful during migration but should not remain in the final codebase. Each one hides a real type problem. Fix the underlying issue or, if truly necessary, document exactly why the suppression exists.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-23",
+          "text": "Verify no .js source files remain in src/",
+          "description": "Run a find command to check for any unconverted JavaScript files. Stray .js files bypass type checking and can reintroduce untyped code paths. Exclude vendored files and generated output from this check.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "ts-migration-24",
+          "text": "Add ESLint TypeScript rules for ongoing enforcement",
+          "description": "Install `@typescript-eslint/eslint-plugin` and enable rules like `no-explicit-any`, `no-non-null-assertion`, and `strict-boolean-expressions`. Linting prevents type safety regressions after the migration is complete.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "ts-migration-25",
+          "text": "Update CI to fail on type errors and enforce .ts-only new files",
+          "description": "Ensure your CI pipeline runs `tsc --noEmit` and blocks merges on type errors. Add a lint rule or CI check that rejects new .js files in the src/ directory. This protects the migration investment from gradual erosion.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Track your migration progress by counting converted files vs total files. A simple script like `find src -name '*.ts' | wc -l` vs `find src -name '*.js' | wc -l` gives you a progress percentage to share with stakeholders.",
+    "Use `// @ts-expect-error` instead of `// @ts-ignore` during migration. The expect-error variant will flag when the error is fixed, so you know to remove the comment. ts-ignore silently persists forever.",
+    "Consider using `typescript-strict-plugin` to enforce strict mode on a per-file basis during migration. This lets already-converted files stay strict while unconverted files remain relaxed.",
+    "Run your test suite after every batch of file conversions, not just after the whole migration. TypeScript catches type errors at compile time, but runtime behavior changes from refactoring still need test coverage.",
+    "If you're blocked on a complex module, wrap it with a typed facade. Export a new typed interface that calls the untyped module internally. This gives consumers type safety without requiring an immediate rewrite."
+  ],
+  "related_slugs": [
+    "typescript-launch-checklist",
+    "react-launch-checklist",
+    "nextjs-launch-checklist"
+  ]
+}

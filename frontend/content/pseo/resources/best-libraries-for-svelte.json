@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "niche": "svelte",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-libraries-for-svelte",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Libraries for Svelte in 2026",
+    "description": "Curated Svelte libraries for UI components, state management, forms, and animations. Handpicked from real SvelteKit projects.",
+    "keywords": [
+      "svelte libraries",
+      "sveltekit libraries",
+      "svelte ui components",
+      "svelte state management",
+      "svelte forms",
+      "svelte animation",
+      "svelte ecosystem"
+    ]
+  },
+  "introduction": "Svelte's ecosystem is smaller than React's but the quality per library is remarkably high. I've used Svelte for several side projects and a production app — the developer experience is addictive. These libraries earned their spot by being genuinely useful, not just Svelte ports of React patterns.",
+  "total_items": 25,
+  "categories": [
+    {
+      "name": "UI Component Libraries",
+      "description": "Pre-built component libraries and design systems built specifically for Svelte and SvelteKit.",
+      "items": [
+        {
+          "name": "shadcn-svelte",
+          "description": "A Svelte port of shadcn/ui — copy-paste components built on Bits UI and Tailwind CSS. You own the code, customize freely, and there's no library dependency to fight. The best starting point for most Svelte apps.",
+          "url": "https://shadcn-svelte.com",
+          "tags": ["ui-components", "tailwindcss", "copy-paste", "accessible"],
+          "pricing": "open-source",
+          "highlight": "shadcn/ui quality components — you own the code"
+        },
+        {
+          "name": "Bits UI",
+          "description": "A headless component library that provides accessible primitives without styling opinions. shadcn-svelte is built on top of this. Use it directly when you want full design control.",
+          "url": "https://bits-ui.com",
+          "tags": ["headless", "accessible", "primitives", "unstyled"],
+          "pricing": "open-source",
+          "highlight": "Accessible headless components — the foundation of shadcn-svelte"
+        },
+        {
+          "name": "Skeleton UI",
+          "description": "A full-featured UI toolkit for Svelte with theming, Tailwind integration, and a rich component set. More opinionated than shadcn-svelte but faster to build with when you want a complete design system.",
+          "url": "https://skeleton.dev",
+          "tags": ["ui-toolkit", "tailwindcss", "theming", "components"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Flowbite Svelte",
+          "description": "Svelte components built on the Flowbite design system and Tailwind CSS. Large component library with good documentation. Some components feel like thin wrappers, but the breadth of options saves time.",
+          "url": "https://flowbite-svelte.com",
+          "tags": ["ui-components", "tailwindcss", "flowbite", "large"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Melt UI",
+          "description": "A set of headless, accessible UI builders for Svelte using the builder pattern. Gives you maximum control over rendering while handling accessibility, keyboard navigation, and focus management.",
+          "url": "https://melt-ui.com",
+          "tags": ["headless", "builder-pattern", "accessible", "flexible"],
+          "pricing": "open-source",
+          "highlight": "Builder pattern gives maximum rendering control"
+        },
+        {
+          "name": "Svelte UX",
+          "description": "A collection of Svelte components, actions, stores, and utilities. Less polished than Skeleton but covers more ground — date pickers, charts, maps, and layout components all in one package.",
+          "url": "https://svelte-ux.techniq.dev",
+          "tags": ["components", "utilities", "actions", "comprehensive"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "State Management & Data",
+      "description": "Libraries for managing application state, server data, and reactive stores in Svelte applications.",
+      "items": [
+        {
+          "name": "Svelte Stores (Built-in)",
+          "description": "Svelte's built-in stores are genuinely good — writable, readable, and derived stores cover most use cases. Don't reach for external state management until you've outgrown these. Most apps never do.",
+          "url": "https://svelte.dev/docs/svelte-store",
+          "tags": ["state-management", "built-in", "reactive", "stores"],
+          "pricing": "open-source",
+          "highlight": "Built-in stores that cover 90% of state management needs"
+        },
+        {
+          "name": "TanStack Query (Svelte)",
+          "description": "Server state management with caching, background refetching, and optimistic updates. The Svelte adapter wraps TanStack Query for reactive data fetching. Essential for apps with complex API interactions.",
+          "url": "https://tanstack.com/query/latest/docs/framework/svelte/overview",
+          "tags": ["data-fetching", "caching", "server-state", "reactive"],
+          "pricing": "open-source",
+          "highlight": "Smart caching and background refetching for Svelte"
+        },
+        {
+          "name": "Svelte Store Generators",
+          "description": "A pattern rather than a library — Svelte's store contract is so simple that custom stores are trivial to build. Any object with subscribe is a store. This flexibility means you rarely need third-party state libraries.",
+          "url": "https://svelte.dev/docs/svelte-store#svelte-store-writable",
+          "tags": ["stores", "custom", "patterns"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Superforms",
+          "description": "The best form library in the Svelte ecosystem. Server-side validation with Zod, Valibot, or ArkType, client-side enhancements, and progressive enhancement built in. SvelteKit forms done right.",
+          "url": "https://superforms.rocks",
+          "tags": ["forms", "validation", "sveltekit", "progressive-enhancement"],
+          "pricing": "open-source",
+          "highlight": "The definitive SvelteKit form library with built-in validation"
+        },
+        {
+          "name": "Formsnap",
+          "description": "An accessible form component library for Svelte built on Superforms. Handles ARIA attributes, error announcements, and form field binding. The missing UI layer for Superforms.",
+          "url": "https://formsnap.dev",
+          "tags": ["forms", "accessible", "ui", "superforms"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "sveltekit-superforms + Zod",
+          "description": "The combination of Superforms with Zod schemas gives you type-safe forms with server and client validation from a single schema definition. Eliminates form boilerplate almost entirely.",
+          "url": "https://zod.dev",
+          "tags": ["validation", "schema", "type-safe", "forms"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Animation & Motion",
+      "description": "Libraries for adding animations, transitions, and motion to Svelte applications.",
+      "items": [
+        {
+          "name": "Svelte Transitions (Built-in)",
+          "description": "Svelte's built-in transition directives — fade, fly, slide, scale — handle 80% of animation needs without any library. The transition:directive syntax is one of Svelte's killer features.",
+          "url": "https://svelte.dev/docs/svelte-transition",
+          "tags": ["animation", "built-in", "transitions", "directives"],
+          "pricing": "open-source",
+          "highlight": "Declarative transitions that handle most animation needs"
+        },
+        {
+          "name": "Motion One (Svelte)",
+          "description": "A modern animation library that uses the Web Animations API for hardware-accelerated animations. Smaller than GSAP and more performant than CSS transitions for complex sequences.",
+          "url": "https://motion.dev",
+          "tags": ["animation", "web-animations-api", "performant"],
+          "pricing": "open-source",
+          "highlight": "Hardware-accelerated animations via Web Animations API"
+        },
+        {
+          "name": "GSAP",
+          "description": "The industry-standard animation library works great with Svelte. Overkill for simple transitions but unmatched for complex timelines, scroll-triggered animations, and morphing SVGs.",
+          "url": "https://gsap.com",
+          "tags": ["animation", "timeline", "scroll", "professional"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Svelte Motion",
+          "description": "Spring and tween stores for physics-based animations in Svelte. Built into Svelte's motion module. Springs feel natural for interactive UI elements — dragging, toggling, and gesture responses.",
+          "url": "https://svelte.dev/docs/svelte-motion",
+          "tags": ["springs", "tweens", "physics", "built-in"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "AutoAnimate",
+          "description": "Add animations to any element with a single Svelte action. Automatic enter, leave, and move animations for list items and layout changes. Zero configuration needed for basic cases.",
+          "url": "https://auto-animate.formkit.com",
+          "tags": ["auto-animation", "action", "list-animations", "zero-config"],
+          "pricing": "open-source",
+          "highlight": "One action adds enter, leave, and move animations"
+        },
+        {
+          "name": "Threlte",
+          "description": "A Svelte renderer for Three.js that makes 3D feel native in Svelte. Declarative 3D scenes with Svelte's reactivity system. If you want 3D in a Svelte app, this is the only serious option.",
+          "url": "https://threlte.xyz",
+          "tags": ["3d", "threejs", "declarative", "webgl"],
+          "pricing": "open-source",
+          "highlight": "Three.js with Svelte's reactivity — 3D feels native"
+        }
+      ]
+    },
+    {
+      "name": "SvelteKit Ecosystem",
+      "description": "Libraries and tools designed specifically for SvelteKit applications — auth, i18n, SEO, and more.",
+      "items": [
+        {
+          "name": "Lucia",
+          "description": "A lightweight auth library that works beautifully with SvelteKit. Session-based authentication without the bloat of NextAuth. You understand every line of code because it doesn't hide complexity behind magic.",
+          "url": "https://lucia-auth.com",
+          "tags": ["auth", "session", "lightweight", "transparent"],
+          "pricing": "open-source",
+          "highlight": "Auth that's simple enough to fully understand"
+        },
+        {
+          "name": "Paraglide JS",
+          "description": "Compile-time i18n with fully type-safe message functions. No runtime overhead — translations are tree-shaken and only used messages are bundled. The SvelteKit integration is first-class.",
+          "url": "https://inlang.com/m/gerre34r/library-inlang-paraglideJs",
+          "tags": ["i18n", "type-safe", "compile-time", "tree-shakeable"],
+          "pricing": "open-source",
+          "highlight": "Compile-time translations with zero runtime overhead"
+        },
+        {
+          "name": "svelte-sitemap",
+          "description": "Generates sitemaps for SvelteKit projects automatically from your routes. Configure once in your build pipeline and forget about it. Simple but essential for SEO.",
+          "url": "https://github.com/bartholomej/svelte-sitemap",
+          "tags": ["seo", "sitemap", "sveltekit", "automation"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "sveltekit-flash-message",
+          "description": "Flash messages (toast notifications) that survive page redirects in SvelteKit. Uses cookies to pass messages across server-side redirects. Solves a real pain point with form actions and redirects.",
+          "url": "https://github.com/ciscoheat/sveltekit-flash-message",
+          "tags": ["flash-messages", "toasts", "sveltekit", "ux"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "SvelteKit Auth (Auth.js)",
+          "description": "The SvelteKit adapter for Auth.js (formerly NextAuth). Supports OAuth providers, magic links, and credentials. More batteries-included than Lucia but also more opaque. Good for quick MVPs.",
+          "url": "https://authjs.dev/getting-started/installation?framework=sveltekit",
+          "tags": ["auth", "oauth", "magic-link", "providers"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "svelte-headless-table",
+          "description": "A headless table library for Svelte with sorting, filtering, pagination, and column resizing. You control the rendering, it handles the logic. Essential for data-heavy admin interfaces.",
+          "url": "https://svelte-headless-table.bryanmylee.com",
+          "tags": ["table", "headless", "sorting", "pagination"],
+          "pricing": "open-source",
+          "highlight": "Headless tables with sorting, filtering, and pagination"
+        },
+        {
+          "name": "Svelte Inspector",
+          "description": "Click any element in your SvelteKit app and jump straight to its source code in your editor. A development-only tool that saves countless minutes of searching for component files.",
+          "url": "https://github.com/qutran/svelte-inspector",
+          "tags": ["devtools", "development", "dx", "source-mapping"],
+          "pricing": "open-source"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-libraries-for-react",
+    "best-libraries-for-astro",
+    "best-tools-for-frontend-testing"
+  ]
+}

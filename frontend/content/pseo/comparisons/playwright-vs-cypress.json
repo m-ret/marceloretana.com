@@ -1,0 +1,285 @@
+{
+  "meta": {
+    "niche": "testing",
+    "type": "comparison",
+    "locale": "en",
+    "slug": "playwright-vs-cypress",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Playwright vs Cypress: Which Is Better for End-to-End Testing in 2026?",
+    "description": "Playwright vs Cypress compared on speed, browser support, debugging, and developer experience. An honest guide for E2E testing in 2026.",
+    "keywords": [
+      "playwright vs cypress",
+      "best e2e testing framework 2026",
+      "playwright review",
+      "cypress alternative",
+      "end to end testing javascript",
+      "playwright browser testing"
+    ]
+  },
+  "tools": [
+    {
+      "name": "Playwright",
+      "slug": "playwright",
+      "tagline": "Reliable end-to-end testing for modern web apps",
+      "website": "https://playwright.dev",
+      "category": "End-to-End Testing Framework"
+    },
+    {
+      "name": "Cypress",
+      "slug": "cypress",
+      "tagline": "Fast, easy and reliable testing for anything that runs in a browser",
+      "website": "https://www.cypress.io",
+      "category": "End-to-End Testing Framework"
+    }
+  ],
+  "introduction": "Cypress made E2E testing accessible to frontend developers by running inside the browser with a beautiful interactive runner. Playwright, backed by Microsoft, took a different approach: control browsers externally via the Chrome DevTools Protocol, support multiple browsers natively, and optimize for parallelism and CI. After writing E2E suites with both for production applications, Playwright's architecture scales better, but Cypress's interactive debugging experience is still hard to beat for writing tests.",
+  "categories": [
+    {
+      "name": "Performance & Speed",
+      "criteria": [
+        {
+          "criterion": "Test Execution Speed",
+          "tool_a": {
+            "score": 9,
+            "detail": "Playwright runs tests in parallel by default across multiple worker processes. Browser contexts are isolated but share a single browser instance, reducing memory and startup overhead. A 200-test suite that takes 15 minutes in Cypress completes in 3-4 minutes with Playwright's parallelism."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Cypress runs tests serially within a single browser instance. Parallel execution requires Cypress Cloud (paid) or third-party tools like sorry-cypress. Without parallelism, large E2E suites become a CI bottleneck. The serial execution model was a design choice for reliability but hurts at scale."
+          }
+        },
+        {
+          "criterion": "Browser Startup & Context Creation",
+          "tool_a": {
+            "score": 9,
+            "detail": "Playwright reuses browser instances across tests and creates lightweight browser contexts (~5ms each) for test isolation. No full browser restart between tests. This architecture means 200 tests share one browser process instead of restarting 200 times."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Cypress starts a fresh browser per spec file by default. Browser startup adds 2-5 seconds per spec. The cy.session() command helps with authentication caching, but the overall per-spec overhead is higher than Playwright's context approach."
+          }
+        },
+        {
+          "criterion": "CI Pipeline Efficiency",
+          "tool_a": {
+            "score": 10,
+            "detail": "Built-in test sharding (--shard) distributes tests across CI machines with zero configuration. Combined with per-worker parallelism, Playwright scales linearly with CI resources. GitHub Actions, GitLab CI, and all major platforms are supported with official examples."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "CI parallelism requires Cypress Cloud (paid service) for automatic test balancing, or manual spec splitting. Without it, tests run serially on each CI machine. The free tier of Cypress Cloud has recording limits. Self-hosted alternatives (sorry-cypress) exist but require infrastructure."
+          }
+        },
+        {
+          "criterion": "Network Interception Speed",
+          "tool_a": {
+            "score": 9,
+            "detail": "Playwright's route() API intercepts network requests at the browser protocol level with minimal latency. HAR file recording and replay is built-in. Request interception doesn't slow down test execution and works consistently across all browsers."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "cy.intercept() works well for stubbing API responses and waiting for requests. The implementation runs inside the browser's service worker layer, which adds slight overhead. Reliable for most use cases but occasionally flaky with streaming responses or WebSockets."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Browser & Platform Support",
+      "criteria": [
+        {
+          "criterion": "Multi-Browser Testing",
+          "tool_a": {
+            "score": 10,
+            "detail": "Playwright supports Chromium, Firefox, and WebKit (Safari's engine) with a single API. Testing across all three browsers is a configuration flag, not a code change. This is the only tool that provides real WebKit testing on Linux and Windows, not just macOS."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Cypress supports Chrome, Edge, Firefox, and Electron. No Safari/WebKit support — a significant gap for teams that need to verify Safari behavior. Firefox support has improved but was historically less stable than Chrome. Electron is the default runner but not a real-world browser."
+          }
+        },
+        {
+          "criterion": "Mobile Emulation",
+          "tool_a": {
+            "score": 9,
+            "detail": "Built-in device emulation with predefined profiles (iPhone 14, Pixel 7, iPad, etc.). Emulates viewport, user agent, touch events, and device pixel ratio. Combined with WebKit support, you can test a close approximation of real iOS Safari behavior."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Cypress can set viewport dimensions with cy.viewport() but doesn't emulate mobile device characteristics (touch events, device pixel ratio, user agent). No WebKit means no iOS Safari approximation. Mobile testing with Cypress is essentially 'Chrome at a small resolution.'"
+          }
+        },
+        {
+          "criterion": "Multi-Tab & Multi-Window",
+          "tool_a": {
+            "score": 10,
+            "detail": "Playwright handles multiple tabs, windows, popups, and iframes natively. Open a new tab, switch between contexts, test OAuth popups — the API supports real multi-page workflows. This is architecturally impossible in Cypress."
+          },
+          "tool_b": {
+            "score": 2,
+            "detail": "Cypress cannot test multiple tabs or browser windows — it's a fundamental architectural limitation since Cypress runs inside a single browser tab. OAuth popups, new window links, and multi-tab workflows require workarounds (cy.origin() for cross-origin, stubbing window.open)."
+          }
+        },
+        {
+          "criterion": "iframe Support",
+          "tool_a": {
+            "score": 9,
+            "detail": "Playwright's frameLocator() provides clean iframe interaction. Navigate into nested iframes, interact with elements, and assert content — all with the same API used for the main page. Cross-origin iframes work without special configuration."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Cypress requires cy.iframe() from cypress-iframe plugin or manual DOM traversal for iframes. Cross-origin iframes are particularly challenging — cy.origin() helps but adds complexity. Iframe testing is one of Cypress's most common pain points."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Developer Experience",
+      "criteria": [
+        {
+          "criterion": "Interactive Test Runner",
+          "tool_a": {
+            "score": 7,
+            "detail": "Playwright's UI mode (--ui flag) provides a visual test runner with time-travel debugging, DOM snapshots, and network inspection. It's good and improving, but launched later than Cypress's runner. The trace viewer is more powerful for post-mortem debugging."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Cypress's interactive runner is the gold standard. Real-time browser preview, command log with time-travel, DOM snapshots at each step, and instant feedback as you write tests. This experience is why many developers fell in love with E2E testing for the first time."
+          }
+        },
+        {
+          "criterion": "Test Authoring Speed",
+          "tool_a": {
+            "score": 8,
+            "detail": "Playwright's codegen (npx playwright codegen) records browser interactions and generates test code. The API is clean: page.locator(), expect(locator).toBeVisible(), page.click(). Auto-waiting is built into every action. Writing tests is fast once you know the API."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Cypress's chained API (cy.get().click().should()) is intuitive and reads like natural language. Cypress Studio (experimental) records user interactions into test code. The immediate visual feedback in the runner makes iterating on selectors and assertions very fast."
+          }
+        },
+        {
+          "criterion": "Debugging Experience",
+          "tool_a": {
+            "score": 9,
+            "detail": "Playwright's trace viewer is exceptional for debugging failures: full DOM snapshots, network requests, console logs, and screenshots at every action. Traces can be shared as zip files or viewed in the online trace viewer. For CI failures, this is invaluable — you see exactly what the browser saw."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Cypress's time-travel debugger shows DOM state at each command. Screenshots and videos on failure are automatic. The interactive runner's command log is excellent for local debugging. CI debugging is harder — you rely on videos and screenshots rather than interactive traces."
+          }
+        },
+        {
+          "criterion": "API Design & TypeScript Support",
+          "tool_a": {
+            "score": 9,
+            "detail": "Async/await API that follows standard JavaScript patterns. Full TypeScript support with precise types for every method. Locators are composable: page.getByRole('button', { name: 'Submit' }). The API encourages accessible selectors by design."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Cypress's chained API is elegant but non-standard — cy commands are queued, not awaited. This causes confusion when mixing cy commands with regular async/await code. TypeScript support works but the command chaining type inference can be imprecise. Custom commands require type declaration files."
+          }
+        },
+        {
+          "criterion": "Learning Curve",
+          "tool_a": {
+            "score": 7,
+            "detail": "Playwright's API is larger (pages, contexts, browser management, multiple locator strategies) and the async/await pattern requires understanding of JavaScript promises. The documentation is comprehensive but the surface area takes time to learn."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Cypress is famously easy to start with. Install, open the runner, write cy.visit() and cy.get(), and you have a working test in minutes. The chained API hides complexity. The interactive runner provides immediate feedback that accelerates learning."
+          }
+        },
+        {
+          "criterion": "Auto-Waiting & Retry Logic",
+          "tool_a": {
+            "score": 10,
+            "detail": "Playwright auto-waits for elements to be actionable (visible, stable, enabled, receiving events) before every action. No explicit waits needed. The retry logic is built into assertions with configurable timeouts. Flaky tests from timing issues are rare."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Cypress retries assertions automatically within the default timeout (4s). cy.get() waits for elements to exist. But some operations (cy.click() on a covered element, animations) still cause flakiness. cy.wait() for network requests helps but hard-coded waits (cy.wait(1000)) are a common anti-pattern in Cypress tests."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ecosystem & Production",
+      "criteria": [
+        {
+          "criterion": "Component Testing",
+          "tool_a": {
+            "score": 7,
+            "detail": "Playwright's component testing (experimental) supports React, Vue, and Svelte. Tests run in a real browser with full Playwright API. Less mature than Cypress Component Testing but runs faster due to Playwright's parallel architecture."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Cypress Component Testing is mature and well-documented. Mount individual React, Vue, Angular, or Svelte components in isolation with the same cy API used for E2E tests. The interactive runner works for component tests too. Good integration with Vite and webpack."
+          }
+        },
+        {
+          "criterion": "Visual Regression Testing",
+          "tool_a": {
+            "score": 9,
+            "detail": "Playwright's toHaveScreenshot() is built-in with pixel-level comparison, configurable thresholds, and platform-aware snapshots. Screenshot assertions work across all three browser engines. No external service needed — snapshot files live in the repo."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "No built-in visual regression testing. Requires third-party plugins: cypress-image-snapshot, Percy, or Applitools. These work well but add dependencies and often require paid services for cross-browser visual testing."
+          }
+        },
+        {
+          "criterion": "API Testing",
+          "tool_a": {
+            "score": 9,
+            "detail": "Playwright's request context provides a full API testing client. Make HTTP requests, assert responses, chain API calls — all within the same test framework. Useful for API setup, teardown, and hybrid UI + API tests."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "cy.request() handles API calls for test setup and assertions. It shares the browser's cookie jar, which is convenient for authenticated requests. Less powerful than Playwright's request API for standalone API testing but adequate for E2E test support."
+          }
+        },
+        {
+          "criterion": "Reporting & Analytics",
+          "tool_a": {
+            "score": 8,
+            "detail": "Built-in HTML reporter, JUnit XML, JSON, and custom reporter support. Playwright's HTML report includes traces, screenshots, and video for each test. Third-party integrations (Allure, ReportPortal) are available. No paid service required for full reporting."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Cypress Cloud provides test analytics, failure triage, flake detection, and parallelization — but it's a paid service. Free alternatives exist (mochawesome reporter, sorry-cypress). The built-in spec reporter is basic. Video and screenshot recording on failure is automatic and free."
+          }
+        },
+        {
+          "criterion": "Community & Plugin Ecosystem",
+          "tool_a": {
+            "score": 8,
+            "detail": "Playwright's ecosystem is growing fast. Microsoft maintains it actively with monthly releases. The community is smaller than Cypress's but highly technical. Official integrations for VS Code, GitHub Actions, and Azure DevOps. Documentation is excellent."
+          },
+          "tool_b": {
+            "score": 9,
+            "detail": "Cypress has a massive plugin ecosystem: cypress-testing-library, cypress-axe, cypress-file-upload, cypress-real-events, and hundreds more. The community has 10+ years of accumulated knowledge. Cypress blog, ambassadors, and conferences create a rich ecosystem."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "Playwright for CI and cross-browser, Cypress for interactive development",
+    "best_for": {
+      "CI pipeline speed": "Playwright",
+      "cross-browser testing": "Playwright",
+      "Safari/WebKit testing": "Playwright",
+      "multi-tab workflows": "Playwright",
+      "visual regression": "Playwright",
+      "parallel execution": "Playwright",
+      "interactive test writing": "Cypress",
+      "learning E2E testing": "Cypress",
+      "component testing": "Cypress"
+    },
+    "summary": "In 2026, Playwright has become the default recommendation for new E2E testing setups. The combination of built-in parallelism, multi-browser support (including WebKit), native sharding for CI, and the trace viewer for debugging makes it the more capable tool for production testing pipelines. Cypress remains excellent for teams that value the interactive development experience and have simpler testing needs (single browser, no multi-tab workflows). If you're starting fresh, choose Playwright. If you have an existing Cypress suite that works well and you don't need Safari testing or parallelism, there's no urgent reason to migrate. The two tools are converging in features, but Playwright's architectural decisions give it advantages that Cypress can't easily replicate."
+  },
+  "related_slugs": ["vitest-vs-jest", "typescript-vs-javascript", "biome-vs-eslint"]
+}

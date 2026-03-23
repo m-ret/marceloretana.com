@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "niche": "shadcn-ui",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-tools-for-shadcn-ui",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Tools for shadcn/ui in 2026",
+    "description": "Essential shadcn/ui tools for CLI workflows, themes, registries, form builders, and animation add-ons. Curated from real project usage.",
+    "keywords": [
+      "shadcn ui tools",
+      "shadcn themes",
+      "shadcn registry",
+      "shadcn form builder",
+      "shadcn animation",
+      "shadcn cli",
+      "shadcn components"
+    ]
+  },
+  "introduction": "shadcn/ui changed how I think about component libraries — you own the code, customize freely, and there's no abstraction to fight. But the ecosystem around it is what makes it truly powerful. These tools extend shadcn/ui with themes, registries, form builders, and animations that would take weeks to build yourself.",
+  "total_items": 29,
+  "categories": [
+    {
+      "name": "CLI & Registry Tools",
+      "description": "Tools for managing shadcn/ui components, custom registries, and CLI-based workflows.",
+      "items": [
+        {
+          "name": "shadcn CLI",
+          "description": "The official CLI for adding shadcn/ui components to your project. npx shadcn add button copies the component source directly into your codebase. No dependency — just files you own and control.",
+          "url": "https://ui.shadcn.com/docs/cli",
+          "tags": ["cli", "official", "components", "scaffolding"],
+          "pricing": "open-source",
+          "highlight": "Add components with one command — you own the code"
+        },
+        {
+          "name": "shadcn/ui Registry",
+          "description": "The official component registry that the CLI pulls from. Understanding the registry schema lets you create custom registries for your team's component library. JSON-based and surprisingly simple.",
+          "url": "https://ui.shadcn.com/docs/registry",
+          "tags": ["registry", "official", "custom", "json"],
+          "pricing": "open-source",
+          "highlight": "The JSON-based registry schema behind the CLI"
+        },
+        {
+          "name": "shadcn-custom-registry",
+          "description": "A template for building your own shadcn/ui compatible registry. Host your team's custom components and add them with the same CLI workflow. Great for internal design systems built on shadcn.",
+          "url": "https://github.com/shadcn-ui/custom-registry",
+          "tags": ["registry", "custom", "team", "template"],
+          "pricing": "open-source",
+          "highlight": "Build a team component registry with shadcn CLI compatibility"
+        },
+        {
+          "name": "v0.dev",
+          "description": "Vercel's AI tool generates shadcn/ui components from text descriptions. The output uses real shadcn components and Tailwind classes. Quality varies, but it's excellent for scaffolding UI quickly.",
+          "url": "https://v0.dev",
+          "tags": ["ai", "generation", "scaffolding", "vercel"],
+          "pricing": "freemium",
+          "highlight": "AI-generated shadcn/ui components from text prompts"
+        },
+        {
+          "name": "shadcn-ui-codemod",
+          "description": "Codemods for migrating between shadcn/ui versions and updating component patterns. Handles breaking changes across updates so you don't manually edit every file.",
+          "url": "https://github.com/shadcn-ui/ui/tree/main/packages/shadcn/src/utils/updaters",
+          "tags": ["codemod", "migration", "updates", "automation"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Storybook + shadcn/ui",
+          "description": "Running shadcn/ui components in Storybook lets you develop and document them in isolation. Requires some Tailwind configuration but the result is a living component library your whole team can browse.",
+          "url": "https://storybook.js.org",
+          "tags": ["storybook", "documentation", "development", "isolation"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Themes & Styling",
+      "description": "Theme generators, color systems, and styling tools for customizing shadcn/ui's visual appearance.",
+      "items": [
+        {
+          "name": "shadcn/ui Themes",
+          "description": "The official theme editor for generating CSS variables. Pick colors, adjust radius, and copy the CSS. Simple but effective for quick brand customization. Limited to the built-in color system.",
+          "url": "https://ui.shadcn.com/themes",
+          "tags": ["themes", "official", "css-variables", "generator"],
+          "pricing": "free",
+          "highlight": "Official theme generator — pick colors, copy CSS"
+        },
+        {
+          "name": "shadcn-ui-theme-generator",
+          "description": "A more advanced theme generator that creates full color palettes from a single brand color. Generates light and dark mode variables with proper contrast ratios. Better than manual color picking.",
+          "url": "https://zippystarter.com/tools/shadcn-ui-theme-generator",
+          "tags": ["themes", "color-palette", "generator", "contrast"],
+          "pricing": "free",
+          "highlight": "Generate a full theme from a single brand color"
+        },
+        {
+          "name": "tweakcn",
+          "description": "A visual theme editor for shadcn/ui that lets you customize every CSS variable with live preview. More granular than the official theme editor — adjust spacing, borders, and shadows too.",
+          "url": "https://tweakcn.com",
+          "tags": ["theme-editor", "visual", "css-variables", "live-preview"],
+          "pricing": "free"
+        },
+        {
+          "name": "10000+ Themes for shadcn/ui",
+          "description": "A massive collection of community-created themes. Browse, preview, and copy theme configurations. Quality varies wildly, but it's a great source of inspiration for color combinations.",
+          "url": "https://ui.jln.dev",
+          "tags": ["themes", "community", "collection", "inspiration"],
+          "pricing": "free"
+        },
+        {
+          "name": "Tailwind CSS",
+          "description": "The foundation shadcn/ui is built on. Understanding Tailwind deeply makes you more effective with shadcn — every component is Tailwind classes you can customize. V4's CSS-first config is even cleaner.",
+          "url": "https://tailwindcss.com",
+          "tags": ["css", "utility-first", "foundation", "responsive"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "next-themes",
+          "description": "Dark mode support for shadcn/ui in Next.js. Handles system preference detection, theme persistence, and flash-free switching. The recommended dark mode solution in shadcn's docs.",
+          "url": "https://github.com/pacocoursey/next-themes",
+          "tags": ["dark-mode", "themes", "nextjs", "system-preference"],
+          "pricing": "open-source",
+          "highlight": "Flash-free dark mode switching for shadcn/ui"
+        }
+      ]
+    },
+    {
+      "name": "Form Builders & Data",
+      "description": "Tools for building forms, tables, and data-heavy interfaces with shadcn/ui components.",
+      "items": [
+        {
+          "name": "Auto Form (shadcn)",
+          "description": "Automatically generates shadcn/ui forms from Zod schemas. Define your schema once and get a complete form with validation, labels, and proper input types. Eliminates 90% of form boilerplate.",
+          "url": "https://github.com/vantezzen/autoform",
+          "tags": ["forms", "auto-generation", "zod", "validation"],
+          "pricing": "open-source",
+          "highlight": "Generate complete forms from Zod schemas automatically"
+        },
+        {
+          "name": "React Hook Form + shadcn",
+          "description": "shadcn/ui's form component is built on React Hook Form. Understanding RHF's API is essential for custom form behavior — validation modes, field arrays, and conditional fields.",
+          "url": "https://react-hook-form.com",
+          "tags": ["forms", "validation", "performance", "react"],
+          "pricing": "open-source",
+          "highlight": "The form engine powering shadcn's Form component"
+        },
+        {
+          "name": "shadcn-table",
+          "description": "A feature-rich data table built on shadcn/ui and TanStack Table. Server-side pagination, sorting, filtering, and column visibility — all with shadcn's design language. Production-ready for admin panels.",
+          "url": "https://github.com/sadmann7/shadcn-table",
+          "tags": ["table", "data", "pagination", "sorting"],
+          "pricing": "open-source",
+          "highlight": "Production-ready data tables with server-side features"
+        },
+        {
+          "name": "TanStack Table",
+          "description": "The headless table engine that powers shadcn's data table component. Handles sorting, filtering, pagination, and column management. shadcn provides the UI layer, TanStack handles the logic.",
+          "url": "https://tanstack.com/table",
+          "tags": ["table", "headless", "logic", "tanstack"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "cmdk",
+          "description": "The command palette component that shadcn/ui wraps as its Command component. Fast fuzzy search, keyboard navigation, and nested groups. The foundation for cmd+k interfaces in React apps.",
+          "url": "https://cmdk.paco.me",
+          "tags": ["command-palette", "search", "keyboard", "navigation"],
+          "pricing": "open-source",
+          "highlight": "The cmd+k command palette behind shadcn's Command component"
+        },
+        {
+          "name": "Vaul",
+          "description": "The drawer component behind shadcn/ui's Drawer. Mobile-first with proper touch gestures, snap points, and accessibility. Works standalone or through shadcn's wrapper component.",
+          "url": "https://vaul.emilkowal.ski",
+          "tags": ["drawer", "mobile", "gestures", "accessible"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Animation Add-ons",
+      "description": "Animation libraries and components that add motion to shadcn/ui interfaces.",
+      "items": [
+        {
+          "name": "Magic UI",
+          "description": "A collection of animated shadcn/ui-compatible components — marquees, text reveals, animated borders, and more. Copy-paste like shadcn, designed to work alongside existing shadcn components.",
+          "url": "https://magicui.design",
+          "tags": ["animation", "components", "copy-paste", "effects"],
+          "pricing": "freemium",
+          "highlight": "Animated shadcn-compatible components — copy and paste"
+        },
+        {
+          "name": "Aceternity UI",
+          "description": "A collection of flashy, modern UI components with complex animations. Spotlight effects, 3D cards, text generation effects. Great for landing pages but can be heavy for app interfaces.",
+          "url": "https://ui.aceternity.com",
+          "tags": ["animation", "effects", "landing-page", "3d"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Framer Motion",
+          "description": "The React animation library that many animated shadcn extensions use under the hood. Layout animations, gesture support, and AnimatePresence for exit animations. The most complete animation toolkit.",
+          "url": "https://www.framer.com/motion/",
+          "tags": ["animation", "react", "layout", "gestures"],
+          "pricing": "open-source",
+          "highlight": "The animation engine behind most shadcn animation add-ons"
+        },
+        {
+          "name": "Motion Number",
+          "description": "Animated number transitions for React — counters, prices, stats that smoothly animate between values. Works perfectly with shadcn's Card and Badge components for dashboard metrics.",
+          "url": "https://motion-number.barvian.me",
+          "tags": ["animation", "numbers", "counters", "transitions"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Auto Animate",
+          "description": "Add animations to any element with a single ref. Automatic enter, leave, and reorder animations for list items. Zero configuration and works with any shadcn component that renders lists.",
+          "url": "https://auto-animate.formkit.com",
+          "tags": ["animation", "automatic", "lists", "zero-config"],
+          "pricing": "open-source",
+          "highlight": "One-line animations for any list or layout change"
+        }
+      ]
+    },
+    {
+      "name": "Extended Component Libraries",
+      "description": "Community-built component collections that extend shadcn/ui with additional components and patterns.",
+      "items": [
+        {
+          "name": "shadcn-extension",
+          "description": "Community extensions adding components shadcn doesn't have — tree views, multi-selects, file uploads, image croppers. Same copy-paste philosophy, same quality standards.",
+          "url": "https://shadcn-extension.vercel.app",
+          "tags": ["extensions", "components", "community", "copy-paste"],
+          "pricing": "open-source",
+          "highlight": "Tree views, multi-selects, and file uploads for shadcn"
+        },
+        {
+          "name": "shadcn-phone-input",
+          "description": "An international phone number input built on shadcn components with country selection, formatting, and validation. Handles the complexity of international phone formats correctly.",
+          "url": "https://shadcn-phone-input.vercel.app",
+          "tags": ["phone-input", "international", "formatting", "validation"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "date-picker (shadcn)",
+          "description": "Enhanced date and date-range picker components for shadcn using react-day-picker. Handles single dates, ranges, and presets. More capable than the basic example in the shadcn docs.",
+          "url": "https://github.com/johnpolacek/date-range-picker-for-shadcn",
+          "tags": ["date-picker", "range", "calendar", "presets"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Plate",
+          "description": "A rich text editor framework built with shadcn/ui styling and Tailwind. Plugin-based architecture for mentions, tables, embeds, and more. The best rich text option for shadcn projects.",
+          "url": "https://platejs.org",
+          "tags": ["rich-text", "editor", "plugins", "tailwind"],
+          "pricing": "open-source",
+          "highlight": "Rich text editor with shadcn styling and plugin architecture"
+        },
+        {
+          "name": "Sonner",
+          "description": "The toast notification library that shadcn wraps as its Sonner component. Beautiful default animations, stacking behavior, and promise-based toasts. Works standalone or through shadcn's API.",
+          "url": "https://sonner.emilkowal.ski",
+          "tags": ["toasts", "notifications", "animations", "promises"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Emblor",
+          "description": "A tag input component for shadcn/ui with autocomplete, validation, and keyboard navigation. Drop-in replacement for multi-value inputs like categories, labels, or skills.",
+          "url": "https://emblor.jaleelbennett.com",
+          "tags": ["tags", "input", "autocomplete", "multi-value"],
+          "pricing": "open-source"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-tools-for-react",
+    "best-libraries-for-tailwindcss",
+    "best-tools-for-nextjs"
+  ]
+}

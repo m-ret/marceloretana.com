@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "niche": "web-performance",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "web-accessibility-audit-checklist",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Web Accessibility Audit Checklist: 25 Essential Steps",
+    "description": "Audit your website for accessibility with this 25-step checklist. Covers WCAG 2.2 compliance, screen readers, keyboard navigation, and color contrast.",
+    "keywords": [
+      "web accessibility checklist",
+      "accessibility audit",
+      "WCAG 2.2 checklist",
+      "a11y audit",
+      "screen reader testing",
+      "keyboard navigation",
+      "color contrast accessibility"
+    ]
+  },
+  "introduction": "An accessibility audit isn't about checking boxes for legal compliance — it's about making sure real people can use your site. This checklist covers the WCAG 2.2 criteria that matter most in practice, organized by what you can fix quickly versus what requires deeper remediation. Run through it with a screen reader open and your mouse unplugged.",
+  "total_items": 25,
+  "estimated_time": "3-4 hours",
+  "sections": [
+    {
+      "name": "Automated Scanning & Setup",
+      "description": "Set up automated tools to catch the low-hanging accessibility issues before manual testing.",
+      "items": [
+        {
+          "id": "a11y-audit-1",
+          "text": "Run axe DevTools on every page template",
+          "description": "Install the axe DevTools browser extension and scan each unique page layout. Axe catches about 30-40% of WCAG violations automatically — missing alt text, form label issues, color contrast failures. Fix all critical and serious issues before moving to manual testing.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "a11y-audit-2",
+          "text": "Add eslint-plugin-jsx-a11y to your linting pipeline",
+          "description": "Install `eslint-plugin-jsx-a11y` (for React projects) or equivalent framework plugin. It catches missing alt attributes, invalid ARIA props, and non-interactive elements with click handlers at build time, preventing accessibility regressions before code is even committed.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-3",
+          "text": "Run Lighthouse accessibility audit in CI",
+          "description": "Add a Lighthouse CI step that fails the build if the accessibility score drops below 90. Lighthouse checks a subset of WCAG criteria automatically and provides a trend over time. Use it as a regression safety net, not as your only testing tool.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-4",
+          "text": "Validate HTML for structural errors",
+          "description": "Run your pages through the W3C HTML validator (validator.w3.org). Malformed HTML — unclosed tags, duplicate IDs, improper nesting — breaks screen reader interpretation in unpredictable ways. Fix structural errors before testing with assistive technology.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-5",
+          "text": "Create an accessibility test page inventory",
+          "description": "List every unique page template and interactive component in your site. Include pages with forms, modals, tables, tabs, and dynamic content. This inventory becomes your testing scope — you'll test each template once rather than every URL.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Keyboard Navigation",
+      "description": "Verify that every feature is fully operable using only a keyboard.",
+      "items": [
+        {
+          "id": "a11y-audit-6",
+          "text": "Tab through every page and verify focus order",
+          "description": "Starting from the browser address bar, press Tab repeatedly and verify that focus moves through interactive elements in a logical reading order. Focus should never jump to an unexpected section, get trapped in a component, or skip important controls.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "a11y-audit-7",
+          "text": "Ensure all interactive elements have visible focus indicators",
+          "description": "Every link, button, input, and custom control must show a clear visual change when focused. The default browser outline is sufficient, but if you've removed it with `outline: none`, you must replace it with a custom focus style that has at least 3:1 contrast ratio.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "a11y-audit-8",
+          "text": "Test escape key behavior on modals and overlays",
+          "description": "Every modal, dropdown, popover, and overlay must close when the user presses Escape. Focus must return to the element that triggered the overlay. Without this, keyboard users get trapped in overlays with no way to return to the main content.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "a11y-audit-9",
+          "text": "Implement skip navigation links",
+          "description": "Add a 'Skip to main content' link as the first focusable element on every page. It should be visually hidden until focused, then visible. Without it, keyboard users must Tab through your entire header and navigation on every page load before reaching content.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-10",
+          "text": "Verify no keyboard traps exist anywhere on the site",
+          "description": "A keyboard trap occurs when focus enters a component but Tab and Escape can't move it out. Common traps: third-party embeds (maps, video players), custom rich text editors, and carousels. Test by tabbing into every interactive widget and confirming you can tab out.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "name": "Screen Reader Testing",
+      "description": "Test with actual screen readers to verify the experience for blind and low-vision users.",
+      "items": [
+        {
+          "id": "a11y-audit-11",
+          "text": "Test with VoiceOver (macOS) or NVDA (Windows)",
+          "description": "Navigate your site using a screen reader, not just axe. Listen to how page landmarks, headings, links, and form fields are announced. Screen readers interpret your ARIA roles, labels, and HTML semantics — automated tools only check that they exist, not that they make sense.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "a11y-audit-12",
+          "text": "Verify all images have meaningful alt text",
+          "description": "Review every image's alt attribute with a screen reader active. Informative images need descriptive alt text (what the image shows, not 'image of...'). Decorative images need `alt=''`. Complex images like charts need a longer description via `aria-describedby`.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "a11y-audit-13",
+          "text": "Check that all form fields have associated labels",
+          "description": "Every `input`, `select`, and `textarea` must have a visible `<label>` with a matching `for` attribute, or be wrapped in a `<label>` element. Screen readers announce the label when the field receives focus — without it, users don't know what to enter.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "a11y-audit-14",
+          "text": "Test dynamic content announcements with live regions",
+          "description": "When content updates without a page reload (toast notifications, form errors, live data), verify the screen reader announces the change. Use `aria-live='polite'` for non-urgent updates and `aria-live='assertive'` for errors. Test that announcements are clear and not repetitive.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-15",
+          "text": "Verify heading hierarchy is logical and complete",
+          "description": "Use a screen reader's heading navigation (NVDA: H key, VoiceOver: VO+Command+H) to jump through headings. The hierarchy should be logical: one H1 per page, H2 for sections, H3 for subsections. Never skip levels (H2 to H4) — screen reader users rely on heading levels for page structure.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Visual & Color Accessibility",
+      "description": "Ensure your design is usable by people with low vision, color blindness, and other visual impairments.",
+      "items": [
+        {
+          "id": "a11y-audit-16",
+          "text": "Check all text meets WCAG AA color contrast ratios",
+          "description": "Normal text needs at least 4.5:1 contrast ratio against its background. Large text (18px+ bold or 24px+ regular) needs 3:1. Use a tool like WebAIM's contrast checker or the axe DevTools color picker. Don't forget to check text on images, gradients, and hover states.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "a11y-audit-17",
+          "text": "Verify information is not conveyed by color alone",
+          "description": "Check that error states use icons or text in addition to red color. Verify that chart data uses patterns or labels, not just colors. Form validation should show error messages, not just red borders. About 8% of men have some form of color blindness.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-18",
+          "text": "Test the site at 200% browser zoom",
+          "description": "Zoom to 200% and verify that all content remains readable, no text is truncated, horizontal scrolling is not required, and interactive elements are still usable. WCAG requires content to be functional at 200% zoom. Test both desktop and mobile layouts at this zoom level.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-19",
+          "text": "Ensure touch targets are at least 44x44 pixels",
+          "description": "All clickable and tappable elements must be at least 44x44 CSS pixels, per WCAG 2.2 Target Size criteria. Check buttons, links, form controls, and especially close buttons on modals. Small targets are difficult for users with motor impairments and frustrating for everyone on mobile.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-20",
+          "text": "Test with reduced motion preferences",
+          "description": "Enable 'Reduce Motion' in your OS settings and verify that all animations either stop or use subtle fade transitions. Implement `@media (prefers-reduced-motion: reduce)` to disable parallax, auto-playing carousels, and large-scale animations. Motion can cause vestibular disorders.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Content & Semantic Structure",
+      "description": "Verify that page content is structured so assistive technology can present it meaningfully.",
+      "items": [
+        {
+          "id": "a11y-audit-21",
+          "text": "Add landmark roles to page regions",
+          "description": "Use semantic HTML elements (`<header>`, `<nav>`, `<main>`, `<aside>`, `<footer>`) or ARIA landmark roles. Screen reader users navigate by landmarks to jump between page sections. Every page should have exactly one `<main>` and at least a `<header>` and `<nav>`.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-22",
+          "text": "Ensure data tables have proper header associations",
+          "description": "Use `<th>` with `scope='col'` or `scope='row'` for simple tables. For complex tables with merged cells, use `id` and `headers` attributes. Without proper header associations, screen readers announce table data as a flat list of values with no context.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-23",
+          "text": "Add language attributes to the page and language changes",
+          "description": "Set `lang='en'` (or appropriate language) on the `<html>` element. If a section uses a different language, add `lang` to that element. Screen readers use the language attribute to switch pronunciation rules — without it, foreign text is read with English phonetics.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-24",
+          "text": "Test all custom ARIA widgets against WAI-ARIA Authoring Practices",
+          "description": "For every custom widget (tabs, accordions, comboboxes, tree views), verify it follows the keyboard interaction pattern defined in the WAI-ARIA Authoring Practices Guide. Users expect standard keyboard patterns — a custom tab that doesn't support arrow key navigation is broken for screen reader users.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "a11y-audit-25",
+          "text": "Document known accessibility issues and remediation plan",
+          "description": "Create a VPAT (Voluntary Product Accessibility Template) or internal accessibility report listing all known issues, their WCAG criteria, severity, and planned fix dates. This demonstrates due diligence and gives your team a prioritized roadmap for ongoing improvement.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "The single most impactful thing you can do is unplug your mouse and try to complete your app's core user flows with only a keyboard. You'll find more real issues in 15 minutes than an hour of automated scanning.",
+    "Install the HeadingsMap browser extension to visualize your heading hierarchy across any page. Broken heading levels are one of the most common screen reader navigation problems and one of the easiest to fix.",
+    "Don't add ARIA attributes to fix problems that semantic HTML solves. A `<button>` is always better than `<div role='button' tabindex='0' onKeyDown={...}>`. ARIA is a last resort, not a first tool.",
+    "Set up a recurring accessibility audit cadence — quarterly for active projects. New features constantly introduce regressions, and one-time audits create a false sense of compliance.",
+    "Invite users with disabilities to test your site if possible. Automated tools and developer testing catch structural issues, but real user testing reveals workflow problems that no checklist covers."
+  ],
+  "related_slugs": [
+    "react-accessibility-checklist",
+    "nextjs-seo-checklist",
+    "nextjs-performance-checklist"
+  ]
+}

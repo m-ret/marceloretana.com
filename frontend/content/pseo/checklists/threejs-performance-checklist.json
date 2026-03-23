@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "niche": "threejs",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "threejs-performance-checklist",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Three.js Performance Checklist: 24 Essential Steps",
+    "description": "Optimize your Three.js application with this 20-step performance checklist. Covers geometry instancing, texture optimization, LOD, disposal, and frame budget.",
+    "keywords": [
+      "threejs performance checklist",
+      "three.js optimization",
+      "threejs performance tips",
+      "webgl performance",
+      "threejs instancing",
+      "threejs LOD",
+      "threejs memory management"
+    ]
+  },
+  "introduction": "Three.js performance problems don't show up in Lighthouse — they show up as dropped frames, hot phones, and crashed browser tabs. The GPU, CPU, and memory each have separate budgets, and exceeding any one of them tanks your frame rate. This checklist covers the optimizations that actually matter, from geometry batching to proper resource disposal.",
+  "total_items": 24,
+  "estimated_time": "2-3 hours",
+  "sections": [
+    {
+      "name": "Geometry & Draw Calls",
+      "description": "Reduce the number of draw calls and the amount of geometry data sent to the GPU each frame.",
+      "items": [
+        {
+          "id": "three-perf-1",
+          "text": "Use InstancedMesh for repeated geometry",
+          "description": "If you're rendering 50+ copies of the same geometry (trees, particles, buildings), switch from individual Meshes to `InstancedMesh`. Each Mesh is a separate draw call; InstancedMesh renders all copies in a single call. This alone can take a scene from 10fps to 60fps.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "three-perf-2",
+          "text": "Merge static geometry with BufferGeometryUtils.mergeGeometries",
+          "description": "For static objects that never move independently (terrain chunks, building interiors), merge them into a single BufferGeometry. Fewer geometries means fewer draw calls. Only merge objects with the same material — different materials require separate draw calls regardless.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "three-perf-3",
+          "text": "Keep draw calls under 100 for mobile targets",
+          "description": "Open Chrome DevTools, enable the Three.js inspector, and check `renderer.info.render.calls`. Desktop GPUs handle 500+ draw calls; mobile GPUs struggle above 100. If you're over budget, prioritize instancing, merging, and LOD before reducing visual quality.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-4",
+          "text": "Use indexed geometry to reduce vertex duplication",
+          "description": "Indexed BufferGeometry shares vertices between triangles via an index array instead of duplicating shared vertices. This reduces memory bandwidth by 30-50% for typical meshes. Most loaded models are already indexed; check custom procedural geometry.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "three-perf-4b",
+          "text": "Batch objects with the same material using BatchedMesh",
+          "description": "Three.js r160+ introduces BatchedMesh for batching multiple geometries with the same material into one draw call. Unlike InstancedMesh (same geometry repeated), BatchedMesh handles different geometries. Use it for scene props like furniture, rocks, or debris that share a material atlas.",
+          "difficulty": "advanced",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Textures & Materials",
+      "description": "Optimize texture memory usage and material compilation to reduce GPU pressure and load times.",
+      "items": [
+        {
+          "id": "three-perf-5",
+          "text": "Compress textures with KTX2/Basis Universal format",
+          "description": "Convert PNG/JPG textures to KTX2 format using `toktx` or `gltf-transform`. KTX2 textures use GPU-native compression (BCn on desktop, ETC/ASTC on mobile), reducing VRAM usage by 4-6x compared to uncompressed textures without visible quality loss.",
+          "difficulty": "advanced",
+          "priority": "critical"
+        },
+        {
+          "id": "three-perf-6",
+          "text": "Use power-of-two texture dimensions",
+          "description": "Resize textures to power-of-two dimensions (512, 1024, 2048). Non-power-of-two textures can't use mipmapping on some GPUs and may be internally resized, wasting VRAM. Downsize rather than upsize — a 1000px texture should become 512px, not 1024px.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-7",
+          "text": "Limit maximum texture size to 2048px for most use cases",
+          "description": "4096px textures use 4x the VRAM of 2048px textures. Unless the texture covers a large surface that users view up close (a terrain, a detailed character), 2048px is the sweet spot. For distant or small objects, 512px or 1024px is sufficient.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-8",
+          "text": "Share materials between meshes that look identical",
+          "description": "Create one material and assign it to multiple meshes instead of creating a new material per mesh. Each unique material triggers a shader recompilation. Check for accidental material duplication after loading GLTF models — loaders sometimes create redundant instances.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-9",
+          "text": "Use texture atlases for many small textures",
+          "description": "Combine multiple small textures (UI elements, particle sprites, decals) into a single atlas texture with UV offsets. Each texture switch costs a state change on the GPU. A single atlas with UV math eliminates all those switches.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Rendering & Frame Budget",
+      "description": "Stay within your frame budget by controlling what gets rendered and how.",
+      "items": [
+        {
+          "id": "three-perf-10",
+          "text": "Implement Level of Detail (LOD) for distant objects",
+          "description": "Use `THREE.LOD` to swap between high, medium, and low-poly versions of objects based on camera distance. A 50k polygon character at 100 meters away should be a 500 polygon version. LOD is the most effective technique for open-world and large scenes.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "three-perf-11",
+          "text": "Enable frustum culling and verify it's working",
+          "description": "Frustum culling is on by default (`mesh.frustumCulled = true`), but it only works if bounding spheres are accurate. Call `geometry.computeBoundingSphere()` after modifying vertices. Check `renderer.info.render.calls` while rotating the camera — the count should drop when objects leave view.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-12",
+          "text": "Set a frame budget and measure against it",
+          "description": "For 60fps, each frame must complete in under 16.6ms. Use `performance.now()` around your render loop or Chrome's Performance panel to measure. Break the budget into: physics (2ms), animation (2ms), render (10ms), overhead (2ms). If you're over, you know which phase to optimize.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-13",
+          "text": "Use requestAnimationFrame correctly and avoid redundant renders",
+          "description": "Only call `renderer.render()` when something changes. For static scenes with orbit controls, render on control change events rather than every frame. For animated scenes, use a dirty flag to skip render when nothing has updated. Every render call costs GPU time regardless of scene complexity.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-14",
+          "text": "Reduce pixel fill rate with appropriate renderer resolution",
+          "description": "Set `renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))` to cap at 2x DPR. A 3x Retina display renders 2.25x more pixels than 2x with barely visible difference. On mobile, consider dropping to 1x DPR and using FXAA post-processing for antialiasing.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "name": "Memory Management & Disposal",
+      "description": "Prevent memory leaks that cause crashes and degraded performance over time.",
+      "items": [
+        {
+          "id": "three-perf-15",
+          "text": "Dispose of geometries, materials, and textures when removing objects",
+          "description": "Call `geometry.dispose()`, `material.dispose()`, and `texture.dispose()` when removing objects from the scene. Three.js uploads these to the GPU but never automatically frees them. A scene that adds and removes objects without disposal will eventually crash the tab.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "three-perf-16",
+          "text": "Create a centralized disposal utility",
+          "description": "Write a recursive `disposeObject(obj)` function that traverses children, disposes all geometries, materials (including map textures), and removes event listeners. Call it whenever you remove an object. Relying on developers to manually dispose every resource is error-prone at scale.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-17",
+          "text": "Monitor GPU memory in Chrome DevTools",
+          "description": "Open Chrome's Task Manager (Shift+Esc) and enable the GPU Memory column. Watch it while navigating your app. If GPU memory grows continuously without plateauing, you have a disposal leak. Use `renderer.info.memory` to track textures and geometries counts programmatically.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-18",
+          "text": "Dispose the renderer and cancel animation frame on unmount",
+          "description": "In React/framework integrations, call `renderer.dispose()`, `cancelAnimationFrame(frameId)`, and remove the canvas from DOM in your cleanup function. Without this, navigating away from a Three.js page leaves the WebGL context alive, consuming GPU memory for the entire browser session.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "three-perf-18b",
+          "text": "Use WeakRef or FinalizationRegistry for texture caches",
+          "description": "If you cache textures or materials in a Map for reuse, wrap values in WeakRef so the garbage collector can reclaim them when no mesh references them. FinalizationRegistry can trigger .dispose() automatically when the JavaScript object is GC'd, preventing GPU memory orphans in long-running apps.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Loading & Asset Pipeline",
+      "description": "Optimize how assets are loaded, parsed, and prepared for rendering.",
+      "items": [
+        {
+          "id": "three-perf-19",
+          "text": "Use GLTF format with Draco or Meshopt compression",
+          "description": "Convert all 3D models to glTF (.glb) and apply Draco or Meshopt compression using `gltf-transform`. Draco reduces mesh data by 80-90%. Load compressed models with `DRACOLoader` configured to use the WASM decoder for best performance across devices.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "three-perf-20",
+          "text": "Implement progressive loading with a loading manager",
+          "description": "Use `THREE.LoadingManager` to track and display loading progress. Load critical assets first (hero geometry, environment map), then load secondary assets after the initial render. Show a loading indicator with percentage progress — users abandon pages that appear frozen.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-21",
+          "text": "Lazy-load heavy assets with dynamic import and Suspense",
+          "description": "Don't load 3D models, HDR environments, or large textures upfront if they're below the fold or behind an interaction. Use dynamic `import()` or React Suspense boundaries to defer loading until the user scrolls to or activates the 3D section. This dramatically improves initial page load time.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "three-perf-22",
+          "text": "Preload critical assets during idle time with requestIdleCallback",
+          "description": "After the initial render completes, use `requestIdleCallback` to start loading secondary 3D assets in the background. This lets the browser prioritize user interactions while quietly preparing assets. Combine with `THREE.Cache.enabled = true` to avoid redundant network requests.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "three-perf-23",
+          "text": "Use glTF binary format (.glb) over separate .gltf + .bin files",
+          "description": "GLB bundles the JSON descriptor, binary mesh data, and embedded textures into a single file — one HTTP request instead of many. This reduces waterfall loading, simplifies caching, and avoids CORS issues with separate asset files. Always prefer .glb for production deployment.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Install the Spector.js browser extension to capture and inspect individual WebGL draw calls. It shows you exactly what the GPU renders each frame, which textures are bound, and which shaders are compiled — invaluable for finding hidden performance costs.",
+    "Use `renderer.info` as your primary performance dashboard. Log `render.calls` (draw calls), `render.triangles` (total triangles), `memory.geometries`, and `memory.textures` each frame to spot regressions immediately.",
+    "For React Three Fiber projects, wrap expensive components in `React.memo` and use `useFrame` with a conditional check instead of updating every frame. R3F's declarative model makes it easy to accidentally trigger full scene re-renders on state changes.",
+    "Test on the lowest-spec device your audience uses, not your development machine. A scene that runs at 60fps on a MacBook Pro might run at 8fps on a 3-year-old Android phone. Chrome DevTools CPU throttling helps, but real device testing is essential."
+  ],
+  "related_slugs": [
+    "nextjs-performance-checklist",
+    "react-performance-checklist",
+    "nextjs-launch-checklist"
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "niche": "supabase",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-fullstack-app-with-supabase",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a Full-Stack App with Supabase | Full Stack Guide",
+    "description": "Build a full-stack app with Next.js and Supabase covering authentication, database queries, realtime subscriptions, and file storage in one guide.",
+    "keywords": [
+      "supabase full stack",
+      "nextjs supabase app",
+      "supabase auth",
+      "supabase realtime",
+      "supabase storage",
+      "supabase row level security",
+      "postgres supabase"
+    ]
+  },
+  "introduction": "Supabase replaces your entire backend with a Postgres database, auth system, realtime engine, and file storage — all accessible through a typed client library. Instead of stitching together Firebase, Auth0, and S3, you get one SDK and one dashboard. This guide builds a full-stack task management app with Next.js that uses every major Supabase feature.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for Next.js 15 with the App Router and server components.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Supabase Account",
+      "description": "Create a free Supabase project to get a Postgres database, auth, realtime, and storage out of the box.",
+      "url": "https://supabase.com/dashboard"
+    },
+    {
+      "name": "Supabase CLI",
+      "description": "The Supabase CLI lets you run migrations, generate types, and test locally before deploying.",
+      "url": "https://supabase.com/docs/guides/cli/getting-started"
+    },
+    {
+      "name": "Basic SQL Knowledge",
+      "description": "Familiarity with CREATE TABLE, SELECT, INSERT, and JOIN queries. Supabase is Postgres, so standard SQL applies."
+    }
+  ],
+  "estimated_time": "4-6 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Scaffold Next.js and Install the Supabase Client",
+      "description": "Create a Next.js app and install the Supabase client libraries. The @supabase/ssr package handles cookie-based auth sessions for server components and middleware. Generate TypeScript types from your database schema so every query is type-safe.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npx create-next-app@latest taskflow --typescript --tailwind --app --src-dir\ncd taskflow\n\nnpm install @supabase/supabase-js @supabase/ssr\n\n# Initialize Supabase locally\nnpx supabase init\nnpx supabase start\n\n# Generate types from your database schema\nnpx supabase gen types typescript --local > src/lib/database.types.ts"
+      },
+      "tips": [
+        "Run 'npx supabase start' to get a local Postgres + Auth + Storage instance for development — no cloud project needed.",
+        "Regenerate types after every migration with 'supabase gen types typescript' to keep your client type-safe."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Create the Database Schema with Row-Level Security",
+      "description": "Define your tables and enable Row-Level Security (RLS) so each user can only access their own data. RLS policies run at the Postgres level — even if your app code has a bug, unauthorized data access is impossible. Write a migration that creates the projects and tasks tables with foreign keys and policies.",
+      "code_snippet": {
+        "language": "sql",
+        "code": "-- supabase/migrations/001_create_tables.sql\n\n-- Projects table\ncreate table public.projects (\n  id uuid default gen_random_uuid() primary key,\n  user_id uuid references auth.users(id) on delete cascade not null,\n  name text not null,\n  description text,\n  created_at timestamptz default now() not null\n);\n\nalter table public.projects enable row level security;\n\ncreate policy \"Users can CRUD their own projects\"\n  on public.projects for all\n  using (auth.uid() = user_id)\n  with check (auth.uid() = user_id);\n\n-- Tasks table\ncreate table public.tasks (\n  id uuid default gen_random_uuid() primary key,\n  project_id uuid references public.projects(id) on delete cascade not null,\n  user_id uuid references auth.users(id) on delete cascade not null,\n  title text not null,\n  description text,\n  status text default 'todo' check (status in ('todo', 'in_progress', 'done')),\n  priority integer default 0,\n  due_date timestamptz,\n  created_at timestamptz default now() not null,\n  updated_at timestamptz default now() not null\n);\n\nalter table public.tasks enable row level security;\n\ncreate policy \"Users can CRUD their own tasks\"\n  on public.tasks for all\n  using (auth.uid() = user_id)\n  with check (auth.uid() = user_id);\n\n-- Index for fast queries\ncreate index tasks_project_id_idx on public.tasks(project_id);\ncreate index tasks_user_status_idx on public.tasks(user_id, status);",
+        "filename": "supabase/migrations/001_create_tables.sql"
+      },
+      "tips": [
+        "Always enable RLS on every table — tables without RLS are publicly accessible through the Supabase API.",
+        "Use auth.uid() in policies to reference the currently authenticated user's ID."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Set Up Authentication with Server-Side Sessions",
+      "description": "Configure the Supabase client for both server and client components. The server client reads the auth session from cookies, while the client-side instance handles login and sign-up flows. Create utility functions that return the correct client for each context.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/lib/supabase/server.ts\nimport { createServerClient } from '@supabase/ssr';\nimport { cookies } from 'next/headers';\nimport type { Database } from '@/lib/database.types';\n\nexport async function createClient() {\n  const cookieStore = await cookies();\n\n  return createServerClient<Database>(\n    process.env.NEXT_PUBLIC_SUPABASE_URL!,\n    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,\n    {\n      cookies: {\n        getAll() {\n          return cookieStore.getAll();\n        },\n        setAll(cookiesToSet) {\n          try {\n            cookiesToSet.forEach(({ name, value, options }) =>\n              cookieStore.set(name, value, options)\n            );\n          } catch {\n            // Ignore in Server Components (read-only)\n          }\n        },\n      },\n    }\n  );\n}\n\n// src/lib/supabase/client.ts\nimport { createBrowserClient } from '@supabase/ssr';\nimport type { Database } from '@/lib/database.types';\n\nexport function createClient() {\n  return createBrowserClient<Database>(\n    process.env.NEXT_PUBLIC_SUPABASE_URL!,\n    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!\n  );\n}",
+        "filename": "src/lib/supabase/server.ts"
+      },
+      "tips": [
+        "Pass the Database generic to createServerClient for end-to-end type safety on all queries.",
+        "The server client wraps Next.js cookies() so Supabase auth works seamlessly with server components and middleware."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Build CRUD Operations with Type-Safe Queries",
+      "description": "Create server actions for creating, reading, updating, and deleting tasks. Supabase's query builder chains like Prisma but runs directly against Postgres. Because RLS is enabled, you don't need to filter by user_id in your queries — the policy handles authorization automatically.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/app/projects/[id]/actions.ts\n'use server';\n\nimport { createClient } from '@/lib/supabase/server';\nimport { revalidatePath } from 'next/cache';\n\nexport async function createTask(projectId: string, formData: FormData) {\n  const supabase = await createClient();\n  const { data: { user } } = await supabase.auth.getUser();\n\n  if (!user) throw new Error('Not authenticated');\n\n  const { error } = await supabase.from('tasks').insert({\n    project_id: projectId,\n    user_id: user.id,\n    title: formData.get('title') as string,\n    description: formData.get('description') as string,\n    status: 'todo',\n  });\n\n  if (error) throw new Error(error.message);\n  revalidatePath(`/projects/${projectId}`);\n}\n\nexport async function updateTaskStatus(\n  taskId: string,\n  status: 'todo' | 'in_progress' | 'done',\n  projectId: string\n) {\n  const supabase = await createClient();\n\n  const { error } = await supabase\n    .from('tasks')\n    .update({ status, updated_at: new Date().toISOString() })\n    .eq('id', taskId);\n\n  if (error) throw new Error(error.message);\n  revalidatePath(`/projects/${projectId}`);\n}\n\nexport async function deleteTask(taskId: string, projectId: string) {\n  const supabase = await createClient();\n\n  const { error } = await supabase\n    .from('tasks')\n    .delete()\n    .eq('id', taskId);\n\n  if (error) throw new Error(error.message);\n  revalidatePath(`/projects/${projectId}`);\n}",
+        "filename": "src/app/projects/[id]/actions.ts"
+      },
+      "tips": [
+        "Use revalidatePath after mutations to update server component data without a full page reload.",
+        "Supabase returns typed data based on your Database type — hover over query results to see the exact shape."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Add Realtime Subscriptions for Live Updates",
+      "description": "Subscribe to database changes so the UI updates instantly when tasks are created, updated, or deleted — even by other users on the same project. Supabase's Realtime engine uses WebSockets and Postgres logical replication. The client subscribes to a channel scoped to a specific project's tasks.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/hooks/useRealtimeTasks.ts\n'use client';\n\nimport { useEffect, useState } from 'react';\nimport { createClient } from '@/lib/supabase/client';\nimport type { Database } from '@/lib/database.types';\n\ntype Task = Database['public']['Tables']['tasks']['Row'];\n\nexport function useRealtimeTasks(projectId: string, initialTasks: Task[]) {\n  const [tasks, setTasks] = useState<Task[]>(initialTasks);\n  const supabase = createClient();\n\n  useEffect(() => {\n    setTasks(initialTasks);\n  }, [initialTasks]);\n\n  useEffect(() => {\n    const channel = supabase\n      .channel(`tasks:${projectId}`)\n      .on<Task>(\n        'postgres_changes',\n        {\n          event: '*',\n          schema: 'public',\n          table: 'tasks',\n          filter: `project_id=eq.${projectId}`,\n        },\n        (payload) => {\n          if (payload.eventType === 'INSERT') {\n            setTasks(prev => [...prev, payload.new]);\n          } else if (payload.eventType === 'UPDATE') {\n            setTasks(prev =>\n              prev.map(t => (t.id === payload.new.id ? payload.new : t))\n            );\n          } else if (payload.eventType === 'DELETE') {\n            setTasks(prev =>\n              prev.filter(t => t.id !== payload.old.id)\n            );\n          }\n        }\n      )\n      .subscribe();\n\n    return () => {\n      supabase.removeChannel(channel);\n    };\n  }, [projectId, supabase]);\n\n  return tasks;\n}",
+        "filename": "src/hooks/useRealtimeTasks.ts"
+      },
+      "tips": [
+        "Enable Realtime for specific tables in the Supabase Dashboard under Database > Replication.",
+        "Always clean up channels in the useEffect return function to prevent memory leaks and duplicate subscriptions."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Add File Storage for Task Attachments",
+      "description": "Use Supabase Storage to let users upload file attachments to tasks. Storage uses the same RLS-style policies as your database, so files are access-controlled per user. Create a storage bucket with upload limits and a server action that handles the file upload and links it to a task.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/app/projects/[id]/upload-action.ts\n'use server';\n\nimport { createClient } from '@/lib/supabase/server';\nimport { revalidatePath } from 'next/cache';\n\nexport async function uploadAttachment(\n  taskId: string,\n  projectId: string,\n  formData: FormData\n) {\n  const supabase = await createClient();\n  const { data: { user } } = await supabase.auth.getUser();\n\n  if (!user) throw new Error('Not authenticated');\n\n  const file = formData.get('file') as File;\n  if (!file || file.size === 0) throw new Error('No file provided');\n\n  const filePath = `${user.id}/${taskId}/${file.name}`;\n\n  const { error: uploadError } = await supabase.storage\n    .from('attachments')\n    .upload(filePath, file, {\n      cacheControl: '3600',\n      upsert: false,\n    });\n\n  if (uploadError) throw new Error(uploadError.message);\n\n  // Get the public URL\n  const { data: { publicUrl } } = supabase.storage\n    .from('attachments')\n    .getPublicUrl(filePath);\n\n  // Save reference in database\n  const { error: dbError } = await supabase.from('task_attachments').insert({\n    task_id: taskId,\n    user_id: user.id,\n    file_name: file.name,\n    file_url: publicUrl,\n    file_size: file.size,\n  });\n\n  if (dbError) throw new Error(dbError.message);\n  revalidatePath(`/projects/${projectId}`);\n}",
+        "filename": "src/app/projects/[id]/upload-action.ts"
+      },
+      "tips": [
+        "Set storage policies in SQL: create policy on storage.objects using (auth.uid()::text = (storage.foldername(name))[1]).",
+        "Use upsert: false to prevent overwriting existing files — append a timestamp to filenames for uniqueness."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Deploy to Vercel with Supabase Integration",
+      "description": "Deploy your Next.js app to Vercel and connect it to your Supabase cloud project. Vercel's Supabase integration automatically syncs environment variables. Run your migrations against the production database and configure auth redirect URLs for your production domain.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "# Link to your Supabase cloud project\nnpx supabase link --project-ref YOUR_PROJECT_REF\n\n# Push migrations to production\nnpx supabase db push\n\n# Generate types from production schema\nnpx supabase gen types typescript --linked > src/lib/database.types.ts\n\n# Deploy to Vercel\nnpm install -g vercel\nvercel\nvercel env add NEXT_PUBLIC_SUPABASE_URL\nvercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY\nvercel --prod"
+      },
+      "tips": [
+        "Add your Vercel deployment URL to Supabase Auth > URL Configuration > Redirect URLs.",
+        "Use 'supabase db push' for initial deploys and 'supabase db reset' to replay all migrations from scratch locally.",
+        "Enable Supabase's built-in Postgres backups (point-in-time recovery) on the Pro plan for production."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add Supabase Edge Functions for server-side logic like sending email notifications on task assignment.",
+    "Implement team collaboration with shared projects using a members junction table and RLS policies.",
+    "Add full-text search on tasks using Postgres tsvector columns and Supabase's textSearch filter.",
+    "Set up database webhooks to trigger external integrations when task status changes."
+  ],
+  "related_slugs": [
+    "build-a-realtime-app-with-supabase",
+    "build-a-saas-with-nextjs",
+    "build-a-dashboard-with-nextjs"
+  ]
+}

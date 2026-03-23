@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "niche": "react",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-component-library-with-react",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a Component Library with React | Full Stack Guide",
+    "description": "Build a production-ready React component library with TypeScript, Storybook, proper exports, automated testing, and npm publishing in this complete guide.",
+    "keywords": [
+      "react component library",
+      "build component library react",
+      "storybook react components",
+      "npm publish react library",
+      "typescript component library",
+      "react design system",
+      "reusable react components"
+    ]
+  },
+  "introduction": "Every growing product ends up duplicating buttons, modals, and form inputs across repos. A shared component library solves this — you build once, test once, and every team consumes the same components. This guide covers the full lifecycle: project setup with TypeScript, component development with Storybook, proper package exports, and publishing to npm.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for the latest tooling and ESM support in the build pipeline.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "React & TypeScript Experience",
+      "description": "You should be comfortable writing React components with TypeScript props, generics, and forwardRef patterns."
+    },
+    {
+      "name": "npm Account",
+      "description": "Required to publish your library. Free accounts work for public packages; paid for private scoped packages.",
+      "url": "https://www.npmjs.com/signup"
+    },
+    {
+      "name": "Basic Storybook Knowledge (Optional)",
+      "description": "Familiarity with Storybook helps, but this guide covers setup from scratch.",
+      "url": "https://storybook.js.org/docs"
+    }
+  ],
+  "estimated_time": "5-7 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Initialize the Project with TypeScript and Vite",
+      "description": "Scaffold a library project using Vite's library mode. Vite produces clean ESM output with tree-shaking support. Set up the directory structure with separate folders for components, hooks, and utilities. Configure TypeScript with strict mode and declaration file generation.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npm create vite@latest my-ui -- --template react-ts\ncd my-ui\n\n# Install build and dev dependencies\nnpm install -D vite-plugin-dts vitest @testing-library/react @testing-library/jest-dom jsdom\n\n# Create library structure\nmkdir -p src/components/Button src/components/Input src/components/Modal\nmkdir -p src/hooks src/utils"
+      },
+      "tips": [
+        "Use Vite's library mode instead of a dedicated bundler like Rollup — Vite wraps Rollup with better defaults.",
+        "Keep each component in its own directory with an index.ts barrel file for clean imports."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Configure Vite for Library Builds with Type Declarations",
+      "description": "Set up vite.config.ts in library mode to produce ESM output with external React dependencies. The vite-plugin-dts plugin generates .d.ts declaration files from your TypeScript source. Configure package.json exports so consumers can import individual components or the full library.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// vite.config.ts\nimport { defineConfig } from 'vite';\nimport react from '@vitejs/plugin-react';\nimport dts from 'vite-plugin-dts';\nimport { resolve } from 'path';\n\nexport default defineConfig({\n  plugins: [\n    react(),\n    dts({\n      include: ['src'],\n      rollupTypes: true,\n    }),\n  ],\n  build: {\n    lib: {\n      entry: resolve(__dirname, 'src/index.ts'),\n      formats: ['es'],\n      fileName: 'index',\n    },\n    rollupOptions: {\n      external: ['react', 'react-dom', 'react/jsx-runtime'],\n      output: {\n        preserveModules: true,\n        preserveModulesRoot: 'src',\n        entryFileNames: '[name].js',\n      },\n    },\n    sourcemap: true,\n    minify: false,\n  },\n});\n\n// package.json — key fields\n// {\n//   \"name\": \"@scope/my-ui\",\n//   \"version\": \"0.1.0\",\n//   \"type\": \"module\",\n//   \"main\": \"dist/index.js\",\n//   \"types\": \"dist/index.d.ts\",\n//   \"files\": [\"dist\"],\n//   \"exports\": {\n//     \".\": {\n//       \"import\": \"./dist/index.js\",\n//       \"types\": \"./dist/index.d.ts\"\n//     }\n//   },\n//   \"peerDependencies\": {\n//     \"react\": \"^18.0.0 || ^19.0.0\",\n//     \"react-dom\": \"^18.0.0 || ^19.0.0\"\n//   },\n//   \"scripts\": {\n//     \"build\": \"tsc && vite build\",\n//     \"test\": \"vitest\",\n//     \"storybook\": \"storybook dev -p 6006\",\n//     \"prepublishOnly\": \"npm run build\"\n//   }\n// }",
+        "filename": "vite.config.ts"
+      },
+      "tips": [
+        "Set preserveModules: true so bundlers can tree-shake individual components — consumers only ship what they import.",
+        "Don't minify library code — the consumer's bundler handles minification. Readable output helps debugging."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Build Type-Safe Components with Proper Patterns",
+      "description": "Create components following library-grade patterns: forwardRef for all components, polymorphic 'as' props for flexibility, and compound component patterns for complex UI. Each component gets an explicit props interface exported alongside the component so consumers can extend or type-check against it.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/components/Button/Button.tsx\nimport {\n  forwardRef,\n  type ButtonHTMLAttributes,\n  type ElementType,\n  type ComponentPropsWithRef,\n} from 'react';\n\nexport interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {\n  variant?: 'solid' | 'outline' | 'ghost';\n  size?: 'sm' | 'md' | 'lg';\n  isLoading?: boolean;\n}\n\nexport const Button = forwardRef<HTMLButtonElement, ButtonProps>(\n  (\n    {\n      variant = 'solid',\n      size = 'md',\n      isLoading = false,\n      disabled,\n      children,\n      style,\n      ...props\n    },\n    ref\n  ) => {\n    const baseStyles: React.CSSProperties = {\n      display: 'inline-flex',\n      alignItems: 'center',\n      justifyContent: 'center',\n      fontWeight: 500,\n      borderRadius: '0.375rem',\n      transition: 'all 150ms ease',\n      cursor: disabled || isLoading ? 'not-allowed' : 'pointer',\n      opacity: disabled ? 0.5 : 1,\n      ...style,\n    };\n\n    const sizeStyles: Record<string, React.CSSProperties> = {\n      sm: { padding: '0.375rem 0.75rem', fontSize: '0.875rem' },\n      md: { padding: '0.5rem 1rem', fontSize: '1rem' },\n      lg: { padding: '0.75rem 1.5rem', fontSize: '1.125rem' },\n    };\n\n    const variantStyles: Record<string, React.CSSProperties> = {\n      solid: { backgroundColor: '#3b82f6', color: 'white', border: 'none' },\n      outline: {\n        backgroundColor: 'transparent',\n        color: '#3b82f6',\n        border: '1px solid #3b82f6',\n      },\n      ghost: {\n        backgroundColor: 'transparent',\n        color: '#3b82f6',\n        border: 'none',\n      },\n    };\n\n    return (\n      <button\n        ref={ref}\n        disabled={disabled || isLoading}\n        style={{ ...baseStyles, ...sizeStyles[size], ...variantStyles[variant] }}\n        aria-busy={isLoading}\n        {...props}\n      >\n        {isLoading ? (\n          <>\n            <svg\n              width=\"16\"\n              height=\"16\"\n              viewBox=\"0 0 16 16\"\n              fill=\"none\"\n              style={{ marginRight: '0.5rem', animation: 'spin 1s linear infinite' }}\n            >\n              <circle\n                cx=\"8\" cy=\"8\" r=\"6\"\n                stroke=\"currentColor\"\n                strokeWidth=\"2\"\n                strokeLinecap=\"round\"\n                strokeDasharray=\"32\"\n                strokeDashoffset=\"12\"\n              />\n            </svg>\n            Loading...\n          </>\n        ) : (\n          children\n        )}\n      </button>\n    );\n  }\n);\n\nButton.displayName = 'Button';\n\n// src/components/Button/index.ts\nexport { Button, type ButtonProps } from './Button';",
+        "filename": "src/components/Button/Button.tsx"
+      },
+      "tips": [
+        "Export props interfaces alongside components — consumers need them for wrapper components and generic utilities.",
+        "Always set displayName when using forwardRef so React DevTools shows a meaningful name instead of 'Anonymous'."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Set Up Storybook for Interactive Documentation",
+      "description": "Install Storybook and write stories for every component variant, state, and edge case. Storybook serves as both documentation and a development environment. Use CSF3 format with the play function for interaction testing and the autodocs feature for automatic API documentation from your TypeScript props.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// First, install Storybook:\n// npx storybook@latest init\n\n// src/components/Button/Button.stories.tsx\nimport type { Meta, StoryObj } from '@storybook/react';\nimport { fn, userEvent, within, expect } from '@storybook/test';\nimport { Button } from './Button';\n\nconst meta: Meta<typeof Button> = {\n  title: 'Components/Button',\n  component: Button,\n  parameters: {\n    layout: 'centered',\n  },\n  tags: ['autodocs'],\n  argTypes: {\n    variant: {\n      control: 'select',\n      options: ['solid', 'outline', 'ghost'],\n    },\n    size: {\n      control: 'select',\n      options: ['sm', 'md', 'lg'],\n    },\n  },\n  args: {\n    onClick: fn(),\n    children: 'Button',\n  },\n};\n\nexport default meta;\ntype Story = StoryObj<typeof meta>;\n\nexport const Solid: Story = {\n  args: { variant: 'solid' },\n};\n\nexport const Outline: Story = {\n  args: { variant: 'outline' },\n};\n\nexport const Ghost: Story = {\n  args: { variant: 'ghost' },\n};\n\nexport const Loading: Story = {\n  args: { isLoading: true },\n};\n\nexport const Disabled: Story = {\n  args: { disabled: true },\n};\n\nexport const AllSizes: Story = {\n  render: () => (\n    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>\n      <Button size=\"sm\">Small</Button>\n      <Button size=\"md\">Medium</Button>\n      <Button size=\"lg\">Large</Button>\n    </div>\n  ),\n};\n\n// Interaction test\nexport const ClickTest: Story = {\n  args: { children: 'Click me' },\n  play: async ({ canvasElement, args }) => {\n    const canvas = within(canvasElement);\n    await userEvent.click(canvas.getByRole('button'));\n    await expect(args.onClick).toHaveBeenCalledOnce();\n  },\n};",
+        "filename": "src/components/Button/Button.stories.tsx"
+      },
+      "tips": [
+        "Use the tags: ['autodocs'] to generate documentation pages from your TypeScript props automatically.",
+        "Write play functions for interaction tests — Storybook runs them in the browser alongside your visual stories."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Add Unit Tests with Vitest and Testing Library",
+      "description": "Write unit tests that verify component behavior, accessibility, and edge cases. Vitest integrates natively with Vite's config, so there's zero extra setup. Testing Library's render and screen utilities encourage testing user-visible behavior rather than implementation details.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// vitest.config.ts\nimport { defineConfig } from 'vitest/config';\nimport react from '@vitejs/plugin-react';\n\nexport default defineConfig({\n  plugins: [react()],\n  test: {\n    environment: 'jsdom',\n    globals: true,\n    setupFiles: './src/test-setup.ts',\n    css: true,\n  },\n});\n\n// src/test-setup.ts\nimport '@testing-library/jest-dom/vitest';\n\n// src/components/Button/Button.test.tsx\nimport { render, screen } from '@testing-library/react';\nimport userEvent from '@testing-library/user-event';\nimport { describe, it, expect, vi } from 'vitest';\nimport { Button } from './Button';\n\ndescribe('Button', () => {\n  it('renders children correctly', () => {\n    render(<Button>Click me</Button>);\n    expect(screen.getByRole('button', { name: 'Click me' })).toBeInTheDocument();\n  });\n\n  it('calls onClick when clicked', async () => {\n    const user = userEvent.setup();\n    const onClick = vi.fn();\n    render(<Button onClick={onClick}>Click</Button>);\n\n    await user.click(screen.getByRole('button'));\n    expect(onClick).toHaveBeenCalledOnce();\n  });\n\n  it('does not call onClick when disabled', async () => {\n    const user = userEvent.setup();\n    const onClick = vi.fn();\n    render(<Button onClick={onClick} disabled>Click</Button>);\n\n    await user.click(screen.getByRole('button'));\n    expect(onClick).not.toHaveBeenCalled();\n  });\n\n  it('shows loading state with aria-busy', () => {\n    render(<Button isLoading>Submit</Button>);\n    expect(screen.getByRole('button')).toHaveAttribute('aria-busy', 'true');\n  });\n\n  it('disables the button when loading', () => {\n    render(<Button isLoading>Submit</Button>);\n    expect(screen.getByRole('button')).toBeDisabled();\n  });\n\n  it('forwards ref to the button element', () => {\n    const ref = { current: null } as React.RefObject<HTMLButtonElement | null>;\n    render(<Button ref={ref}>Ref</Button>);\n    expect(ref.current).toBeInstanceOf(HTMLButtonElement);\n  });\n});",
+        "filename": "src/components/Button/Button.test.tsx"
+      },
+      "tips": [
+        "Use userEvent.setup() instead of fireEvent — it simulates real user interactions including focus and keyboard events.",
+        "Test accessibility attributes (aria-busy, aria-expanded, role) alongside functional behavior."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Create the Barrel Export and Build the Library",
+      "description": "Set up a clean barrel export file that re-exports every component, hook, and type from a single entry point. This gives consumers a clean import API. Run the build and verify the output structure includes ES modules, type declarations, and source maps.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/index.ts\n// Components\nexport { Button, type ButtonProps } from './components/Button';\nexport { Input, type InputProps } from './components/Input';\nexport { Modal, type ModalProps } from './components/Modal';\n\n// Hooks\nexport { useClickOutside } from './hooks/useClickOutside';\nexport { useMediaQuery } from './hooks/useMediaQuery';\n\n// src/hooks/useClickOutside.ts\nimport { useEffect, useRef } from 'react';\n\nexport function useClickOutside<T extends HTMLElement>(\n  handler: () => void\n) {\n  const ref = useRef<T>(null);\n\n  useEffect(() => {\n    function handleClick(event: MouseEvent) {\n      if (ref.current && !ref.current.contains(event.target as Node)) {\n        handler();\n      }\n    }\n\n    document.addEventListener('mousedown', handleClick);\n    return () => document.removeEventListener('mousedown', handleClick);\n  }, [handler]);\n\n  return ref;\n}\n\n// src/hooks/useMediaQuery.ts\nimport { useState, useEffect } from 'react';\n\nexport function useMediaQuery(query: string): boolean {\n  const [matches, setMatches] = useState(false);\n\n  useEffect(() => {\n    const mql = window.matchMedia(query);\n    setMatches(mql.matches);\n\n    function handleChange(e: MediaQueryListEvent) {\n      setMatches(e.matches);\n    }\n\n    mql.addEventListener('change', handleChange);\n    return () => mql.removeEventListener('change', handleChange);\n  }, [query]);\n\n  return matches;\n}",
+        "filename": "src/index.ts"
+      },
+      "tips": [
+        "Always export type interfaces alongside components — consumers need them for wrapper typing and generic patterns.",
+        "Run 'npm pack --dry-run' before publishing to see exactly which files will be included in the package."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Publish to npm with Automated Releases",
+      "description": "Set up the publish workflow: version the package with npm version, build, run tests, then publish. Use a prepublishOnly script to ensure the library is always built and tested before publishing. For automated releases, add a GitHub Action that publishes on tagged commits.",
+      "code_snippet": {
+        "language": "yaml",
+        "code": "# .github/workflows/publish.yml\nname: Publish to npm\n\non:\n  push:\n    tags:\n      - 'v*'\n\njobs:\n  publish:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read\n      id-token: write\n    steps:\n      - uses: actions/checkout@v4\n\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          registry-url: 'https://registry.npmjs.org'\n          cache: 'npm'\n\n      - run: npm ci\n      - run: npm test\n      - run: npm run build\n\n      - name: Verify package contents\n        run: npm pack --dry-run\n\n      - run: npm publish --provenance --access public\n        env:\n          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}\n\n# Local publish workflow:\n# npm version patch|minor|major\n# git push origin main --tags\n# GitHub Actions handles the rest",
+        "filename": ".github/workflows/publish.yml"
+      },
+      "tips": [
+        "Use npm publish --provenance to cryptographically link your package to its source repo — builds trust.",
+        "Tag releases with 'npm version patch/minor/major' which auto-creates a git tag and bumps package.json.",
+        "Test your library in a real project with 'npm link' before publishing to catch import and bundling issues."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add a changelog generator like changesets or conventional-changelog to auto-document releases.",
+    "Set up Chromatic for automated visual regression testing of your Storybook stories on every PR.",
+    "Add a CSS-in-JS or Tailwind styling layer so components ship with styles included.",
+    "Create a documentation site with Storybook's static export or a dedicated docs framework like Docusaurus."
+  ],
+  "related_slugs": [
+    "build-a-design-system-with-tailwindcss",
+    "build-a-dashboard-with-nextjs",
+    "build-a-saas-with-nextjs"
+  ]
+}

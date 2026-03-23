@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "niche": "testing",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-testing-suite-with-playwright",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build an End-to-End Testing Suite with Playwright | Full Stack Guide",
+    "description": "Build a production-grade E2E testing suite with Playwright using page objects, custom fixtures, visual regression, and CI integration with GitHub Actions.",
+    "keywords": [
+      "playwright testing",
+      "e2e testing playwright",
+      "playwright page objects",
+      "playwright fixtures",
+      "playwright ci github actions",
+      "visual regression testing",
+      "end to end testing"
+    ]
+  },
+  "introduction": "End-to-end tests catch the bugs that unit tests miss — broken auth flows, form submissions that silently fail, race conditions in real browsers. Playwright runs tests across Chromium, Firefox, and WebKit with a single API, auto-waits for elements, and generates traces for debugging flaky tests. This guide builds a structured, maintainable test suite from scratch.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Playwright requires Node.js 18 or later. Version 20+ is recommended for the best performance.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "A Running Web Application",
+      "description": "You need an app to test. This guide uses a Next.js app as the example, but Playwright works with any web framework."
+    },
+    {
+      "name": "Basic TypeScript Knowledge",
+      "description": "The test suite uses TypeScript for type-safe page objects and fixtures."
+    },
+    {
+      "name": "GitHub Account (Optional)",
+      "description": "For CI integration with GitHub Actions. Any CI system works, but this guide provides a GitHub Actions config.",
+      "url": "https://github.com"
+    }
+  ],
+  "estimated_time": "3-4 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Install Playwright and Configure the Test Runner",
+      "description": "Install Playwright and its browser binaries, then configure the test runner with multiple projects for cross-browser testing. The config file defines base URL, timeouts, retry behavior, and which browsers to test against. Set up a clean directory structure for tests, page objects, and fixtures.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "# Install Playwright\nnpm init playwright@latest\n\n# This creates:\n# - playwright.config.ts\n# - tests/\n# - tests-examples/\n\n# Create the test architecture directories\nmkdir -p tests/pages tests/fixtures tests/helpers"
+      },
+      "tips": [
+        "Run 'npx playwright install' after CI setup to download browser binaries — they're not included in node_modules.",
+        "Start with Chromium only during development, then add Firefox and WebKit before merging to main."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Configure Playwright for Multi-Browser and CI",
+      "description": "Customize the Playwright config with separate projects for desktop and mobile viewports, sensible timeouts, and HTML reporting. The webServer option automatically starts your dev server before running tests. Configure retries to handle flaky network conditions in CI while keeping local runs strict.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// playwright.config.ts\nimport { defineConfig, devices } from '@playwright/test';\n\nexport default defineConfig({\n  testDir: './tests',\n  fullyParallel: true,\n  forbidOnly: !!process.env.CI,\n  retries: process.env.CI ? 2 : 0,\n  workers: process.env.CI ? 1 : undefined,\n  reporter: [\n    ['html', { open: 'never' }],\n    ['json', { outputFile: 'test-results/results.json' }],\n    ...(process.env.CI ? [['github' as const]] : []),\n  ],\n  use: {\n    baseURL: 'http://localhost:3000',\n    trace: 'on-first-retry',\n    screenshot: 'only-on-failure',\n    video: 'retain-on-failure',\n  },\n  projects: [\n    {\n      name: 'chromium',\n      use: { ...devices['Desktop Chrome'] },\n    },\n    {\n      name: 'firefox',\n      use: { ...devices['Desktop Firefox'] },\n    },\n    {\n      name: 'webkit',\n      use: { ...devices['Desktop Safari'] },\n    },\n    {\n      name: 'mobile-chrome',\n      use: { ...devices['Pixel 5'] },\n    },\n    {\n      name: 'mobile-safari',\n      use: { ...devices['iPhone 13'] },\n    },\n  ],\n  webServer: {\n    command: 'npm run dev',\n    url: 'http://localhost:3000',\n    reuseExistingServer: !process.env.CI,\n    timeout: 120000,\n  },\n});",
+        "filename": "playwright.config.ts"
+      },
+      "tips": [
+        "Set retries: 0 locally so flaky tests fail immediately — fix them instead of hiding behind retries.",
+        "Use trace: 'on-first-retry' to capture traces only when tests fail, saving disk space in CI."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Build Page Object Models for Maintainability",
+      "description": "Create page object classes that encapsulate page interactions and selectors. When a UI element changes, you update one page object instead of dozens of tests. Each page object exposes semantic methods like login(), createTask(), and expectEmptyState() rather than raw selectors. This makes tests read like user stories.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// tests/pages/LoginPage.ts\nimport { type Page, type Locator, expect } from '@playwright/test';\n\nexport class LoginPage {\n  readonly page: Page;\n  readonly emailInput: Locator;\n  readonly passwordInput: Locator;\n  readonly submitButton: Locator;\n  readonly errorMessage: Locator;\n\n  constructor(page: Page) {\n    this.page = page;\n    this.emailInput = page.getByLabel('Email');\n    this.passwordInput = page.getByLabel('Password');\n    this.submitButton = page.getByRole('button', { name: 'Sign in' });\n    this.errorMessage = page.getByRole('alert');\n  }\n\n  async goto() {\n    await this.page.goto('/login');\n  }\n\n  async login(email: string, password: string) {\n    await this.emailInput.fill(email);\n    await this.passwordInput.fill(password);\n    await this.submitButton.click();\n  }\n\n  async expectError(message: string) {\n    await expect(this.errorMessage).toContainText(message);\n  }\n\n  async expectRedirectToDashboard() {\n    await expect(this.page).toHaveURL('/dashboard');\n  }\n}\n\n// tests/pages/DashboardPage.ts\nimport { type Page, type Locator, expect } from '@playwright/test';\n\nexport class DashboardPage {\n  readonly page: Page;\n  readonly heading: Locator;\n  readonly taskList: Locator;\n  readonly newTaskButton: Locator;\n  readonly taskInput: Locator;\n\n  constructor(page: Page) {\n    this.page = page;\n    this.heading = page.getByRole('heading', { name: 'Dashboard' });\n    this.taskList = page.getByRole('list', { name: 'Tasks' });\n    this.newTaskButton = page.getByRole('button', { name: 'New task' });\n    this.taskInput = page.getByPlaceholder('Task title');\n  }\n\n  async createTask(title: string) {\n    await this.newTaskButton.click();\n    await this.taskInput.fill(title);\n    await this.taskInput.press('Enter');\n  }\n\n  async expectTaskCount(count: number) {\n    await expect(this.taskList.getByRole('listitem')).toHaveCount(count);\n  }\n\n  async expectTaskVisible(title: string) {\n    await expect(this.taskList.getByText(title)).toBeVisible();\n  }\n}",
+        "filename": "tests/pages/LoginPage.ts"
+      },
+      "tips": [
+        "Use getByRole, getByLabel, and getByText over CSS selectors — they're resilient to markup changes and match how users find elements.",
+        "Keep page objects focused on one page or component. If a modal appears on multiple pages, give it its own page object."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Create Custom Fixtures for Authentication State",
+      "description": "Build custom fixtures that handle authentication setup so individual tests don't repeat login flows. Playwright fixtures extend the base test object with reusable setup logic. Create an authenticatedPage fixture that logs in once and reuses the session across tests in the same worker.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// tests/fixtures/auth.fixture.ts\nimport { test as base, expect } from '@playwright/test';\nimport { LoginPage } from '../pages/LoginPage';\nimport { DashboardPage } from '../pages/DashboardPage';\nimport path from 'path';\n\ntype AuthFixtures = {\n  loginPage: LoginPage;\n  dashboardPage: DashboardPage;\n  authenticatedPage: DashboardPage;\n};\n\nexport const test = base.extend<AuthFixtures>({\n  loginPage: async ({ page }, use) => {\n    await use(new LoginPage(page));\n  },\n\n  dashboardPage: async ({ page }, use) => {\n    await use(new DashboardPage(page));\n  },\n\n  authenticatedPage: async ({ browser }, use) => {\n    const storageStatePath = path.resolve(\n      'tests/.auth/user.json'\n    );\n\n    // Try to reuse existing auth state\n    let context;\n    try {\n      context = await browser.newContext({ storageState: storageStatePath });\n    } catch {\n      // First run: perform login and save state\n      context = await browser.newContext();\n      const page = await context.newPage();\n      const loginPage = new LoginPage(page);\n      await loginPage.goto();\n      await loginPage.login(\n        process.env.TEST_USER_EMAIL ?? 'test@example.com',\n        process.env.TEST_USER_PASSWORD ?? 'password123'\n      );\n      await expect(page).toHaveURL('/dashboard');\n      await context.storageState({ path: storageStatePath });\n      await page.close();\n      await context.close();\n      context = await browser.newContext({ storageState: storageStatePath });\n    }\n\n    const page = await context.newPage();\n    await page.goto('/dashboard');\n    const dashboardPage = new DashboardPage(page);\n    await use(dashboardPage);\n    await context.close();\n  },\n});\n\nexport { expect } from '@playwright/test';",
+        "filename": "tests/fixtures/auth.fixture.ts"
+      },
+      "tips": [
+        "Save auth state to a JSON file with storageState() so subsequent tests skip the login flow entirely.",
+        "Add tests/.auth/ to .gitignore — auth state files contain session tokens."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Write Test Suites Using Fixtures and Page Objects",
+      "description": "Write actual test cases that combine your page objects and fixtures. Tests should read like user scenarios: given an authenticated user, when they create a task, then the task appears in the list. Group related tests with describe blocks and use test.beforeEach for shared navigation steps.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// tests/auth.spec.ts\nimport { test, expect } from './fixtures/auth.fixture';\n\ntest.describe('Authentication', () => {\n  test('redirects unauthenticated users to login', async ({ page }) => {\n    await page.goto('/dashboard');\n    await expect(page).toHaveURL('/login');\n  });\n\n  test('shows error for invalid credentials', async ({ loginPage }) => {\n    await loginPage.goto();\n    await loginPage.login('wrong@email.com', 'badpassword');\n    await loginPage.expectError('Invalid email or password');\n  });\n\n  test('logs in with valid credentials', async ({ loginPage }) => {\n    await loginPage.goto();\n    await loginPage.login('test@example.com', 'password123');\n    await loginPage.expectRedirectToDashboard();\n  });\n});\n\n// tests/tasks.spec.ts\nimport { test, expect } from './fixtures/auth.fixture';\n\ntest.describe('Task Management', () => {\n  test('creates a new task', async ({ authenticatedPage }) => {\n    await authenticatedPage.createTask('Write documentation');\n    await authenticatedPage.expectTaskVisible('Write documentation');\n  });\n\n  test('shows empty state when no tasks exist', async ({ authenticatedPage }) => {\n    await authenticatedPage.expectTaskCount(0);\n  });\n\n  test('persists tasks after page reload', async ({ authenticatedPage }) => {\n    await authenticatedPage.createTask('Persistent task');\n    await authenticatedPage.page.reload();\n    await authenticatedPage.expectTaskVisible('Persistent task');\n  });\n});",
+        "filename": "tests/auth.spec.ts"
+      },
+      "tips": [
+        "Keep tests independent — each test should work in isolation. Use fixtures to reset state, not test ordering.",
+        "Name tests as user behaviors ('creates a new task') not implementation details ('calls POST /api/tasks')."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Add Visual Regression Testing",
+      "description": "Use Playwright's built-in screenshot comparison to catch unintended visual changes. Take full-page and component-level screenshots, then compare them against golden baselines. When the UI changes intentionally, update the snapshots. This catches CSS regressions that functional tests miss entirely.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// tests/visual.spec.ts\nimport { test, expect } from './fixtures/auth.fixture';\n\ntest.describe('Visual Regression', () => {\n  test('login page matches snapshot', async ({ loginPage }) => {\n    await loginPage.goto();\n    await expect(loginPage.page).toHaveScreenshot('login-page.png', {\n      fullPage: true,\n      maxDiffPixelRatio: 0.01,\n    });\n  });\n\n  test('dashboard matches snapshot', async ({ authenticatedPage }) => {\n    await expect(authenticatedPage.page).toHaveScreenshot('dashboard.png', {\n      fullPage: true,\n      maxDiffPixelRatio: 0.01,\n    });\n  });\n\n  test('button variants render correctly', async ({ page }) => {\n    await page.goto('/design-system');\n    const buttonSection = page.getByTestId('button-showcase');\n    await expect(buttonSection).toHaveScreenshot('button-variants.png');\n  });\n});\n\n// To update snapshots after intentional UI changes:\n// npx playwright test --update-snapshots",
+        "filename": "tests/visual.spec.ts"
+      },
+      "tips": [
+        "Run visual tests on a single browser (Chromium) to avoid maintaining snapshots per browser — font rendering differs.",
+        "Set maxDiffPixelRatio to allow tiny anti-aliasing differences between runs."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Set Up CI with GitHub Actions",
+      "description": "Create a GitHub Actions workflow that runs your full Playwright test suite on every pull request. Cache browser binaries to speed up CI runs. Upload test reports and failure traces as artifacts so you can debug failures without reproducing them locally.",
+      "code_snippet": {
+        "language": "yaml",
+        "code": "# .github/workflows/playwright.yml\nname: Playwright Tests\n\non:\n  push:\n    branches: [main]\n  pull_request:\n    branches: [main]\n\njobs:\n  test:\n    timeout-minutes: 15\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: 'npm'\n\n      - name: Install dependencies\n        run: npm ci\n\n      - name: Install Playwright browsers\n        run: npx playwright install --with-deps\n\n      - name: Run Playwright tests\n        run: npx playwright test\n        env:\n          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}\n          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}\n\n      - name: Upload test report\n        uses: actions/upload-artifact@v4\n        if: ${{ !cancelled() }}\n        with:\n          name: playwright-report\n          path: playwright-report/\n          retention-days: 14\n\n      - name: Upload test results\n        uses: actions/upload-artifact@v4\n        if: failure()\n        with:\n          name: test-results\n          path: test-results/\n          retention-days: 7",
+        "filename": ".github/workflows/playwright.yml"
+      },
+      "tips": [
+        "Use 'npx playwright install --with-deps' in CI — the --with-deps flag installs OS-level dependencies like fonts and libraries.",
+        "Upload reports with if: ${{ !cancelled() }} so you get reports even when tests fail.",
+        "Store test credentials in GitHub Secrets, never in the workflow file."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add API testing alongside E2E tests using Playwright's request context for backend endpoint validation.",
+    "Implement test data factories that create and clean up test data via API calls in beforeEach hooks.",
+    "Add accessibility testing with @axe-core/playwright to catch WCAG violations automatically.",
+    "Set up Playwright's test generator ('npx playwright codegen') to speed up writing new tests."
+  ],
+  "related_slugs": [
+    "build-a-saas-with-nextjs",
+    "build-a-dashboard-with-nextjs",
+    "build-a-fullstack-app-with-supabase"
+  ]
+}

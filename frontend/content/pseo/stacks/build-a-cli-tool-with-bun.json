@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "niche": "bun",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-cli-tool-with-bun",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a CLI Tool with Bun | Full Stack Guide",
+    "description": "Build a fast CLI tool using Bun's native APIs for file I/O, argument parsing, and HTTP requests, then publish it to npm as a standalone executable.",
+    "keywords": [
+      "bun cli tool",
+      "build cli with bun",
+      "bun native api",
+      "bun file io",
+      "npm cli publish",
+      "bun process argv",
+      "typescript cli"
+    ]
+  },
+  "introduction": "Bun makes CLI tools absurdly fast to build. No bundler config, no transpiler setup — just TypeScript that runs natively with built-in file I/O, an HTTP client, and sub-millisecond startup times. This guide covers building a practical CLI tool from argument parsing to npm publishing, using only Bun's native APIs.",
+  "prerequisites": [
+    {
+      "name": "Bun 1.1+",
+      "description": "Install Bun, the all-in-one JavaScript runtime with native TypeScript support and built-in APIs for file, shell, and network operations.",
+      "url": "https://bun.sh/docs/installation"
+    },
+    {
+      "name": "npm Account",
+      "description": "You need an npm account to publish your CLI tool as a package that others can install globally.",
+      "url": "https://www.npmjs.com/signup"
+    },
+    {
+      "name": "Basic TypeScript Knowledge",
+      "description": "Familiarity with TypeScript types, async/await, and module imports."
+    }
+  ],
+  "estimated_time": "2-3 hours",
+  "difficulty": "beginner",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Initialize the Bun Project",
+      "description": "Create a new directory and initialize it with bun init. This generates a package.json and tsconfig.json tuned for Bun's runtime. Set the bin field in package.json so npm knows which file to run when your CLI command is invoked.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "mkdir my-cli && cd my-cli\nbun init\n\n# Create the CLI entry point\nmkdir -p src\ntouch src/index.ts"
+      },
+      "tips": [
+        "Bun's init sets target to 'bun' in tsconfig.json, enabling Bun-specific type definitions automatically.",
+        "Add the shebang #!/usr/bin/env bun at the top of your entry file so it runs with Bun when invoked directly."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Parse Arguments and Build the Command Router",
+      "description": "Build argument parsing using Bun's native util.parseArgs (from Node.js compatibility) or roll a lightweight parser with process.argv. Define your CLI's commands and flags, then route to the correct handler. This pattern scales well — each command is a separate function that receives parsed options.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "#!/usr/bin/env bun\n// src/index.ts\nimport { parseArgs } from 'util';\n\nconst { values, positionals } = parseArgs({\n  args: Bun.argv.slice(2),\n  options: {\n    help: { type: 'boolean', short: 'h' },\n    output: { type: 'string', short: 'o', default: './output' },\n    verbose: { type: 'boolean', short: 'v' },\n  },\n  allowPositionals: true,\n  strict: false,\n});\n\nconst command = positionals[0];\n\nconst commands: Record<string, () => Promise<void>> = {\n  init: () => import('./commands/init').then(m => m.run(values)),\n  generate: () => import('./commands/generate').then(m => m.run(values)),\n  serve: () => import('./commands/serve').then(m => m.run(values)),\n};\n\nif (values.help || !command) {\n  console.log(`\nUsage: my-cli <command> [options]\n\nCommands:\n  init        Initialize a new project\n  generate    Generate files from templates\n  serve       Start a local dev server\n\nOptions:\n  -h, --help      Show this help message\n  -o, --output    Output directory (default: ./output)\n  -v, --verbose   Enable verbose logging\n`);\n  process.exit(0);\n}\n\nconst handler = commands[command];\nif (!handler) {\n  console.error(`Unknown command: ${command}. Run with --help for usage.`);\n  process.exit(1);\n}\n\nawait handler();",
+        "filename": "src/index.ts"
+      },
+      "tips": [
+        "Use Bun.argv instead of process.argv — same data, but Bun.argv is typed and slightly faster.",
+        "Lazy-import command handlers so the CLI starts instantly even with many commands."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Use Bun's Native File APIs for I/O Operations",
+      "description": "Implement your commands using Bun.file() and Bun.write() for file operations. These APIs are significantly faster than Node's fs module because they use system calls directly. Bun.file() returns a BunFile that supports .text(), .json(), .arrayBuffer(), and streaming reads.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/commands/generate.ts\nimport { join } from 'path';\nimport { exists, mkdir } from 'fs/promises';\n\ninterface GenerateOptions {\n  output?: string;\n  verbose?: boolean;\n}\n\nconst templates: Record<string, string> = {\n  'index.html': '<!DOCTYPE html>\\n<html>\\n<head><title>{{name}}</title></head>\\n<body>\\n  <h1>{{name}}</h1>\\n</body>\\n</html>',\n  'style.css': ':root {\\n  --primary: #3b82f6;\\n}\\nbody {\\n  font-family: system-ui, sans-serif;\\n  margin: 0;\\n  padding: 2rem;\\n}',\n  'main.ts': 'console.log(\"Hello from {{name}}\");',\n};\n\nexport async function run(options: GenerateOptions) {\n  const outputDir = options.output ?? './output';\n  const configPath = join(process.cwd(), 'project.json');\n\n  // Read config with Bun.file()\n  const configFile = Bun.file(configPath);\n  if (!(await configFile.exists())) {\n    console.error('No project.json found. Run \"my-cli init\" first.');\n    process.exit(1);\n  }\n\n  const config = await configFile.json();\n  const name = config.name ?? 'my-project';\n\n  // Ensure output directory exists\n  if (!(await exists(outputDir))) {\n    await mkdir(outputDir, { recursive: true });\n  }\n\n  // Write files with Bun.write()\n  for (const [filename, template] of Object.entries(templates)) {\n    const content = template.replaceAll('{{name}}', name);\n    const filepath = join(outputDir, filename);\n    await Bun.write(filepath, content);\n\n    if (options.verbose) {\n      console.log(`  Created ${filepath} (${content.length} bytes)`);\n    }\n  }\n\n  console.log(`Generated ${Object.keys(templates).length} files in ${outputDir}`);\n}",
+        "filename": "src/commands/generate.ts"
+      },
+      "tips": [
+        "Bun.write() accepts strings, Uint8Arrays, Blobs, or Response objects — pipe HTTP responses directly to disk.",
+        "Use Bun.file(path).exists() instead of fs.access() — it's cleaner and returns a boolean."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Add a Local Dev Server with Bun.serve",
+      "description": "Build a serve command using Bun.serve() to start a local HTTP server that serves your generated files. Bun.serve is built on uWebSockets and handles thousands of concurrent connections. Add basic MIME type detection and directory listing for a complete local development experience.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/commands/serve.ts\nimport { join } from 'path';\n\ninterface ServeOptions {\n  output?: string;\n  verbose?: boolean;\n}\n\nconst mimeTypes: Record<string, string> = {\n  '.html': 'text/html',\n  '.css': 'text/css',\n  '.js': 'application/javascript',\n  '.ts': 'application/typescript',\n  '.json': 'application/json',\n  '.png': 'image/png',\n  '.svg': 'image/svg+xml',\n};\n\nexport async function run(options: ServeOptions) {\n  const dir = options.output ?? './output';\n  const port = 3000;\n\n  const server = Bun.serve({\n    port,\n    async fetch(req) {\n      const url = new URL(req.url);\n      let pathname = url.pathname === '/' ? '/index.html' : url.pathname;\n      const filepath = join(process.cwd(), dir, pathname);\n      const file = Bun.file(filepath);\n\n      if (await file.exists()) {\n        const ext = pathname.substring(pathname.lastIndexOf('.'));\n        return new Response(file, {\n          headers: {\n            'Content-Type': mimeTypes[ext] ?? 'application/octet-stream',\n          },\n        });\n      }\n\n      return new Response('Not Found', { status: 404 });\n    },\n  });\n\n  console.log(`Serving ${dir} at http://localhost:${server.port}`);\n  console.log('Press Ctrl+C to stop.');\n}",
+        "filename": "src/commands/serve.ts"
+      },
+      "tips": [
+        "Bun.serve returns a Server object — call server.stop() in cleanup code or signal handlers.",
+        "Bun.file() streams large files automatically instead of buffering them in memory."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Add Colored Output and Progress Indicators",
+      "description": "Make your CLI output professional with ANSI color codes and a simple spinner for long-running operations. Bun supports ANSI escape sequences natively in the terminal. Build a small utility module for consistent styling across all commands.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// src/utils/log.ts\nconst isColorSupported = process.env.NO_COLOR === undefined;\n\nconst codes = {\n  reset: '\\x1b[0m',\n  bold: '\\x1b[1m',\n  dim: '\\x1b[2m',\n  green: '\\x1b[32m',\n  yellow: '\\x1b[33m',\n  red: '\\x1b[31m',\n  cyan: '\\x1b[36m',\n} as const;\n\nfunction color(code: keyof typeof codes, text: string): string {\n  return isColorSupported ? `${codes[code]}${text}${codes.reset}` : text;\n}\n\nexport const log = {\n  success: (msg: string) => console.log(color('green', `  \\u2713 ${msg}`)),\n  warn: (msg: string) => console.log(color('yellow', `  ! ${msg}`)),\n  error: (msg: string) => console.error(color('red', `  \\u2717 ${msg}`)),\n  info: (msg: string) => console.log(color('cyan', `  i ${msg}`)),\n  step: (n: number, total: number, msg: string) =>\n    console.log(`  ${color('dim', `[${n}/${total}]`)} ${msg}`),\n};\n\nexport function spinner(message: string) {\n  const frames = ['\\u280b', '\\u2819', '\\u2839', '\\u2838', '\\u283c', '\\u2834', '\\u2826', '\\u2827', '\\u2807', '\\u280f'];\n  let i = 0;\n  const interval = setInterval(() => {\n    process.stdout.write(`\\r  ${color('cyan', frames[i++ % frames.length])} ${message}`);\n  }, 80);\n\n  return {\n    stop: (final?: string) => {\n      clearInterval(interval);\n      process.stdout.write(`\\r${' '.repeat(message.length + 10)}\\r`);\n      if (final) log.success(final);\n    },\n  };\n}",
+        "filename": "src/utils/log.ts"
+      },
+      "tips": [
+        "Respect the NO_COLOR environment variable (https://no-color.org/) — some users and CI systems disable color output.",
+        "Keep spinner frames as Unicode braille characters — they render in all modern terminals."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Configure package.json and Publish to npm",
+      "description": "Set up your package.json with the correct bin field, files whitelist, and type declarations. Use bun build --compile to produce a standalone binary for users who don't have Bun installed, or publish the TypeScript source for Bun users. Run npm publish to push your CLI to the registry.",
+      "code_snippet": {
+        "language": "json",
+        "code": "{\n  \"name\": \"my-cli\",\n  \"version\": \"1.0.0\",\n  \"type\": \"module\",\n  \"bin\": {\n    \"my-cli\": \"./src/index.ts\"\n  },\n  \"files\": [\n    \"src/**/*.ts\"\n  ],\n  \"scripts\": {\n    \"dev\": \"bun run src/index.ts\",\n    \"build\": \"bun build --compile --minify src/index.ts --outfile my-cli\",\n    \"test\": \"bun test\"\n  },\n  \"devDependencies\": {\n    \"@types/bun\": \"latest\"\n  }\n}",
+        "filename": "package.json"
+      },
+      "tips": [
+        "Use bun build --compile to produce a single executable binary that includes the Bun runtime — no dependencies needed.",
+        "Set the files field to only include src/ so you don't ship test files or config to npm.",
+        "Test your CLI locally with 'bun link' before publishing to npm."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add interactive prompts using Bun's built-in readline or the prompts package for guided setup flows.",
+    "Write tests with Bun's built-in test runner using bun:test for fast, zero-config testing.",
+    "Add a plugin system that loads commands from node_modules or local directories.",
+    "Set up GitHub Actions to auto-publish to npm on tagged releases."
+  ],
+  "related_slugs": ["build-an-api-with-bun", "build-a-saas-with-nextjs", "build-a-blog-with-astro"]
+}

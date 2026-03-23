@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "niche": "react",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "react-testing-checklist",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "React Testing Checklist: 25 Essential Steps",
+    "description": "Ship reliable React apps with this 25-step testing checklist. Covers unit tests, integration tests, component testing, and CI setup.",
+    "keywords": [
+      "react testing checklist",
+      "react testing best practices",
+      "react component testing",
+      "react testing library",
+      "vitest react",
+      "react integration tests",
+      "react test coverage"
+    ]
+  },
+  "introduction": "Most React testing advice focuses on tooling — which library to use, how to mock. But the real challenge is knowing what to test and at what level of abstraction. This checklist gives you a systematic approach to testing React applications, from individual component behavior through user flows, so you can ship with confidence without drowning in brittle snapshot tests.",
+  "total_items": 25,
+  "estimated_time": "3-4 hours",
+  "sections": [
+    {
+      "name": "Test Infrastructure Setup",
+      "description": "Configure your testing tools and establish conventions before writing any tests.",
+      "items": [
+        {
+          "id": "react-test-1",
+          "text": "Install and configure a test runner with React support",
+          "description": "Set up Vitest or Jest with `@testing-library/react` and `@testing-library/jest-dom`. Vitest is preferred for Vite-based projects since it shares your app's transform pipeline, eliminating configuration drift between dev and test environments.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-test-2",
+          "text": "Configure jsdom or happy-dom as your test environment",
+          "description": "Set `environment: 'jsdom'` (or `happy-dom` for faster execution) in your test config. React components need a DOM to render into. Without this, any test that renders a component will fail with cryptic `document is not defined` errors.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-test-3",
+          "text": "Create a custom render function with providers",
+          "description": "Wrap `@testing-library/react`'s `render` with your app's providers (Router, Theme, QueryClient, Auth). Export this from a `test-utils.ts` file. This prevents every test file from individually assembling the provider tree and keeps tests resilient to provider changes.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-4",
+          "text": "Set up MSW for API mocking",
+          "description": "Install `msw` (Mock Service Worker) to intercept network requests at the service worker level. MSW mocks work identically in tests and browser dev mode, which means your test mocks can double as development stubs. Define handlers for all critical API endpoints.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-5",
+          "text": "Add test scripts and coverage thresholds to package.json",
+          "description": "Add `test`, `test:watch`, and `test:coverage` scripts. Set coverage thresholds (start with 60% and increase) in your config so CI fails when coverage drops. Focus thresholds on branches and functions rather than raw line coverage.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Component Testing Fundamentals",
+      "description": "Test components the way users interact with them — through rendered output and behavior.",
+      "items": [
+        {
+          "id": "react-test-6",
+          "text": "Query elements by role, label, and text — not test IDs",
+          "description": "Use `getByRole`, `getByLabelText`, and `getByText` as primary queries. These mirror how assistive technology and real users find elements. Reserve `data-testid` for cases where no accessible query exists — those cases often indicate an accessibility gap worth fixing.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-test-7",
+          "text": "Test user interactions with userEvent instead of fireEvent",
+          "description": "Use `@testing-library/user-event` for clicks, typing, and keyboard navigation. Unlike `fireEvent`, `userEvent` dispatches the full sequence of browser events (pointerdown, mousedown, focus, click) so your tests catch event handler bugs that `fireEvent` misses.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-8",
+          "text": "Test component states: loading, error, empty, and success",
+          "description": "Every component that fetches data should have tests for all four states. Mock the API to return loading delays, error responses, empty arrays, and populated data. Users encounter all of these states — your tests should too.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-test-9",
+          "text": "Avoid testing implementation details",
+          "description": "Never assert on internal state, hook return values, or component instance methods. Test what the user sees and what side effects occur. If you refactor from useState to useReducer, your tests should still pass without changes. Fragile tests are worse than no tests.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-test-10",
+          "text": "Test conditional rendering and visibility",
+          "description": "Use `queryByRole` (returns null) instead of `getByRole` (throws) when asserting an element is absent. Verify that modals, tooltips, dropdowns, and error messages appear and disappear based on user actions. Test both the show and hide transitions.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Forms, Validation & Async Behavior",
+      "description": "Test the patterns that cause the most production bugs: forms, validation, and asynchronous operations.",
+      "items": [
+        {
+          "id": "react-test-11",
+          "text": "Test form submission with valid and invalid data",
+          "description": "Fill each form field using `userEvent.type`, submit the form, and assert on the result. Test the happy path (valid data submits successfully) and at least two error paths (required field empty, invalid format). Check that error messages appear next to the correct fields.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-test-12",
+          "text": "Test client-side validation messages",
+          "description": "Trigger each validation rule and verify the correct error message renders. Test blur-triggered validation (field loses focus), submit-triggered validation (form submitted with errors), and that errors clear when the user corrects the input.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-13",
+          "text": "Use waitFor and findBy for async assertions",
+          "description": "Wrap assertions that depend on async state updates in `waitFor` or use `findByRole` (which waits automatically). Never use `setTimeout` or fixed delays in tests — they make tests slow and flaky. If you need `act()` warnings to go away, your component needs a proper loading state.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-14",
+          "text": "Test loading and disabled states during submission",
+          "description": "Verify that submit buttons show a loading indicator and become disabled during API calls. Double-submission bugs are common in production and easy to catch in tests. Assert the button is disabled after click and re-enabled after the response.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-15",
+          "text": "Test optimistic updates and rollback behavior",
+          "description": "If your app uses optimistic UI updates, test that the UI updates immediately on user action, then verify it stays updated on success or rolls back on failure. Mock the API to fail after optimistic update to test the rollback path specifically.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Integration & User Flow Tests",
+      "description": "Test complete user journeys that span multiple components and pages.",
+      "items": [
+        {
+          "id": "react-test-16",
+          "text": "Test critical user flows end-to-end within components",
+          "description": "Identify your app's 3-5 most important flows (signup, checkout, search, etc.) and write integration tests that render the full page/route. These tests catch bugs that unit tests miss — broken prop passing between components, incorrect context values, and missing error boundaries.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "react-test-17",
+          "text": "Test routing and navigation behavior",
+          "description": "Wrap components in `MemoryRouter` with an initial route and verify that link clicks and programmatic navigation change the rendered content. Test protected routes by rendering without auth context and verifying the redirect to login.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-18",
+          "text": "Test error boundaries with intentional rendering errors",
+          "description": "Create a test component that throws during render and wrap it with your error boundary. Verify the fallback UI appears and includes a recovery mechanism (retry button, link to home). Suppress the expected console.error to keep test output clean.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-19",
+          "text": "Test context providers with consumer components",
+          "description": "Don't test context in isolation — test it through components that consume it. Render a consumer component, trigger actions that change context (theme toggle, locale switch), and verify the consumer re-renders with updated values.",
+          "difficulty": "intermediate",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "react-test-20",
+          "text": "Test keyboard navigation and focus management",
+          "description": "Verify that Tab moves focus in logical order, Escape closes modals and returns focus to the trigger, and Enter/Space activates interactive elements. These tests catch accessibility regressions and are easy to automate with `userEvent.tab()` and `userEvent.keyboard()`.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "CI & Maintenance",
+      "description": "Keep your test suite fast, reliable, and integrated into your development workflow.",
+      "items": [
+        {
+          "id": "react-test-21",
+          "text": "Run tests in CI on every pull request",
+          "description": "Configure GitHub Actions or your CI system to run the full test suite on every PR. Block merges when tests fail. Fast feedback on PRs catches regressions before they reach main. Use sharding to parallelize if the suite exceeds 5 minutes.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "react-test-22",
+          "text": "Set up visual regression testing for UI components",
+          "description": "Use Chromatic, Percy, or Playwright's screenshot comparison for components where visual appearance matters (design system, landing pages). Visual tests catch CSS regressions that functional tests can't detect, like broken layouts or wrong colors.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "react-test-23",
+          "text": "Delete snapshot tests or replace with specific assertions",
+          "description": "Large snapshot tests always get approved blindly when they fail. Replace them with targeted assertions: check that specific text renders, specific elements have correct attributes, specific ARIA states are set. One precise assertion beats a thousand-line snapshot.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-24",
+          "text": "Isolate tests with proper cleanup",
+          "description": "Call `cleanup` after each test (React Testing Library does this automatically in most setups). Reset MSW handlers in `afterEach`. Clear any localStorage or sessionStorage mocks. Test isolation prevents the most common source of flaky tests: shared mutable state.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "react-test-25",
+          "text": "Monitor and fix flaky tests immediately",
+          "description": "A flaky test that passes 90% of the time trains your team to re-run CI and ignore failures. Track flaky tests with your CI provider's flaky test detection, and treat fixing them as high priority. Either make the test deterministic or delete it.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Follow the testing trophy: mostly integration tests, some unit tests, few E2E tests, and even fewer static tests. Integration tests give you the best confidence-to-maintenance ratio for React apps.",
+    "Run `npx testing-library/eslint-plugin` to catch common React Testing Library anti-patterns like using `container.querySelector` or wrapping userEvent calls in `act()` unnecessarily.",
+    "When a bug reaches production, write a failing test that reproduces it before fixing the code. This guarantees the bug stays fixed and builds your regression test suite organically.",
+    "Use `screen.debug()` liberally when a test fails. It prints the current DOM, showing you exactly what Testing Library sees. Add `screen.logTestingPlaygroundURL()` to get an interactive playground for finding the right query."
+  ],
+  "related_slugs": [
+    "react-launch-checklist",
+    "react-performance-checklist",
+    "react-accessibility-checklist"
+  ]
+}

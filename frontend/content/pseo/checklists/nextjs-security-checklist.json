@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "niche": "nextjs",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "nextjs-security-checklist",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Next.js Security Checklist: 25 Essential Steps",
+    "description": "Secure your Next.js application with this 25-step checklist. Covers authentication, headers, API routes, CSRF protection, and server component safety.",
+    "keywords": [
+      "nextjs security checklist",
+      "next.js security best practices",
+      "nextjs authentication",
+      "nextjs security headers",
+      "nextjs api route security",
+      "nextjs csrf protection",
+      "react server component security"
+    ]
+  },
+  "introduction": "Next.js blurs the line between client and server in ways that create new security surfaces. Server Components can accidentally expose secrets, API routes can forget auth checks, and middleware can be bypassed with crafted requests. This checklist covers the security concerns specific to Next.js so you can ship without leaving doors open.",
+  "total_items": 25,
+  "estimated_time": "2-3 hours",
+  "sections": [
+    {
+      "name": "Security Headers & Transport",
+      "description": "Configure HTTP headers that protect against common web attacks at the transport level.",
+      "items": [
+        {
+          "id": "nextjs-sec-1",
+          "text": "Set Content-Security-Policy headers",
+          "description": "Define a strict CSP in `next.config.js` headers or middleware. Start with `default-src 'self'` and add specific sources for scripts, styles, and images. CSP blocks XSS attacks by preventing the browser from executing unauthorized scripts, even if an attacker injects them.",
+          "difficulty": "advanced",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-sec-2",
+          "text": "Enable Strict-Transport-Security (HSTS)",
+          "description": "Add `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` to your response headers. This forces browsers to use HTTPS for all future requests to your domain, preventing SSL stripping attacks on subsequent visits.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-sec-3",
+          "text": "Add X-Frame-Options and X-Content-Type-Options headers",
+          "description": "Set `X-Frame-Options: DENY` to prevent clickjacking (your page embedded in a malicious iframe) and `X-Content-Type-Options: nosniff` to prevent MIME type sniffing. These are simple headers that block entire categories of attacks.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-sec-4",
+          "text": "Configure Permissions-Policy to disable unused browser APIs",
+          "description": "Set `Permissions-Policy: camera=(), microphone=(), geolocation=()` to explicitly disable browser APIs your app doesn't need. If an attacker injects a script, they can't access these APIs even if the user grants permission.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-sec-5",
+          "text": "Enforce HTTPS redirects in middleware",
+          "description": "Add middleware that redirects HTTP requests to HTTPS. While hosting platforms like Vercel handle this automatically, self-hosted deployments need explicit redirect logic. Check `request.headers.get('x-forwarded-proto')` behind reverse proxies.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Authentication & Authorization",
+      "description": "Implement authentication that can't be bypassed through Next.js-specific attack vectors.",
+      "items": [
+        {
+          "id": "nextjs-sec-6",
+          "text": "Validate sessions in middleware for protected routes",
+          "description": "Use Next.js middleware to check authentication on every request to protected routes, not just in page components. Middleware runs before the page loads, preventing any protected content from being rendered or sent to unauthenticated users.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-sec-7",
+          "text": "Re-validate auth in Server Components and API routes",
+          "description": "Never rely solely on middleware for authorization. Middleware can be bypassed in edge cases (rewrite rules, direct API calls). Always re-check the user's session and permissions in Server Components and API route handlers as a defense-in-depth measure.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-sec-8",
+          "text": "Use HttpOnly, Secure, SameSite cookies for sessions",
+          "description": "Set `HttpOnly` (no JavaScript access), `Secure` (HTTPS only), and `SameSite: Lax` or `Strict` on session cookies. Next.js API routes can set cookies via `cookies().set()` with these options. Without HttpOnly, an XSS attack can steal session tokens.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-sec-9",
+          "text": "Implement role-based access control on server actions",
+          "description": "Every Server Action should check the user's role before performing mutations. Server Actions are exposed as HTTP endpoints — an attacker can call them directly without going through your UI. Always validate permissions at the action level, not just the component level.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-sec-10",
+          "text": "Rate-limit authentication endpoints",
+          "description": "Add rate limiting to login, registration, and password reset API routes. Use a library like `rate-limiter-flexible` with a Redis or in-memory store. Without rate limiting, attackers can brute-force credentials or abuse password reset flows.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Server Components & Data Safety",
+      "description": "Prevent sensitive data from leaking across the server-client boundary in Next.js App Router.",
+      "items": [
+        {
+          "id": "nextjs-sec-11",
+          "text": "Never pass secrets or tokens through component props",
+          "description": "Server Component props are serialized and sent to the client for hydration. If you pass a database connection string or API key as a prop, it appears in the HTML source. Keep secrets in server-only code and use the `server-only` package to enforce the boundary.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-sec-12",
+          "text": "Install and use the server-only package",
+          "description": "Add `import 'server-only'` to any module that contains secrets, database queries, or internal business logic. This causes a build error if the module is accidentally imported from a Client Component, preventing server code from leaking into the browser bundle.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-sec-13",
+          "text": "Sanitize user input in Server Actions",
+          "description": "Validate and sanitize all form data received by Server Actions using a schema validation library like Zod. Server Actions receive raw FormData from the client — treat it like any untrusted input. Never interpolate user input directly into database queries.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-sec-14",
+          "text": "Audit serialized data in Server Component responses",
+          "description": "Inspect the RSC payload (view page source, look for the `__next_f` script tags) to verify no sensitive fields are being serialized. Common leaks include user objects with password hashes, internal IDs, or admin flags that the client shouldn't see.",
+          "difficulty": "advanced",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-sec-15",
+          "text": "Use environment variable conventions correctly",
+          "description": "Only variables prefixed with `NEXT_PUBLIC_` are exposed to the browser. Verify that database URLs, API secrets, and signing keys never use the `NEXT_PUBLIC_` prefix. Audit your `.env` files and `next.config.js` for accidental exposure.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        }
+      ]
+    },
+    {
+      "name": "API Routes & Server Actions",
+      "description": "Harden your Next.js API surface against injection, forgery, and abuse.",
+      "items": [
+        {
+          "id": "nextjs-sec-16",
+          "text": "Validate all API route input with schema validation",
+          "description": "Parse request bodies, query parameters, and URL params through Zod schemas in every API route handler. Return 400 with a descriptive error for invalid input. Unvalidated input is the entry point for injection attacks, type confusion, and business logic bugs.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "nextjs-sec-17",
+          "text": "Protect against CSRF in Server Actions",
+          "description": "Next.js automatically includes CSRF protection for Server Actions by checking the Origin header against the Host header. Verify this is working by testing from a different origin. For custom API routes, implement CSRF tokens manually using a library like `csrf`.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-sec-18",
+          "text": "Return minimal error information to clients",
+          "description": "Never expose stack traces, database error messages, or internal paths in API responses. Catch errors in a wrapper, log the full error server-side, and return a generic message with an error code. Detailed errors give attackers a roadmap to your internals.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-sec-19",
+          "text": "Implement request size limits on API routes",
+          "description": "Set `bodyParser.sizeLimit` in your API route config or use middleware to reject oversized payloads. Without limits, attackers can send massive payloads that consume memory and crash your server. A 1MB limit is reasonable for most JSON APIs.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-sec-20",
+          "text": "Add CORS configuration for API routes",
+          "description": "If your API routes are consumed by other domains, configure CORS explicitly with `Access-Control-Allow-Origin` set to specific domains, not `*`. For same-origin apps, ensure CORS is not accidentally enabled. Use the `cors` middleware pattern in your route handlers.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Dependencies & Deployment",
+      "description": "Secure your supply chain and production environment configuration.",
+      "items": [
+        {
+          "id": "nextjs-sec-21",
+          "text": "Audit npm dependencies for known vulnerabilities",
+          "description": "Run `npm audit` or use Snyk/Socket to scan your dependency tree. Fix critical and high severity vulnerabilities before deploying. Next.js apps often have hundreds of transitive dependencies — even one compromised package can inject malicious code.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-sec-22",
+          "text": "Pin dependency versions with a lockfile",
+          "description": "Commit `package-lock.json` or `pnpm-lock.yaml` and use `npm ci` (not `npm install`) in CI. Without a lockfile, a compromised patch release of any dependency can inject malicious code into your next build without any code change on your part.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "nextjs-sec-23",
+          "text": "Disable Next.js powered-by header",
+          "description": "Add `poweredByHeader: false` to `next.config.js`. The `X-Powered-By: Next.js` header tells attackers exactly which framework you use, helping them target known Next.js vulnerabilities. Removing it adds no protection alone but reduces your information footprint.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-sec-24",
+          "text": "Configure source map visibility for production",
+          "description": "Set `productionBrowserSourceMaps: false` (the default) in next.config.js unless you have a specific need. Source maps reveal your original source code, component structure, and comments to anyone who opens DevTools on your production site.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "nextjs-sec-25",
+          "text": "Set up automated security scanning in CI",
+          "description": "Add a GitHub Action or CI step that runs `npm audit --audit-level=high`, checks for leaked secrets with `gitleaks` or `trufflehog`, and optionally runs SAST with Semgrep. Automated scanning catches issues before they reach production and creates accountability.",
+          "difficulty": "advanced",
+          "priority": "important"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Use Next.js middleware's `matcher` config to protect entire route groups instead of checking auth in each page. Pattern like `matcher: ['/dashboard/:path*', '/api/admin/:path*']` covers all nested routes automatically.",
+    "Test your security headers at securityheaders.com — it grades your site and tells you exactly which headers are missing. Aim for an A+ rating before launch.",
+    "Install the `server-only` and `client-only` packages on day one. They cost nothing at runtime and prevent the most dangerous class of Next.js bugs: accidentally importing server code into the client bundle.",
+    "When debugging Server Action security, remember they're just POST endpoints. Use curl to call them directly without your UI to verify that auth and validation work independently of the frontend."
+  ],
+  "related_slugs": ["nextjs-launch-checklist", "nextjs-seo-checklist", "nodejs-security-checklist"]
+}

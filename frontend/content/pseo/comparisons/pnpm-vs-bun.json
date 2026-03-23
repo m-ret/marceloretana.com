@@ -1,0 +1,263 @@
+{
+  "meta": {
+    "niche": "bun",
+    "type": "comparison",
+    "locale": "en",
+    "slug": "pnpm-vs-bun",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "pnpm vs Bun: Which Is Better for Package Management in 2026?",
+    "description": "pnpm vs Bun compared as package managers on speed, disk usage, workspace support, and compatibility. A practical guide for 2026.",
+    "keywords": [
+      "pnpm vs bun",
+      "best package manager 2026",
+      "bun install vs pnpm",
+      "pnpm alternative",
+      "fastest npm package manager",
+      "bun package manager review"
+    ]
+  },
+  "tools": [
+    {
+      "name": "pnpm",
+      "slug": "pnpm",
+      "tagline": "Fast, disk space efficient package manager",
+      "website": "https://pnpm.io",
+      "category": "Package Manager"
+    },
+    {
+      "name": "Bun",
+      "slug": "bun",
+      "tagline": "Incredibly fast JavaScript runtime, bundler, and toolkit",
+      "website": "https://bun.sh",
+      "category": "JavaScript Runtime & Toolkit"
+    }
+  ],
+  "introduction": "pnpm revolutionized JavaScript package management with its content-addressable store and symlink-based node_modules, saving gigabytes of disk space while being significantly faster than npm. Bun then arrived and made pnpm look slow — its native implementation installs packages in seconds rather than minutes. But package management is about more than speed: workspace support, lockfile reliability, and ecosystem compatibility matter just as much in production. Having managed monorepos with both tools, each has clear strengths.",
+  "categories": [
+    {
+      "name": "Performance",
+      "criteria": [
+        {
+          "criterion": "Install Speed (Cold)",
+          "tool_a": {
+            "score": 7,
+            "detail": "pnpm cold installs (empty cache) are 2-3x faster than npm. A typical Next.js project installs in 8-15 seconds. The content-addressable store means packages are downloaded once globally and hardlinked into projects. Fast, but still JavaScript-based with inherent overhead."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Bun's cold install is 5-10x faster than pnpm. The same Next.js project installs in 1-3 seconds. Written in Zig with a native HTTP client, binary lockfile parsing, and aggressive parallelism. It's not incrementally faster — it's a different order of magnitude."
+          }
+        },
+        {
+          "criterion": "Install Speed (Warm Cache)",
+          "tool_a": {
+            "score": 8,
+            "detail": "With a warm store, pnpm installs are near-instant for cached packages — it creates hardlinks from the global store. A repeated install takes 2-5 seconds. The content-addressable store makes this extremely efficient."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Warm installs with Bun take under 1 second. The global module cache plus hardlinks means repeat installs are essentially filesystem operations. 'bun install' on a cached project is faster than ls on a large directory."
+          }
+        },
+        {
+          "criterion": "Disk Space Efficiency",
+          "tool_a": {
+            "score": 10,
+            "detail": "pnpm's killer feature: content-addressable storage. Every version of every package is stored once on disk, regardless of how many projects use it. A machine with 20 projects might save 10-30GB compared to npm. Hardlinks mean node_modules appears normal but uses minimal additional space."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Bun uses a global module cache with hardlinks, similar in concept to pnpm. Disk savings are significant compared to npm but the deduplication isn't as aggressive as pnpm's content-addressable store. Multiple versions of the same package may be stored separately."
+          }
+        },
+        {
+          "criterion": "Script Execution Speed",
+          "tool_a": {
+            "score": 6,
+            "detail": "pnpm run executes scripts through Node.js. The overhead is the same as npm run — shell spawning plus Node.js startup. For short scripts, the command startup time is noticeable (200-500ms overhead)."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "bun run starts scripts with Bun's fast runtime (~5ms startup). Even when running Node.js scripts, the script resolution and shell spawning is faster. 'bun run dev' feels instant. For projects with many npm scripts, this speed adds up throughout the day."
+          }
+        },
+        {
+          "criterion": "Resolution Algorithm Speed",
+          "tool_a": {
+            "score": 7,
+            "detail": "pnpm's dependency resolution is JavaScript-based but well-optimized. The lockfile (pnpm-lock.yaml) is human-readable YAML. Resolution for a large monorepo with 500+ dependencies takes 3-10 seconds. Reliable but not blazing."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Bun's resolution is native code with a binary lockfile (bun.lockb). The binary format is faster to read and write than YAML or JSON. Resolution for the same monorepo takes under 1 second. The tradeoff: bun.lockb is not human-readable without 'bun install --yarn' to output text format."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Workspace & Monorepo Support",
+      "criteria": [
+        {
+          "criterion": "Workspace Protocol",
+          "tool_a": {
+            "score": 10,
+            "detail": "pnpm's workspace: protocol is the gold standard. workspace:* for any version, workspace:^ for compatible ranges, workspace:~ for patch ranges. Packages are symlinked from the workspace root. Protocol is respected by publishing tools (changesets, semantic-release)."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Bun supports workspace:* and basic workspace resolution. Packages in the workspace are linked correctly. Less mature than pnpm's implementation — edge cases with version ranges and publishing workflows may require workarounds."
+          }
+        },
+        {
+          "criterion": "Filtering & Selective Commands",
+          "tool_a": {
+            "score": 10,
+            "detail": "pnpm's --filter flag is incredibly powerful: filter by package name, directory, git changes, or dependency graph. 'pnpm --filter ./packages/core... run build' builds core and all its dependents. This makes targeted CI builds and selective operations trivial."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Bun's workspace filtering is basic. 'bun run --filter <pattern>' supports glob patterns but lacks pnpm's graph-aware filtering. No built-in way to run commands on 'all packages that depend on X.' For complex monorepo workflows, this is a real limitation."
+          }
+        },
+        {
+          "criterion": "Peer Dependency Handling",
+          "tool_a": {
+            "score": 9,
+            "detail": "pnpm is strict about peer dependencies by default — it won't silently install incorrect versions. auto-install-peers=true (default since pnpm 8) installs missing peers automatically. The strictness catches real dependency issues that npm and Bun would silently ignore."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Bun auto-installs peer dependencies and is generally permissive. This means fewer errors during installation but potentially more runtime issues from version mismatches. For teams that want strictness, Bun's approach can mask real dependency problems."
+          }
+        },
+        {
+          "criterion": "Changesets & Publishing Workflow",
+          "tool_a": {
+            "score": 10,
+            "detail": "pnpm integrates perfectly with @changesets/cli, the standard monorepo publishing tool. 'pnpm changeset publish' handles versioning, changelog generation, and npm publishing across workspace packages. The workspace: protocol is converted to real versions on publish."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "Changesets works with Bun but requires workarounds. Bun's lockfile format and workspace resolution have edge cases with publishing tools. For open-source monorepos that publish to npm, pnpm's tooling integration is more reliable."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Compatibility & Reliability",
+      "criteria": [
+        {
+          "criterion": "npm Ecosystem Compatibility",
+          "tool_a": {
+            "score": 9,
+            "detail": "pnpm works with 99%+ of npm packages. Its strict node_modules structure (non-flat by default) occasionally surfaces issues with packages that rely on hoisting to access undeclared dependencies — but this actually catches real dependency bugs. strictPeerDependencies can be disabled when needed."
+          },
+          "tool_b": {
+            "score": 8,
+            "detail": "Bun's package manager is compatible with most npm packages but edge cases exist. Native modules (node-gyp) sometimes fail to build. Some postinstall scripts behave differently. The --backend=symlink and --backend=hardlink flags provide workarounds for specific compatibility issues."
+          }
+        },
+        {
+          "criterion": "Lockfile Reliability",
+          "tool_a": {
+            "score": 10,
+            "detail": "pnpm-lock.yaml is human-readable, git-diffable, and deterministic. The YAML format makes it easy to review changes in PRs. Lockfile conflicts are resolvable. The format has been stable across major pnpm versions with clear migration paths."
+          },
+          "tool_b": {
+            "score": 6,
+            "detail": "bun.lockb is a binary format — fast to parse but impossible to review in git diffs. Lockfile conflicts require regeneration rather than manual resolution. 'bun install --yarn' generates a text lockfile as an alternative, but it's not the default workflow."
+          }
+        },
+        {
+          "criterion": "Node.js Version Independence",
+          "tool_a": {
+            "score": 10,
+            "detail": "pnpm runs on any Node.js version (18+) and manages packages independently of the runtime. You can use pnpm with Node.js, Deno, or even Bun as your runtime. It's a pure package manager with no runtime coupling."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Bun's package manager is part of the Bun runtime. Using 'bun install' means having Bun installed, even if you deploy on Node.js. This coupling is fine if you use Bun for everything, but adds a dependency for teams that only want a package manager."
+          }
+        },
+        {
+          "criterion": "Lifecycle Scripts & Hooks",
+          "tool_a": {
+            "score": 9,
+            "detail": "Full support for preinstall, postinstall, prepare, and all lifecycle scripts. Scripts run in a predictable order. pnpm also adds .pnpmfile.cjs for package-level hooks (modify dependencies at install time). Enterprise teams use this for internal registry overrides."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Bun runs lifecycle scripts but with some differences from npm/pnpm. Trusted dependencies (trustedDependencies in package.json) control which packages can run postinstall scripts — a security feature that can also cause packages to silently skip necessary build steps."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ecosystem & Tooling",
+      "criteria": [
+        {
+          "criterion": "Corepack & Version Management",
+          "tool_a": {
+            "score": 9,
+            "detail": "pnpm works with Corepack (Node.js's built-in package manager manager). Set packageManager in package.json and team members automatically get the right pnpm version. No separate installation step — Corepack handles it. This ensures CI and dev environments match."
+          },
+          "tool_b": {
+            "score": 5,
+            "detail": "Bun doesn't integrate with Corepack since it's not a Node.js package manager. Version management is handled through Bun's own update mechanism (bun upgrade). Teams need a separate strategy (volta, mise, or manual installation) to pin Bun versions across environments."
+          }
+        },
+        {
+          "criterion": "CI/CD Integration",
+          "tool_a": {
+            "score": 9,
+            "detail": "pnpm has official GitHub Actions (pnpm/action-setup), built-in caching strategies for CI, and is supported by all major CI platforms. Store caching across CI runs is well-documented and significantly speeds up installations."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Bun has GitHub Actions (oven-sh/setup-bun) and works in most CI environments. Caching the global module cache works. But CI documentation and best practices are less mature than pnpm's. Some CI platforms don't have official Bun support yet."
+          }
+        },
+        {
+          "criterion": "Community Adoption",
+          "tool_a": {
+            "score": 9,
+            "detail": "pnpm is the default package manager for Vue, Vite, Vitest, and many major open-source projects. Rapidly growing adoption with ~30M weekly npm downloads. The monorepo and workspace community has standardized on pnpm."
+          },
+          "tool_b": {
+            "score": 7,
+            "detail": "Bun's package manager adoption is growing, especially among developers who use Bun as their runtime. Popular in the indie developer and startup community. Less adoption in enterprise and large open-source monorepos compared to pnpm."
+          }
+        },
+        {
+          "criterion": "Beyond Package Management",
+          "tool_a": {
+            "score": 4,
+            "detail": "pnpm is solely a package manager. It does one thing and does it extremely well. You'll need separate tools for running, building, testing, and bundling. This focus is either a strength (Unix philosophy) or a limitation depending on your perspective."
+          },
+          "tool_b": {
+            "score": 10,
+            "detail": "Bun is a complete toolkit: package manager, runtime, test runner, bundler, and script runner in one binary. If you adopt Bun's package manager, you get the rest for free. The integrated experience means fewer tools to install, configure, and maintain."
+          }
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "winner_overall": "pnpm for monorepos and reliability, Bun for raw speed and integrated tooling",
+    "best_for": {
+      "monorepo management": "pnpm",
+      "workspace filtering": "pnpm",
+      "lockfile reviewability": "pnpm",
+      "disk space savings": "pnpm",
+      "npm publishing workflows": "pnpm",
+      "install speed": "Bun",
+      "all-in-one toolchain": "Bun",
+      "script execution speed": "Bun",
+      "startup projects": "Bun"
+    },
+    "summary": "In 2026, pnpm and Bun serve different sweet spots. pnpm is the best pure package manager available — its workspace support, strict dependency resolution, human-readable lockfile, and content-addressable store make it the right choice for monorepos, open-source projects, and teams that want reliability and reviewability. Bun's package manager is absurdly fast and shines as part of its integrated toolkit — if you're already using Bun as your runtime, using its package manager is a no-brainer. For teams that deploy on Node.js but want faster installs, pnpm remains the pragmatic choice: you get 80% of Bun's speed improvement without coupling your package management to a specific runtime."
+  },
+  "related_slugs": ["nodejs-vs-bun", "vitest-vs-jest", "biome-vs-eslint"]
+}

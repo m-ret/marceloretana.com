@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "niche": "typescript",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-tools-for-typescript",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Tools for TypeScript in 2026",
+    "description": "Essential TypeScript tools for type checking, linting, formatting, migration, and developer productivity. Curated from real-world project experience.",
+    "keywords": [
+      "typescript tools",
+      "typescript linter",
+      "typescript formatter",
+      "typescript migration",
+      "typescript playground",
+      "typescript type checker",
+      "typescript dx"
+    ]
+  },
+  "introduction": "TypeScript's ecosystem has matured well beyond just tsc. I've spent years wrestling with type errors, migrating JavaScript codebases, and fine-tuning developer workflows — these are the tools that actually made a difference in my projects. From blazing-fast linters to visual type explorers, this is what I reach for daily.",
+  "total_items": 29,
+  "categories": [
+    {
+      "name": "Type Checking & Compilation",
+      "description": "Tools for checking types, compiling TypeScript, and improving the core type-checking experience beyond tsc.",
+      "items": [
+        {
+          "name": "tsc (TypeScript Compiler)",
+          "description": "The official TypeScript compiler and type checker. It's the baseline everything else builds on — slow on large codebases but irreplaceable for correctness. No tool catches everything tsc catches.",
+          "url": "https://www.typescriptlang.org",
+          "tags": ["type-checker", "compiler", "official"],
+          "pricing": "open-source",
+          "highlight": "The gold standard for TypeScript type checking"
+        },
+        {
+          "name": "tsup",
+          "description": "A zero-config TypeScript bundler powered by esbuild. Handles CJS, ESM, and DTS generation in a single command. Perfect for library authors who don't want to fight with Rollup configs.",
+          "url": "https://tsup.egoist.dev",
+          "tags": ["bundler", "esbuild", "library-authoring"],
+          "pricing": "open-source",
+          "highlight": "Zero-config bundling with automatic DTS generation"
+        },
+        {
+          "name": "tsx",
+          "description": "A Node.js runtime enhancement that runs TypeScript files directly without a build step. Drop-in replacement for node with watch mode included. I use it for every script and dev server.",
+          "url": "https://tsx.is",
+          "tags": ["runtime", "node", "no-build"],
+          "pricing": "open-source",
+          "highlight": "Run TypeScript files directly — no build step needed"
+        },
+        {
+          "name": "SWC",
+          "description": "A Rust-based compiler that strips types at incredible speed but doesn't do type checking. Great for build pipelines where you run tsc separately for type safety. Used internally by Next.js.",
+          "url": "https://swc.rs",
+          "tags": ["compiler", "rust", "fast", "transpiler"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "ts-reset",
+          "description": "Fixes annoying TypeScript built-in types like .json() returning any and .filter(Boolean) not narrowing. A single import makes the standard lib behave the way you always expected it to.",
+          "url": "https://www.totaltypescript.com/ts-reset",
+          "tags": ["type-safety", "stdlib", "dx"],
+          "pricing": "open-source",
+          "highlight": "Fixes built-in TypeScript types that return any"
+        },
+        {
+          "name": "Knip",
+          "description": "Finds unused exports, files, and dependencies in your TypeScript project. Catches dead code that the compiler happily ignores. Essential for keeping large codebases from bloating over time.",
+          "url": "https://knip.dev",
+          "tags": ["dead-code", "unused-exports", "cleanup"],
+          "pricing": "open-source",
+          "highlight": "Detects unused exports and dependencies the compiler ignores"
+        }
+      ]
+    },
+    {
+      "name": "Linting & Formatting",
+      "description": "Tools for enforcing code quality, consistent formatting, and catching bugs before they reach production.",
+      "items": [
+        {
+          "name": "Biome",
+          "description": "A Rust-powered linter and formatter that replaces ESLint and Prettier in one binary. It's 25x faster and the config is dramatically simpler. The only downside is a smaller plugin ecosystem.",
+          "url": "https://biomejs.dev",
+          "tags": ["linter", "formatter", "rust", "fast"],
+          "pricing": "open-source",
+          "highlight": "25x faster than ESLint + Prettier combined"
+        },
+        {
+          "name": "ESLint",
+          "description": "The most established JavaScript/TypeScript linter with the largest plugin ecosystem. Slower than Biome and config can be painful, but the breadth of community rules is unmatched. Flat config in v9 helps.",
+          "url": "https://eslint.org",
+          "tags": ["linter", "plugins", "community"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "typescript-eslint",
+          "description": "The bridge between ESLint and TypeScript's type system. Enables type-aware lint rules that catch real bugs like floating promises and unsafe any usage. Slower due to type analysis but worth it.",
+          "url": "https://typescript-eslint.io",
+          "tags": ["linter", "type-aware", "eslint-plugin"],
+          "pricing": "open-source",
+          "highlight": "Type-aware linting catches bugs tsc alone misses"
+        },
+        {
+          "name": "Prettier",
+          "description": "The opinionated code formatter that ended style debates. It supports TypeScript out of the box and integrates with every editor. Being replaced by Biome in many projects, but still the most battle-tested option.",
+          "url": "https://prettier.io",
+          "tags": ["formatter", "opinionated", "editor-integration"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "dprint",
+          "description": "A Rust-based formatter that's significantly faster than Prettier with configurable formatting rules. Great middle ground if you want Prettier-level output with Biome-level speed.",
+          "url": "https://dprint.dev",
+          "tags": ["formatter", "rust", "fast", "configurable"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "oxlint",
+          "description": "A Rust-based linter from the Oxc project that's 50-100x faster than ESLint. Still growing its rule set but already covers the most impactful rules. Great as a first-pass linter in CI.",
+          "url": "https://oxc.rs/docs/guide/usage/linter",
+          "tags": ["linter", "rust", "fast", "oxc"],
+          "pricing": "open-source",
+          "highlight": "50-100x faster than ESLint for common lint rules"
+        }
+      ]
+    },
+    {
+      "name": "Playground & Exploration",
+      "description": "Interactive tools for exploring TypeScript types, testing code snippets, and learning the type system.",
+      "items": [
+        {
+          "name": "TypeScript Playground",
+          "description": "The official online editor for experimenting with TypeScript. Supports every compiler option, shows JS output and type errors in real time. I use it daily to test type-level code before committing.",
+          "url": "https://www.typescriptlang.org/play",
+          "tags": ["playground", "browser", "official"],
+          "pricing": "free",
+          "highlight": "The fastest way to test TypeScript ideas"
+        },
+        {
+          "name": "TS Playground Plugin: Pretty TypeScript Errors",
+          "description": "Transforms cryptic TypeScript errors into readable, formatted messages with syntax highlighting. Also available as a VS Code extension. Saves real time when debugging complex generic types.",
+          "url": "https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors",
+          "tags": ["vs-code", "errors", "dx"],
+          "pricing": "free",
+          "highlight": "Makes TypeScript errors actually readable"
+        },
+        {
+          "name": "TypeScript Error Translator",
+          "description": "A Matt Pocock project that translates TypeScript errors into plain English. Paste an error and get a human explanation. Invaluable for learning and for when the compiler output is pure hieroglyphics.",
+          "url": "https://ts-error-translator.vercel.app",
+          "tags": ["errors", "learning", "translation"],
+          "pricing": "free"
+        },
+        {
+          "name": "Twoslash",
+          "description": "The engine behind TypeScript Playground's inline type display. Embed it in documentation or blog posts to show hover-style type information in code samples. Powers the Total TypeScript docs.",
+          "url": "https://twoslash.netlify.app",
+          "tags": ["documentation", "code-samples", "types"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Type Challenges",
+          "description": "A collection of TypeScript type-level challenges from easy to extreme. The best way to level up your understanding of conditional types, mapped types, and template literals. Humbling but effective.",
+          "url": "https://tsch.js.org",
+          "tags": ["learning", "challenges", "type-level"],
+          "pricing": "free",
+          "highlight": "The best way to master advanced TypeScript types"
+        }
+      ]
+    },
+    {
+      "name": "Migration & Adoption",
+      "description": "Tools that help migrate JavaScript codebases to TypeScript and manage incremental adoption strategies.",
+      "items": [
+        {
+          "name": "ts-migrate",
+          "description": "Airbnb's tool for bulk-converting JavaScript files to TypeScript. Adds type annotations where possible and uses any where it can't infer. Gets you to a compilable state fast — you refine from there.",
+          "url": "https://github.com/airbnb/ts-migrate",
+          "tags": ["migration", "codemods", "js-to-ts"],
+          "pricing": "open-source",
+          "highlight": "Bulk-converts JS to TS with best-effort type annotations"
+        },
+        {
+          "name": "TypeStat",
+          "description": "Automatically adds type annotations to TypeScript files by analyzing usage patterns. Goes further than ts-migrate by inferring more specific types instead of defaulting to any.",
+          "url": "https://github.com/JoshuaKGoldberg/TypeStat",
+          "tags": ["migration", "type-inference", "automation"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "JSCodeshift",
+          "description": "Facebook's toolkit for writing and running codemods on JavaScript and TypeScript. When you need to programmatically transform thousands of files — rename APIs, update patterns — this is the tool.",
+          "url": "https://github.com/facebook/jscodeshift",
+          "tags": ["codemods", "ast", "refactoring"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "ts-prune",
+          "description": "Finds unused exports in your TypeScript project. Lighter than Knip and focused on one job. Useful for quick audits, though Knip has largely superseded it for comprehensive dead code detection.",
+          "url": "https://github.com/nadeesha/ts-prune",
+          "tags": ["unused-exports", "cleanup", "audit"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Arethetypeswrong",
+          "description": "Checks if a published npm package has correct TypeScript types for all module formats. Catches the CJS/ESM type resolution issues that cause endless headaches for library consumers.",
+          "url": "https://arethetypeswrong.github.io",
+          "tags": ["package-publishing", "type-resolution", "esm-cjs"],
+          "pricing": "free",
+          "highlight": "Catches type resolution bugs before you publish to npm"
+        }
+      ]
+    },
+    {
+      "name": "Schema & Validation",
+      "description": "Libraries that bridge runtime validation with TypeScript's compile-time type system for end-to-end type safety.",
+      "items": [
+        {
+          "name": "Zod",
+          "description": "The most popular TypeScript-first schema validation library. Define a schema once and get both runtime validation and static types. The ecosystem integration is unmatched — works with React Hook Form, tRPC, and more.",
+          "url": "https://zod.dev",
+          "tags": ["validation", "schema", "runtime", "type-inference"],
+          "pricing": "open-source",
+          "highlight": "Define once, get runtime validation and TypeScript types"
+        },
+        {
+          "name": "Valibot",
+          "description": "A modular alternative to Zod that's up to 98% smaller thanks to tree-shaking. Same concept — schema to types — but each validator is an independent function. Great for bundle-sensitive apps.",
+          "url": "https://valibot.dev",
+          "tags": ["validation", "tree-shakeable", "lightweight"],
+          "pricing": "open-source",
+          "highlight": "Up to 98% smaller than Zod via tree-shaking"
+        },
+        {
+          "name": "ArkType",
+          "description": "Runtime validation with a syntax that looks like native TypeScript type annotations. Significantly faster than Zod at runtime. The API feels like writing types, which makes the learning curve almost flat.",
+          "url": "https://arktype.io",
+          "tags": ["validation", "fast", "type-syntax"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "TypeBox",
+          "description": "JSON Schema compliant validation with TypeScript type inference. If your API already uses JSON Schema (OpenAPI, Fastify), TypeBox gives you types without duplicating definitions.",
+          "url": "https://github.com/sinclairzx81/typebox",
+          "tags": ["json-schema", "validation", "openapi"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "tRPC",
+          "description": "End-to-end type-safe APIs without code generation. Define your API once on the server and the client gets full type inference. Eliminates the entire class of API contract bugs. Requires TypeScript on both ends.",
+          "url": "https://trpc.io",
+          "tags": ["api", "end-to-end-types", "rpc"],
+          "pricing": "open-source",
+          "highlight": "Full-stack type safety without code generation"
+        },
+        {
+          "name": "Drizzle ORM",
+          "description": "A TypeScript ORM that feels like writing SQL with full type inference. Schema changes produce typed queries automatically. Lighter and more predictable than Prisma for developers who think in SQL.",
+          "url": "https://orm.drizzle.team",
+          "tags": ["orm", "sql", "type-safe", "database"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Prisma",
+          "description": "The most adopted TypeScript ORM with a declarative schema language and auto-generated type-safe client. The migration system is excellent but the abstraction can fight you on complex queries.",
+          "url": "https://www.prisma.io",
+          "tags": ["orm", "database", "migrations", "type-safe"],
+          "pricing": "freemium"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-libraries-for-typescript",
+    "best-tools-for-nextjs",
+    "best-tools-for-nodejs"
+  ]
+}

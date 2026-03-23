@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "niche": "threejs",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-3d-portfolio-with-threejs",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a 3D Interactive Portfolio with Three.js | Full Stack Guide",
+    "description": "Build an interactive 3D portfolio using React Three Fiber, Drei helpers, GSAP scroll animations, and custom shaders for a standout developer portfolio.",
+    "keywords": [
+      "threejs portfolio",
+      "react three fiber portfolio",
+      "3d web portfolio",
+      "threejs scroll animation",
+      "interactive 3d website",
+      "drei threejs",
+      "custom shaders webgl"
+    ]
+  },
+  "introduction": "A flat portfolio page gets lost in the noise. A 3D interactive portfolio grabs attention instantly and proves you can ship creative engineering work. This guide walks you through building one with React Three Fiber, Drei utilities, GSAP-driven scroll animations, and a custom shader effect — all deployed as a performant static site.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for Vite and the React Three Fiber toolchain.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Basic React Knowledge",
+      "description": "You should be comfortable with hooks, components, and JSX before working with R3F's declarative 3D scene graph."
+    },
+    {
+      "name": "Familiarity with 3D Concepts",
+      "description": "Understanding of meshes, materials, cameras, and coordinate systems will help. The Three.js docs cover the basics well.",
+      "url": "https://threejs.org/manual/#en/fundamentals"
+    }
+  ],
+  "estimated_time": "5-7 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Scaffold the Project with Vite and React Three Fiber",
+      "description": "Create a Vite + React + TypeScript project and install the core 3D dependencies. React Three Fiber is a React renderer for Three.js — you write JSX instead of imperative Three.js code. Drei gives you pre-built helpers like OrbitControls, Text3D, and environment maps.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npm create vite@latest my-3d-portfolio -- --template react-ts\ncd my-3d-portfolio\n\nnpm install three @react-three/fiber @react-three/drei\nnpm install gsap @gsap/react\nnpm install -D @types/three"
+      },
+      "tips": [
+        "Vite's HMR works well with R3F — your 3D scene updates without a full reload.",
+        "Pin the three.js version in package.json. R3F can lag behind Three.js releases by a few weeks."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Create the 3D Scene Layout with Camera and Lighting",
+      "description": "Set up your root Canvas component with a perspective camera, ambient and directional lighting, and an environment map for realistic reflections. The Canvas component from R3F handles the WebGL renderer, resize observer, and animation loop automatically. Drei's Environment component loads an HDR image for image-based lighting.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/components/Scene.tsx\nimport { Canvas } from '@react-three/fiber';\nimport { Environment, PerspectiveCamera, ContactShadows } from '@react-three/drei';\nimport { Suspense } from 'react';\nimport { HeroSection } from './HeroSection';\nimport { ProjectsSection } from './ProjectsSection';\n\nexport function Scene() {\n  return (\n    <Canvas gl={{ antialias: true, alpha: true }} dpr={[1, 2]}>\n      <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={45} />\n      <ambientLight intensity={0.4} />\n      <directionalLight position={[5, 5, 5]} intensity={1.2} castShadow />\n      <Suspense fallback={null}>\n        <Environment preset=\"city\" />\n        <HeroSection />\n        <ProjectsSection />\n        <ContactShadows\n          position={[0, -2, 0]}\n          opacity={0.5}\n          scale={20}\n          blur={2}\n        />\n      </Suspense>\n    </Canvas>\n  );\n}",
+        "filename": "src/components/Scene.tsx"
+      },
+      "tips": [
+        "Set dpr={[1, 2]} to cap pixel ratio at 2x — Retina screens don't need 3x for 3D content.",
+        "Always wrap 3D content in Suspense. Textures and models load asynchronously and will suspend the component."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Build the Hero Section with Animated 3D Text",
+      "description": "Create a hero section using Drei's Text3D component with a custom font. The text floats in 3D space and rotates subtly on mount using R3F's useFrame hook. MeshTransmissionMaterial from Drei gives the text a glass-like refractive appearance that catches the environment lighting.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/components/HeroSection.tsx\nimport { useRef } from 'react';\nimport { useFrame } from '@react-three/fiber';\nimport { Text3D, Center, Float, MeshTransmissionMaterial } from '@react-three/drei';\nimport type { Mesh } from 'three';\n\nexport function HeroSection() {\n  const meshRef = useRef<Mesh>(null);\n\n  useFrame((_, delta) => {\n    if (meshRef.current) {\n      meshRef.current.rotation.y += delta * 0.1;\n    }\n  });\n\n  return (\n    <group position={[0, 2, 0]}>\n      <Float speed={2} rotationIntensity={0.3} floatIntensity={0.5}>\n        <Center>\n          <Text3D\n            ref={meshRef}\n            font=\"/fonts/inter-bold.json\"\n            size={1.2}\n            height={0.3}\n            bevelEnabled\n            bevelSize={0.02}\n            bevelThickness={0.01}\n          >\n            Hello.\n            <MeshTransmissionMaterial\n              backside\n              samples={16}\n              thickness={0.4}\n              chromaticAberration={0.2}\n              anisotropy={0.3}\n              distortion={0.1}\n              color=\"#a0d2db\"\n            />\n          </Text3D>\n        </Center>\n      </Float>\n    </group>\n  );\n}",
+        "filename": "src/components/HeroSection.tsx"
+      },
+      "tips": [
+        "Convert your font to the Three.js JSON format using facetype.js (https://gero3.github.io/facetype.js/).",
+        "Float from Drei adds a gentle hovering animation without any manual math."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Add Scroll-Driven Animations with GSAP ScrollTrigger",
+      "description": "Wire up GSAP ScrollTrigger to animate 3D objects as the user scrolls down the page. R3F's Canvas sits fixed in the background while an HTML overlay scrolls on top. ScrollTrigger pins and scrubs through timeline-based animations, translating and rotating objects in the 3D scene based on scroll position.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/components/ProjectsSection.tsx\nimport { useRef, useEffect } from 'react';\nimport { useThree } from '@react-three/fiber';\nimport { useGSAP } from '@gsap/react';\nimport gsap from 'gsap';\nimport { ScrollTrigger } from 'gsap/ScrollTrigger';\nimport { RoundedBox, Text } from '@react-three/drei';\nimport type { Group } from 'three';\n\ngsap.registerPlugin(ScrollTrigger);\n\nconst projects = [\n  { title: 'Project Alpha', color: '#ff6b6b', y: 0 },\n  { title: 'Project Beta', color: '#4ecdc4', y: -4 },\n  { title: 'Project Gamma', color: '#45b7d1', y: -8 },\n];\n\nexport function ProjectsSection() {\n  const groupRef = useRef<Group>(null);\n  const { size } = useThree();\n\n  useGSAP(() => {\n    if (!groupRef.current) return;\n\n    gsap.to(groupRef.current.position, {\n      y: 8,\n      ease: 'none',\n      scrollTrigger: {\n        trigger: '#projects-scroll',\n        start: 'top top',\n        end: 'bottom bottom',\n        scrub: 1,\n      },\n    });\n  }, [size]);\n\n  return (\n    <group ref={groupRef} position={[0, -4, 0]}>\n      {projects.map((project, i) => (\n        <group key={project.title} position={[0, project.y, 0]}>\n          <RoundedBox args={[3, 2, 0.3]} radius={0.1}>\n            <meshStandardMaterial color={project.color} />\n          </RoundedBox>\n          <Text\n            position={[0, 0, 0.2]}\n            fontSize={0.25}\n            color=\"#ffffff\"\n            anchorX=\"center\"\n            anchorY=\"middle\"\n          >\n            {project.title}\n          </Text>\n        </group>\n      ))}\n    </group>\n  );\n}",
+        "filename": "src/components/ProjectsSection.tsx"
+      },
+      "tips": [
+        "GSAP ScrollTrigger needs a DOM element as trigger — use an HTML overlay div alongside the Canvas.",
+        "Set scrub: 1 for a smooth one-second delay between scroll and animation."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Write a Custom Shader for a Background Effect",
+      "description": "Create a custom GLSL shader that renders an animated gradient or noise pattern as the scene background. R3F's shaderMaterial lets you pass uniforms from React state directly into your vertex and fragment shaders. The shader animates over time using a uniform clock value from useFrame.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/components/GradientBackground.tsx\nimport { useRef, useMemo } from 'react';\nimport { useFrame } from '@react-three/fiber';\nimport { ShaderMaterial } from 'three';\n\nconst vertexShader = `\n  varying vec2 vUv;\n  void main() {\n    vUv = uv;\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n  }\n`;\n\nconst fragmentShader = `\n  uniform float uTime;\n  uniform vec3 uColorA;\n  uniform vec3 uColorB;\n  varying vec2 vUv;\n\n  // Simplex-style noise\n  float hash(vec2 p) {\n    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);\n  }\n\n  float noise(vec2 p) {\n    vec2 i = floor(p);\n    vec2 f = fract(p);\n    f = f * f * (3.0 - 2.0 * f);\n    float a = hash(i);\n    float b = hash(i + vec2(1.0, 0.0));\n    float c = hash(i + vec2(0.0, 1.0));\n    float d = hash(i + vec2(1.0, 1.0));\n    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);\n  }\n\n  void main() {\n    float n = noise(vUv * 3.0 + uTime * 0.15);\n    vec3 color = mix(uColorA, uColorB, vUv.y + n * 0.3);\n    gl_FragColor = vec4(color, 1.0);\n  }\n`;\n\nexport function GradientBackground() {\n  const matRef = useRef<ShaderMaterial>(null);\n\n  const uniforms = useMemo(() => ({\n    uTime: { value: 0 },\n    uColorA: { value: [0.05, 0.0, 0.15] },\n    uColorB: { value: [0.0, 0.1, 0.2] },\n  }), []);\n\n  useFrame(({ clock }) => {\n    if (matRef.current) {\n      matRef.current.uniforms.uTime.value = clock.elapsedTime;\n    }\n  });\n\n  return (\n    <mesh position={[0, 0, -5]} scale={[30, 20, 1]}>\n      <planeGeometry />\n      <shaderMaterial\n        ref={matRef}\n        vertexShader={vertexShader}\n        fragmentShader={fragmentShader}\n        uniforms={uniforms}\n      />\n    </mesh>\n  );\n}",
+        "filename": "src/components/GradientBackground.tsx"
+      },
+      "tips": [
+        "Keep fragment shaders simple for portfolio sites — subtle noise or gradient animations perform well on mobile GPUs.",
+        "Use uniforms for colors so you can tweak them from React without touching GLSL."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Add an HTML Overlay for Content and Navigation",
+      "description": "Use Drei's Html component to render standard HTML content anchored to 3D positions, and create a scrollable overlay div that drives the scroll animations. The overlay contains your actual portfolio content — bio, project descriptions, contact info — while the 3D scene provides the visual backdrop.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/App.tsx\nimport { Scene } from './components/Scene';\nimport './App.css';\n\nexport default function App() {\n  return (\n    <div className=\"app\">\n      <div className=\"canvas-container\">\n        <Scene />\n      </div>\n      <div className=\"scroll-overlay\">\n        <section className=\"hero-section\">\n          <h1>Marcelo Retana</h1>\n          <p>Creative Developer</p>\n        </section>\n        <section id=\"projects-scroll\" className=\"projects-section\">\n          <div className=\"project-card\">\n            <h2>Project Alpha</h2>\n            <p>A real-time collaboration tool built with WebSockets.</p>\n            <a href=\"https://github.com/user/alpha\">View Source</a>\n          </div>\n          <div className=\"project-card\">\n            <h2>Project Beta</h2>\n            <p>An AI-powered code review assistant.</p>\n            <a href=\"https://github.com/user/beta\">View Source</a>\n          </div>\n        </section>\n        <section className=\"contact-section\">\n          <h2>Get in Touch</h2>\n          <a href=\"mailto:hello@example.com\">hello@example.com</a>\n        </section>\n      </div>\n    </div>\n  );\n}\n\n/* App.css */\n/* .canvas-container { position: fixed; inset: 0; z-index: 0; }\n   .scroll-overlay { position: relative; z-index: 1; pointer-events: none; }\n   .scroll-overlay a, .scroll-overlay button { pointer-events: auto; }\n   .hero-section, .projects-section, .contact-section { min-height: 100vh; } */",
+        "filename": "src/App.tsx"
+      },
+      "tips": [
+        "Set pointer-events: none on the overlay and pointer-events: auto only on interactive elements so scroll passes through to the canvas.",
+        "Use CSS scroll-snap for predictable section stops if your sections have fixed heights."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Optimize Performance and Deploy",
+      "description": "Optimize your 3D portfolio for production by lazy-loading heavy assets, compressing textures, and reducing draw calls. Use R3F's Perf component during development to monitor frame rate and GPU usage. Deploy to Vercel or Netlify — Vite produces a static build that works with any CDN.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "# Install performance monitoring for development\nnpm install r3f-perf\n\n# Build and preview locally\nnpm run build\nnpm run preview\n\n# Deploy to Vercel\nnpm install -g vercel\nvercel --prod"
+      },
+      "tips": [
+        "Use instancedMesh for repeated geometries (particles, grids) — one draw call instead of hundreds.",
+        "Compress textures to KTX2 format with toktx for 4-8x smaller file sizes with GPU decompression.",
+        "Test on a mid-range Android phone — if it runs at 30fps there, it's fine everywhere."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add 3D model loading with useGLTF to showcase interactive product models or character rigs.",
+    "Implement a post-processing pipeline with bloom, depth of field, and vignette effects using @react-three/postprocessing.",
+    "Add sound design with Howler.js triggered by scroll position for an immersive experience.",
+    "Create a CMS integration so you can update project cards without redeploying."
+  ],
+  "related_slugs": [
+    "build-a-portfolio-with-astro",
+    "build-a-landing-page-with-tailwindcss",
+    "build-a-blog-with-nextjs"
+  ]
+}

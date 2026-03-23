@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "niche": "bun",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-tools-for-bun",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Tools for Bun in 2026",
+    "description": "Top Bun tools for bundling, testing, deployment, and runtime development. Practical picks from a developer using Bun in production.",
+    "keywords": [
+      "bun tools",
+      "bun runtime",
+      "bun bundler",
+      "bun deployment",
+      "bun testing",
+      "bun plugins",
+      "bun ecosystem"
+    ]
+  },
+  "introduction": "Bun went from hype to genuinely useful fast. I've moved several scripts, APIs, and even a few production services to Bun — the speed gains are real but the ecosystem is still catching up. These tools represent what actually works with Bun today, not what's theoretically compatible.",
+  "total_items": 23,
+  "categories": [
+    {
+      "name": "Bundling & Build Tools",
+      "description": "Plugins, configurations, and tools that extend Bun's built-in bundler and build system.",
+      "items": [
+        {
+          "name": "Bun Built-in Bundler",
+          "description": "Bun's native bundler is fast and handles most use cases out of the box — JSX, TypeScript, tree-shaking, and code splitting. Still lacks some esbuild plugin compatibility, but it's improving every release.",
+          "url": "https://bun.sh/docs/bundler",
+          "tags": ["bundler", "built-in", "fast", "tree-shaking"],
+          "pricing": "open-source",
+          "highlight": "No extra dependency — bundling is built into the runtime"
+        },
+        {
+          "name": "bun-plugin-html",
+          "description": "An HTML entry point plugin for Bun's bundler that handles multi-page apps. Processes HTML files, resolves script and link tags, and outputs optimized bundles. Fills a gap the built-in bundler doesn't cover yet.",
+          "url": "https://github.com/BjornTheProgrammer/bun-plugin-html",
+          "tags": ["plugin", "html", "multi-page", "bundler"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "bun-plugin-tailwindcss",
+          "description": "Integrates Tailwind CSS processing directly into Bun's bundler pipeline. Eliminates the need for PostCSS in Bun projects. Still community-maintained, so check compatibility with your Tailwind version.",
+          "url": "https://github.com/aspect-build/bun-plugin-tailwindcss",
+          "tags": ["plugin", "tailwindcss", "css", "bundler"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "esbuild",
+          "description": "While Bun has its own bundler, esbuild remains relevant for its massive plugin ecosystem. Many Bun projects still use esbuild for production builds when specific plugins are needed.",
+          "url": "https://esbuild.github.io",
+          "tags": ["bundler", "fast", "plugins", "go"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Bun Macros",
+          "description": "A Bun-specific feature that runs code at bundle time and inlines the result. Replace environment checks, configuration loading, and build-time computations with zero runtime cost. Powerful but Bun-only.",
+          "url": "https://bun.sh/docs/bundler/macros",
+          "tags": ["macros", "build-time", "optimization", "bun-specific"],
+          "pricing": "open-source",
+          "highlight": "Run code at bundle time and inline the result"
+        }
+      ]
+    },
+    {
+      "name": "Testing & Quality",
+      "description": "Tools for testing Bun applications, from the built-in test runner to coverage and assertion libraries.",
+      "items": [
+        {
+          "name": "Bun Test",
+          "description": "Bun's built-in test runner with Jest-compatible API. Runs tests significantly faster than Jest or Vitest with zero configuration. Snapshot testing, mocking, and lifecycle hooks all included.",
+          "url": "https://bun.sh/docs/cli/test",
+          "tags": ["test-runner", "built-in", "jest-compatible", "fast"],
+          "pricing": "open-source",
+          "highlight": "Jest-compatible tests at Bun speed — zero config needed"
+        },
+        {
+          "name": "Playwright",
+          "description": "Works seamlessly with Bun for E2E testing. Run your Bun server in the test setup, then test with Playwright's browser automation. The combination is surprisingly smooth.",
+          "url": "https://playwright.dev",
+          "tags": ["e2e-testing", "browser", "cross-browser"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "happy-dom",
+          "description": "A fast JavaScript implementation of the browser DOM for server-side testing. Lighter and faster than jsdom, making it ideal for Bun's speed-focused philosophy. Great for component testing without a browser.",
+          "url": "https://github.com/capricorn86/happy-dom",
+          "tags": ["dom", "testing", "server-side", "lightweight"],
+          "pricing": "open-source",
+          "highlight": "2-3x faster than jsdom for DOM simulation"
+        },
+        {
+          "name": "Biome",
+          "description": "Bun and Biome share the same philosophy — replace slow JavaScript tools with fast native alternatives. Biome handles linting and formatting for Bun projects without the ESLint config headache.",
+          "url": "https://biomejs.dev",
+          "tags": ["linter", "formatter", "rust", "fast"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "c8",
+          "description": "V8's built-in code coverage tool that works with Bun test. Generates coverage reports without instrumenting your code. Lightweight alternative to Istanbul for Bun projects.",
+          "url": "https://github.com/bcoe/c8",
+          "tags": ["coverage", "v8", "testing", "reporting"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "MSW (Mock Service Worker)",
+          "description": "Works with Bun for mocking HTTP requests in tests. The Node.js adapter is compatible with Bun's runtime. Essential for testing API integrations without hitting real endpoints.",
+          "url": "https://mswjs.io",
+          "tags": ["api-mocking", "testing", "http"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Runtime & Development",
+      "description": "Tools that enhance Bun's runtime capabilities, development workflow, and developer experience.",
+      "items": [
+        {
+          "name": "Hono",
+          "description": "A lightweight web framework that runs on Bun, Deno, Cloudflare Workers, and Node.js. The fastest way to build APIs with Bun — middleware, routing, and validation in under 14KB.",
+          "url": "https://hono.dev",
+          "tags": ["web-framework", "lightweight", "multi-runtime", "api"],
+          "pricing": "open-source",
+          "highlight": "Ultra-fast web framework designed for Bun and edge runtimes"
+        },
+        {
+          "name": "Elysia",
+          "description": "A Bun-native web framework with end-to-end type safety and a plugin system. Built specifically for Bun's APIs, so it squeezes out performance other frameworks leave on the table. Bun-only though.",
+          "url": "https://elysiajs.com",
+          "tags": ["web-framework", "bun-native", "type-safe", "fast"],
+          "pricing": "open-source",
+          "highlight": "Built for Bun from scratch — end-to-end type-safe APIs"
+        },
+        {
+          "name": "Bun SQLite",
+          "description": "Bun includes a high-performance SQLite driver built in. No npm install, no native addon compilation. Perfect for local-first apps, embedded databases, and prototyping.",
+          "url": "https://bun.sh/docs/api/sqlite",
+          "tags": ["sqlite", "database", "built-in", "embedded"],
+          "pricing": "open-source",
+          "highlight": "Built-in SQLite driver — no dependencies needed"
+        },
+        {
+          "name": "Bun Shell",
+          "description": "Write shell scripts in JavaScript with Bun's built-in $ template literal. Cross-platform, pipeable, and you get JavaScript's full power. Replaced most of my bash scripts.",
+          "url": "https://bun.sh/docs/runtime/shell",
+          "tags": ["shell", "scripting", "cross-platform", "built-in"],
+          "pricing": "open-source",
+          "highlight": "Write cross-platform shell scripts in JavaScript"
+        },
+        {
+          "name": "Bun Workers",
+          "description": "Bun's implementation of Web Workers for multi-threaded JavaScript. Uses message passing and shared memory for CPU-intensive work. The API matches the browser standard, so code is portable.",
+          "url": "https://bun.sh/docs/api/workers",
+          "tags": ["workers", "multi-threading", "concurrency"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "dotenvx",
+          "description": "A better dotenv for Bun and Node projects. Supports encryption, multiple environments, and variable expansion. Works seamlessly with Bun's runtime and doesn't require any Bun-specific setup.",
+          "url": "https://dotenvx.com",
+          "tags": ["env", "configuration", "encryption", "multi-environment"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Deployment & DevOps",
+      "description": "Tools and platforms for deploying and running Bun applications in production environments.",
+      "items": [
+        {
+          "name": "Docker (Bun Official Image)",
+          "description": "Bun provides official Docker images based on Debian and Alpine. The images are small and production-ready. The oven/bun image is the easiest way to deploy Bun apps in containerized environments.",
+          "url": "https://hub.docker.com/r/oven/bun",
+          "tags": ["docker", "container", "deployment", "official"],
+          "pricing": "open-source",
+          "highlight": "Official lightweight Docker images for Bun"
+        },
+        {
+          "name": "Fly.io",
+          "description": "Deploy Bun apps globally with a Dockerfile and fly launch. Edge deployment with persistent volumes and built-in Postgres. One of the few platforms that runs Bun well without workarounds.",
+          "url": "https://fly.io",
+          "tags": ["deployment", "edge", "global", "docker"],
+          "pricing": "freemium",
+          "highlight": "Global edge deployment that works great with Bun"
+        },
+        {
+          "name": "Railway",
+          "description": "Detects and deploys Bun projects automatically from git. Zero-config deployment with built-in databases and cron jobs. The simplest path from git push to production for Bun apps.",
+          "url": "https://railway.app",
+          "tags": ["deployment", "auto-detect", "databases", "git"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Render",
+          "description": "Supports Bun as a runtime environment with native build support. Auto-scaling, managed databases, and background workers. Straightforward pricing without the surprises of serverless billing.",
+          "url": "https://render.com",
+          "tags": ["deployment", "hosting", "auto-scaling"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Coolify",
+          "description": "Self-hostable PaaS that runs Bun apps via Docker on your own servers. Full control over infrastructure with a Vercel-like developer experience. No per-deployment or per-request pricing.",
+          "url": "https://coolify.io",
+          "tags": ["self-hosted", "deployment", "docker", "open-source"],
+          "pricing": "open-source",
+          "highlight": "Self-hosted deployment platform with no usage fees"
+        },
+        {
+          "name": "Bun Compile",
+          "description": "Bun's built-in single-executable compiler bundles your app into a standalone binary. No runtime installation needed on the target machine. Perfect for CLI tools and distributing apps.",
+          "url": "https://bun.sh/docs/bundler/executables",
+          "tags": ["compile", "binary", "standalone", "distribution"],
+          "pricing": "open-source",
+          "highlight": "Compile your app into a single executable binary"
+        }
+      ]
+    }
+  ],
+  "related_slugs": ["best-tools-for-nodejs", "best-tools-for-typescript", "best-tools-for-nextjs"]
+}

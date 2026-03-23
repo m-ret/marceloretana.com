@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "niche": "portfolios",
+    "type": "checklist",
+    "locale": "en",
+    "slug": "developer-portfolio-launch-checklist",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Developer Portfolio Launch Checklist: 25 Essential Steps",
+    "description": "Launch your developer portfolio with this 25-step checklist. Covers SEO, analytics, OG images, Lighthouse, content strategy, and domain setup.",
+    "keywords": [
+      "developer portfolio checklist",
+      "portfolio launch checklist",
+      "developer website launch",
+      "portfolio SEO",
+      "developer portfolio best practices",
+      "portfolio OG images",
+      "portfolio analytics setup"
+    ]
+  },
+  "introduction": "Your portfolio is your most important marketing asset as a developer — it's the one thing you fully control that recruiters, clients, and collaborators will judge you by. But launching a half-baked portfolio is worse than having none. This checklist ensures everything is polished, performant, and discoverable before you share that URL with the world.",
+  "total_items": 25,
+  "estimated_time": "3-4 hours",
+  "sections": [
+    {
+      "name": "Domain & Hosting Setup",
+      "description": "Get the foundational infrastructure right before working on content and polish.",
+      "items": [
+        {
+          "id": "portfolio-launch-1",
+          "text": "Register and configure a custom domain",
+          "description": "Buy a .com or .dev domain with your name (firstnamelastname.com). Configure DNS with your hosting provider and verify propagation. A custom domain is non-negotiable for credibility — yourname.vercel.app signals that you couldn't be bothered with a $12/year investment.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "portfolio-launch-2",
+          "text": "Verify HTTPS is working with a valid SSL certificate",
+          "description": "Load your site with `https://` and confirm the browser shows a lock icon. Check that HTTP requests redirect to HTTPS automatically. Most hosting platforms (Vercel, Netlify, Cloudflare Pages) provision SSL automatically, but verify it's working on your custom domain too.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "portfolio-launch-3",
+          "text": "Configure www and non-www redirect",
+          "description": "Choose one canonical version (www or non-www) and redirect the other with a 301. Both versions resolving to different content splits your SEO authority in half. Most developers prefer the cleaner non-www version for personal sites.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-4",
+          "text": "Set up a custom 404 page",
+          "description": "Create a branded 404 page that includes navigation back to your homepage and key sections. Visitors who hit a broken link should land on something helpful, not a generic hosting provider error page. Include a search box or list of popular pages.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        },
+        {
+          "id": "portfolio-launch-5",
+          "text": "Test the site loads in under 3 seconds on mobile",
+          "description": "Run WebPageTest.org with a mobile 4G profile and verify Time to Interactive is under 3 seconds. First impressions matter — if a recruiter's phone takes 5 seconds to load your portfolio, they'll move to the next candidate. Optimize images and reduce JS bundle first.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "SEO & Discoverability",
+      "description": "Make sure search engines and social platforms can find and properly display your portfolio.",
+      "items": [
+        {
+          "id": "portfolio-launch-6",
+          "text": "Set unique title tags and meta descriptions for every page",
+          "description": "Write a specific title (50-60 chars) and description (120-155 chars) for your homepage, about page, each project page, and blog posts. Include your name, role, and key technologies in the homepage title. These are the first thing people see in Google results.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "portfolio-launch-7",
+          "text": "Create and submit an XML sitemap",
+          "description": "Generate a sitemap.xml listing all public pages with lastModified dates. Submit it to Google Search Console. For a typical portfolio (10-30 pages), a static sitemap is fine. For a blog with frequent posts, generate it dynamically at build time.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-8",
+          "text": "Set up Google Search Console and verify ownership",
+          "description": "Add your domain to Google Search Console using DNS verification (most reliable). Once verified, check the Coverage report for indexing issues, submit your sitemap, and request indexing of your homepage. This is the single best tool for monitoring your search presence.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "portfolio-launch-9",
+          "text": "Generate Open Graph images for every page",
+          "description": "Create a 1200x630px OG image for each page showing the page title, your name, and a branded background. When someone shares your portfolio on Twitter, LinkedIn, or Slack, the OG image is what they see. A missing or generic image gets scrolled past; a designed one gets clicked.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "portfolio-launch-10",
+          "text": "Add structured data for Person and Website schemas",
+          "description": "Include JSON-LD with `@type: Person` (your name, job title, social profiles, image) and `@type: WebSite` on your homepage. This helps Google build a knowledge panel for your name and associate your website with your professional identity.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Content Quality & Completeness",
+      "description": "Ensure your portfolio content is complete, professional, and compelling.",
+      "items": [
+        {
+          "id": "portfolio-launch-11",
+          "text": "Write a compelling hero section with a clear value proposition",
+          "description": "Your above-the-fold content should answer three questions in under 5 seconds: who you are, what you do, and what makes you different. Avoid generic statements like 'passionate developer.' Be specific: 'Frontend engineer specializing in React and WebGL, building interactive data visualizations.'",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "portfolio-launch-12",
+          "text": "Showcase 3-6 projects with context, not just screenshots",
+          "description": "Each project should include: the problem it solved, your specific role, technologies used, outcome/metrics, and a live demo or video link. Recruiters want to understand your decision-making process, not just see that you can build things. Quality over quantity — remove weak projects.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "portfolio-launch-13",
+          "text": "Proofread all copy for grammar, typos, and tone",
+          "description": "Read every word on your site out loud. Run text through a grammar checker. Ask a friend to review. A typo in your portfolio signals carelessness — the same carelessness a hiring manager will worry about in your code. Pay extra attention to your homepage and project descriptions.",
+          "difficulty": "beginner",
+          "priority": "critical"
+        },
+        {
+          "id": "portfolio-launch-14",
+          "text": "Include a clear contact section with multiple channels",
+          "description": "Provide at least email and LinkedIn. Consider adding a contact form for lower-friction outreach. Make the contact section easy to find — in the header nav, the footer, and as a CTA on your homepage. A portfolio without contact info is a wasted opportunity.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-15",
+          "text": "Verify all external links work and open in new tabs",
+          "description": "Click every link on your site — GitHub repos, live demos, social profiles, blog references. Dead links to deleted repos or changed URLs make you look like you don't maintain your work. External links should use `target='_blank'` with `rel='noopener noreferrer'`.",
+          "difficulty": "beginner",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "name": "Performance & Lighthouse",
+      "description": "Hit top Lighthouse scores to prove you practice what you preach as a developer.",
+      "items": [
+        {
+          "id": "portfolio-launch-16",
+          "text": "Achieve 90+ on all four Lighthouse categories",
+          "description": "Run Lighthouse in Chrome DevTools on Performance, Accessibility, Best Practices, and SEO. Score 90+ on all four. As a developer, your portfolio is a code sample — a 65 performance score tells employers you don't care about page speed. Fix every flagged issue.",
+          "difficulty": "intermediate",
+          "priority": "critical"
+        },
+        {
+          "id": "portfolio-launch-17",
+          "text": "Optimize all images with modern formats and responsive sizes",
+          "description": "Convert images to WebP or AVIF. Use `srcset` and `sizes` attributes (or `next/image`) to serve appropriately sized images. A 3MB hero image on mobile is inexcusable on a developer portfolio. Aim for under 200KB per image on mobile viewports.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-18",
+          "text": "Minimize JavaScript bundle size",
+          "description": "Analyze your bundle with `webpack-bundle-analyzer` or `vite-bundle-visualizer`. Remove unused dependencies, lazy-load heavy components, and check for duplicate packages. A portfolio with 500KB+ of JavaScript signals over-engineering. Most portfolios should be under 150KB of JS.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-19",
+          "text": "Test on real mobile devices, not just Chrome DevTools",
+          "description": "DevTools device emulation doesn't simulate real CPU speed, GPU limitations, or network variance. Test on an actual mid-range Android phone and an older iPhone. BrowserStack or physical devices both work. If your Three.js hero animation tanks an old phone, add a reduced-motion fallback.",
+          "difficulty": "intermediate",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-20",
+          "text": "Verify Core Web Vitals pass in the field",
+          "description": "After launch, check the Core Web Vitals report in Google Search Console after 28 days of data collection. Lab scores (Lighthouse) and field scores (real users) often differ. If field LCP is higher than lab LCP, investigate slow network conditions and server response times.",
+          "difficulty": "advanced",
+          "priority": "nice-to-have"
+        }
+      ]
+    },
+    {
+      "name": "Analytics & Post-Launch",
+      "description": "Set up tracking and monitoring so you know what happens after launch.",
+      "items": [
+        {
+          "id": "portfolio-launch-21",
+          "text": "Install privacy-friendly analytics",
+          "description": "Set up Plausible, Fathom, or Umami for traffic analytics without cookie banners. If you prefer Google Analytics, configure it with anonymized IPs and a cookie consent banner. Track page views, referrers, and top pages at minimum. You need data to know if your portfolio is actually reaching people.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-22",
+          "text": "Set up uptime monitoring",
+          "description": "Use a free tier from UptimeRobot, BetterStack, or similar to ping your site every 5 minutes. Get notified immediately when your portfolio goes down. Nothing is worse than sending a job application with a portfolio link that returns a 500 error.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-23",
+          "text": "Share your portfolio on LinkedIn, Twitter, and dev communities",
+          "description": "Post about your launch on social media and relevant communities (Dev.to, Hacker News Show, Reddit r/webdev). Include a screenshot or short video walkthrough. The initial traffic burst helps with indexing speed and provides early feedback on content and UX issues.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-24",
+          "text": "Add your portfolio URL to all professional profiles",
+          "description": "Update your GitHub bio, LinkedIn profile, Twitter bio, Stack Overflow profile, npm author field, and email signature with your portfolio URL. Every profile link is a backlink that improves SEO and a touchpoint that drives traffic from people who find you elsewhere.",
+          "difficulty": "beginner",
+          "priority": "important"
+        },
+        {
+          "id": "portfolio-launch-25",
+          "text": "Create a maintenance schedule for content updates",
+          "description": "Set a quarterly calendar reminder to update your portfolio — add new projects, remove outdated ones, update your tech stack, and refresh your bio. A portfolio with '2024 projects' as the latest work in 2026 signals you've moved on. Fresh content also helps SEO rankings.",
+          "difficulty": "beginner",
+          "priority": "nice-to-have"
+        }
+      ]
+    }
+  ],
+  "tips": [
+    "Before launching, send your portfolio URL to three people: a developer friend (for technical feedback), a non-developer friend (for clarity), and someone who doesn't know you (for first impressions). Each will catch different problems.",
+    "Add a favicon, apple-touch-icon, and webmanifest. These tiny details signal polish. Generate all sizes at once with realfavicongenerator.net and drop them in your public folder.",
+    "If you have a blog, publish at least two posts before launch. An empty blog section suggests you started something and didn't follow through. No blog is better than an empty blog — remove the section if you won't maintain it.",
+    "Test your OG images by pasting your URL into the Twitter Card Validator, Facebook Sharing Debugger, and LinkedIn Post Inspector. Each platform crops differently, and text near edges may be cut off.",
+    "Your portfolio's GitHub repository is part of the portfolio. Clean up the README, remove TODO comments from code, and make sure the repo structure is clear. Recruiters will look at the source code."
+  ],
+  "related_slugs": ["nextjs-launch-checklist", "nextjs-seo-checklist", "react-launch-checklist"]
+}

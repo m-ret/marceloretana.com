@@ -1,0 +1,279 @@
+{
+  "meta": {
+    "niche": "astro",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-libraries-for-astro",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Libraries for Astro in 2026",
+    "description": "Essential Astro libraries for content sites, integrations, SEO, UI components, and deployment. Curated from real Astro projects.",
+    "keywords": [
+      "astro libraries",
+      "astro integrations",
+      "astro components",
+      "astro cms",
+      "astro seo",
+      "astro plugins",
+      "astro ecosystem"
+    ]
+  },
+  "introduction": "Astro clicked for me the moment I realized content sites don't need a JavaScript framework fighting the browser. I've rebuilt two production sites with Astro and the performance improvements were dramatic. These libraries represent what the Astro ecosystem does best — fast content delivery with islands of interactivity where you actually need them.",
+  "total_items": 29,
+  "categories": [
+    {
+      "name": "Official Integrations",
+      "description": "First-party Astro integrations maintained by the core team for common frameworks, renderers, and adapters.",
+      "items": [
+        {
+          "name": "@astrojs/react",
+          "description": "Adds React component support to Astro via islands architecture. Bring your existing React components and they only hydrate on the client when specified. The migration path from Next.js starts here.",
+          "url": "https://docs.astro.build/en/guides/integrations-guide/react/",
+          "tags": ["react", "integration", "islands", "official"],
+          "pricing": "open-source",
+          "highlight": "Use React components as interactive islands in Astro"
+        },
+        {
+          "name": "@astrojs/svelte",
+          "description": "Svelte integration for Astro. Svelte's compile-time approach pairs beautifully with Astro's zero-JS-by-default philosophy. The smallest client-side footprint of any framework integration.",
+          "url": "https://docs.astro.build/en/guides/integrations-guide/svelte/",
+          "tags": ["svelte", "integration", "lightweight", "official"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "@astrojs/tailwind",
+          "description": "Official Tailwind CSS integration with automatic configuration. Just install and start using utility classes. Handles the PostCSS setup, content paths, and base styles automatically.",
+          "url": "https://docs.astro.build/en/guides/integrations-guide/tailwind/",
+          "tags": ["tailwindcss", "styling", "official"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "@astrojs/mdx",
+          "description": "MDX support for Astro — write Markdown with embedded components. Perfect for documentation sites and blogs where you need interactive elements inside content pages.",
+          "url": "https://docs.astro.build/en/guides/integrations-guide/mdx/",
+          "tags": ["mdx", "markdown", "content", "official"],
+          "pricing": "open-source",
+          "highlight": "Embed interactive components inside Markdown content"
+        },
+        {
+          "name": "@astrojs/sitemap",
+          "description": "Automatically generates a sitemap.xml from your Astro routes at build time. Configure once and every page gets indexed. Essential for SEO and takes two lines to set up.",
+          "url": "https://docs.astro.build/en/guides/integrations-guide/sitemap/",
+          "tags": ["seo", "sitemap", "official", "automatic"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "@astrojs/vercel",
+          "description": "Deploy Astro to Vercel with SSR, edge functions, and image optimization. The adapter handles all the Vercel-specific configuration. One of the smoothest deployment experiences for Astro.",
+          "url": "https://docs.astro.build/en/guides/integrations-guide/vercel/",
+          "tags": ["deployment", "vercel", "ssr", "edge"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Content & CMS",
+      "description": "Libraries and integrations for managing content in Astro sites — from local Markdown to headless CMS platforms.",
+      "items": [
+        {
+          "name": "Astro Content Collections",
+          "description": "Astro's built-in system for organizing, validating, and querying local content with Zod schemas. Type-safe frontmatter, automatic slugs, and collection references. No external dependency needed.",
+          "url": "https://docs.astro.build/en/guides/content-collections/",
+          "tags": ["content", "built-in", "type-safe", "zod"],
+          "pricing": "open-source",
+          "highlight": "Type-safe content with Zod validation — built into Astro"
+        },
+        {
+          "name": "Starlight",
+          "description": "Astro's official documentation theme. Full-featured docs site in minutes — search, i18n, sidebar navigation, and versioning. Used by the Astro docs themselves. Customizable but opinionated about structure.",
+          "url": "https://starlight.astro.build",
+          "tags": ["documentation", "theme", "official", "search"],
+          "pricing": "open-source",
+          "highlight": "Production-ready documentation site in under 5 minutes"
+        },
+        {
+          "name": "Keystatic",
+          "description": "A file-based CMS that gives non-developers a visual editor for Astro content collections. Content stays in your repo as Markdown/JSON. No database, no external service, just better editing.",
+          "url": "https://keystatic.com",
+          "tags": ["cms", "file-based", "visual-editor", "git"],
+          "pricing": "open-source",
+          "highlight": "Visual CMS that writes to your git repo — no database needed"
+        },
+        {
+          "name": "Sanity + Astro",
+          "description": "Sanity's real-time headless CMS with an official Astro integration. GROQ queries in your Astro pages, live previews, and visual editing. The best option for content-heavy sites with editorial teams.",
+          "url": "https://www.sanity.io/technology-partners/astro",
+          "tags": ["cms", "headless", "real-time", "groq"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Tina CMS",
+          "description": "Git-backed CMS with visual inline editing for Astro sites. Editors modify content directly on the rendered page. The editing experience is great, though setup is more involved than Keystatic.",
+          "url": "https://tina.io",
+          "tags": ["cms", "visual-editing", "git-backed", "inline"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "Storyblok Astro",
+          "description": "Storyblok's visual editor works well with Astro's component model. Drag-and-drop page building with live preview. The best CMS for marketing teams who need layout control without developer involvement.",
+          "url": "https://www.storyblok.com/technologies/astro",
+          "tags": ["cms", "visual-editor", "drag-and-drop", "marketing"],
+          "pricing": "freemium",
+          "highlight": "Drag-and-drop page building with live preview"
+        }
+      ]
+    },
+    {
+      "name": "SEO & Performance",
+      "description": "Libraries for optimizing Astro sites for search engines, performance, and web standards.",
+      "items": [
+        {
+          "name": "astro-seo",
+          "description": "A component that generates all the meta tags, Open Graph, Twitter cards, and JSON-LD structured data you need. Pass props, get SEO. Saves writing the same head tags across every page.",
+          "url": "https://github.com/jonasmerlin/astro-seo",
+          "tags": ["seo", "meta-tags", "open-graph", "structured-data"],
+          "pricing": "open-source",
+          "highlight": "All your SEO meta tags from a single component"
+        },
+        {
+          "name": "@astrojs/image / astro:assets",
+          "description": "Astro's built-in image optimization automatically resizes, converts to modern formats, and lazy loads images. No external service needed — images are optimized at build time.",
+          "url": "https://docs.astro.build/en/guides/images/",
+          "tags": ["images", "optimization", "built-in", "lazy-loading"],
+          "pricing": "open-source",
+          "highlight": "Build-time image optimization with zero configuration"
+        },
+        {
+          "name": "Partytown",
+          "description": "Offloads third-party scripts to a web worker so they don't block the main thread. Google Analytics, Facebook Pixel, and other tracking scripts run without affecting Core Web Vitals.",
+          "url": "https://partytown.builder.io",
+          "tags": ["performance", "web-worker", "third-party-scripts"],
+          "pricing": "open-source",
+          "highlight": "Move analytics scripts off the main thread"
+        },
+        {
+          "name": "astro-compress",
+          "description": "Compresses HTML, CSS, JS, images, and SVGs in your Astro build output. A post-build optimization step that squeezes extra bytes out of every asset. Simple to add, measurable improvements.",
+          "url": "https://github.com/astro-community/astro-compress",
+          "tags": ["compression", "optimization", "build", "assets"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Pagefind",
+          "description": "A static search library that indexes your Astro site at build time. Full-text search with no server, no API, and a tiny (< 100KB) client bundle. The best search solution for static Astro sites.",
+          "url": "https://pagefind.app",
+          "tags": ["search", "static", "build-time", "lightweight"],
+          "pricing": "open-source",
+          "highlight": "Full-text search with no server — 100% static"
+        }
+      ]
+    },
+    {
+      "name": "UI & Styling",
+      "description": "Component libraries, styling tools, and UI utilities for building beautiful Astro sites.",
+      "items": [
+        {
+          "name": "Astro Icon",
+          "description": "An icon component that supports Iconify's 100k+ icons and local SVGs. Icons are inlined as SVGs — no external requests, no JavaScript, just clean markup. The way icons should work.",
+          "url": "https://github.com/natemoo-re/astro-icon",
+          "tags": ["icons", "svg", "iconify", "inline"],
+          "pricing": "open-source",
+          "highlight": "100k+ icons inlined as SVGs with zero JavaScript"
+        },
+        {
+          "name": "Tailwind CSS",
+          "description": "The natural styling choice for Astro projects. Utility classes work perfectly with Astro's component model and the build-time processing means zero runtime CSS overhead.",
+          "url": "https://tailwindcss.com",
+          "tags": ["css", "utility-first", "styling", "responsive"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "UnoCSS",
+          "description": "An atomic CSS engine that's faster than Tailwind with a smaller output. Compatible with Tailwind's utility classes but also supports Windi CSS and custom rulesets. Great for performance-obsessed Astro sites.",
+          "url": "https://unocss.dev",
+          "tags": ["css", "atomic", "fast", "customizable"],
+          "pricing": "open-source",
+          "highlight": "Faster and smaller than Tailwind with compatible syntax"
+        },
+        {
+          "name": "Fontsource",
+          "description": "Self-host open-source fonts as npm packages. No Google Fonts request, no FOUT, just import and use. Works perfectly with Astro's build pipeline and eliminates external font loading latency.",
+          "url": "https://fontsource.org",
+          "tags": ["fonts", "self-hosted", "performance", "npm"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "astro-embed",
+          "description": "Embed YouTube, Vimeo, and Twitter content without their heavy JavaScript embeds. Renders a static preview that loads the full embed on interaction. Massive performance win for content sites.",
+          "url": "https://astro-embed.netlify.app",
+          "tags": ["embeds", "youtube", "performance", "lazy-loading"],
+          "pricing": "open-source",
+          "highlight": "Lightweight embeds that load heavy scripts only on interaction"
+        },
+        {
+          "name": "Astro Themes",
+          "description": "A curated directory of free and premium Astro themes. Good starting points for blogs, portfolios, documentation, and landing pages. Quality varies, but the top-rated ones are well-maintained.",
+          "url": "https://astro.build/themes/",
+          "tags": ["themes", "templates", "starters", "directory"],
+          "pricing": "free"
+        }
+      ]
+    },
+    {
+      "name": "Deployment Adapters",
+      "description": "Adapters that deploy Astro to various hosting platforms with SSR, edge rendering, or static hosting.",
+      "items": [
+        {
+          "name": "@astrojs/node",
+          "description": "Run Astro with SSR on any Node.js server. The most flexible adapter — deploy to any VPS, Docker container, or Node hosting platform. Full control but you manage the server yourself.",
+          "url": "https://docs.astro.build/en/guides/integrations-guide/node/",
+          "tags": ["node", "ssr", "self-hosted", "flexible"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "@astrojs/cloudflare",
+          "description": "Deploy Astro to Cloudflare Pages with edge SSR. Cloudflare's global network means sub-50ms responses worldwide. The adapter handles Workers-specific APIs and bindings automatically.",
+          "url": "https://docs.astro.build/en/guides/integrations-guide/cloudflare/",
+          "tags": ["cloudflare", "edge", "ssr", "global"],
+          "pricing": "open-source",
+          "highlight": "Edge SSR on Cloudflare's global network"
+        },
+        {
+          "name": "@astrojs/netlify",
+          "description": "Netlify adapter with support for edge functions, on-demand rendering, and image CDN. One-click deploys from git with automatic preview deployments for pull requests.",
+          "url": "https://docs.astro.build/en/guides/integrations-guide/netlify/",
+          "tags": ["netlify", "deployment", "edge", "preview"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Coolify",
+          "description": "Self-host Astro on your own servers with Coolify's PaaS interface. Supports both static and SSR Astro deployments via Docker. No per-request pricing and full infrastructure control.",
+          "url": "https://coolify.io",
+          "tags": ["self-hosted", "docker", "deployment", "open-source"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Deno Deploy",
+          "description": "Deploy Astro to Deno's edge network with the Deno adapter. Zero cold starts, global distribution, and generous free tier. A compelling option if you're exploring beyond Node.js hosting.",
+          "url": "https://deno.com/deploy",
+          "tags": ["deno", "edge", "deployment", "zero-cold-start"],
+          "pricing": "freemium"
+        },
+        {
+          "name": "GitHub Pages",
+          "description": "Deploy static Astro sites for free on GitHub Pages. Use the official GitHub Actions workflow for automatic builds on push. Perfect for personal sites, docs, and open-source project pages.",
+          "url": "https://docs.astro.build/en/guides/deploy/github/",
+          "tags": ["github", "static", "free", "ci-cd"],
+          "pricing": "free",
+          "highlight": "Free static hosting with automatic GitHub Actions deployment"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-libraries-for-svelte",
+    "best-tools-for-nextjs",
+    "best-libraries-for-tailwindcss"
+  ]
+}

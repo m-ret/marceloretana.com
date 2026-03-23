@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "niche": "tailwindcss",
+    "type": "stack",
+    "locale": "en",
+    "slug": "build-a-design-system-with-tailwindcss",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "How to Build a Design System with Tailwind CSS | Full Stack Guide",
+    "description": "Create a scalable design system with Tailwind CSS v4 using CSS variables, component tokens, responsive patterns, and a documented component library.",
+    "keywords": [
+      "tailwind design system",
+      "tailwindcss v4 components",
+      "css custom properties design tokens",
+      "tailwind component library",
+      "design tokens tailwind",
+      "responsive design system",
+      "tailwind css variables"
+    ]
+  },
+  "introduction": "A design system is more than a component library — it's the single source of truth for colors, spacing, typography, and interaction patterns across your product. Tailwind CSS v4 makes this easier with native CSS variables, the @theme directive, and zero-config content detection. This guide walks you through building a token-based design system that scales from a solo project to a team.",
+  "prerequisites": [
+    {
+      "name": "Node.js 20+",
+      "description": "Required for Tailwind CSS v4 and the Vite-based build toolchain.",
+      "url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Tailwind CSS v4",
+      "description": "This guide uses Tailwind CSS v4 which introduces @theme, CSS-first configuration, and native CSS variable support.",
+      "url": "https://tailwindcss.com/docs/installation/vite"
+    },
+    {
+      "name": "Basic CSS Knowledge",
+      "description": "Understanding of CSS custom properties, media queries, and the cascade."
+    },
+    {
+      "name": "React (Optional)",
+      "description": "The component examples use React, but the token and utility layer works with any framework."
+    }
+  ],
+  "estimated_time": "4-6 hours",
+  "difficulty": "intermediate",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Set Up the Project with Tailwind CSS v4",
+      "description": "Create a Vite project and install Tailwind CSS v4. In v4, configuration is done in CSS using the @theme directive instead of a JavaScript config file. The PostCSS plugin detects your content files automatically. Set up a clean project structure for your design system source files.",
+      "code_snippet": {
+        "language": "bash",
+        "code": "npm create vite@latest design-system -- --template react-ts\ncd design-system\n\nnpm install tailwindcss @tailwindcss/vite\n\n# Project structure\nmkdir -p src/tokens src/components src/layouts src/utils"
+      },
+      "tips": [
+        "Tailwind CSS v4 uses @import 'tailwindcss' in your CSS entry point — no @tailwind directives needed.",
+        "The Vite plugin handles content detection automatically — no content array configuration required."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Define Design Tokens with @theme and CSS Variables",
+      "description": "Create your foundational design tokens — colors, spacing, typography, and shadows — using the @theme directive. Tailwind v4 turns these into CSS custom properties that you can reference anywhere. Structure tokens in semantic layers: primitive values, then semantic aliases that map to specific UI purposes.",
+      "code_snippet": {
+        "language": "css",
+        "code": "/* src/tokens/theme.css */\n@import 'tailwindcss';\n\n@theme {\n  /* Primitive color scale */\n  --color-gray-50: oklch(0.985 0 0);\n  --color-gray-100: oklch(0.967 0.001 286.375);\n  --color-gray-200: oklch(0.928 0.006 264.531);\n  --color-gray-300: oklch(0.872 0.01 258.338);\n  --color-gray-500: oklch(0.551 0.027 264.364);\n  --color-gray-700: oklch(0.373 0.034 264.364);\n  --color-gray-900: oklch(0.21 0.034 264.364);\n\n  --color-brand-50: oklch(0.97 0.014 254.604);\n  --color-brand-100: oklch(0.932 0.032 255.585);\n  --color-brand-500: oklch(0.623 0.214 259.815);\n  --color-brand-600: oklch(0.546 0.245 262.881);\n  --color-brand-700: oklch(0.488 0.243 264.376);\n\n  /* Semantic tokens */\n  --color-surface: var(--color-gray-50);\n  --color-surface-raised: white;\n  --color-surface-overlay: white;\n  --color-text-primary: var(--color-gray-900);\n  --color-text-secondary: var(--color-gray-500);\n  --color-text-on-brand: white;\n  --color-border: var(--color-gray-200);\n  --color-border-strong: var(--color-gray-300);\n  --color-accent: var(--color-brand-500);\n  --color-accent-hover: var(--color-brand-600);\n\n  /* Spacing scale */\n  --spacing-xs: 0.25rem;\n  --spacing-sm: 0.5rem;\n  --spacing-md: 1rem;\n  --spacing-lg: 1.5rem;\n  --spacing-xl: 2rem;\n  --spacing-2xl: 3rem;\n  --spacing-3xl: 4rem;\n\n  /* Typography */\n  --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;\n  --font-mono: 'JetBrains Mono', monospace;\n\n  --text-xs: 0.75rem;\n  --text-sm: 0.875rem;\n  --text-base: 1rem;\n  --text-lg: 1.125rem;\n  --text-xl: 1.25rem;\n  --text-2xl: 1.5rem;\n  --text-3xl: 1.875rem;\n\n  /* Shadows */\n  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.05);\n  --shadow-md: 0 4px 6px oklch(0 0 0 / 0.07), 0 2px 4px oklch(0 0 0 / 0.05);\n  --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.1), 0 4px 6px oklch(0 0 0 / 0.05);\n\n  /* Radii */\n  --radius-sm: 0.375rem;\n  --radius-md: 0.5rem;\n  --radius-lg: 0.75rem;\n  --radius-full: 9999px;\n}",
+        "filename": "src/tokens/theme.css"
+      },
+      "tips": [
+        "Use OKLCH for colors — it's perceptually uniform, so lightness values look consistent across hues.",
+        "Semantic tokens (--color-accent, --color-surface) decouple components from raw color values, making theming trivial."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Add Dark Mode with Token Overrides",
+      "description": "Implement dark mode by overriding your semantic tokens inside a CSS media query or class-based selector. Because your components reference semantic tokens like --color-surface and --color-text-primary, switching themes only requires changing the variable values — no component code changes at all.",
+      "code_snippet": {
+        "language": "css",
+        "code": "/* src/tokens/dark-mode.css */\n@layer base {\n  @media (prefers-color-scheme: dark) {\n    :root {\n      --color-surface: oklch(0.145 0.017 264.364);\n      --color-surface-raised: oklch(0.197 0.021 264.364);\n      --color-surface-overlay: oklch(0.237 0.024 264.364);\n      --color-text-primary: oklch(0.967 0.001 286.375);\n      --color-text-secondary: oklch(0.551 0.027 264.364);\n      --color-border: oklch(0.295 0.03 264.364);\n      --color-border-strong: oklch(0.373 0.034 264.364);\n      --color-accent: oklch(0.707 0.165 254.624);\n      --color-accent-hover: oklch(0.623 0.214 259.815);\n\n      --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.3);\n      --shadow-md: 0 4px 6px oklch(0 0 0 / 0.4), 0 2px 4px oklch(0 0 0 / 0.2);\n      --shadow-lg: 0 10px 15px oklch(0 0 0 / 0.5), 0 4px 6px oklch(0 0 0 / 0.3);\n    }\n  }\n\n  /* Class-based override for manual toggle */\n  .dark {\n    --color-surface: oklch(0.145 0.017 264.364);\n    --color-surface-raised: oklch(0.197 0.021 264.364);\n    --color-surface-overlay: oklch(0.237 0.024 264.364);\n    --color-text-primary: oklch(0.967 0.001 286.375);\n    --color-text-secondary: oklch(0.551 0.027 264.364);\n    --color-border: oklch(0.295 0.03 264.364);\n    --color-border-strong: oklch(0.373 0.034 264.364);\n    --color-accent: oklch(0.707 0.165 254.624);\n    --color-accent-hover: oklch(0.623 0.214 259.815);\n  }\n}",
+        "filename": "src/tokens/dark-mode.css"
+      },
+      "tips": [
+        "Support both prefers-color-scheme and a manual .dark class so users can override their OS preference.",
+        "Dark mode shadows should be stronger — dark backgrounds absorb light, so subtle shadows disappear."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Build Core Components with Variant Patterns",
+      "description": "Create reusable components that consume your design tokens through Tailwind utilities. Use a variant pattern where each component accepts a variant prop that maps to a set of classes. This keeps your component API clean while maintaining full Tailwind utility access for one-off overrides.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/components/Button.tsx\nimport { type ButtonHTMLAttributes, forwardRef } from 'react';\n\ntype ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';\ntype ButtonSize = 'sm' | 'md' | 'lg';\n\ninterface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {\n  variant?: ButtonVariant;\n  size?: ButtonSize;\n}\n\nconst variantStyles: Record<ButtonVariant, string> = {\n  primary:\n    'bg-accent text-text-on-brand hover:bg-accent-hover shadow-sm active:shadow-none',\n  secondary:\n    'bg-surface-raised text-text-primary border border-border hover:border-border-strong shadow-sm',\n  ghost:\n    'bg-transparent text-text-primary hover:bg-gray-100 dark:hover:bg-gray-700',\n  danger:\n    'bg-red-600 text-white hover:bg-red-700 shadow-sm active:shadow-none',\n};\n\nconst sizeStyles: Record<ButtonSize, string> = {\n  sm: 'px-3 py-1.5 text-sm rounded-sm gap-1.5',\n  md: 'px-4 py-2 text-base rounded-md gap-2',\n  lg: 'px-6 py-3 text-lg rounded-lg gap-2.5',\n};\n\nexport const Button = forwardRef<HTMLButtonElement, ButtonProps>(\n  ({ variant = 'primary', size = 'md', className = '', children, ...props }, ref) => {\n    return (\n      <button\n        ref={ref}\n        className={`\n          inline-flex items-center justify-center font-medium\n          transition-all duration-150 ease-in-out\n          focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent\n          disabled:opacity-50 disabled:pointer-events-none\n          ${variantStyles[variant]}\n          ${sizeStyles[size]}\n          ${className}\n        `}\n        {...props}\n      >\n        {children}\n      </button>\n    );\n  }\n);\n\nButton.displayName = 'Button';",
+        "filename": "src/components/Button.tsx"
+      },
+      "tips": [
+        "Use forwardRef on all components — consumers may need to attach refs for focus management or measurement.",
+        "Accept a className prop and append it last so consumers can override specific styles when needed."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Create Responsive Layout Primitives",
+      "description": "Build layout components — Stack, Grid, Container — that handle spacing and responsive breakpoints consistently. These primitives eliminate repeated flexbox and grid patterns across your codebase. They consume your spacing tokens and provide a prop-based API for common layout needs.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/layouts/Stack.tsx\nimport type { HTMLAttributes, ReactNode } from 'react';\n\ntype Spacing = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';\n\ninterface StackProps extends HTMLAttributes<HTMLDivElement> {\n  direction?: 'vertical' | 'horizontal';\n  gap?: Spacing;\n  align?: 'start' | 'center' | 'end' | 'stretch';\n  justify?: 'start' | 'center' | 'end' | 'between';\n  wrap?: boolean;\n  children: ReactNode;\n}\n\nconst gapMap: Record<Spacing, string> = {\n  xs: 'gap-(--spacing-xs)',\n  sm: 'gap-(--spacing-sm)',\n  md: 'gap-(--spacing-md)',\n  lg: 'gap-(--spacing-lg)',\n  xl: 'gap-(--spacing-xl)',\n  '2xl': 'gap-(--spacing-2xl)',\n  '3xl': 'gap-(--spacing-3xl)',\n};\n\nconst alignMap: Record<string, string> = {\n  start: 'items-start',\n  center: 'items-center',\n  end: 'items-end',\n  stretch: 'items-stretch',\n};\n\nconst justifyMap: Record<string, string> = {\n  start: 'justify-start',\n  center: 'justify-center',\n  end: 'justify-end',\n  between: 'justify-between',\n};\n\nexport function Stack({\n  direction = 'vertical',\n  gap = 'md',\n  align = 'stretch',\n  justify = 'start',\n  wrap = false,\n  className = '',\n  children,\n  ...props\n}: StackProps) {\n  return (\n    <div\n      className={`\n        flex\n        ${direction === 'vertical' ? 'flex-col' : 'flex-row'}\n        ${gapMap[gap]}\n        ${alignMap[align]}\n        ${justifyMap[justify]}\n        ${wrap ? 'flex-wrap' : ''}\n        ${className}\n      `}\n      {...props}\n    >\n      {children}\n    </div>\n  );\n}\n\n// src/layouts/Container.tsx\nexport function Container({\n  size = 'md',\n  className = '',\n  children,\n}: {\n  size?: 'sm' | 'md' | 'lg' | 'full';\n  className?: string;\n  children: ReactNode;\n}) {\n  const maxWidth: Record<string, string> = {\n    sm: 'max-w-2xl',\n    md: 'max-w-5xl',\n    lg: 'max-w-7xl',\n    full: 'max-w-full',\n  };\n\n  return (\n    <div className={`mx-auto w-full px-(--spacing-lg) ${maxWidth[size]} ${className}`}>\n      {children}\n    </div>\n  );\n}",
+        "filename": "src/layouts/Stack.tsx"
+      },
+      "tips": [
+        "Layout primitives with token-based gaps enforce consistent spacing without developers memorizing the scale.",
+        "Expose a className prop on layout components too — there will always be edge cases that need one-off adjustments."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Build a Component Showcase Page",
+      "description": "Create an interactive showcase page that renders every component in every variant, size, and state. This serves as both documentation and a visual regression baseline. Include light/dark mode toggle and responsive viewport simulation to test all variations in one view.",
+      "code_snippet": {
+        "language": "tsx",
+        "code": "// src/pages/Showcase.tsx\nimport { useState } from 'react';\nimport { Button } from '../components/Button';\nimport { Stack } from '../layouts/Stack';\nimport { Container } from '../layouts/Container';\n\nconst variants = ['primary', 'secondary', 'ghost', 'danger'] as const;\nconst sizes = ['sm', 'md', 'lg'] as const;\n\nexport function Showcase() {\n  const [dark, setDark] = useState(false);\n\n  return (\n    <div className={dark ? 'dark' : ''}>\n      <div className=\"min-h-screen bg-surface text-text-primary transition-colors\">\n        <Container size=\"lg\">\n          <Stack gap=\"2xl\" className=\"py-(--spacing-3xl)\">\n            <Stack direction=\"horizontal\" justify=\"between\" align=\"center\">\n              <h1 className=\"text-3xl font-bold\">Design System</h1>\n              <Button variant=\"ghost\" onClick={() => setDark(!dark)}>\n                {dark ? 'Light Mode' : 'Dark Mode'}\n              </Button>\n            </Stack>\n\n            {/* Buttons */}\n            <section>\n              <h2 className=\"text-2xl font-semibold mb-(--spacing-lg)\">Buttons</h2>\n              <Stack gap=\"lg\">\n                {variants.map((variant) => (\n                  <Stack key={variant} direction=\"horizontal\" gap=\"md\" align=\"center\">\n                    <span className=\"text-sm text-text-secondary w-24\">{variant}</span>\n                    {sizes.map((size) => (\n                      <Button key={size} variant={variant} size={size}>\n                        {size.toUpperCase()}\n                      </Button>\n                    ))}\n                    <Button variant={variant} disabled>\n                      Disabled\n                    </Button>\n                  </Stack>\n                ))}\n              </Stack>\n            </section>\n\n            {/* Color Palette */}\n            <section>\n              <h2 className=\"text-2xl font-semibold mb-(--spacing-lg)\">Colors</h2>\n              <div className=\"grid grid-cols-2 sm:grid-cols-4 gap-(--spacing-md)\">\n                {[\n                  { name: 'Surface', className: 'bg-surface border border-border' },\n                  { name: 'Raised', className: 'bg-surface-raised shadow-md' },\n                  { name: 'Accent', className: 'bg-accent text-text-on-brand' },\n                  { name: 'Border', className: 'bg-border' },\n                ].map(({ name, className }) => (\n                  <div key={name} className={`rounded-lg p-(--spacing-lg) ${className}`}>\n                    <span className=\"text-sm font-medium\">{name}</span>\n                  </div>\n                ))}\n              </div>\n            </section>\n          </Stack>\n        </Container>\n      </div>\n    </div>\n  );\n}",
+        "filename": "src/pages/Showcase.tsx"
+      },
+      "tips": [
+        "Render disabled, loading, and error states alongside default states — these are the ones that usually break.",
+        "Use the showcase page as a smoke test: if any component looks wrong here, it will look wrong in production."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Export and Package the Design System",
+      "description": "Configure your package exports so consumers can import individual components and tokens. Use Vite's library mode to build the design system as a package with proper ESM and type declaration outputs. Publish to npm or a private registry for use across multiple projects.",
+      "code_snippet": {
+        "language": "typescript",
+        "code": "// vite.config.ts\nimport { defineConfig } from 'vite';\nimport react from '@vitejs/plugin-react';\nimport tailwindcss from '@tailwindcss/vite';\nimport { resolve } from 'path';\nimport dts from 'vite-plugin-dts';\n\nexport default defineConfig({\n  plugins: [\n    react(),\n    tailwindcss(),\n    dts({ rollupTypes: true }),\n  ],\n  build: {\n    lib: {\n      entry: resolve(__dirname, 'src/index.ts'),\n      formats: ['es'],\n      fileName: 'index',\n    },\n    rollupOptions: {\n      external: ['react', 'react-dom', 'react/jsx-runtime'],\n    },\n  },\n});\n\n// src/index.ts — barrel export\nexport { Button } from './components/Button';\nexport { Stack } from './layouts/Stack';\nexport { Container } from './layouts/Container';\n\n// package.json additions:\n// \"main\": \"dist/index.js\",\n// \"types\": \"dist/index.d.ts\",\n// \"files\": [\"dist\", \"src/tokens\"],\n// \"exports\": {\n//   \".\": { \"import\": \"./dist/index.js\", \"types\": \"./dist/index.d.ts\" },\n//   \"./tokens\": \"./src/tokens/theme.css\"\n// }",
+        "filename": "vite.config.ts"
+      },
+      "tips": [
+        "Export your token CSS file separately so consumers can import it without the React components.",
+        "Mark react and react-dom as external so they aren't bundled into your library — consumers provide their own."
+      ]
+    }
+  ],
+  "next_steps": [
+    "Add Storybook for interactive component documentation with controls, accessibility testing, and visual snapshots.",
+    "Implement a theme switcher that goes beyond dark mode — brand themes, high-contrast mode, and seasonal variants.",
+    "Add animation tokens and a motion system using CSS @keyframes and Tailwind's animation utilities.",
+    "Set up Chromatic or Percy for automated visual regression testing on every pull request."
+  ],
+  "related_slugs": [
+    "build-a-landing-page-with-tailwindcss",
+    "build-a-portfolio-with-astro",
+    "build-a-dashboard-with-nextjs"
+  ]
+}

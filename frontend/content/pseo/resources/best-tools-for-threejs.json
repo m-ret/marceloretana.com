@@ -1,0 +1,296 @@
+{
+  "meta": {
+    "niche": "threejs",
+    "type": "resource",
+    "locale": "en",
+    "slug": "best-tools-for-threejs",
+    "generated_at": "2026-03-23T00:00:00Z"
+  },
+  "seo": {
+    "title": "Best Tools for Three.js in 2026",
+    "description": "Essential Three.js tools for editors, shader development, model viewers, performance profiling, and physics engines. From real 3D web projects.",
+    "keywords": [
+      "threejs tools",
+      "threejs editor",
+      "threejs shader tools",
+      "threejs performance",
+      "threejs physics",
+      "3d web development",
+      "webgl tools"
+    ]
+  },
+  "introduction": "Three.js is powerful but the raw API is verbose and debugging 3D is hard. The right tools make the difference between fighting WebGL and actually shipping creative work. I've used these across interactive portfolio pieces, product configurators, and experimental 3D projects — they're what keep Three.js productive.",
+  "total_items": 31,
+  "categories": [
+    {
+      "name": "Editors & Scene Tools",
+      "description": "Visual editors and scene composition tools for building and inspecting Three.js scenes without writing everything in code.",
+      "items": [
+        {
+          "name": "Three.js Editor",
+          "description": "The official online editor for composing Three.js scenes visually. Add objects, lights, and materials with a GUI, then export the scene as JSON. Good for prototyping, limited for production workflows.",
+          "url": "https://threejs.org/editor/",
+          "tags": ["editor", "official", "visual", "scene-composition"],
+          "pricing": "free",
+          "highlight": "Official visual scene editor — prototype without code"
+        },
+        {
+          "name": "Triplex",
+          "description": "A visual editor for React Three Fiber that syncs with your code. Edit the scene visually and changes write back to your JSX. Bridges the gap between design tools and 3D code.",
+          "url": "https://triplex.dev",
+          "tags": ["editor", "react-three-fiber", "visual", "code-sync"],
+          "pricing": "open-source",
+          "highlight": "Visual editing that syncs changes back to your R3F code"
+        },
+        {
+          "name": "Leva",
+          "description": "A React-based GUI panel for tweaking values in real time. Drop it into your R3F scene and expose any variable — positions, colors, scales — with type-safe controls. Essential for creative development.",
+          "url": "https://leva.pmnd.rs",
+          "tags": ["gui", "controls", "tweaking", "react"],
+          "pricing": "open-source",
+          "highlight": "Real-time tweaking controls for any scene parameter"
+        },
+        {
+          "name": "dat.GUI",
+          "description": "The original lightweight GUI library for Three.js. Simpler than Leva and works without React. Still the go-to for vanilla Three.js projects when you need quick parameter controls.",
+          "url": "https://github.com/dataarts/dat.gui",
+          "tags": ["gui", "controls", "vanilla", "lightweight"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Theatre.js",
+          "description": "A motion design editor for Three.js and React Three Fiber. Create complex animations with a timeline UI, keyframes, and easing curves. The closest thing to After Effects for the web.",
+          "url": "https://www.theatrejs.com",
+          "tags": ["animation", "timeline", "keyframes", "motion-design"],
+          "pricing": "open-source",
+          "highlight": "After Effects-style timeline animation for Three.js"
+        },
+        {
+          "name": "Spline",
+          "description": "A web-based 3D design tool that exports to Three.js, React Three Fiber, or embeddable widgets. Designers can build 3D scenes without code, then developers integrate them. Great for team workflows.",
+          "url": "https://spline.design",
+          "tags": ["design-tool", "no-code", "export", "collaboration"],
+          "pricing": "freemium",
+          "highlight": "3D design tool that exports directly to Three.js code"
+        }
+      ]
+    },
+    {
+      "name": "Shader Development",
+      "description": "Tools for writing, debugging, and visualizing WebGL shaders for Three.js materials and effects.",
+      "items": [
+        {
+          "name": "Shadertoy",
+          "description": "The definitive playground for fragment shaders. Thousands of community examples to learn from and fork. Not Three.js-specific but the shader techniques translate directly. Incredibly inspiring.",
+          "url": "https://www.shadertoy.com",
+          "tags": ["shaders", "playground", "community", "glsl"],
+          "pricing": "free",
+          "highlight": "Thousands of shader examples to learn from and fork"
+        },
+        {
+          "name": "The Book of Shaders",
+          "description": "An interactive guide to fragment shaders by Patricio Gonzalez Vivo. Live code editors on every page let you experiment as you learn. The best introduction to shader programming for web developers.",
+          "url": "https://thebookofshaders.com",
+          "tags": ["learning", "shaders", "interactive", "tutorial"],
+          "pricing": "free",
+          "highlight": "The best interactive introduction to shader programming"
+        },
+        {
+          "name": "glslEditor",
+          "description": "An online GLSL editor with real-time preview and error highlighting. Lighter than Shadertoy and focused on writing and testing shader code. Good for isolated shader development.",
+          "url": "https://github.com/nicoptere/glslEditor",
+          "tags": ["editor", "glsl", "preview", "lightweight"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Shader Park",
+          "description": "Write shaders using JavaScript instead of GLSL. The library compiles JS to GLSL for you, making shader development accessible to JavaScript developers who don't want to learn a new language.",
+          "url": "https://shaderpark.com",
+          "tags": ["shaders", "javascript", "accessible", "sdf"],
+          "pricing": "open-source",
+          "highlight": "Write shaders in JavaScript — compiles to GLSL"
+        },
+        {
+          "name": "Spector.js",
+          "description": "A WebGL debugging tool that captures and inspects every draw call, texture, and shader in a frame. Essential for debugging rendering issues — see exactly what the GPU is doing.",
+          "url": "https://spector.babylonjs.com",
+          "tags": ["debugging", "webgl", "draw-calls", "inspection"],
+          "pricing": "open-source",
+          "highlight": "Capture and inspect every WebGL draw call in a frame"
+        },
+        {
+          "name": "Lamina",
+          "description": "A layer-based shader material system for React Three Fiber. Stack, blend, and compose materials from pre-built layers without writing GLSL. Great for creative effects without shader expertise.",
+          "url": "https://github.com/pmndrs/lamina",
+          "tags": ["materials", "layers", "composable", "no-glsl"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Model Viewers & Asset Tools",
+      "description": "Tools for viewing, optimizing, and converting 3D models for use in Three.js scenes.",
+      "items": [
+        {
+          "name": "gltf.report",
+          "description": "Analyze and optimize glTF models in the browser. Shows file size breakdown, mesh statistics, and texture usage. Run optimizations like Draco compression and texture resizing directly in the tool.",
+          "url": "https://gltf.report",
+          "tags": ["gltf", "analysis", "optimization", "browser"],
+          "pricing": "free",
+          "highlight": "Analyze and optimize glTF models in the browser"
+        },
+        {
+          "name": "gltfjsx",
+          "description": "Converts glTF models into clean React Three Fiber JSX components. Generates typed, tree-shakeable code with proper ref forwarding. The standard way to use 3D models in R3F projects.",
+          "url": "https://github.com/pmndrs/gltfjsx",
+          "tags": ["gltf", "react-three-fiber", "code-generation", "jsx"],
+          "pricing": "open-source",
+          "highlight": "Generate typed R3F components from glTF models"
+        },
+        {
+          "name": "glTF Viewer",
+          "description": "The Khronos Group's official glTF model viewer. Validates models against the glTF spec and renders them with PBR materials. Use it to verify your models look correct before importing into Three.js.",
+          "url": "https://gltf-viewer.donmccurdy.com",
+          "tags": ["viewer", "gltf", "validation", "pbr"],
+          "pricing": "free"
+        },
+        {
+          "name": "Blender (glTF Export)",
+          "description": "Blender's built-in glTF exporter is the standard pipeline for creating Three.js assets. Free, professional-grade 3D modeling with direct export to the web's preferred 3D format.",
+          "url": "https://www.blender.org",
+          "tags": ["3d-modeling", "gltf-export", "free", "professional"],
+          "pricing": "open-source",
+          "highlight": "Industry-grade 3D modeling with built-in glTF export"
+        },
+        {
+          "name": "gltfpack",
+          "description": "A command-line tool that optimizes glTF files by recompressing meshes, quantizing attributes, and applying Draco or meshopt compression. Reduces file sizes by 50-90% with minimal visual quality loss.",
+          "url": "https://github.com/zeux/meshoptimizer/tree/master/gltf",
+          "tags": ["optimization", "compression", "cli", "meshopt"],
+          "pricing": "open-source",
+          "highlight": "Reduce glTF file sizes by 50-90% with minimal quality loss"
+        },
+        {
+          "name": "Poly Pizza",
+          "description": "Free low-poly 3D models licensed for commercial use. The assets are optimized for web — small file sizes and low polygon counts. Great for prototyping and stylized 3D scenes.",
+          "url": "https://poly.pizza",
+          "tags": ["assets", "free", "low-poly", "commercial-license"],
+          "pricing": "free"
+        }
+      ]
+    },
+    {
+      "name": "Performance & Profiling",
+      "description": "Tools for measuring, profiling, and optimizing Three.js rendering performance.",
+      "items": [
+        {
+          "name": "stats.js",
+          "description": "The classic FPS counter for Three.js. Shows frame rate, render time, and memory usage in a tiny overlay. Add it in two lines of code. Every Three.js developer's first performance tool.",
+          "url": "https://github.com/mrdoob/stats.js",
+          "tags": ["fps", "monitoring", "overlay", "lightweight"],
+          "pricing": "open-source",
+          "highlight": "FPS counter in two lines of code"
+        },
+        {
+          "name": "r3f-perf",
+          "description": "A performance monitor specifically for React Three Fiber. Shows GPU time, draw calls, triangles, textures, and shader programs. More detailed than stats.js and designed for R3F's component model.",
+          "url": "https://github.com/utsuboco/r3f-perf",
+          "tags": ["performance", "react-three-fiber", "gpu", "monitoring"],
+          "pricing": "open-source",
+          "highlight": "GPU-level performance monitoring for React Three Fiber"
+        },
+        {
+          "name": "three-mesh-bvh",
+          "description": "Accelerates raycasting by building a bounding volume hierarchy for meshes. Raycasting against complex geometry goes from O(n) to O(log n). Essential for scenes with high-polygon models.",
+          "url": "https://github.com/gkjohnson/three-mesh-bvh",
+          "tags": ["raycasting", "acceleration", "optimization", "bvh"],
+          "pricing": "open-source",
+          "highlight": "10-100x faster raycasting on complex geometry"
+        },
+        {
+          "name": "three-instanced-uniforms-mesh",
+          "description": "Extends Three.js InstancedMesh with per-instance uniform values. Render thousands of objects with unique materials in a single draw call. Massive performance win for particle systems and forests.",
+          "url": "https://github.com/protectwise/troika/tree/main/packages/troika-three-utils",
+          "tags": ["instancing", "performance", "uniforms", "draw-calls"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Chrome DevTools Performance Panel",
+          "description": "Chrome's built-in profiler shows JavaScript execution time, GPU tasks, and frame timing. Record a few seconds of your Three.js scene and find exactly what's causing frame drops. Free and always available.",
+          "url": "https://developer.chrome.com/docs/devtools/performance",
+          "tags": ["profiling", "chrome", "gpu", "frame-timing"],
+          "pricing": "free"
+        },
+        {
+          "name": "three-gpu-pathtracer",
+          "description": "A WebGL path tracer for Three.js that produces photorealistic renders. Not for real-time — but perfect for generating preview images, baking lighting, and testing scene appearance at high quality.",
+          "url": "https://github.com/gkjohnson/three-gpu-pathtracer",
+          "tags": ["path-tracing", "rendering", "photorealistic", "baking"],
+          "pricing": "open-source"
+        }
+      ]
+    },
+    {
+      "name": "Physics Engines",
+      "description": "Physics libraries for adding realistic simulations, collisions, and interactions to Three.js scenes.",
+      "items": [
+        {
+          "name": "Rapier",
+          "description": "A Rust-based physics engine compiled to WebAssembly. Fast, deterministic, and memory-efficient. The best physics option for Three.js in 2026 — outperforms Cannon.js and Ammo.js on every metric.",
+          "url": "https://rapier.rs",
+          "tags": ["physics", "rust", "wasm", "fast", "deterministic"],
+          "pricing": "open-source",
+          "highlight": "The fastest web physics engine — Rust compiled to WASM"
+        },
+        {
+          "name": "@react-three/rapier",
+          "description": "React Three Fiber wrapper for Rapier physics. Declarative physics bodies, colliders, and joints as JSX components. The ergonomics are excellent — physics feels native in R3F.",
+          "url": "https://github.com/pmndrs/react-three-rapier",
+          "tags": ["physics", "react-three-fiber", "rapier", "declarative"],
+          "pricing": "open-source",
+          "highlight": "Declarative physics as JSX components in R3F"
+        },
+        {
+          "name": "cannon-es",
+          "description": "A maintained fork of Cannon.js — pure JavaScript 3D physics. Slower than Rapier but simpler to debug since there's no WASM compilation. Good for projects where physics complexity is moderate.",
+          "url": "https://github.com/pmndrs/cannon-es",
+          "tags": ["physics", "javascript", "pure-js", "simple"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "@react-three/cannon",
+          "description": "React Three Fiber wrapper for cannon-es physics. Same declarative pattern as @react-three/rapier. Choose this if you need pure JS physics without WASM, otherwise prefer Rapier.",
+          "url": "https://github.com/pmndrs/use-cannon",
+          "tags": ["physics", "react-three-fiber", "cannon", "declarative"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Jolt Physics",
+          "description": "A high-performance physics engine from Jorrit Rouwe (used in Horizon Forbidden West). The WASM build works with Three.js and handles complex simulations that push Rapier's limits.",
+          "url": "https://github.com/jrouwe/JoltPhysics.js",
+          "tags": ["physics", "wasm", "high-performance", "aaa"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "Oimo.js",
+          "description": "A lightweight 3D physics engine that's simpler than Rapier or Cannon. Good enough for basic rigid body simulations — falling objects, stacking, and simple collisions. Small bundle size.",
+          "url": "https://github.com/nicoptere/oimo.js",
+          "tags": ["physics", "lightweight", "simple", "rigid-body"],
+          "pricing": "open-source"
+        },
+        {
+          "name": "three-mesh-bvh (Collision)",
+          "description": "Beyond raycasting, three-mesh-bvh also handles mesh-to-mesh collision detection. Useful for character controllers, projectiles, and any interaction between complex geometries.",
+          "url": "https://github.com/gkjohnson/three-mesh-bvh",
+          "tags": ["collision", "detection", "bvh", "mesh"],
+          "pricing": "open-source"
+        }
+      ]
+    }
+  ],
+  "related_slugs": [
+    "best-libraries-for-threejs",
+    "best-tools-for-react",
+    "best-tools-for-typescript"
+  ]
+}
