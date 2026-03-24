@@ -1,3 +1,6 @@
+import fs from "fs";
+import path from "path";
+
 /** @type {import('next-sitemap').IConfig} */
 const config = {
   siteUrl: process.env.SITE_URL || "https://marceloretana.com",
@@ -5,10 +8,8 @@ const config = {
   generateIndexSitemap: false,
   changefreq: "weekly",
   priority: 0.7,
-  exclude: ["/api/*"],
+  exclude: ["/api/*", "/apple-icon*", "/icon*", "/opengraph-image*", "/twitter-image*", "/llms.txt"],
   additionalPaths: async (config) => {
-    const fs = require("fs");
-    const path = require("path");
     const PSEO_DIR = path.join(process.cwd(), "content/pseo");
 
     function getSlugs(contentDir) {
@@ -96,7 +97,12 @@ const config = {
     } else if (path.startsWith("/blog/")) {
       priority = 0.8;
       changefreq = "weekly";
-    } else if (path === "/resources") {
+    } else if (
+      path === "/compare" ||
+      path === "/checklist" ||
+      path === "/resources" ||
+      path === "/learn"
+    ) {
       priority = 0.8;
       changefreq = "weekly";
     } else if (
