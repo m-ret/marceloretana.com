@@ -89,6 +89,8 @@ Ninguna de estas tácticas es posible si tu operación vive en WhatsApp Business
 - Visibilidad de cola y conversaciones pendientes
 - Manejo de templates cuando la sesión expira
 
+Para asegurarte de tener todo configurado correctamente antes de medir tiempos de respuesta, usá [esta checklist de configuración en GEXP Software](https://gexpsoftware.com/checklist/whatsapp-customer-service-setup-checklist).
+
 [GoEasyChat](https://goeasy.chat) incluye todo esto en el plan Starter desde $39/mes para hasta 6 agentes.
 
 Si tu tiempo de respuesta promedio hoy está en horas en lugar de minutos, el primer mes de GoEasyChat probablemente se paga solo en conversiones que antes se perdían.

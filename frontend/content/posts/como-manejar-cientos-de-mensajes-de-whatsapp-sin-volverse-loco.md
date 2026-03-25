@@ -89,6 +89,8 @@ Si hoy manejás más de 20-30 conversaciones diarias de WhatsApp con un solo cel
 
 No porque estés haciendo algo mal — sino porque la herramienta que usás no fue diseñada para ese volumen.
 
+Si estás evaluando plataformas, usá [esta checklist de evaluación en GEXP Software](https://gexpsoftware.com/checklist/whatsapp-multi-agent-platform-checklist) para no olvidar nada importante.
+
 [GoEasyChat](https://goeasy.chat) es la plataforma multiagente que construí para este problema exacto. Un número de WhatsApp, varios agentes respondiendo desde el navegador, asignación automática, respuestas predefinidas, estados de conversación, y todo el historial en un solo lugar. Hecho para negocios latinoamericanos que ya viven en WhatsApp.
 
 [Probá GoEasyChat gratis por 14 días](https://goeasy.chat) — sin tarjeta de crédito, sin complicaciones técnicas. El onboarding toma menos de 30 minutos.

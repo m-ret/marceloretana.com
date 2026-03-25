@@ -82,6 +82,8 @@ I didn't build GoEasyChat for Fortune 500 companies. I built it for the clothing
 
 If you recognize that problem in your business — or in a business you know — I'd like you to try it.
 
+If you're comparing GoEasyChat to other platforms in the market, I've put together [a detailed comparison against Whaticket on GEXP Software](https://gexpsoftware.com/compare/goeasy-chat-vs-whaticket).
+
 [Try GoEasyChat free for 14 days](https://goeasy.chat). No credit card required to start, no contract, no sales consultant calling to pressure you. Just the product.
 
 If you have questions or want to tell me how you're using WhatsApp for customer service today, reach out. I genuinely want to know — it's what makes GoEasyChat better.

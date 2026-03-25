@@ -102,6 +102,8 @@ Mi respuesta honesta: cuando alguna de estas situaciones te resulte familiar.
 
 Si llegaste a alguno de esos puntos, WhatsApp Business ya no es la herramienta correcta para lo que necesitás.
 
+Para una comparación técnica detallada entre la app y la API, revisá [este análisis en GEXP Software](https://gexpsoftware.com/compare/whatsapp-business-app-vs-whatsapp-api).
+
 [GoEasyChat](https://goeasy.chat) se encarga del proceso técnico de conectar tu número a la API y pone todo en una plataforma lista para usar. El Starter a $39/mes incluye hasta 6 agentes — suficiente para la mayoría de equipos de atención latinoamericanos. No necesitás saber nada de APIs.
 
 [Mirá cómo funciona y probá 14 días gratis](https://goeasy.chat). El onboarding incluye conectar tu número de WhatsApp con asistencia paso a paso.

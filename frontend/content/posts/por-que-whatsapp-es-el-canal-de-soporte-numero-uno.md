@@ -75,6 +75,8 @@ El negocio que aprovecha WhatsApp no es el que responde más rápido una vez —
 
 Eso requiere dejar de usar WhatsApp como un chat personal y empezar a usarlo como una plataforma de soporte. Las herramientas para hacerlo existen. La pregunta es si estás dispuesto a hacer el cambio antes de que la caída de clientes te fuerce a hacerlo.
 
+Si querés ver qué herramientas existen para manejar WhatsApp en equipo, armé [una lista completa en GEXP Software](https://gexpsoftware.com/resources/best-whatsapp-business-tools-for-teams).
+
 [GoEasyChat](https://goeasy.chat) es exactamente eso: una plataforma multiagente para WhatsApp construida para negocios latinoamericanos. Varios agentes, una misma línea, con asignación automática, respuestas predefinidas, equipos, y todo el historial en un solo lugar.
 
 Si tu negocio ya vive en WhatsApp pero el sistema que tenés hoy no escala, es el momento de darle una mirada. [Probá GoEasyChat gratis](https://goeasy.chat) — 14 días sin tarjeta de crédito.

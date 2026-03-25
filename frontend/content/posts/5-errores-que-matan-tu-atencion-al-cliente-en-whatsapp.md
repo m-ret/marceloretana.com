@@ -73,6 +73,8 @@ Esto se convierte en problema real cuando algo sale mal. ¿Por qué hay quejas d
 
 Estos cinco errores no son problemas que resuelvas con motivación o con pedirle más esfuerzo al equipo. Son problemas de herramientas y proceso.
 
+Antes de elegir una plataforma, pasá por [esta checklist de configuración en GEXP Software](https://gexpsoftware.com/checklist/whatsapp-customer-service-setup-checklist) — cubre todos los pasos que muchos equipos se saltan.
+
 [GoEasyChat](https://goeasy.chat) resuelve todos los que dependen de tecnología: número del negocio separado del personal, asignación automática, canned responses, gestión de templates, y visibilidad del equipo en tiempo real.
 
 Si tu operación de WhatsApp tiene alguno de estos cinco problemas hoy, el momento de arreglarlo es antes de que el costo en clientes perdidos sea más grande que el costo de la solución.

@@ -114,4 +114,6 @@ If you're currently using WhatsApp Business on a phone and you're hitting any of
 
 ...then the API tier is what you need next. Not eventually. Now, before the cost in lost customers compounds further.
 
+For a side-by-side breakdown of what changes when you move from the Business App to the API, see [this detailed comparison on GEXP Software](https://gexpsoftware.com/compare/whatsapp-business-app-vs-whatsapp-api).
+
 [GoEasyChat](https://goeasy.chat) handles all the API complexity and gives you a clean, Spanish-first platform your team can use from day one. [Try it free for 14 days](https://goeasy.chat) — the setup takes under 30 minutes.
