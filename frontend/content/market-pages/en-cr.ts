@@ -98,7 +98,10 @@ export const enCrHub: MarketHub = {
     { label: "Web Development Agency", slug: "web-development-agency" },
     { label: "Software Development", slug: "software-development" },
     { label: "Web Design", slug: "web-design" },
+    { label: "Quote", slug: "request-a-quote" },
+    { label: "Cost", slug: "website-cost-costa-rica" },
     { label: "Why Costa Rica", slug: "why-costa-rica" },
+    { label: "Nearshore", slug: "nearshore-web-development" },
     { label: "Real Estate", slug: "real-estate-web-development" },
   ],
   alternatePath: "/cr",
@@ -319,6 +322,279 @@ export const enCrMarketPages: MarketPage[] = [
       "web-development-agency",
       "real-estate-web-development",
       "tourism-web-development",
+    ],
+  }),
+  createPage({
+    slug: "request-a-quote",
+    title: "Request a Website Quote in Costa Rica",
+    description:
+      "Request a quote for a website, redesign, or software project in Costa Rica. Get a clear email response with scope, timing, and next steps.",
+    keywords: [
+      "request a quote costa rica website",
+      "website quote costa rica",
+      "web development quote costa rica",
+    ],
+    hero: {
+      eyebrow: "Request a Quote",
+      headline: "The best next step is a cleaner quote request.",
+      subheadline:
+        "Share your business context and I will reply by email with a recommended direction, a budget range, and the next steps.",
+      supportingText:
+        "This page exists for buyers who want a more serious process than an open-ended WhatsApp thread.",
+    },
+    intro:
+      "This is the strongest commercial-intent page in the English machine. It is built to turn interest into a qualified email conversation quickly.",
+    problemTitle: "Why buyers prefer a form-first path",
+    problemPoints: [
+      "It gives enough context to scope properly.",
+      "It makes follow-up easier to track by email.",
+      "It avoids vague conversations that go nowhere.",
+    ],
+    solutionTitle: "What happens after submission",
+    solutionPoints: [
+      "A reply within 24 hours.",
+      "A recommendation based on the business and the project type.",
+      "A cleaner next step with timing and budget context.",
+    ],
+    deliverablesTitle: "Best information to send",
+    deliverables: ["Business type", "Project type", "Main goal", "Budget range", "Ideal timeline"],
+    relatedSlugs: [
+      "web-development",
+      "website-cost-costa-rica",
+      "website-redesign-costa-rica",
+      "lead-generation-websites-costa-rica",
+    ],
+    alternatePath: "/cr/cotizacion",
+  }),
+  createPage({
+    slug: "website-cost-costa-rica",
+    title: "How Much Does a Website Cost in Costa Rica",
+    description:
+      "Website cost guidance for Costa Rica businesses and foreign-owned companies. Understand what moves pricing and how to evaluate quotes without wasting money.",
+    keywords: [
+      "website cost costa rica",
+      "how much does a website cost in costa rica",
+      "web design pricing costa rica",
+    ],
+    hero: {
+      eyebrow: "Website Cost Costa Rica",
+      headline:
+        "The question is not only how much a website costs. It is what the website actually does for the business.",
+      subheadline:
+        "This page exists to capture pricing objections and move the buyer toward a more grounded quote conversation.",
+    },
+    intro:
+      "Many Costa Rica buyers, local and foreign, get stuck comparing a cheap template to a serious commercial website. That is the wrong comparison.",
+    problemTitle: "Why pricing feels confusing",
+    problemPoints: [
+      "Cheap template sites get compared to strategy-led commercial builds.",
+      "The buyer cannot see what good messaging, structure, and SEO change.",
+      "There is fear of paying for a website that still does nothing.",
+    ],
+    solutionTitle: "How to evaluate cost better",
+    solutionPoints: [
+      "Define whether this is a first site, a redesign, or a growth system.",
+      "Look at clarity, trust, and lead capture, not just visual polish.",
+      "Ask for scope, timing, and deliverables, not just a number.",
+    ],
+    deliverablesTitle: "What usually changes pricing",
+    deliverables: [
+      "Page count",
+      "Copy and positioning depth",
+      "SEO support pages",
+      "Special integrations",
+      "Level of design customization",
+    ],
+    relatedSlugs: [
+      "request-a-quote",
+      "web-development",
+      "website-redesign-costa-rica",
+      "lead-generation-websites-costa-rica",
+    ],
+    alternatePath: "/cr/cuanto-cuesta-pagina-web",
+  }),
+  createPage({
+    slug: "website-redesign-costa-rica",
+    title: "Website Redesign Costa Rica",
+    description:
+      "Costa Rica website redesign for businesses that already have a site but need a stronger first impression, a clearer offer, and better lead capture.",
+    keywords: [
+      "website redesign costa rica",
+      "redesign website costa rica",
+      "improve business website costa rica",
+    ],
+    hero: {
+      eyebrow: "Website Redesign Costa Rica",
+      headline: "If the current website feels old, the business pays for that weakness every day.",
+      subheadline:
+        "This page is built for buyers who already have a website but know it does not support trust, positioning, or inquiry quality well enough.",
+    },
+    intro:
+      "Redesign intent is strong because the buyer already believes the website matters. The page only has to show what better execution changes.",
+    problemTitle: "Common redesign triggers",
+    problemPoints: [
+      "The site no longer reflects the level of the business.",
+      "Visitors still ask basic questions the site should answer.",
+      "The platform or structure makes future growth harder.",
+    ],
+    solutionTitle: "What redesign should improve",
+    solutionPoints: [
+      "Clearer positioning.",
+      "Stronger visual trust.",
+      "A cleaner path from traffic to quote request.",
+    ],
+    deliverablesTitle: "What gets reviewed",
+    deliverables: [
+      "Messaging and hierarchy",
+      "Page architecture",
+      "Design consistency",
+      "Technical cleanup",
+      "CTA and form flow",
+    ],
+    relatedSlugs: [
+      "web-design",
+      "website-cost-costa-rica",
+      "request-a-quote",
+      "lead-generation-websites-costa-rica",
+    ],
+    alternatePath: "/cr/rediseno-sitio-web",
+  }),
+  createPage({
+    slug: "lead-generation-websites-costa-rica",
+    title: "Lead Generation Websites Costa Rica",
+    description:
+      "Costa Rica websites built to create better inquiries by improving trust, offer clarity, and form-first conversion instead of just looking modern.",
+    keywords: [
+      "lead generation websites costa rica",
+      "website that gets leads costa rica",
+      "business website that gets clients costa rica",
+    ],
+    hero: {
+      eyebrow: "Lead Generation Websites",
+      headline:
+        "A website does not generate leads by existing. It generates leads when it communicates well.",
+      subheadline:
+        "This page turns an abstract growth promise into something practical: better trust, better context, and a clearer quote path.",
+    },
+    intro:
+      "Many buyers say they want more leads, but what they really need is a website that explains the offer fast, proves credibility, and makes inquiry easier.",
+    problemTitle: "Why many sites fail to generate leads",
+    problemPoints: [
+      "The offer is unclear.",
+      "Proof is weak or buried.",
+      "The next step is vague or too informal.",
+    ],
+    solutionTitle: "What helps convert better",
+    solutionPoints: [
+      "Clear headline and offer framing.",
+      "Proof and trust signals where they matter.",
+      "A visible form that filters and qualifies inquiries.",
+    ],
+    deliverablesTitle: "Core conversion pieces",
+    deliverables: [
+      "Offer-led hero section",
+      "Service detail blocks",
+      "Trust and proof sections",
+      "FAQ and objection handling",
+      "Primary quote CTA",
+    ],
+    relatedSlugs: [
+      "web-development",
+      "request-a-quote",
+      "website-cost-costa-rica",
+      "service-business-web-development",
+    ],
+    alternatePath: "/cr/sitio-web-que-genere-clientes",
+  }),
+  createPage({
+    slug: "expat-business-web-development",
+    title: "Web Development for Expat and Foreign-Owned Businesses in Costa Rica",
+    description:
+      "Costa Rica web development for expat-led and foreign-owned businesses that want stronger communication, better quality, and local market context.",
+    keywords: [
+      "expat business web development costa rica",
+      "foreign owned business website costa rica",
+      "english web developer costa rica",
+    ],
+    hero: {
+      eyebrow: "Expat and Foreign-Owned Businesses",
+      headline:
+        "Foreign-owned businesses in Costa Rica often need local context without sacrificing execution quality.",
+      subheadline:
+        "This page is for buyers who want English communication, a Costa Rica-based partner, and a cleaner commercial process than the local low-end agency market.",
+    },
+    intro:
+      "This is one of the cleanest fits for the English machine because the buyer already wants Costa Rica, but still expects a professional process.",
+    problemTitle: "What these buyers struggle with",
+    problemPoints: [
+      "Communication often feels too informal.",
+      "Local agencies may not match the quality they need.",
+      "The site has to work for both international and local customers.",
+    ],
+    solutionTitle: "What the offer gives them",
+    solutionPoints: [
+      "English-first communication.",
+      "Costa Rica market context.",
+      "Cleaner positioning and quote flow.",
+    ],
+    deliverablesTitle: "Typical needs",
+    deliverables: [
+      "Business website",
+      "Service landing pages",
+      "Positioning cleanup",
+      "Quote form setup",
+      "Bilingual-ready structure",
+    ],
+    relatedSlugs: [
+      "web-development-agency",
+      "why-costa-rica",
+      "service-business-web-development",
+      "request-a-quote",
+    ],
+  }),
+  createPage({
+    slug: "nearshore-web-development",
+    title: "Nearshore Web Development Costa Rica",
+    description:
+      "Nearshore web development in Costa Rica for buyers who want timezone alignment, direct communication, and a stronger quality bar than low-end offshore teams.",
+    keywords: [
+      "nearshore web development costa rica",
+      "costa rica nearshore development",
+      "nearshore software costa rica",
+    ],
+    hero: {
+      eyebrow: "Nearshore Costa Rica",
+      headline: "Nearshore only matters if the communication and quality are actually better.",
+      subheadline:
+        "This page positions Costa Rica as a practical middle ground for buyers who want timezone alignment and cleaner execution without paying top-end US agency overhead.",
+    },
+    intro:
+      "The nearshore angle is strategic, not buzzword-driven. Buyers searching this language are comparing delivery models, not just design styles.",
+    problemTitle: "Why nearshore buyers hesitate",
+    problemPoints: [
+      "They worry Costa Rica might still feel too small or too informal.",
+      "They need better communication than generic offshore outsourcing.",
+      "They want a tighter process without bloated agency layers.",
+    ],
+    solutionTitle: "Why Costa Rica can fit",
+    solutionPoints: [
+      "Timezone alignment across the Americas.",
+      "Local presence for Costa Rica market work.",
+      "A founder-led execution model with less noise.",
+    ],
+    deliverablesTitle: "What nearshore buyers usually need",
+    deliverables: [
+      "Commercial website work",
+      "Service page systems",
+      "Portal or workflow builds",
+      "Quote and intake flows",
+      "Ongoing iteration without agency drag",
+    ],
+    relatedSlugs: [
+      "why-costa-rica",
+      "software-development",
+      "web-development-agency",
+      "expat-business-web-development",
     ],
   }),
   createPage({

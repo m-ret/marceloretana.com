@@ -93,8 +93,11 @@ export const esCrHub: MarketHub = {
     { label: "Paginas Web", slug: "paginas-web-costa-rica" },
     { label: "Diseno Web", slug: "diseno-web-costa-rica" },
     { label: "Desarrollo Web", slug: "desarrollo-web-costa-rica" },
+    { label: "SEO", slug: "seo-costa-rica" },
     { label: "Constructoras", slug: "constructoras" },
     { label: "Clinicas", slug: "clinicas" },
+    { label: "Precio", slug: "cuanto-cuesta-pagina-web" },
+    { label: "Proceso", slug: "proceso" },
     { label: "Turismo", slug: "turismo" },
     { label: "Cotizacion", slug: "cotizacion" },
   ],
@@ -273,6 +276,47 @@ export const esCrMarketPages: MarketPage[] = [
     alternatePath: "/costa-rica/web-development",
   }),
   createPage({
+    slug: "seo-costa-rica",
+    title: "SEO Costa Rica para Negocios que Necesitan Aparecer Mejor en Google",
+    description:
+      "SEO en Costa Rica para negocios que quieren aparecer mejor en Google con paginas mas claras, mejores senales tecnicas y mas enfoque comercial.",
+    keywords: ["seo costa rica", "posicionamiento web costa rica", "google negocios costa rica"],
+    hero: {
+      eyebrow: "SEO Costa Rica",
+      headline: "SEO para negocios que necesitan que Google entienda mejor lo que venden.",
+      subheadline:
+        "No se trata de hacks. Se trata de mejores paginas, mejor estructura y senales mas claras para que el negocio aparezca con mas fuerza.",
+    },
+    intro:
+      "Esta pagina traduce SEO a lenguaje de negocio: mas claridad, mas paginas utiles y mejor capacidad de aparecer para busquedas que si importan.",
+    problemTitle: "Barreras comunes",
+    problemPoints: [
+      "Solo existe una pagina inicio sin suficiente contexto.",
+      "No hay paginas por servicio o sector para captar mas demanda.",
+      "La estructura tecnica no ayuda a indexar ni a entender la oferta.",
+    ],
+    solutionTitle: "Como se corrige",
+    solutionPoints: [
+      "Paginas por servicio y vertical comercial.",
+      "Titulos, descripciones y estructura con intencion local.",
+      "Enlaces internos que conectan servicios, prueba y conversion.",
+    ],
+    deliverablesTitle: "Trabajo SEO base",
+    deliverables: [
+      "Arquitectura de paginas comerciales",
+      "Titulos y descripciones optimizadas",
+      "Sitemap y enlazado interno",
+      "Mejoras de indexacion",
+      "Paginas nuevas segun demanda",
+    ],
+    relatedSlugs: [
+      "desarrollo-web-costa-rica",
+      "sitio-web-que-genere-clientes",
+      "paginas-web-costa-rica",
+      "cotizacion",
+    ],
+  }),
+  createPage({
     slug: "negocios-servicios",
     title: "Paginas Web para Negocios de Servicios en Costa Rica",
     description:
@@ -413,6 +457,42 @@ export const esCrMarketPages: MarketPage[] = [
     alternatePath: "/costa-rica/healthcare-web-development",
   }),
   createPage({
+    slug: "consultorios",
+    title: "Sitio Web para Consultorios en Costa Rica",
+    description:
+      "Sitios web para consultorios y profesionales de salud en Costa Rica que necesitan explicar servicios, ubicacion y como agendar con claridad.",
+    keywords: ["consultorio pagina web", "sitio web consultorio", "pagina web doctor costa rica"],
+    hero: {
+      eyebrow: "Consultorios",
+      headline: "Un consultorio pequeno tambien necesita verse claro y confiable.",
+      subheadline:
+        "Esta pagina esta pensada para medicos, odontologos y especialistas que necesitan un sitio simple, serio y facil de consultar.",
+    },
+    intro:
+      "A diferencia de la pagina para clinicas, aqui el enfoque es mas directo y orientado a profesionales individuales o consultorios pequenos.",
+    problemTitle: "Lo que suele faltar",
+    problemPoints: [
+      "No hay informacion clara sobre servicios o experiencia.",
+      "Ubicacion, horarios y contacto estan escondidos.",
+      "El paciente no entiende como dar el primer paso.",
+    ],
+    solutionTitle: "Lo que prioriza un buen sitio",
+    solutionPoints: [
+      "Propuesta profesional clara.",
+      "Informacion practica muy visible.",
+      "Un CTA principal para consulta o cita.",
+    ],
+    deliverablesTitle: "Bloques recomendados",
+    deliverables: [
+      "Presentacion del profesional",
+      "Servicios o tratamientos",
+      "Ubicacion y horarios",
+      "FAQ frecuente",
+      "Formulario de contacto",
+    ],
+    relatedSlugs: ["clinicas", "por-que-necesita-sitio-web", "cotizacion", "diseno-web-costa-rica"],
+  }),
+  createPage({
     slug: "turismo",
     title: "Paginas Web para Turismo y Hoteleria en Costa Rica",
     description:
@@ -548,6 +628,204 @@ export const esCrMarketPages: MarketPage[] = [
       "cuanto-cuesta-pagina-web",
       "cotizacion",
     ],
+  }),
+  createPage({
+    slug: "sitio-web-que-genere-clientes",
+    title: "Sitio Web que Genere Clientes en Costa Rica",
+    description:
+      "Como estructurar un sitio web en Costa Rica para que inspire confianza, explique bien la oferta y convierta visitas en consultas por formulario.",
+    keywords: [
+      "sitio web que genere clientes",
+      "pagina web para conseguir clientes",
+      "web conversion costa rica",
+    ],
+    hero: {
+      eyebrow: "Generar clientes",
+      headline: "Un sitio web no genera clientes por existir. Genera cuando comunica bien.",
+      subheadline:
+        "La combinacion correcta es mensaje, estructura, prueba y un CTA claro para mover a la persona a pedir informacion.",
+    },
+    intro:
+      "Esta pagina convierte una idea abstracta de leads en algo mas concreto para el mercado local: mejores consultas, mejor contexto y menos conversaciones perdidas.",
+    problemTitle: "Por que muchos sitios no convierten",
+    problemPoints: [
+      "No dejan claro que hace el negocio.",
+      "No muestran prueba suficiente.",
+      "Esconden el siguiente paso.",
+    ],
+    solutionTitle: "Lo que si ayuda a convertir",
+    solutionPoints: [
+      "Titular claro y relevante.",
+      "Prueba social o experiencia visible.",
+      "Formulario principal repetido en puntos clave.",
+    ],
+    deliverablesTitle: "Piezas de una pagina que convierte",
+    deliverables: [
+      "Hero con oferta clara",
+      "Secciones por servicio",
+      "Prueba y casos",
+      "FAQ y objeciones",
+      "CTA principal de cotizacion",
+    ],
+    relatedSlugs: ["seo-costa-rica", "paginas-web-costa-rica", "cotizacion", "casos"],
+    alternatePath: "/costa-rica/lead-generation-websites-costa-rica",
+  }),
+  createPage({
+    slug: "rediseno-sitio-web",
+    title: "Rediseno de Sitio Web en Costa Rica",
+    description:
+      "Rediseno de sitio web para negocios en Costa Rica que ya tienen una web pero no se ve profesional, no explica bien o no ayuda a vender.",
+    keywords: [
+      "rediseno sitio web costa rica",
+      "mejorar pagina web",
+      "actualizar sitio web negocio",
+    ],
+    hero: {
+      eyebrow: "Rediseno",
+      headline: "Si su sitio actual se ve viejo, el negocio paga ese costo todos los dias.",
+      subheadline:
+        "Redisenamos sitios para que el negocio se vea mas fuerte, se entienda mejor y convierta mejor que la version anterior.",
+    },
+    intro:
+      "Esta pagina captura negocios que ya tienen presencia online, pero saben que esa presencia no esta ayudando lo suficiente a vender o dar confianza.",
+    problemTitle: "Senales de que toca redisenar",
+    problemPoints: [
+      "La web ya no representa el nivel real del negocio.",
+      "Cuesta actualizarla o agregar nuevas paginas.",
+      "La gente pregunta lo basico porque el sitio no lo deja claro.",
+    ],
+    solutionTitle: "Lo que cambia el rediseno",
+    solutionPoints: [
+      "Mensaje comercial mas claro.",
+      "Jerarquia visual mejorada.",
+      "Conversion mas ordenada hacia formulario y contacto.",
+    ],
+    deliverablesTitle: "Lo que reviso",
+    deliverables: [
+      "Mensaje y propuesta de valor",
+      "Arquitectura de contenido",
+      "Diseno y consistencia visual",
+      "Velocidad y estructura tecnica",
+      "CTA y formularios",
+    ],
+    relatedSlugs: ["diseno-web-costa-rica", "cuanto-cuesta-pagina-web", "proceso", "cotizacion"],
+    alternatePath: "/costa-rica/website-redesign-costa-rica",
+  }),
+  createPage({
+    slug: "portafolio",
+    title: "Portafolio Web en Costa Rica",
+    description:
+      "Portafolio de sitios, productos y proyectos digitales de Marcelo Retana para mostrar calidad, criterio y velocidad de ejecucion.",
+    keywords: [
+      "portafolio web costa rica",
+      "trabajos web costa rica",
+      "desarrollador web portafolio costa rica",
+    ],
+    hero: {
+      eyebrow: "Portafolio",
+      headline: "La prueba importa mas que cualquier promesa.",
+      subheadline:
+        "Esta pagina existe para reducir riesgo. Muestra calidad de ejecucion, experiencia real y el nivel que puede esperar un negocio serio.",
+    },
+    intro:
+      "El portafolio funciona como apoyo comercial cuando alguien ya esta comparando opciones y quiere ver trabajo real antes de pedir una propuesta.",
+    problemTitle: "Lo que la persona quiere confirmar",
+    problemPoints: [
+      "Calidad visual real.",
+      "Experiencia con negocios serios.",
+      "Senales de que si se entrega lo prometido.",
+    ],
+    solutionTitle: "Lo que debe demostrar el portafolio",
+    solutionPoints: [
+      "Calidad de ejecucion.",
+      "Variedad suficiente para distintos casos.",
+      "Capacidad de mover proyectos rapido sin bajar el nivel.",
+    ],
+    deliverablesTitle: "Que conviene mostrar",
+    deliverables: [
+      "Capturas o enlaces representativos",
+      "Tipo de negocio",
+      "Objetivo del proyecto",
+      "Resultado o mejora visible",
+      "Tiempo de entrega",
+    ],
+    relatedSlugs: ["casos", "constructoras", "turismo", "cotizacion"],
+  }),
+  createPage({
+    slug: "casos",
+    title: "Casos de Exito Web en Costa Rica",
+    description:
+      "Casos de exito y prueba comercial para negocios en Costa Rica que quieren validar calidad, velocidad y claridad antes de contratar.",
+    keywords: [
+      "casos de exito web",
+      "testimonios web costa rica",
+      "prueba desarrollador web costa rica",
+    ],
+    hero: {
+      eyebrow: "Casos de exito",
+      headline: "La mejor manera de vender confianza es con resultados y contexto.",
+      subheadline:
+        "Esta pagina organiza prueba social y casos para ayudar a decidir mas rapido sin depender solo de una llamada o una recomendacion informal.",
+    },
+    intro:
+      "Los casos de exito ayudan tanto a conversion como a SEO cuando la persona ya esta comparando opciones y quiere bajar el riesgo antes de avanzar.",
+    problemTitle: "Objeciones que reduce esta pagina",
+    problemPoints: [
+      "No saber si de verdad se entrega.",
+      "No tener evidencia de calidad o experiencia.",
+      "Sentir demasiado riesgo antes de pedir una propuesta.",
+    ],
+    solutionTitle: "Que debe mostrar un caso",
+    solutionPoints: [
+      "Contexto del problema.",
+      "Tipo de solucion entregada.",
+      "Resultado visible o mejora comercial.",
+    ],
+    deliverablesTitle: "Formato recomendado",
+    deliverables: [
+      "Resumen del negocio",
+      "Problema a resolver",
+      "Enfoque tomado",
+      "Resultado",
+      "Testimonio o cita",
+    ],
+    relatedSlugs: ["portafolio", "proceso", "sitio-web-que-genere-clientes", "cotizacion"],
+  }),
+  createPage({
+    slug: "proceso",
+    title: "Proceso de Trabajo Web en Costa Rica",
+    description:
+      "Proceso de trabajo para sitios web y proyectos comerciales en Costa Rica, desde cotizacion hasta entrega y mejoras posteriores.",
+    keywords: ["proceso web costa rica", "como trabaja un desarrollador web", "proceso sitio web"],
+    hero: {
+      eyebrow: "Proceso",
+      headline: "El proceso debe dar claridad, no burocracia.",
+      subheadline:
+        "La idea es pasar de una necesidad comercial a una propuesta, una entrega concreta y una presencia online mejor organizada sin vueltas innecesarias.",
+    },
+    intro:
+      "Esta pagina sirve para bajar incertidumbre y reforzar seriedad operacional. Ayuda a que el lead se imagine como seria trabajar conmigo antes de escribir.",
+    problemTitle: "Miedos comunes",
+    problemPoints: [
+      "No saber que pasa despues de escribir por primera vez.",
+      "Temor a procesos largos o desordenados.",
+      "Poca claridad en tiempos, alcance o entregables.",
+    ],
+    solutionTitle: "Como funciona el proceso",
+    solutionPoints: [
+      "Recibo contexto por formulario.",
+      "Respondo con alcance y enfoque.",
+      "Construyo, revisamos y lanzamos con tiempos claros.",
+    ],
+    deliverablesTitle: "Etapas",
+    deliverables: [
+      "Discovery comercial",
+      "Propuesta y alcance",
+      "Diseno y estructura",
+      "Desarrollo y revision",
+      "Lanzamiento y mejoras",
+    ],
+    relatedSlugs: ["cotizacion", "servicios", "casos", "cuanto-cuesta-pagina-web"],
   }),
   createPage({
     slug: "cotizacion",
