@@ -6,15 +6,36 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-const menuLinks = [
-  { href: "/", label: "Home" },
+const primaryLinks = [
   { href: "/#about", label: "About" },
   { href: "/#experience", label: "Experience" },
-  { href: "/cr", label: "Costa Rica ES" },
-  { href: "/costa-rica", label: "Costa Rica EN" },
-  { href: "/blog", label: "Blog" },
-  { href: "/resources", label: "Resources" },
   { href: "/contact", label: "Get a Quote" },
+];
+
+const marketLinks = [
+  {
+    href: "/cr",
+    label: "Costa Rica ES",
+    description: "Para negocios en Costa Rica que necesitan verse más serios y captar consultas.",
+  },
+  {
+    href: "/costa-rica",
+    label: "Costa Rica EN",
+    description: "For foreign-owned businesses that want a local partner in Costa Rica.",
+  },
+];
+
+const contentLinks = [
+  {
+    href: "/blog",
+    label: "Blog",
+    description: "Essays, case notes, and practical thinking on web, AI, and execution.",
+  },
+  {
+    href: "/resources",
+    label: "Resources",
+    description: "Comparisons, guides, checklists, and developer reference material.",
+  },
 ];
 
 export function Nav() {
@@ -100,9 +121,10 @@ export function Nav() {
           <div className="flex-1 flex flex-col md:flex-row md:items-start pt-24 md:pt-32">
             {/* Get in Touch section */}
             <div className="md:w-1/2 mb-16 md:mb-0">
-              <p className="text-sm uppercase tracking-widest text-fg mb-2">Get in Touch</p>
-              <p className="text-fg-muted text-sm mb-6">
-                Need a website, redesign, or software workflow in Costa Rica? Start with the form.
+              <p className="text-sm uppercase tracking-widest text-fg mb-2">Start Here</p>
+              <p className="text-fg-muted text-sm mb-6 max-w-sm">
+                This site does three jobs: show who I am, show the work, and route the right people
+                into the right lead path.
               </p>
               <a
                 href="mailto:info@gexpsoftware.com"
@@ -114,18 +136,71 @@ export function Nav() {
 
             {/* Menu links */}
             <div className="md:w-1/2 md:pl-16">
-              <nav className="space-y-2">
-                {menuLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block text-3xl md:text-4xl text-fg hover:text-fg-secondary transition-colors border-b border-border pb-2"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
+              <div className="space-y-12">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5">Main</p>
+                  <nav className="space-y-2">
+                    {primaryLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="block text-3xl md:text-4xl text-fg hover:text-fg-secondary transition-colors border-b border-border pb-2"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </nav>
+                </div>
+
+                <div className="grid gap-10 md:grid-cols-2">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5">
+                      Costa Rica
+                    </p>
+                    <nav className="space-y-4">
+                      {marketLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className="block border-t border-border pt-4 group"
+                        >
+                          <p className="text-lg text-fg group-hover:text-fg-secondary transition-colors">
+                            {link.label}
+                          </p>
+                          <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+                            {link.description}
+                          </p>
+                        </Link>
+                      ))}
+                    </nav>
+                  </div>
+
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5">
+                      Library
+                    </p>
+                    <nav className="space-y-4">
+                      {contentLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className="block border-t border-border pt-4 group"
+                        >
+                          <p className="text-lg text-fg group-hover:text-fg-secondary transition-colors">
+                            {link.label}
+                          </p>
+                          <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+                            {link.description}
+                          </p>
+                        </Link>
+                      ))}
+                    </nav>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
