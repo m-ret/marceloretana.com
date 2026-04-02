@@ -6,14 +6,14 @@ import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 import { ContactForm } from "@/components/sections/contact-form";
 import { getPostBySlug, getPostsByLang } from "@/lib/posts";
 
+export const dynamicParams = false;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
-  return getPostsByLang("en").map((p) => ({ slug: p.slug }));
+  return getPostsByLang("es").map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -22,25 +22,18 @@ export async function generateMetadata({ params }: PageProps) {
 
   if (!post) {
     return {
-      title: "Post Not Found",
+      title: "Publicación no encontrada",
     };
   }
 
-  const url = `https://marceloretana.com/blog/${slug}`;
-  const altLang = post.lang === "es" ? "en" : "es";
-
-  const altUrl = post.alternate
-    ? altLang === "es"
-      ? `https://marceloretana.com/es/blog/${post.alternate}`
-      : `https://marceloretana.com/blog/${post.alternate}`
-    : undefined;
+  const url = `https://marceloretana.com/es/blog/${slug}`;
 
   const languages: Record<string, string> = {
-    [post.lang]: url,
-    "x-default": post.lang === "en" ? url : (altUrl ?? url),
+    es: url,
+    "x-default": post.alternate ? `https://marceloretana.com/blog/${post.alternate}` : url,
   };
-  if (altUrl) {
-    languages[altLang] = altUrl;
+  if (post.alternate) {
+    languages.en = `https://marceloretana.com/blog/${post.alternate}`;
   }
 
   return {
@@ -59,12 +52,12 @@ export async function generateMetadata({ params }: PageProps) {
       publishedTime: post.publishedAt,
       authors: ["Marcelo Retana"],
       tags: post.tags,
-      locale: post.lang === "es" ? "es_CR" : "en_US",
-      alternateLocale: post.lang === "es" ? "en_US" : "es_CR",
+      locale: "es_CR",
+      alternateLocale: "en_US",
       siteName: "Marcelo Retana",
       images: [
         {
-          url: `https://marceloretana.com/blog/${slug}/opengraph-image`,
+          url: `https://marceloretana.com/es/blog/${slug}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -75,44 +68,30 @@ export async function generateMetadata({ params }: PageProps) {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: [`https://marceloretana.com/blog/${slug}/twitter-image`],
+      images: [`https://marceloretana.com/es/blog/${slug}/twitter-image`],
     },
   };
 }
 
-export default async function BlogPostPage({ params }: PageProps) {
+export default async function BlogPostEsPage({ params }: PageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
-  const ui =
-    post.lang === "es"
-      ? {
-          back: "Volver al blog",
-          ctaTitle: "¿Quiere trabajar conmigo?",
-          ctaBody: "Desarrollo sitios web, apps y MVPs. Cuénteme sobre su proyecto.",
-          footer: "Volver a todas las publicaciones",
-        }
-      : {
-          back: "Back to blog",
-          ctaTitle: "Want to work together?",
-          ctaBody: "I build websites, apps, and MVPs. Let’s talk about your project.",
-          footer: "Back to all posts",
-        };
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://marceloretana.com" },
-      { "@type": "ListItem", position: 2, name: "Blog", item: "https://marceloretana.com/blog" },
+      { "@type": "ListItem", position: 1, name: "Inicio", item: "https://marceloretana.com/es" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://marceloretana.com/es/blog" },
       {
         "@type": "ListItem",
         position: 3,
         name: post.title,
-        item: `https://marceloretana.com/blog/${slug}`,
+        item: `https://marceloretana.com/es/blog/${slug}`,
       },
     ],
   };
@@ -124,8 +103,8 @@ export default async function BlogPostPage({ params }: PageProps) {
     description: post.excerpt,
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
-    url: `https://marceloretana.com/blog/${slug}`,
-    inLanguage: post.lang === "es" ? "es" : "en",
+    url: `https://marceloretana.com/es/blog/${slug}`,
+    inLanguage: "es",
     keywords: post.tags?.join(", "),
     author: {
       "@type": "Person",
@@ -144,7 +123,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://marceloretana.com/blog/${slug}`,
+      "@id": `https://marceloretana.com/es/blog/${slug}`,
     },
   };
 
@@ -161,25 +140,22 @@ export default async function BlogPostPage({ params }: PageProps) {
       <article className="max-w-3xl mx-auto">
         {/* Back link */}
         <Link
-          href="/blog"
+          href="/es/blog"
           className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors mb-12"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          {ui.back}
+          Volver al blog
         </Link>
 
         {/* Header */}
         <header className="mb-12">
           {post.publishedAt && (
             <time className="text-fg-secondary text-sm">
-              {new Date(post.publishedAt).toLocaleDateString(
-                post.lang === "es" ? "es-CR" : "en-US",
-                {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                }
-              )}
+              {new Date(post.publishedAt).toLocaleDateString("es-CR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
             </time>
           )}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-fg mt-4 mb-6 leading-tight">
@@ -207,19 +183,21 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         <section className="mt-16">
-          <h2 className="text-xl font-light text-fg mb-2">{ui.ctaTitle}</h2>
-          <p className="text-sm text-fg-muted mb-0">{ui.ctaBody}</p>
-          <ContactForm locale={post.lang === "es" ? "cr" : "en"} sourcePage={`/blog/${slug}`} />
+          <h2 className="text-xl font-light text-fg mb-2">¿Quiere trabajar conmigo?</h2>
+          <p className="text-sm text-fg-muted mb-0">
+            Desarrollo sitios web, apps y MVPs. Cuénteme sobre su proyecto.
+          </p>
+          <ContactForm locale="cr" sourcePage={`/es/blog/${slug}`} />
         </section>
 
         {/* Footer */}
         <footer className="border-t border-border mt-16 pt-8">
           <Link
-            href="/blog"
+            href="/es/blog"
             className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            {ui.footer}
+            Volver a todas las publicaciones
           </Link>
         </footer>
       </article>
