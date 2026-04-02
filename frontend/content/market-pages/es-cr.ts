@@ -699,5 +699,6 @@ export const esCrMarketPages: MarketPage[] = [
       "Tiempo ideal",
     ],
     relatedSlugs: ["cuanto-cuesta", "generar-clientes", "rediseno", "constructoras"],
+    alternatePath: "/costa-rica/quote",
   }),
 ];

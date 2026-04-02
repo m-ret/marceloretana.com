@@ -31,6 +31,9 @@ export const siteMetadata: Metadata = {
   metadataBase: new URL("https://marceloretana.com"),
   alternates: {
     canonical: "/",
+    languages: {
+      "x-default": "https://marceloretana.com/",
+    },
   },
   openGraph: {
     title: "Marcelo Retana | Costa Rica Websites, Web Development, and Product Execution",

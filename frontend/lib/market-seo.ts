@@ -29,12 +29,10 @@ export function buildMarketMetadata(entry: MarketEntry): Metadata {
   const alternateEntry = getAlternateMarketEntry(entry.path);
   const languages = alternateEntry
     ? {
-        [alternateEntry.locale === "es" ? "es-CR" : "en"]: alternateEntry.path,
-        ...(entry.path === "/es" || entry.path === "/costa-rica" ? { "x-default": "/" } : {}),
+        [alternateEntry.locale === "es" ? "es" : "en"]: alternateEntry.path,
+        "x-default": entry.locale === "en" ? entry.path : alternateEntry.path,
       }
-    : entry.path === "/es" || entry.path === "/costa-rica"
-      ? { "x-default": "/" }
-      : undefined;
+    : undefined;
 
   return {
     title: entry.title,

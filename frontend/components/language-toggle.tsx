@@ -1,13 +1,15 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { usePathname } from "next/navigation";
+import { getAlternatePath } from "@/lib/language-pairs";
 
 export function LanguageToggle() {
-  const { locale, alternatePath } = useLanguage();
+  const pathname = usePathname();
+  const alternatePath = getAlternatePath(pathname);
 
   if (!alternatePath) return null;
 
-  const isEs = locale === "es";
+  const isEs = pathname === "/es" || pathname.startsWith("/es/");
 
   return (
     <a

@@ -2,15 +2,13 @@ const MARKET_LASTMOD = "2026-04-01T00:00:00.000Z";
 
 const costaRicaRoutes = [
   "/costa-rica",
-  "/costa-rica/web-development",
-  "/costa-rica/web-development-agency",
-  "/costa-rica/web-design",
-  "/costa-rica/request-a-quote",
-  "/costa-rica/website-cost-costa-rica",
-  "/costa-rica/website-redesign-costa-rica",
-  "/costa-rica/lead-generation-websites-costa-rica",
-  "/costa-rica/expat-business-web-development",
-  "/costa-rica/nearshore-web-development",
+  "/costa-rica/quote",
+  "/costa-rica/website-cost",
+  "/costa-rica/redesign",
+  "/costa-rica/lead-generation",
+  "/costa-rica/real-estate",
+  "/costa-rica/healthcare",
+  "/costa-rica/tourism",
 ];
 
 const esRoutes = [
@@ -39,21 +37,6 @@ const config = {
     "/opengraph-image*",
     "/twitter-image*",
     "/llms.txt",
-    "/cr",
-    "/cr/*",
-    "/cr/servicios",
-    "/cr/negocios-servicios",
-    "/cr/consultorios",
-    "/cr/rediseno-sitio-web",
-    "/cr/portafolio",
-    "/cr/casos",
-    "/cr/proceso",
-    "/costa-rica/software-development",
-    "/costa-rica/why-costa-rica",
-    "/costa-rica/service-business-web-development",
-    "/costa-rica/real-estate-web-development",
-    "/costa-rica/healthcare-web-development",
-    "/costa-rica/tourism-web-development",
   ],
   additionalPaths: async () => {
     const paths = [];

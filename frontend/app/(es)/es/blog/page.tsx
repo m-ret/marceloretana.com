@@ -9,7 +9,11 @@ export const metadata: Metadata = {
   description:
     "Artículos sobre sitios web, presencia digital, flujos de WhatsApp y ejecución de producto en Costa Rica.",
   alternates: {
-    canonical: "https://marceloretana.com/es/blog",
+    canonical: "/es/blog",
+    languages: {
+      en: "/blog",
+      "x-default": "/blog",
+    },
   },
   openGraph: {
     title: "Blog | Marcelo Retana",
