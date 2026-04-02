@@ -75,7 +75,7 @@ const ventures = [
     name: "GEXP Costa Rica",
     url: "https://gexpsoftware.com/cr",
     category: "Local Services",
-    tagline: "Costa Rica service lane for local businesses",
+    tagline: "Servicios digitales para negocios en Costa Rica",
   },
   {
     name: "Inflafest",
@@ -104,22 +104,19 @@ export function About() {
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-32">
           <div>
             <h2 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium">
-              Why This Site Exists
+              What I Do
             </h2>
           </div>
           <div>
             <p className="text-2xl md:text-3xl lg:text-4xl font-light text-fg-secondary leading-relaxed">
               I build{" "}
               <span className="text-fg font-normal">
-                websites that make businesses look more serious
+                websites that help businesses look more professional
               </span>
-              ,{" "}
+              , <span className="text-fg font-normal">explain what they offer more clearly</span>,
+              and{" "}
               <span className="text-fg font-normal">
-                quote flows that create cleaner conversations
-              </span>
-              , and{" "}
-              <span className="text-fg font-normal">
-                digital products that are easier to trust and easier to buy from
+                make it easier for customers to get in touch
               </span>
               .
             </p>
@@ -129,21 +126,21 @@ export function About() {
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-32">
           <div>
             <h2 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium">
-              My Approach
+              How I Work
             </h2>
           </div>
           <div className="space-y-6">
             <p className="text-lg md:text-xl text-fg-secondary leading-relaxed">
-              The work starts with the commercial problem, not with jargon. If the business looks
-              improvised, hard to understand, or hard to contact, the website has to fix that first.
+              Every project starts with the basics: what the business sells, who it wants to reach,
+              and what someone should do after landing on the site.
             </p>
             <p className="text-lg md:text-xl text-fg-secondary leading-relaxed">
-              Then the technical side matters: performance, structure, responsive design, form
-              handling, SEO signals, and the kind of build quality that holds up after launch.
+              Then I focus on the things that matter in the real world: strong design, fast
+              performance, mobile usability, and a structure that is easy to manage after launch.
             </p>
             <p className="text-lg md:text-xl text-fg leading-relaxed font-medium">
-              The goal is simple, make the business easier to trust, easier to understand, and
-              easier to contact.
+              The goal is simple, a website that feels trustworthy and helps the business move
+              forward.
             </p>
           </div>
         </div>
@@ -151,12 +148,12 @@ export function About() {
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-32">
           <div>
             <h2 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium">
-              Operating Context
+              Projects and Businesses
             </h2>
           </div>
           <div>
             <p className="text-3xl md:text-4xl lg:text-5xl font-light text-fg leading-tight mb-16">
-              Proof that this is operator work, not just portfolio theater.
+              Real businesses, real projects, and work that ships.
             </p>
 
             {/* Venture list - minimal lines */}
@@ -191,17 +188,17 @@ export function About() {
 
         <div className="border-t border-border pt-16">
           <h2 className="text-sm uppercase tracking-widest text-fg font-medium mb-12">
-            What This Work Usually Improves
+            What a Better Website Should Improve
           </h2>
 
           <div className="space-y-16">
             <div>
               <h3 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium mb-6">
-                What Clients Usually Need Fixed
+                What Good Work Should Change
               </h3>
               <p className="text-fg-muted mb-8 max-w-2xl">
-                Not a stack list. The real job is to make the business look more serious, easier to
-                understand, and easier to contact.
+                A better website should do more than look modern. It should make the business
+                clearer, easier to trust, and easier to contact.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border pt-6">
                 {capabilities.map((cap) => (
