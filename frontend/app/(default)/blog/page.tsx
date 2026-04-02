@@ -128,7 +128,7 @@ export default function BlogPage() {
             they sit behind the service story instead of competing with it.
           </p>
           <div className="mt-10 flex flex-wrap gap-6 text-sm uppercase tracking-[0.24em]">
-            <Link href="/cr" className="text-fg transition-colors hover:text-fg-secondary">
+            <Link href="/es" className="text-fg transition-colors hover:text-fg-secondary">
               Para negocios en Costa Rica →
             </Link>
             <Link href="/costa-rica" className="text-fg transition-colors hover:text-fg-secondary">

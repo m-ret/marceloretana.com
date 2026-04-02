@@ -65,7 +65,7 @@ export default function ResourcesHub() {
             redesign, or product execution in Costa Rica, start with the commercial lanes below.
           </p>
           <div className="mt-8 flex flex-wrap gap-6 text-sm uppercase tracking-[0.24em]">
-            <Link href="/cr" className="text-fg transition-colors hover:text-fg-secondary">
+            <Link href="/es" className="text-fg transition-colors hover:text-fg-secondary">
               Para negocios en Costa Rica →
             </Link>
             <Link href="/costa-rica" className="text-fg transition-colors hover:text-fg-secondary">
@@ -152,7 +152,7 @@ export default function ResourcesHub() {
             request a quote with proper context.
           </p>
           <div className="mt-8 flex flex-wrap gap-6 text-sm uppercase tracking-[0.24em]">
-            <Link href="/cr" className="text-fg transition-colors hover:text-fg-secondary">
+            <Link href="/es" className="text-fg transition-colors hover:text-fg-secondary">
               Para negocios en Costa Rica →
             </Link>
             <Link href="/costa-rica" className="text-fg transition-colors hover:text-fg-secondary">

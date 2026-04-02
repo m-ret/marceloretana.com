@@ -6,7 +6,7 @@ const laneCards = [
     title: "¿Tiene un negocio en Costa Rica y necesita una página web que se vea seria?",
     description:
       "Servicios en español para negocios que necesitan presencia en línea, una mejor imagen y una forma más clara de recibir consultas.",
-    href: "/cr",
+    href: "/es",
     cta: "Ver servicios para Costa Rica",
     points: [
       "Páginas web y rediseños",

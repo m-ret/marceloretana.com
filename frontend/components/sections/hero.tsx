@@ -59,7 +59,7 @@ export function Hero() {
 
             <div className="mt-8 flex flex-wrap gap-3 md:mt-10 md:gap-4">
               <Link
-                href="/cr"
+                href="/es"
                 className="inline-flex min-h-12 items-center gap-2 border border-white/20 bg-white px-4 text-[11px] uppercase tracking-[0.24em] text-black transition-colors hover:bg-yellow-400 md:px-5 md:text-sm"
               >
                 <span>Para negocios en Costa Rica</span>
@@ -160,7 +160,7 @@ export function Hero() {
               </p>
               <div className="flex flex-col gap-4">
                 <Link
-                  href="/cr"
+                  href="/es"
                   className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/70 transition-colors"
                 >
                   <span>Spanish Costa Rica Services</span>

@@ -30,9 +30,9 @@ export function buildMarketMetadata(entry: MarketEntry): Metadata {
   const languages = alternateEntry
     ? {
         [alternateEntry.locale === "es" ? "es-CR" : "en"]: alternateEntry.path,
-        ...(entry.path === "/cr" || entry.path === "/costa-rica" ? { "x-default": "/" } : {}),
+        ...(entry.path === "/es" || entry.path === "/costa-rica" ? { "x-default": "/" } : {}),
       }
-    : entry.path === "/cr" || entry.path === "/costa-rica"
+    : entry.path === "/es" || entry.path === "/costa-rica"
       ? { "x-default": "/" }
       : undefined;
 
@@ -109,9 +109,9 @@ export function buildMarketJsonLd(entry: MarketEntry) {
         "@type": "ListItem",
         position: 2,
         name: entry.locale === "es" ? "Costa Rica" : "Costa Rica",
-        item: `${siteUrl}${entry.locale === "es" ? "/cr" : "/costa-rica"}`,
+        item: `${siteUrl}${entry.locale === "es" ? "/es" : "/costa-rica"}`,
       },
-      ...(entry.path === "/cr" || entry.path === "/costa-rica"
+      ...(entry.path === "/es" || entry.path === "/costa-rica"
         ? []
         : [
             {

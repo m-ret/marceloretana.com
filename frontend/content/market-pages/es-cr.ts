@@ -58,7 +58,7 @@ function createPage(
   return {
     machine: "es-cr",
     locale: "es",
-    path: `/cr/${page.slug}`,
+    path: `/es/${page.slug}`,
     generatedAt,
     cta: page.cta ?? defaultCta,
     proof: page.proof ?? sharedProof,
@@ -70,7 +70,7 @@ function createPage(
 export const esCrHub: MarketHub = {
   machine: "es-cr",
   locale: "es",
-  path: "/cr",
+  path: "/es",
   generatedAt,
   title: "Páginas Web y Desarrollo Web en Costa Rica",
   description:
@@ -109,17 +109,12 @@ export const esCrHub: MarketHub = {
   faq: sharedFaq,
   cta: defaultCta,
   featuredLinks: [
-    { label: "Páginas Web", slug: "paginas-web-costa-rica" },
-    { label: "Diseño Web", slug: "diseno-web-costa-rica" },
-    { label: "Desarrollo Web", slug: "desarrollo-web-costa-rica" },
-    { label: "SEO", slug: "seo-costa-rica" },
-    { label: "Generar clientes", slug: "sitio-web-que-genere-clientes" },
+    { label: "Precio", slug: "cuanto-cuesta" },
+    { label: "Generar clientes", slug: "generar-clientes" },
     { label: "Constructoras", slug: "constructoras" },
     { label: "Clínicas", slug: "clinicas" },
-    { label: "Por qué necesita sitio web", slug: "por-que-necesita-sitio-web" },
-    { label: "Precio", slug: "cuanto-cuesta-pagina-web" },
     { label: "Turismo", slug: "turismo" },
-    { label: "Cotización", slug: "cotizacion" },
+    { label: "Rediseño", slug: "rediseno" },
   ],
   caseProofIds: ["gexp", "nature-escapes", "vista3-architects"],
   narrativeSections: [
@@ -149,302 +144,119 @@ export const esCrHub: MarketHub = {
 
 export const esCrMarketPages: MarketPage[] = [
   createPage({
-    slug: "servicios",
-    noindex: true,
-    title: "Servicios Web para Negocios en Costa Rica",
+    slug: "cuanto-cuesta",
+    title: "Cuánto Cuesta una Página Web en Costa Rica",
     description:
-      "Servicios de páginas web, rediseños, SEO comercial y desarrollos ligeros para negocios en Costa Rica que necesitan verse serios y captar mejores consultas.",
-    keywords: ["servicios web costa rica", "sitio web para negocio", "agencia web costa rica"],
-    hero: {
-      eyebrow: "Servicios",
-      headline: "No vendo solo código. Vendo una presencia online que ayuda a cerrar mejor.",
-      subheadline:
-        "Desde la primera página web hasta un rediseño completo, el enfoque es confianza, claridad de oferta y una forma seria de captar oportunidades.",
-    },
-    intro:
-      "Ideal para negocios que todavía no saben si necesitan una página nueva, un rediseño o varias páginas por servicio, pero sí saben que su presencia online hoy no les ayuda lo suficiente.",
-    problemTitle: "Problemas que se repiten",
-    problemPoints: [
-      "Dependencia total de Instagram, Facebook o WhatsApp para explicar todo.",
-      "Sitios viejos o inexistentes que hacen ver al negocio pequeño o poco serio.",
-      "Falta de una forma clara para recibir consultas por email y dar seguimiento.",
-    ],
-    solutionTitle: "Cómo se corrige",
-    solutionPoints: [
-      "Páginas web comerciales con mensaje claro y un siguiente paso visible.",
-      "Rediseños que mejoran estructura, mensaje y credibilidad.",
-      "Páginas por servicio o sector para crecer con SEO sin hablar raro.",
-    ],
-    deliverablesTitle: "Qué suele incluir",
-    deliverables: [
-      "Mensaje comercial por sección",
-      "Diseño responsive",
-      "Formulario de cotización",
-      "SEO técnico base",
-      "Arquitectura lista para crecer",
-    ],
-    relatedSlugs: [
-      "paginas-web-costa-rica",
-      "diseno-web-costa-rica",
-      "desarrollo-web-costa-rica",
-      "cotizacion",
-    ],
-  }),
-  createPage({
-    slug: "paginas-web-costa-rica",
-    title: "Páginas Web en Costa Rica para Negocios que Necesitan Verse Serios",
-    description:
-      "Páginas web en Costa Rica para negocios que necesitan una presencia profesional, una oferta clara y una forma ordenada de recibir consultas.",
+      "Guía comercial para entender cuánto cuesta una página web en Costa Rica, qué mueve el precio y cómo evitar botar plata en algo que no ayuda al negocio.",
     keywords: [
-      "páginas web costa rica",
-      "sitios web costa rica",
-      "página web profesional costa rica",
+      "cuanto cuesta una pagina web en costa rica",
+      "precio página web costa rica",
+      "cotización sitio web costa rica",
     ],
     hero: {
-      eyebrow: "Páginas Web Costa Rica",
-      headline: "Su negocio necesita una página web que explique bien lo que hace.",
+      eyebrow: "Costo",
+      headline: "La pregunta correcta no es solo cuánto cuesta. Es qué tanto le ayuda al negocio.",
       subheadline:
-        "No una presencia online por cumplir. Una página que ayude a dar confianza, ordenar servicios y captar mejores consultas.",
+        "La inversión tiene que verse reflejada en confianza, claridad y mejores consultas, no solo en tener otra página más en internet.",
     },
     intro:
-      "Cuando un negocio busca una página web, casi nunca está pensando en código. Está pensando en algo mucho más simple: verse serio, explicar mejor lo que vende y dejar una forma clara para que la gente pregunte. Esa es la diferencia entre una página de relleno y una página comercial que sí ayuda al negocio.",
+      "El precio se vuelve confuso cuando se compara una plantilla básica con un sitio comercial que sí ayuda a vender. No cuestan lo mismo porque no resuelven lo mismo. Una página barata puede darle presencia; una página bien planteada puede ayudarle a justificar mejor su negocio, ordenar el contacto y crecer con más claridad.",
     proof: [
       {
-        metric: "Primera impresión",
-        title: "Más claridad desde el inicio",
+        metric: "Costo real",
+        title: "Lo caro es publicar algo que no ayuda",
         description:
-          "La página principal deja claro qué hace el negocio, a quién ayuda y cómo se pide información sin obligar a la persona a descifrarlo sola.",
+          "El mayor riesgo no es pagar más. Es pagar por una web que igual obliga a explicar todo por mensajes y no mejora la percepción del negocio.",
       },
       {
-        metric: "Confianza",
-        title: "Más credibilidad antes del contacto",
+        metric: "Alcance",
+        title: "El precio cambia según la ambición comercial",
         description:
-          "Servicios, prueba, preguntas frecuentes y un CTA visible ayudan a justificar mejor el negocio antes de hablar de precio.",
+          "No es lo mismo una presencia base que un sistema con servicios, sectores, SEO, prueba y mejor captación.",
       },
       {
-        metric: "Formulario",
-        title: "Mejores consultas",
+        metric: "Propuesta",
+        title: "La cotización debe explicar el porqué",
         description:
-          "La meta no es cualquier mensaje. La meta es una consulta con más contexto para responder mejor y cerrar mejor.",
+          "Una cifra sin alcance, prioridades y entregables deja al negocio igual de confundido que antes.",
       },
     ],
-    caseProofIds: ["gexp", "vista3-architects"],
+    caseProofIds: ["gexp", "nature-escapes"],
     narrativeSections: [
       {
-        eyebrow: "Lo que compra la gente",
-        title: "En la práctica, la mayoría compra confianza antes que diseño.",
-        body: "Cuando alguien visita la web de un negocio local, lo primero que evalúa es si el negocio se siente real, claro y confiable. Si la información es débil, el sitio parece viejo o todo se ve improvisado, el problema no es solo estético. El negocio pierde autoridad antes de la primera conversación.",
+        eyebrow: "Qué suele salir mal",
+        title: "Mucha gente compara precios como si todo fuera la misma página.",
+        body: "No lo es. Hay negocios que solo necesitan una presencia simple y hay otros que necesitan una estructura capaz de explicar servicios, soportar SEO, mostrar prueba y captar mejores consultas. Si se mezclan esas dos cosas en la comparación, el precio siempre va a parecer arbitrario.",
       },
       {
-        eyebrow: "Qué debe incluir",
-        title: "Una página web seria ordena la venta incluso cuando usted no está respondiendo.",
-        body: "Debe explicar el negocio rápido, mostrar servicios sin enredo, responder objeciones básicas y dejar un siguiente paso claro. Eso reduce preguntas repetidas, mejora la calidad de los contactos y hace que el negocio se perciba más establecido.",
-        points: [
-          "Titular claro y orientado a lo que vende.",
-          "Secciones por servicio o solución.",
-          "Prueba real y una cotización visible.",
-        ],
+        eyebrow: "Cómo evaluar mejor",
+        title: "Pida una cotización que hable de negocio, no solo de diseño.",
+        body: "La mejor forma de comparar propuestas es revisar qué problema resuelven, cuántas páginas necesita de verdad, qué tan claro queda el mensaje y si la conversión queda ordenada desde el principio.",
       },
     ],
-    problemTitle: "Lo que pasa sin una página web seria",
+    problemTitle: "Lo que confunde el precio",
     problemPoints: [
-      "Todo depende de referencias, redes sociales o mensajes sueltos.",
-      "No hay un lugar claro donde ver servicios, experiencia y contacto.",
-      "Cuesta justificar precios si la presencia online se ve débil.",
+      "Comparar una plantilla barata con un sitio comercial real.",
+      "No saber qué incluye el mensaje, la estructura y el SEO.",
+      "Miedo a gastar en algo que no se vea serio ni ayude a vender.",
     ],
-    solutionTitle: "Lo que debe resolver la página",
+    solutionTitle: "Cómo pensar el costo",
     solutionPoints: [
-      "Explicar la oferta en segundos.",
-      "Construir confianza antes del primer contacto.",
-      "Mover la visita hacia una consulta o cotización ordenada.",
+      "Primero defina si necesita presencia base, rediseño o páginas nuevas.",
+      "Piense en confianza y conversión, no solo en el número final.",
+      "Pida una propuesta con alcance, tiempos y entregables claros.",
     ],
-    deliverablesTitle: "Piezas base",
+    deliverablesTitle: "Factores que mueven el precio",
+    deliverables: [
+      "Cantidad de páginas",
+      "Nivel de copy y mensaje comercial",
+      "SEO o páginas sectoriales",
+      "Integraciones o formularios especiales",
+      "Nivel de personalización visual",
+    ],
+    relatedSlugs: ["generar-clientes", "rediseno", "cotizacion"],
+    alternatePath: "/costa-rica/website-cost",
+  }),
+  createPage({
+    slug: "generar-clientes",
+    title: "Sitio Web que Genere Clientes en Costa Rica",
+    description:
+      "Cómo estructurar un sitio web en Costa Rica para que inspire confianza, explique bien la oferta y convierta visitas en consultas por formulario.",
+    keywords: [
+      "sitio web que genere clientes",
+      "página web para conseguir clientes",
+      "web conversion costa rica",
+    ],
+    hero: {
+      eyebrow: "Generar clientes",
+      headline: "Un sitio web no genera clientes por existir. Genera cuando comunica bien.",
+      subheadline:
+        "La combinación correcta es mensaje, estructura, prueba y un paso claro para mover a la persona a pedir información.",
+    },
+    intro:
+      "Conseguir más clientes no depende solo de tener una página. Depende de tener una página que explique bien, dé confianza y deje un siguiente paso muy claro.",
+    problemTitle: "Por qué muchos sitios no convierten",
+    problemPoints: [
+      "No dejan claro qué hace el negocio.",
+      "No muestran prueba suficiente.",
+      "Esconden el siguiente paso.",
+    ],
+    solutionTitle: "Lo que sí ayuda a convertir",
+    solutionPoints: [
+      "Titular claro y relevante.",
+      "Prueba social o experiencia visible.",
+      "Formulario principal repetido en puntos clave.",
+    ],
+    deliverablesTitle: "Piezas de una página que convierte",
     deliverables: [
       "Sección principal con oferta clara",
-      "Bloques de servicios",
-      "Prueba social",
-      "Preguntas frecuentes",
-      "Formulario principal",
+      "Secciones por servicio",
+      "Prueba y casos",
+      "Preguntas frecuentes y objeciones",
+      "Llamado principal de cotización",
     ],
-    relatedSlugs: [
-      "diseno-web-costa-rica",
-      "por-que-necesita-sitio-web",
-      "cuanto-cuesta-pagina-web",
-      "cotizacion",
-    ],
-  }),
-  createPage({
-    slug: "diseno-web-costa-rica",
-    title: "Diseño Web en Costa Rica para una Mejor Primera Impresión",
-    description:
-      "Diseño web en Costa Rica para negocios que necesitan verse más confiables, más claros y más profesionales desde la primera visita.",
-    keywords: [
-      "diseño web costa rica",
-      "diseñador web costa rica",
-      "sitio web profesional costa rica",
-    ],
-    hero: {
-      eyebrow: "Diseño Web Costa Rica",
-      headline: "Un buen diseño ayuda a que el negocio se vea serio antes de hablar con nadie.",
-      subheadline:
-        "La meta no es la decoración. Es transmitir confianza, claridad y valor para que la gente quiera dar el siguiente paso.",
-    },
-    intro:
-      "Si su presencia actual se ve vieja, genérica o poco clara, un mejor diseño puede cambiar la percepción del negocio antes de la primera llamada o mensaje.",
-    problemTitle: "Cuando el diseño falla",
-    problemPoints: [
-      "El sitio se ve viejo o genérico.",
-      "La propuesta no se entiende rápido.",
-      "La marca se siente menos establecida de lo que realmente es.",
-    ],
-    solutionTitle: "En qué se enfoca el rediseño",
-    solutionPoints: [
-      "Jerarquía visual clara para entender el negocio rápido.",
-      "Secciones pensadas para confianza, no relleno.",
-      "Versión móvil fuerte, porque ahí empieza mucho del tráfico real.",
-    ],
-    deliverablesTitle: "Qué suele cambiar",
-    deliverables: [
-      "Sección principal con mejor oferta",
-      "Secciones de servicios más claras",
-      "Bloques de prueba y credibilidad",
-      "Llamado principal mejor ubicado",
-      "Una imagen más seria y consistente",
-    ],
-    relatedSlugs: [
-      "paginas-web-costa-rica",
-      "desarrollo-web-costa-rica",
-      "cuanto-cuesta-pagina-web",
-      "cotizacion",
-    ],
-    alternatePath: "/costa-rica/web-design",
-  }),
-  createPage({
-    slug: "desarrollo-web-costa-rica",
-    title: "Desarrollo Web en Costa Rica para Sitios Rápidos y Escalables",
-    description:
-      "Desarrollo web en Costa Rica para negocios que necesitan algo más serio que una plantilla, con mejor rendimiento, mejor SEO y mejor capacidad de crecer.",
-    keywords: ["desarrollo web costa rica", "empresa desarrollo web", "crear sitio web costa rica"],
-    hero: {
-      eyebrow: "Desarrollo Web Costa Rica",
-      headline:
-        "Desarrollo web para negocios que necesitan algo más serio que una plantilla improvisada.",
-      subheadline:
-        "Construyo sitios rápidos, claros y técnicamente limpios para que el negocio no se quede corto cuando quiera crecer o posicionarse mejor.",
-    },
-    intro:
-      "Aquí lo importante es que el sitio funcione bien, cargue rápido, permita crecer y no se quede corto cuando el negocio quiera agregar más páginas, formularios o integraciones.",
-    problemTitle: "Señales de una mala base",
-    problemPoints: [
-      "Sitios lentos o frágiles.",
-      "Páginas difíciles de expandir cuando el negocio quiere crecer.",
-      "Herramientas limitadas que frenan SEO, formularios o nuevas secciones.",
-    ],
-    solutionTitle: "Lo que entrega una mejor base",
-    solutionPoints: [
-      "Rendimiento fuerte desde el inicio.",
-      "Estructura lista para páginas nuevas por servicio o sector.",
-      "Integraciones limpias para formularios, reservas o seguimiento.",
-    ],
-    deliverablesTitle: "Tipos de solución",
-    deliverables: [
-      "Sitio comercial a medida",
-      "Páginas por servicio",
-      "Administrador simple para cambios básicos",
-      "Integraciones de contacto",
-      "Mejoras técnicas de velocidad",
-    ],
-    relatedSlugs: ["servicios", "diseno-web-costa-rica", "negocios-servicios", "cotizacion"],
-    alternatePath: "/costa-rica/web-development",
-  }),
-  createPage({
-    slug: "seo-costa-rica",
-    title: "SEO Costa Rica para Negocios que Necesitan Aparecer Mejor en Google",
-    description:
-      "SEO en Costa Rica para negocios que quieren aparecer mejor en Google con páginas más claras, mejores señales técnicas y más enfoque comercial.",
-    keywords: ["seo costa rica", "posicionamiento web costa rica", "google negocios costa rica"],
-    hero: {
-      eyebrow: "SEO Costa Rica",
-      headline: "SEO para negocios que necesitan que Google entienda mejor lo que venden.",
-      subheadline:
-        "No se trata de hacks. Se trata de mejores páginas, mejor estructura y señales más claras para que el negocio aparezca con más fuerza.",
-    },
-    intro:
-      "SEO sirve cuando ayuda a que la gente encuentre páginas claras sobre lo que usted vende, en lugar de depender solo de una página de inicio que explica todo a medias.",
-    problemTitle: "Barreras comunes",
-    problemPoints: [
-      "Solo existe una página de inicio sin suficiente contexto.",
-      "No hay páginas por servicio o sector para captar más demanda.",
-      "La estructura técnica no ayuda a indexar ni a entender la oferta.",
-    ],
-    solutionTitle: "Cómo se corrige",
-    solutionPoints: [
-      "Páginas por servicio y sector comercial.",
-      "Títulos, descripciones y estructura con intención local.",
-      "Enlaces internos que conectan servicios, prueba y conversión.",
-    ],
-    deliverablesTitle: "Trabajo SEO base",
-    deliverables: [
-      "Arquitectura de páginas comerciales",
-      "Títulos y descripciones optimizadas",
-      "Sitemap y enlazado interno",
-      "Mejoras de indexación",
-      "Páginas nuevas según demanda",
-    ],
-    relatedSlugs: [
-      "desarrollo-web-costa-rica",
-      "sitio-web-que-genere-clientes",
-      "paginas-web-costa-rica",
-      "cotizacion",
-    ],
-  }),
-  createPage({
-    slug: "negocios-servicios",
-    noindex: true,
-    title: "Páginas Web para Negocios de Servicios en Costa Rica",
-    description:
-      "Páginas web para negocios de servicios en Costa Rica que necesitan explicar rápido lo que hacen, verse confiables y captar formularios mejor calificados.",
-    keywords: [
-      "página web para servicios",
-      "sitio web empresa de servicios",
-      "negocio de servicios costa rica",
-    ],
-    hero: {
-      eyebrow: "Negocios de servicios",
-      headline:
-        "Si usted vende un servicio, su sitio debe explicar rápido por qué confiar en usted.",
-      subheadline:
-        "Trabajo con empresas de servicios que necesitan ordenar su oferta, mostrar prueba y dejar un camino claro para pedir información.",
-    },
-    intro:
-      "Los negocios de servicios necesitan sitios que expliquen rápido, den confianza y conviertan visitas en consultas con más contexto.",
-    problemTitle: "Retos típicos",
-    problemPoints: [
-      "Oferta difícil de entender en pocos segundos.",
-      "Poca prueba visible o ninguna diferenciación clara.",
-      "Dependencia total de mensajes directos y referencias.",
-    ],
-    solutionTitle: "Qué sí funciona",
-    solutionPoints: [
-      "Servicios principales explicados con un mensaje directo.",
-      "Prueba y credibilidad visibles sin inflar el sitio.",
-      "Formulario claro para ordenar la oportunidad desde el inicio.",
-    ],
-    deliverablesTitle: "Lo esencial",
-    deliverables: [
-      "Páginas por servicio",
-      "Prueba social y testimonios",
-      "Preguntas frecuentes",
-      "Formulario principal",
-      "Base SEO para crecer",
-    ],
-    relatedSlugs: [
-      "servicios",
-      "paginas-web-costa-rica",
-      "por-que-necesita-sitio-web",
-      "cotizacion",
-    ],
-    alternatePath: "/costa-rica/service-business-web-development",
+    relatedSlugs: ["cuanto-cuesta", "constructoras", "cotizacion"],
+    alternatePath: "/costa-rica/lead-generation",
   }),
   createPage({
     slug: "constructoras",
@@ -517,13 +329,8 @@ export const esCrMarketPages: MarketPage[] = [
       "Prueba social y experiencia",
       "SEO local para búsquedas relevantes",
     ],
-    relatedSlugs: [
-      "paginas-web-costa-rica",
-      "desarrollo-web-costa-rica",
-      "cuanto-cuesta-pagina-web",
-      "cotizacion",
-    ],
-    alternatePath: "/costa-rica/real-estate-web-development",
+    relatedSlugs: ["cuanto-cuesta", "generar-clientes", "clinicas", "cotizacion"],
+    alternatePath: "/costa-rica/real-estate",
   }),
   createPage({
     slug: "clinicas",
@@ -597,50 +404,8 @@ export const esCrMarketPages: MarketPage[] = [
       "Prueba profesional y testimonios",
       "Versión móvil clara",
     ],
-    relatedSlugs: [
-      "paginas-web-costa-rica",
-      "desarrollo-web-costa-rica",
-      "por-que-necesita-sitio-web",
-      "cotizacion",
-    ],
-    alternatePath: "/costa-rica/healthcare-web-development",
-  }),
-  createPage({
-    slug: "consultorios",
-    noindex: true,
-    title: "Sitio Web para Consultorios en Costa Rica",
-    description:
-      "Sitios web para consultorios y profesionales de salud en Costa Rica que necesitan explicar servicios, ubicación y cómo agendar con claridad.",
-    keywords: ["consultorio página web", "sitio web consultorio", "página web doctor costa rica"],
-    hero: {
-      eyebrow: "Consultorios",
-      headline: "Un consultorio pequeño también necesita verse claro y confiable.",
-      subheadline:
-        "Para médicos, odontólogos y especialistas que necesitan un sitio simple, serio y fácil de consultar.",
-    },
-    intro:
-      "Un consultorio pequeño necesita explicar servicios, ubicación y forma de contacto sin complicar demasiado la experiencia.",
-    problemTitle: "Lo que suele faltar",
-    problemPoints: [
-      "No hay información clara sobre servicios o experiencia.",
-      "Ubicación, horarios y contacto están escondidos.",
-      "El paciente no entiende cómo dar el primer paso.",
-    ],
-    solutionTitle: "Lo que prioriza un buen sitio",
-    solutionPoints: [
-      "Propuesta profesional clara.",
-      "Información práctica muy visible.",
-      "Un botón principal para consulta o cita.",
-    ],
-    deliverablesTitle: "Bloques recomendados",
-    deliverables: [
-      "Presentación del profesional",
-      "Servicios o tratamientos",
-      "Ubicación y horarios",
-      "Preguntas frecuentes",
-      "Formulario de contacto",
-    ],
-    relatedSlugs: ["clinicas", "por-que-necesita-sitio-web", "cotizacion", "diseno-web-costa-rica"],
+    relatedSlugs: ["constructoras", "turismo", "generar-clientes", "cotizacion"],
+    alternatePath: "/costa-rica/healthcare",
   }),
   createPage({
     slug: "turismo",
@@ -713,182 +478,11 @@ export const esCrMarketPages: MarketPage[] = [
       "Preguntas frecuentes de viaje",
       "Versión móvil optimizada",
     ],
-    relatedSlugs: [
-      "paginas-web-costa-rica",
-      "diseno-web-costa-rica",
-      "desarrollo-web-costa-rica",
-      "cotizacion",
-    ],
-    alternatePath: "/costa-rica/tourism-web-development",
+    relatedSlugs: ["constructoras", "clinicas", "generar-clientes", "cotizacion"],
+    alternatePath: "/costa-rica/tourism",
   }),
   createPage({
-    slug: "cuanto-cuesta-pagina-web",
-    title: "Cuánto Cuesta una Página Web en Costa Rica",
-    description:
-      "Guía comercial para entender cuánto cuesta una página web en Costa Rica, qué mueve el precio y cómo evitar botar plata en algo que no ayuda al negocio.",
-    keywords: [
-      "cuanto cuesta una pagina web en costa rica",
-      "precio página web costa rica",
-      "cotización sitio web costa rica",
-    ],
-    hero: {
-      eyebrow: "Costo",
-      headline: "La pregunta correcta no es solo cuánto cuesta. Es qué tanto le ayuda al negocio.",
-      subheadline:
-        "La inversión tiene que verse reflejada en confianza, claridad y mejores consultas, no solo en tener otra página más en internet.",
-    },
-    intro:
-      "El precio se vuelve confuso cuando se compara una plantilla básica con un sitio comercial que sí ayuda a vender. No cuestan lo mismo porque no resuelven lo mismo. Una página barata puede darle presencia; una página bien planteada puede ayudarle a justificar mejor su negocio, ordenar el contacto y crecer con más claridad.",
-    proof: [
-      {
-        metric: "Costo real",
-        title: "Lo caro es publicar algo que no ayuda",
-        description:
-          "El mayor riesgo no es pagar más. Es pagar por una web que igual obliga a explicar todo por mensajes y no mejora la percepción del negocio.",
-      },
-      {
-        metric: "Alcance",
-        title: "El precio cambia según la ambición comercial",
-        description:
-          "No es lo mismo una presencia base que un sistema con servicios, sectores, SEO, prueba y mejor captación.",
-      },
-      {
-        metric: "Propuesta",
-        title: "La cotización debe explicar el porqué",
-        description:
-          "Una cifra sin alcance, prioridades y entregables deja al negocio igual de confundido que antes.",
-      },
-    ],
-    caseProofIds: ["gexp", "nature-escapes"],
-    narrativeSections: [
-      {
-        eyebrow: "Qué suele salir mal",
-        title: "Mucha gente compara precios como si todo fuera la misma página.",
-        body: "No lo es. Hay negocios que solo necesitan una presencia simple y hay otros que necesitan una estructura capaz de explicar servicios, soportar SEO, mostrar prueba y captar mejores consultas. Si se mezclan esas dos cosas en la comparación, el precio siempre va a parecer arbitrario.",
-      },
-      {
-        eyebrow: "Cómo evaluar mejor",
-        title: "Pida una cotización que hable de negocio, no solo de diseño.",
-        body: "La mejor forma de comparar propuestas es revisar qué problema resuelven, cuántas páginas necesita de verdad, qué tan claro queda el mensaje y si la conversión queda ordenada desde el principio.",
-      },
-    ],
-    problemTitle: "Lo que confunde el precio",
-    problemPoints: [
-      "Comparar una plantilla barata con un sitio comercial real.",
-      "No saber qué incluye el mensaje, la estructura y el SEO.",
-      "Miedo a gastar en algo que no se vea serio ni ayude a vender.",
-    ],
-    solutionTitle: "Cómo pensar el costo",
-    solutionPoints: [
-      "Primero defina si necesita presencia base, rediseño o páginas nuevas.",
-      "Piense en confianza y conversión, no solo en el número final.",
-      "Pida una propuesta con alcance, tiempos y entregables claros.",
-    ],
-    deliverablesTitle: "Factores que mueven el precio",
-    deliverables: [
-      "Cantidad de páginas",
-      "Nivel de copy y mensaje comercial",
-      "SEO o páginas sectoriales",
-      "Integraciones o formularios especiales",
-      "Nivel de personalización visual",
-    ],
-    relatedSlugs: [
-      "paginas-web-costa-rica",
-      "diseno-web-costa-rica",
-      "por-que-necesita-sitio-web",
-      "cotizacion",
-    ],
-  }),
-  createPage({
-    slug: "por-que-necesita-sitio-web",
-    title: "Por Qué Su Negocio Necesita un Sitio Web en Costa Rica",
-    description:
-      "Explicación simple de por qué un negocio en Costa Rica necesita un sitio web para verse serio, explicar servicios y facilitar el contacto.",
-    keywords: [
-      "por qué necesito un sitio web",
-      "sitio web para negocio costa rica",
-      "negocio sin página web",
-    ],
-    hero: {
-      eyebrow: "Por qué necesita un sitio web",
-      headline:
-        "Su negocio necesita un sitio web porque la gente juzga confianza antes de escribirle.",
-      subheadline:
-        "No se trata de tecnología. Se trata de verse serio, explicar bien lo que hace y dejar una forma clara de contacto.",
-    },
-    intro:
-      "Muchas veces el problema no es técnico. El problema es que el negocio no tiene dónde mostrarse bien, explicar su oferta y dejar un siguiente paso claro.",
-    problemTitle: "Cuando no hay sitio web",
-    problemPoints: [
-      "El negocio se ve menos establecido.",
-      "Todo depende de explicar lo mismo una y otra vez por mensajes.",
-      "Se pierden oportunidades porque no hay contexto ni prueba suficiente.",
-    ],
-    solutionTitle: "Lo que cambia un buen sitio",
-    solutionPoints: [
-      "Da una primera impresión más fuerte.",
-      "Ordena servicios, preguntas frecuentes y llamada a la acción.",
-      "Mejora la calidad de las consultas que llegan.",
-    ],
-    deliverablesTitle: "Lo mínimo que debe resolver",
-    deliverables: [
-      "Quién es el negocio",
-      "Qué vende o resuelve",
-      "Por qué confiar",
-      "Cómo contactarlo",
-      "Qué siguiente paso tomar",
-    ],
-    relatedSlugs: [
-      "paginas-web-costa-rica",
-      "negocios-servicios",
-      "cuanto-cuesta-pagina-web",
-      "cotizacion",
-    ],
-  }),
-  createPage({
-    slug: "sitio-web-que-genere-clientes",
-    title: "Sitio Web que Genere Clientes en Costa Rica",
-    description:
-      "Cómo estructurar un sitio web en Costa Rica para que inspire confianza, explique bien la oferta y convierta visitas en consultas por formulario.",
-    keywords: [
-      "sitio web que genere clientes",
-      "página web para conseguir clientes",
-      "web conversion costa rica",
-    ],
-    hero: {
-      eyebrow: "Generar clientes",
-      headline: "Un sitio web no genera clientes por existir. Genera cuando comunica bien.",
-      subheadline:
-        "La combinación correcta es mensaje, estructura, prueba y un paso claro para mover a la persona a pedir información.",
-    },
-    intro:
-      "Conseguir más clientes no depende solo de tener una página. Depende de tener una página que explique bien, dé confianza y deje un siguiente paso muy claro.",
-    problemTitle: "Por qué muchos sitios no convierten",
-    problemPoints: [
-      "No dejan claro qué hace el negocio.",
-      "No muestran prueba suficiente.",
-      "Esconden el siguiente paso.",
-    ],
-    solutionTitle: "Lo que sí ayuda a convertir",
-    solutionPoints: [
-      "Titular claro y relevante.",
-      "Prueba social o experiencia visible.",
-      "Formulario principal repetido en puntos clave.",
-    ],
-    deliverablesTitle: "Piezas de una página que convierte",
-    deliverables: [
-      "Sección principal con oferta clara",
-      "Secciones por servicio",
-      "Prueba y casos",
-      "Preguntas frecuentes y objeciones",
-      "Llamado principal de cotización",
-    ],
-    relatedSlugs: ["seo-costa-rica", "paginas-web-costa-rica", "cotizacion", "casos"],
-    alternatePath: "/costa-rica/lead-generation-websites-costa-rica",
-  }),
-  createPage({
-    slug: "rediseno-sitio-web",
-    noindex: true,
+    slug: "rediseno",
     title: "Rediseño de Sitio Web en Costa Rica",
     description:
       "Rediseño de sitio web para negocios en Costa Rica que ya tienen una web, pero no se ve profesional, no explica bien o no ayuda a vender.",
@@ -925,127 +519,8 @@ export const esCrMarketPages: MarketPage[] = [
       "Velocidad y estructura técnica",
       "Llamados y formularios",
     ],
-    relatedSlugs: ["diseno-web-costa-rica", "cuanto-cuesta-pagina-web", "proceso", "cotizacion"],
-    alternatePath: "/costa-rica/website-redesign-costa-rica",
-  }),
-  createPage({
-    slug: "portafolio",
-    noindex: true,
-    title: "Portafolio Web en Costa Rica",
-    description:
-      "Portafolio de sitios, productos y proyectos digitales de Marcelo Retana para mostrar calidad, criterio y velocidad de ejecución.",
-    keywords: [
-      "portafolio web costa rica",
-      "trabajos web costa rica",
-      "desarrollador web portafolio costa rica",
-    ],
-    hero: {
-      eyebrow: "Portafolio",
-      headline: "La prueba importa más que cualquier promesa.",
-      subheadline:
-        "Vea trabajos reales para entender el nivel de ejecución, criterio y velocidad que puede esperar.",
-    },
-    intro:
-      "Antes de pedir una propuesta, muchas personas quieren confirmar si el trabajo realmente se ve bien y si el nivel de ejecución coincide con lo que necesitan.",
-    problemTitle: "Lo que la persona quiere confirmar",
-    problemPoints: [
-      "Calidad visual real.",
-      "Experiencia con negocios serios.",
-      "Señales de que sí se entrega lo prometido.",
-    ],
-    solutionTitle: "Lo que debe demostrar el portafolio",
-    solutionPoints: [
-      "Calidad de ejecución.",
-      "Variedad suficiente para distintos casos.",
-      "Capacidad de mover proyectos rápido sin bajar el nivel.",
-    ],
-    deliverablesTitle: "Qué conviene mostrar",
-    deliverables: [
-      "Capturas o enlaces representativos",
-      "Tipo de negocio",
-      "Objetivo del proyecto",
-      "Resultado o mejora visible",
-      "Tiempo de entrega",
-    ],
-    relatedSlugs: ["casos", "constructoras", "turismo", "cotizacion"],
-  }),
-  createPage({
-    slug: "casos",
-    noindex: true,
-    title: "Casos de Éxito Web en Costa Rica",
-    description:
-      "Casos de éxito y prueba comercial para negocios en Costa Rica que quieren validar calidad, velocidad y claridad antes de contratar.",
-    keywords: [
-      "casos de éxito web",
-      "testimonios web costa rica",
-      "prueba desarrollador web costa rica",
-    ],
-    hero: {
-      eyebrow: "Casos de éxito",
-      headline: "La mejor manera de vender confianza es con resultados y contexto.",
-      subheadline:
-        "Resultados, contexto y prueba real ayudan a decidir con menos riesgo que una promesa suelta o una recomendación informal.",
-    },
-    intro:
-      "Los casos ayudan a bajar el riesgo cuando alguien ya está comparando opciones y quiere ver si de verdad se entrega lo prometido.",
-    problemTitle: "Objeciones que ayuda a reducir",
-    problemPoints: [
-      "No saber si de verdad se entrega.",
-      "No tener evidencia de calidad o experiencia.",
-      "Sentir demasiado riesgo antes de pedir una propuesta.",
-    ],
-    solutionTitle: "Qué debe mostrar un caso",
-    solutionPoints: [
-      "Contexto del problema.",
-      "Tipo de solución entregada.",
-      "Resultado visible o mejora comercial.",
-    ],
-    deliverablesTitle: "Formato recomendado",
-    deliverables: [
-      "Resumen del negocio",
-      "Problema a resolver",
-      "Enfoque tomado",
-      "Resultado",
-      "Testimonio o cita",
-    ],
-    relatedSlugs: ["portafolio", "proceso", "sitio-web-que-genere-clientes", "cotizacion"],
-  }),
-  createPage({
-    slug: "proceso",
-    noindex: true,
-    title: "Proceso de Trabajo Web en Costa Rica",
-    description:
-      "Proceso de trabajo para sitios web y proyectos comerciales en Costa Rica, desde la cotización hasta la entrega y mejoras posteriores.",
-    keywords: ["proceso web costa rica", "como trabaja un desarrollador web", "proceso sitio web"],
-    hero: {
-      eyebrow: "Proceso",
-      headline: "El proceso debe dar claridad, no burocracia.",
-      subheadline:
-        "La idea es pasar de una necesidad comercial a una propuesta, una entrega concreta y una presencia online mejor organizada sin vueltas innecesarias.",
-    },
-    intro:
-      "El proceso ayuda a bajar la incertidumbre desde el inicio. La idea es que usted sepa qué pasa después de escribir, cuánto orden hay en el trabajo y cómo se llega a una entrega clara.",
-    problemTitle: "Miedos comunes",
-    problemPoints: [
-      "No saber qué pasa después de escribir por primera vez.",
-      "Temor a procesos largos o desordenados.",
-      "Poca claridad en tiempos, alcance o entregables.",
-    ],
-    solutionTitle: "Cómo funciona el proceso",
-    solutionPoints: [
-      "Recibo contexto por formulario.",
-      "Respondo con alcance y enfoque.",
-      "Construyo, revisamos y lanzamos con tiempos claros.",
-    ],
-    deliverablesTitle: "Etapas",
-    deliverables: [
-      "Descubrimiento comercial",
-      "Propuesta y alcance",
-      "Diseño y estructura",
-      "Desarrollo y revisión",
-      "Lanzamiento y mejoras",
-    ],
-    relatedSlugs: ["cotizacion", "servicios", "casos", "cuanto-cuesta-pagina-web"],
+    relatedSlugs: ["cuanto-cuesta", "generar-clientes", "cotizacion"],
+    alternatePath: "/costa-rica/redesign",
   }),
   createPage({
     slug: "cotizacion",
@@ -1120,11 +595,6 @@ export const esCrMarketPages: MarketPage[] = [
       "Presupuesto aproximado",
       "Tiempo ideal",
     ],
-    relatedSlugs: [
-      "paginas-web-costa-rica",
-      "desarrollo-web-costa-rica",
-      "cuanto-cuesta-pagina-web",
-      "servicios",
-    ],
+    relatedSlugs: ["cuanto-cuesta", "generar-clientes", "rediseno", "constructoras"],
   }),
 ];
