@@ -1,82 +1,129 @@
 "use client";
 
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useId, useState } from "react";
+import { getLeadFormCopy, type LeadFormData, type LeadFormLocale } from "@/lib/lead-form";
+import { cn } from "@/lib/utils";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export function ContactForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [budget, setBudget] = useState("");
-  const [message, setMessage] = useState("");
+type ContactFormProps = {
+  locale?: LeadFormLocale;
+  sourcePage?: string;
+  className?: string;
+};
+
+const inputClass =
+  "w-full bg-transparent border-b border-border py-3 text-fg placeholder:text-fg-muted focus:outline-none focus:border-fg transition-colors text-sm";
+
+const labelClass = "block text-xs uppercase tracking-widest text-fg-muted mb-2";
+
+const selectClass = `${inputClass} cursor-pointer`;
+
+function formDefaults(locale: LeadFormLocale, sourcePage: string): LeadFormData {
+  return {
+    name: "",
+    businessName: "",
+    email: "",
+    phoneOrWhatsApp: "",
+    industry: "",
+    projectType: "",
+    budgetRange: "",
+    timeline: "",
+    message: "",
+    locale,
+    sourcePage,
+  };
+}
+
+export function ContactForm({ locale = "en", sourcePage, className }: ContactFormProps) {
+  const copy = getLeadFormCopy(locale);
+  const pathname = usePathname();
+  const resolvedSourcePage = sourcePage ?? pathname ?? "/";
+  const [form, setForm] = useState<LeadFormData>(formDefaults(locale, resolvedSourcePage));
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const idPrefix = useId().replace(/:/g, "");
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  const updateField = <K extends keyof LeadFormData>(key: K, value: LeadFormData[K]) => {
+    setForm((current) => ({ ...current, [key]: value }));
+  };
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setStatus("loading");
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, budget, message }),
+        body: JSON.stringify({
+          ...form,
+          locale,
+          sourcePage: resolvedSourcePage,
+        }),
       });
 
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Something went wrong.");
+      if (!response.ok) {
+        const data = (await response.json().catch(() => ({}))) as { error?: string };
+        throw new Error(data.error || copy.messages.error);
       }
 
       setStatus("success");
-    } catch (err) {
+      setForm(formDefaults(locale, resolvedSourcePage));
+    } catch (error) {
       setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setErrorMsg(error instanceof Error ? error.message : copy.messages.error);
     }
   }
 
   if (status === "success") {
     return (
-      <div className="py-12 border-b border-border">
-        <p className="text-sm uppercase tracking-widest text-fg-muted mb-2">Message Sent</p>
-        <p className="text-fg">Got it — I&apos;ll get back to you soon.</p>
+      <div className={cn("py-12 border-b border-border", className)}>
+        <p className="text-sm uppercase tracking-widest text-fg-muted mb-2">
+          {copy.submit.success}
+        </p>
+        <p className="text-fg">{copy.messages.success}</p>
       </div>
     );
   }
 
-  const inputClass =
-    "w-full bg-transparent border-b border-border py-3 text-fg placeholder:text-fg-muted focus:outline-none focus:border-fg transition-colors text-sm";
-  const labelClass = "block text-xs uppercase tracking-widest text-fg-muted mb-2";
-
   return (
-    <form id="contact-form" onSubmit={handleSubmit} className="py-12 border-b border-border">
+    <form
+      id="lead-form"
+      onSubmit={handleSubmit}
+      className={cn("py-12 border-b border-border", className)}
+    >
+      <p className="text-sm text-fg-muted mb-8">{copy.messages.helper}</p>
+
       <div className="grid md:grid-cols-2 gap-8 mb-8">
         <div>
-          <label htmlFor="name" className={labelClass}>
-            Name
+          <label htmlFor={`${idPrefix}-name`} className={labelClass}>
+            {copy.labels.name}
           </label>
           <input
-            id="name"
+            id={`${idPrefix}-name`}
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Your name"
+            value={form.name}
+            onChange={(event) => updateField("name", event.target.value)}
+            placeholder={copy.placeholders.name}
             required
             disabled={status === "loading"}
             className={inputClass}
           />
         </div>
+
         <div>
-          <label htmlFor="email" className={labelClass}>
-            Email
+          <label htmlFor={`${idPrefix}-email`} className={labelClass}>
+            {copy.labels.email}
           </label>
           <input
-            id="email"
+            id={`${idPrefix}-email`}
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="your@email.com"
+            value={form.email}
+            onChange={(event) => updateField("email", event.target.value)}
+            placeholder={copy.placeholders.email}
             required
             disabled={status === "loading"}
             className={inputClass}
@@ -84,66 +131,155 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="mb-8">
-        <label htmlFor="budget" className={labelClass}>
-          Budget
-        </label>
-        <select
-          id="budget"
-          value={budget}
-          onChange={(e) => setBudget(e.target.value)}
-          required
-          disabled={status === "loading"}
-          className={`${inputClass} cursor-pointer`}
-        >
-          <option value="" disabled className="bg-bg text-fg-muted">
-            Select a budget range
-          </option>
-          <option value="$1,000 – $5,000" className="bg-bg">
-            $1,000 – $5,000
-          </option>
-          <option value="$5,000 – $10,000" className="bg-bg">
-            $5,000 – $10,000
-          </option>
-          <option value="$10,000 – $25,000" className="bg-bg">
-            $10,000 – $25,000
-          </option>
-          <option value="$25,000 – $50,000" className="bg-bg">
-            $25,000 – $50,000
-          </option>
-          <option value="$50,000 – $100,000" className="bg-bg">
-            $50,000 – $100,000
-          </option>
-          <option value="$100,000+" className="bg-bg">
-            $100,000+
-          </option>
-        </select>
+      <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <label htmlFor={`${idPrefix}-business`} className={labelClass}>
+            {copy.labels.businessName}
+          </label>
+          <input
+            id={`${idPrefix}-business`}
+            type="text"
+            value={form.businessName ?? ""}
+            onChange={(event) => updateField("businessName", event.target.value)}
+            placeholder={copy.placeholders.businessName}
+            disabled={status === "loading"}
+            className={inputClass}
+          />
+        </div>
+
+        <div>
+          <label htmlFor={`${idPrefix}-phone`} className={labelClass}>
+            {copy.labels.phoneOrWhatsApp}
+          </label>
+          <input
+            id={`${idPrefix}-phone`}
+            type="text"
+            value={form.phoneOrWhatsApp ?? ""}
+            onChange={(event) => updateField("phoneOrWhatsApp", event.target.value)}
+            placeholder={copy.placeholders.phoneOrWhatsApp}
+            disabled={status === "loading"}
+            className={inputClass}
+          />
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <label htmlFor={`${idPrefix}-industry`} className={labelClass}>
+            {copy.labels.industry}
+          </label>
+          <select
+            id={`${idPrefix}-industry`}
+            value={form.industry ?? ""}
+            onChange={(event) => updateField("industry", event.target.value)}
+            disabled={status === "loading"}
+            className={selectClass}
+          >
+            <option value="" className="bg-bg text-fg-muted">
+              {copy.selects.industryDefault}
+            </option>
+            {copy.options.industries.map((option) => (
+              <option key={option.value} value={option.value} className="bg-bg text-fg">
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor={`${idPrefix}-project`} className={labelClass}>
+            {copy.labels.projectType}
+          </label>
+          <select
+            id={`${idPrefix}-project`}
+            value={form.projectType}
+            onChange={(event) => updateField("projectType", event.target.value)}
+            required
+            disabled={status === "loading"}
+            className={selectClass}
+          >
+            <option value="" className="bg-bg text-fg-muted">
+              {copy.selects.projectTypeDefault}
+            </option>
+            {copy.options.projectTypes.map((option) => (
+              <option key={option.value} value={option.value} className="bg-bg text-fg">
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <label htmlFor={`${idPrefix}-budget`} className={labelClass}>
+            {copy.labels.budgetRange}
+          </label>
+          <select
+            id={`${idPrefix}-budget`}
+            value={form.budgetRange ?? ""}
+            onChange={(event) => updateField("budgetRange", event.target.value)}
+            disabled={status === "loading"}
+            className={selectClass}
+          >
+            <option value="" className="bg-bg text-fg-muted">
+              {copy.selects.budgetDefault}
+            </option>
+            {copy.options.budgetRanges.map((option) => (
+              <option key={option.value} value={option.value} className="bg-bg text-fg">
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor={`${idPrefix}-timeline`} className={labelClass}>
+            {copy.labels.timeline}
+          </label>
+          <select
+            id={`${idPrefix}-timeline`}
+            value={form.timeline ?? ""}
+            onChange={(event) => updateField("timeline", event.target.value)}
+            disabled={status === "loading"}
+            className={selectClass}
+          >
+            <option value="" className="bg-bg text-fg-muted">
+              {copy.selects.timelineDefault}
+            </option>
+            {copy.options.timelines.map((option) => (
+              <option key={option.value} value={option.value} className="bg-bg text-fg">
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="mb-8">
-        <label htmlFor="message" className={labelClass}>
-          Message
+        <label htmlFor={`${idPrefix}-message`} className={labelClass}>
+          {copy.labels.message}
         </label>
         <textarea
-          id="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Tell me about your project..."
+          id={`${idPrefix}-message`}
+          value={form.message}
+          onChange={(event) => updateField("message", event.target.value)}
+          placeholder={copy.placeholders.message}
           required
-          rows={4}
+          rows={5}
           disabled={status === "loading"}
           className={`${inputClass} resize-none`}
         />
       </div>
 
-      {status === "error" && <p className="text-sm text-red-500 mb-6">{errorMsg}</p>}
+      {status === "error" ? <p className="text-sm text-red-500 mb-6">{errorMsg}</p> : null}
 
       <button
         type="submit"
         disabled={status === "loading"}
         className="text-sm uppercase tracking-widest text-fg hover:text-fg-secondary transition-colors disabled:opacity-40"
       >
-        {status === "loading" ? "Sending..." : "Send Message →"}
+        {status === "loading" ? copy.submit.sending : `${copy.submit.idle} →`}
       </button>
     </form>
   );

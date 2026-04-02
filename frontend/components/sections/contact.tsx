@@ -7,12 +7,10 @@ export function Contact() {
       <div className="max-w-6xl">
         {/* LET'S KEEP IN TOUCH header */}
         <div className="border-t border-border pt-8 mb-12">
-          <h2 className="text-2xl md:text-3xl font-light text-fg">
-            Ready to Build Something That Works?
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-light text-fg">Ready to get a serious quote?</h2>
         </div>
 
-        <ContactForm />
+        <ContactForm sourcePage="/" />
 
         {/* Contact grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mt-16 mb-24">
@@ -22,23 +20,30 @@ export function Contact() {
               Get In Touch
             </p>
             <p className="text-fg-muted text-sm mb-6">
-              Whether it&apos;s a website, app, or MVP — let&apos;s talk about what your business
-              needs.
+              Start with the form so I can reply with scope, timing, and next steps by email.
             </p>
             <div className="flex flex-col gap-3">
+              <a
+                href="mailto:info@gexpsoftware.com"
+                className="text-fg hover:text-fg-secondary transition-colors text-sm uppercase tracking-widest"
+              >
+                info@gexpsoftware.com →
+              </a>
               <a
                 href="https://cal.com/marcelo-retana"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-fg hover:text-fg-secondary transition-colors text-sm uppercase tracking-widest"
+                className="text-fg-muted hover:text-fg transition-colors text-sm uppercase tracking-widest"
               >
                 Book a Call →
               </a>
               <a
-                href="mailto:info@gexpsoftware.com"
+                href="https://wa.me/50671077969"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-fg-muted hover:text-fg transition-colors text-sm uppercase tracking-widest"
               >
-                info@gexpsoftware.com →
+                WhatsApp →
               </a>
             </div>
           </div>

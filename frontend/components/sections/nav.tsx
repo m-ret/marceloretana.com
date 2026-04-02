@@ -3,30 +3,23 @@
 import { X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const menuLinks = [
   { href: "/", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
+  { href: "/#about", label: "About" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/cr", label: "Costa Rica ES" },
+  { href: "/costa-rica", label: "Costa Rica EN" },
   { href: "/blog", label: "Blog" },
   { href: "/resources", label: "Resources" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Get a Quote" },
 ];
 
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 50);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <>
@@ -49,10 +42,10 @@ export function Nav() {
             type="button"
             onClick={() => router.push("/contact")}
             className="pointer-events-auto nav-glass flex items-center gap-2 px-4 h-12 rounded-full group contact-cta-btn"
-            aria-label="Contact"
+            aria-label="Get a quote"
           >
             <span className="text-xs uppercase tracking-widest text-white/80 group-hover:text-white transition-colors">
-              Let&apos;s Talk
+              Get a Quote
             </span>
           </button>
 
@@ -109,7 +102,7 @@ export function Nav() {
             <div className="md:w-1/2 mb-16 md:mb-0">
               <p className="text-sm uppercase tracking-widest text-fg mb-2">Get in Touch</p>
               <p className="text-fg-muted text-sm mb-6">
-                Need a website, app, or MVP? Let&apos;s talk.
+                Need a website, redesign, or software workflow in Costa Rica? Start with the form.
               </p>
               <a
                 href="mailto:info@gexpsoftware.com"

@@ -19,12 +19,17 @@ export const metadata: Metadata = {
     template: "%s | Marcelo Retana",
   },
   description:
-    "Full-stack developer with 10+ years experience building high-converting websites, apps, and MVPs. Performance-first development with Next.js, SEO optimization, and AI search visibility. Based in Costa Rica, delivering worldwide.",
+    "Full-stack developer with 10+ years experience building high-converting websites, apps, and MVPs. Costa Rica web development, web design, and software execution for local businesses and foreign-owned companies.",
   keywords: [
     // Core identity
     "full stack developer",
     "senior software engineer",
     "10 years experience developer",
+    "web development costa rica",
+    "web development agency costa rica",
+    "web design costa rica",
+    "desarrollo web costa rica",
+    "paginas web costa rica",
     // Target SEO keywords
     "modern website development",
     "high-converting landing pages",
@@ -74,7 +79,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Marcelo Retana | Full-Stack Developer - Modern Websites, Apps & MVPs",
     description:
-      "10+ years building high-converting websites, apps, and MVPs. Performance-first development with Next.js, SEO + AI search optimization. Delivered fast.",
+      "10+ years building high-converting websites, apps, and MVPs. Costa Rica web development, web design, and software execution with a clear form-first sales process.",
     url: "https://marceloretana.com",
     siteName: "Marcelo Retana",
     locale: "en_US",
@@ -84,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Marcelo Retana | Full-Stack Developer - Modern Websites, Apps & MVPs",
     description:
-      "10+ years building high-converting websites, apps, and MVPs. Performance-first development with Next.js, SEO + AI search optimization.",
+      "10+ years building high-converting websites, apps, and MVPs. Costa Rica web development, web design, and software execution.",
   },
   robots: {
     index: true,

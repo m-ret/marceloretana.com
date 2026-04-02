@@ -39,7 +39,7 @@ export default function ContactPage() {
             style={{ animationDelay: "0.65s" }}
           >
             I build websites, apps, and MVPs. Tell me what you&apos;re working on and I&apos;ll get
-            back to you within 24 hours.
+            back to you by email within 24 hours with a clearer next step.
           </p>
         </div>
       </section>
@@ -47,7 +47,7 @@ export default function ContactPage() {
       {/* Form section — theme-aware */}
       <section className="relative z-10 bg-bg px-6 md:px-12 lg:px-16 pb-32">
         <div className="max-w-3xl">
-          <ContactForm />
+          <ContactForm sourcePage="/contact" />
 
           <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row gap-8 text-sm text-fg-muted">
             <div>
@@ -65,6 +65,17 @@ export default function ContactPage() {
                 className="hover:text-fg transition-colors"
               >
                 cal.com/marcelo-retana →
+              </a>
+            </div>
+            <div>
+              <p className="text-fg-muted uppercase tracking-widest text-xs mb-2">WhatsApp</p>
+              <a
+                href="https://wa.me/50671077969"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-fg transition-colors"
+              >
+                +506 7107 7969 →
               </a>
             </div>
             <div>

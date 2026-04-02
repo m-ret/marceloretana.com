@@ -14,6 +14,7 @@
     "format:check": "biome format .",
     "check": "biome check --write .",
     "typecheck": "tsc --noEmit",
+    "validate:market": "bun scripts/market-pages/validate.ts",
     "validate": "bun run typecheck && bun run lint && bun run format:check",
     "prepare": "cd .. && husky frontend/.husky"
   },
