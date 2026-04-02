@@ -38,24 +38,23 @@ export function Hero() {
         <div className="flex min-h-screen flex-col justify-center px-6 pb-12 pt-28 md:px-12 md:pt-32 lg:px-16 lg:pt-36">
           <div className="max-w-4xl xl:max-w-[58rem]">
             <p className="hero-label mb-5 text-xs uppercase tracking-[0.28em] text-white/70 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)] md:text-sm">
-              Costa Rica Websites and Apps
+              Costa Rica Web Development
             </p>
 
             <h1 className="mb-6 max-w-[14ch] text-[clamp(3rem,7vw,5.75rem)] font-light leading-[0.98] tracking-[-0.04em] text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.8)]">
-              <span className="inline-block">Websites and apps</span>
+              <span className="inline-block">Websites for</span>
               <br />
-              <span className="inline-block">that help Costa Rica businesses</span>
+              <span className="inline-block">Costa Rica businesses</span>
               <br />
-              <span className="inline-block">look serious and convert better.</span>
+              <span className="inline-block">that need more trust</span>
+              <br />
+              <span className="inline-block">and more inquiries.</span>
             </h1>
 
             <p className="max-w-2xl text-base leading-relaxed text-white/68 [text-shadow:0_2px_16px_rgba(0,0,0,0.8)] md:text-lg lg:text-xl">
-              Founder-led execution by Marcelo Retana for Costa Rica businesses and foreign-owned
-              teams that need a better website, a clearer offer, and a cleaner quote process.
-              <br className="hidden md:block" />
-              <span className="md:ml-0">
-                Two clear lanes, Spanish for local buyers and English for foreign-owned businesses.
-              </span>
+              Marcelo Retana builds websites, redesigns, and quote flows for Costa Rica businesses
+              and foreign-owned teams that need a clearer offer, stronger design, and better
+              follow-up.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3 md:mt-10 md:gap-4">
@@ -153,11 +152,11 @@ export function Hero() {
             {/* Get in Touch */}
             <div className="flex flex-col justify-end p-8 md:p-10 md:pl-16">
               <p className="text-lg md:text-xl uppercase tracking-widest text-white font-medium mb-4">
-                Start in the Right Lane
+                Choose the Right Version
               </p>
               <p className="max-w-sm text-white/70 mb-6">
-                Pick the commercial path that matches your business, then request a quote with the
-                right context.
+                Use the Spanish side if your business sells in Costa Rica. Use the English side if
+                you prefer to work in English.
               </p>
               <div className="flex flex-col gap-4">
                 <Link
