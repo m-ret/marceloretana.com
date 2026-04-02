@@ -82,10 +82,10 @@ export const esCrHub: MarketHub = {
     subheadline:
       "Trabajo con negocios en Costa Rica que necesitan verse mas serios, explicar mejor lo que hacen y mover mas consultas por formulario.",
     supportingText:
-      "Esta maquina existe para capturar demanda comercial local en lenguaje que los duenos de negocio si usan: sitio web, pagina web, diseno, desarrollo y cotizacion.",
+      "Si hoy su negocio depende demasiado de redes, referencias o WhatsApp, un buen sitio web puede darle una presencia mas clara, confiable y facil de contactar.",
   },
   intro:
-    "Este hub organiza las paginas comerciales y sectoriales pensadas para Costa Rica. La estrategia no arranca hablando de software. Arranca hablando de confianza, claridad, clientes y una forma ordenada de pedir una propuesta.",
+    "Aqui puede ver servicios, sectores, precios orientativos y la forma mas clara de pedir una cotizacion. La idea es simple: ayudarle a verse mas serio, explicar mejor lo que vende y ordenar mejor las consultas que recibe.",
   proof: sharedProof,
   faq: sharedFaq,
   cta: defaultCta,
@@ -118,7 +118,7 @@ export const esCrMarketPages: MarketPage[] = [
         "Desde la primera pagina web hasta un rediseno completo, el enfoque es confianza, claridad de oferta y una forma seria de captar oportunidades.",
     },
     intro:
-      "Esta pagina aterriza la oferta para negocios que aun no saben exactamente que necesitan, pero si saben que su presencia online no les esta ayudando lo suficiente.",
+      "Ideal para negocios que todavia no saben si necesitan una pagina nueva, un rediseno o varias paginas por servicio, pero si saben que su presencia online hoy no les ayuda lo suficiente.",
     problemTitle: "Problemas que se repiten",
     problemPoints: [
       "Dependencia total de Instagram, Facebook o WhatsApp para explicar todo.",
@@ -129,7 +129,7 @@ export const esCrMarketPages: MarketPage[] = [
     solutionPoints: [
       "Paginas web comerciales con mensaje claro y CTA visible.",
       "Redisenos que mejoran estructura, copy y credibilidad.",
-      "Paginas por servicio o vertical para crecer con SEO sin hablar raro.",
+      "Paginas por servicio o sector para crecer con SEO sin hablar raro.",
     ],
     deliverablesTitle: "Que suele incluir",
     deliverables: [
@@ -163,7 +163,7 @@ export const esCrMarketPages: MarketPage[] = [
         "No una presencia online por cumplir. Una pagina que ayude a dar confianza, ordenar servicios y captar mejores consultas.",
     },
     intro:
-      "Esta es la busqueda mas directa del mercado local. El lenguaje aqui es simple porque el comprador normalmente no piensa en tecnologia, piensa en verse serio y conseguir clientes.",
+      "Cuando un negocio busca una pagina web, normalmente no esta pensando en tecnologia. Esta pensando en verse serio, explicar bien lo que hace y facilitar el contacto.",
     problemTitle: "Lo que pasa sin una pagina web seria",
     problemPoints: [
       "Todo depende de referencias, redes sociales o mensajes sueltos.",
@@ -208,7 +208,7 @@ export const esCrMarketPages: MarketPage[] = [
         "La meta no es decoracion. Es transmitir confianza, claridad y valor para que la gente quiera dar el siguiente paso.",
     },
     intro:
-      "Esta pagina ataca la intencion comercial de quienes ya saben que su presencia actual no transmite el nivel real de su negocio.",
+      "Si su presencia actual se ve vieja, generica o poco clara, un mejor diseno puede cambiar la percepcion del negocio antes de la primera llamada o mensaje.",
     problemTitle: "Cuando el diseno falla",
     problemPoints: [
       "El sitio se ve viejo o generico.",
@@ -251,7 +251,7 @@ export const esCrMarketPages: MarketPage[] = [
         "Construyo sitios rapidos, claros y tecnicamente limpios para que el negocio no se quede corto cuando quiera crecer o posicionarse mejor.",
     },
     intro:
-      "Esta pagina mezcla ejecucion tecnica con lenguaje entendible para compradores no tecnicos. No hace falta hablar de arquitectura; hace falta hablar de un sitio que si funcione.",
+      "Aqui lo importante es que el sitio funcione bien, cargue rapido, permita crecer y no se quede corto cuando el negocio quiera agregar mas paginas, formularios o integraciones.",
     problemTitle: "Senales de una mala base",
     problemPoints: [
       "Sitios lentos o fragiles.",
@@ -288,7 +288,7 @@ export const esCrMarketPages: MarketPage[] = [
         "No se trata de hacks. Se trata de mejores paginas, mejor estructura y senales mas claras para que el negocio aparezca con mas fuerza.",
     },
     intro:
-      "Esta pagina traduce SEO a lenguaje de negocio: mas claridad, mas paginas utiles y mejor capacidad de aparecer para busquedas que si importan.",
+      "SEO sirve cuando ayuda a que la gente encuentre paginas claras sobre lo que usted vende, en lugar de depender solo de una pagina inicio que explica todo a medias.",
     problemTitle: "Barreras comunes",
     problemPoints: [
       "Solo existe una pagina inicio sin suficiente contexto.",
@@ -297,7 +297,7 @@ export const esCrMarketPages: MarketPage[] = [
     ],
     solutionTitle: "Como se corrige",
     solutionPoints: [
-      "Paginas por servicio y vertical comercial.",
+      "Paginas por servicio y sector comercial.",
       "Titulos, descripciones y estructura con intencion local.",
       "Enlaces internos que conectan servicios, prueba y conversion.",
     ],
@@ -334,7 +334,7 @@ export const esCrMarketPages: MarketPage[] = [
         "Trabajo con empresas de servicios que necesitan ordenar su oferta, mostrar prueba y dejar un camino claro para pedir informacion.",
     },
     intro:
-      "Este vertical es amplio, pero comercialmente fuerte. La clave es reducir la friccion para negocios que viven de consultas, no de un checkout.",
+      "Los negocios de servicios necesitan sitios que expliquen rapido, den confianza y conviertan visitas en consultas con mas contexto.",
     problemTitle: "Retos tipicos",
     problemPoints: [
       "Oferta dificil de entender en pocos segundos.",
@@ -466,10 +466,10 @@ export const esCrMarketPages: MarketPage[] = [
       eyebrow: "Consultorios",
       headline: "Un consultorio pequeno tambien necesita verse claro y confiable.",
       subheadline:
-        "Esta pagina esta pensada para medicos, odontologos y especialistas que necesitan un sitio simple, serio y facil de consultar.",
+        "Para medicos, odontologos y especialistas que necesitan un sitio simple, serio y facil de consultar.",
     },
     intro:
-      "A diferencia de la pagina para clinicas, aqui el enfoque es mas directo y orientado a profesionales individuales o consultorios pequenos.",
+      "Un consultorio pequeno necesita explicar servicios, ubicacion y forma de contacto sin complicar demasiado la experiencia.",
     problemTitle: "Lo que suele faltar",
     problemPoints: [
       "No hay informacion clara sobre servicios o experiencia.",
@@ -509,7 +509,7 @@ export const esCrMarketPages: MarketPage[] = [
         "Trabajo con hoteles, tours y experiencias que necesitan comunicar valor rapido y dejar claro como consultar disponibilidad o reservar.",
     },
     intro:
-      "En este vertical, el sitio es vitrina, filtro de confianza y motor de consultas al mismo tiempo. Si falla en uno, pierde en todos.",
+      "En turismo, el sitio es vitrina, filtro de confianza y motor de consultas al mismo tiempo. Si falla en uno, pierde en todos.",
     problemTitle: "Fricciones tipicas",
     problemPoints: [
       "Informacion clave repartida en muchas plataformas.",
@@ -555,11 +555,11 @@ export const esCrMarketPages: MarketPage[] = [
         "La inversion tiene que verse reflejada en confianza, claridad y mejores consultas, no solo en tener otra pagina mas en internet.",
     },
     intro:
-      "Esta pagina existe para capturar la objecion mas comun del mercado local: el miedo a gastar en algo que no se entiende y no se siente necesario.",
+      "El precio se vuelve confuso cuando se compara una pagina basica con un sitio comercial que si ayuda a generar confianza, explicar servicios y mover consultas.",
     problemTitle: "Lo que confunde el precio",
     problemPoints: [
       "Comparar una plantilla barata con un sitio comercial real.",
-      "No saber que incluye estrategia, copy, estructura y SEO.",
+      "No saber que incluye mensaje, copy, estructura y SEO.",
       "Miedo a gastar en algo que no se vea serio ni ayude a vender.",
     ],
     solutionTitle: "Como pensar el costo",
@@ -571,7 +571,7 @@ export const esCrMarketPages: MarketPage[] = [
     deliverablesTitle: "Factores que mueven el precio",
     deliverables: [
       "Cantidad de paginas",
-      "Nivel de copy y estrategia",
+      "Nivel de copy y mensaje comercial",
       "SEO o paginas sectoriales",
       "Integraciones o formularios especiales",
       "Nivel de personalizacion visual",
@@ -601,7 +601,7 @@ export const esCrMarketPages: MarketPage[] = [
         "No se trata de tecnologia. Se trata de verse serio, explicar bien lo que hace y dejar una forma clara de contacto.",
     },
     intro:
-      "Esta pagina existe para compradores que aun no entienden del todo por que un sitio les ayudaria. La respuesta no es tecnica: es comercial.",
+      "Muchas veces el problema no es tecnico. El problema es que el negocio no tiene donde mostrarse bien, explicar su oferta y dejar un siguiente paso claro.",
     problemTitle: "Cuando no hay sitio web",
     problemPoints: [
       "El negocio se ve menos establecido.",
@@ -646,7 +646,7 @@ export const esCrMarketPages: MarketPage[] = [
         "La combinacion correcta es mensaje, estructura, prueba y un CTA claro para mover a la persona a pedir informacion.",
     },
     intro:
-      "Esta pagina convierte una idea abstracta de leads en algo mas concreto para el mercado local: mejores consultas, mejor contexto y menos conversaciones perdidas.",
+      "Conseguir mas clientes no depende solo de tener una pagina. Depende de tener una pagina que explique bien, de confianza y deje un siguiente paso muy claro.",
     problemTitle: "Por que muchos sitios no convierten",
     problemPoints: [
       "No dejan claro que hace el negocio.",
@@ -687,7 +687,7 @@ export const esCrMarketPages: MarketPage[] = [
         "Redisenamos sitios para que el negocio se vea mas fuerte, se entienda mejor y convierta mejor que la version anterior.",
     },
     intro:
-      "Esta pagina captura negocios que ya tienen presencia online, pero saben que esa presencia no esta ayudando lo suficiente a vender o dar confianza.",
+      "Muchas empresas ya tienen sitio, pero ese sitio no les ayuda a vender, justificar mejor sus precios o dar una mejor primera impresion.",
     problemTitle: "Senales de que toca redisenar",
     problemPoints: [
       "La web ya no representa el nivel real del negocio.",
@@ -725,10 +725,10 @@ export const esCrMarketPages: MarketPage[] = [
       eyebrow: "Portafolio",
       headline: "La prueba importa mas que cualquier promesa.",
       subheadline:
-        "Esta pagina existe para reducir riesgo. Muestra calidad de ejecucion, experiencia real y el nivel que puede esperar un negocio serio.",
+        "Vea trabajos reales para entender el nivel de ejecucion, criterio y velocidad que puede esperar.",
     },
     intro:
-      "El portafolio funciona como apoyo comercial cuando alguien ya esta comparando opciones y quiere ver trabajo real antes de pedir una propuesta.",
+      "Antes de pedir una propuesta, muchas personas quieren confirmar si el trabajo realmente se ve bien y si el nivel de ejecucion coincide con lo que necesitan.",
     problemTitle: "Lo que la persona quiere confirmar",
     problemPoints: [
       "Calidad visual real.",
@@ -765,11 +765,11 @@ export const esCrMarketPages: MarketPage[] = [
       eyebrow: "Casos de exito",
       headline: "La mejor manera de vender confianza es con resultados y contexto.",
       subheadline:
-        "Esta pagina organiza prueba social y casos para ayudar a decidir mas rapido sin depender solo de una llamada o una recomendacion informal.",
+        "Resultados, contexto y prueba real ayudan a decidir con menos riesgo que una promesa suelta o una recomendacion informal.",
     },
     intro:
-      "Los casos de exito ayudan tanto a conversion como a SEO cuando la persona ya esta comparando opciones y quiere bajar el riesgo antes de avanzar.",
-    problemTitle: "Objeciones que reduce esta pagina",
+      "Los casos ayudan a bajar el riesgo cuando alguien ya esta comparando opciones y quiere ver si de verdad se entrega lo prometido.",
+    problemTitle: "Objeciones que ayuda a reducir",
     problemPoints: [
       "No saber si de verdad se entrega.",
       "No tener evidencia de calidad o experiencia.",
@@ -804,7 +804,7 @@ export const esCrMarketPages: MarketPage[] = [
         "La idea es pasar de una necesidad comercial a una propuesta, una entrega concreta y una presencia online mejor organizada sin vueltas innecesarias.",
     },
     intro:
-      "Esta pagina sirve para bajar incertidumbre y reforzar seriedad operacional. Ayuda a que el lead se imagine como seria trabajar conmigo antes de escribir.",
+      "El proceso ayuda a bajar incertidumbre desde el inicio. La idea es que usted sepa que pasa despues de escribir, cuanto orden hay en el trabajo y como se llega a una entrega clara.",
     problemTitle: "Miedos comunes",
     problemPoints: [
       "No saber que pasa despues de escribir por primera vez.",
@@ -839,14 +839,14 @@ export const esCrMarketPages: MarketPage[] = [
     ],
     hero: {
       eyebrow: "Cotizacion",
-      headline: "La mejor siguiente accion es una cotizacion clara.",
+      headline: "Cuenteme sobre el proyecto y le envio una cotizacion clara.",
       subheadline:
-        "Comparta el contexto de su negocio y respondo por email con un enfoque, un rango de inversion y los siguientes pasos.",
+        "Si necesita un sitio web nuevo, mejorar el actual o cotizar una app, deje el contexto aqui y le respondo por email con una recomendacion, un rango de inversion y los siguientes pasos.",
       supportingText:
-        "Este formulario existe para reemplazar conversaciones desordenadas y dejar una base mas seria para avanzar.",
+        "Asi la conversacion empieza ordenada, con mejor contexto y sin perder tiempo en mensajes sueltos.",
     },
     intro:
-      "Esta es la pagina con mayor intencion comercial del sistema. Todo empuja a completar el formulario con suficiente contexto para responder bien.",
+      "Una buena cotizacion empieza con contexto. Cuando entiendo que vende, que necesita y que quiere lograr, puedo responder con algo util en lugar de una cifra al aire.",
     problemTitle: "Por que usar formulario primero",
     problemPoints: [
       "Permite explicar mejor el negocio desde el inicio.",

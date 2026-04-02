@@ -16,13 +16,16 @@ type ContactFormProps = {
     title: string;
     description: string;
     notes?: string[];
+    notesTitle?: string;
   };
 };
 
 const inputClass =
-  "w-full bg-transparent border-b border-border py-4 md:py-5 text-base text-fg placeholder:text-fg-muted focus:outline-none focus:border-fg transition-colors";
+  "min-h-14 w-full border border-border bg-bg-secondary px-4 py-4 text-base text-fg placeholder:text-fg-muted focus:outline-none focus:border-fg transition-colors";
 
-const labelClass = "block text-xs uppercase tracking-[0.28em] text-fg-muted mb-3";
+const textareaClass = `${inputClass} min-h-[180px] resize-none`;
+
+const labelClass = "block text-[11px] uppercase tracking-[0.2em] text-fg-muted mb-3";
 
 const selectClass = `${inputClass} cursor-pointer`;
 
@@ -46,11 +49,6 @@ export function ContactForm({ locale = "en", sourcePage, className, header }: Co
   const copy = getLeadFormCopy(locale);
   const pathname = usePathname();
   const resolvedSourcePage = sourcePage ?? pathname ?? "/";
-  const footerNote = header
-    ? locale === "cr"
-      ? "Incluya negocio, meta principal y rango de presupuesto para responder mejor."
-      : "Include business context, top priority, and budget range for a cleaner quote."
-    : copy.messages.helper;
   const [form, setForm] = useState<LeadFormData>(formDefaults(locale, resolvedSourcePage));
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -91,11 +89,11 @@ export function ContactForm({ locale = "en", sourcePage, className, header }: Co
 
   if (status === "success") {
     return (
-      <div className={cn("py-12 border-b border-border", className)}>
+      <div className={cn("border-t border-border pt-8 md:pt-10", className)}>
         <p className="text-sm uppercase tracking-widest text-fg-muted mb-2">
           {copy.submit.success}
         </p>
-        <p className="text-fg">{copy.messages.success}</p>
+        <p className="max-w-2xl text-fg-secondary">{copy.messages.success}</p>
       </div>
     );
   }
@@ -104,197 +102,206 @@ export function ContactForm({ locale = "en", sourcePage, className, header }: Co
     <form
       id="lead-form"
       onSubmit={handleSubmit}
-      className={cn("py-12 border-b border-border", className)}
+      className={cn("border-t border-border pt-8 md:pt-10", className)}
     >
       {header ? (
-        <div className="grid gap-8 border-t border-border pt-8 pb-10 mb-10 xl:grid-cols-[minmax(0,1fr)_minmax(280px,360px)]">
+        <div className="mb-12 grid gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
+            <p className="mb-4 text-xs uppercase tracking-[0.3em] text-fg-muted">
               {header.eyebrow}
             </p>
-            <h2 className="text-2xl md:text-4xl font-light leading-tight tracking-tight mb-4">
+            <h2 className="mb-4 max-w-2xl text-3xl font-light leading-[1.02] tracking-tight md:text-5xl">
               {header.title}
             </h2>
-            <p className="max-w-2xl text-base md:text-lg text-fg-secondary leading-relaxed">
+            <p className="max-w-2xl text-base leading-relaxed text-fg-secondary md:text-xl">
               {header.description}
             </p>
           </div>
 
-          <div className="space-y-4 xl:pt-1">
-            {(header.notes?.length ? header.notes : [copy.messages.helper]).map((note) => (
-              <p
-                key={note}
-                className="border-t border-border pt-4 text-sm text-fg-muted leading-relaxed"
-              >
-                {note}
-              </p>
-            ))}
+          <div className="lg:pt-12">
+            <p className="mb-5 text-[11px] uppercase tracking-[0.2em] text-fg-muted">
+              {header.notesTitle ?? (locale === "cr" ? "Que recibe" : "What you get")}
+            </p>
+            <ul className="space-y-4">
+              {(header.notes?.length ? header.notes : [copy.messages.helper]).map((note) => (
+                <li key={note} className="flex items-start gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-fg" />
+                  <span className="text-sm leading-relaxed text-fg-secondary">{note}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       ) : (
-        <div className="border-t border-border pt-8 mb-10">
+        <div className="mb-10">
           <p className="max-w-2xl text-base text-fg-muted">{copy.messages.helper}</p>
         </div>
       )}
 
-      <div className="grid md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
-        <div>
-          <label htmlFor={`${idPrefix}-name`} className={labelClass}>
-            {copy.labels.name}
-          </label>
-          <input
-            id={`${idPrefix}-name`}
-            type="text"
-            value={form.name}
-            onChange={(event) => updateField("name", event.target.value)}
-            placeholder={copy.placeholders.name}
-            required
-            disabled={status === "loading"}
-            className={inputClass}
-          />
-        </div>
+      <fieldset className="mb-8">
+        <legend className="mb-5 text-[11px] uppercase tracking-[0.24em] text-fg-muted">
+          {locale === "cr" ? "Contacto" : "Contact"}
+        </legend>
+        <div className="grid gap-x-6 gap-y-6 md:grid-cols-2">
+          <div>
+            <label htmlFor={`${idPrefix}-name`} className={labelClass}>
+              {copy.labels.name}
+            </label>
+            <input
+              id={`${idPrefix}-name`}
+              type="text"
+              value={form.name}
+              onChange={(event) => updateField("name", event.target.value)}
+              placeholder={copy.placeholders.name}
+              required
+              disabled={status === "loading"}
+              className={inputClass}
+            />
+          </div>
 
-        <div>
-          <label htmlFor={`${idPrefix}-email`} className={labelClass}>
-            {copy.labels.email}
-          </label>
-          <input
-            id={`${idPrefix}-email`}
-            type="email"
-            value={form.email}
-            onChange={(event) => updateField("email", event.target.value)}
-            placeholder={copy.placeholders.email}
-            required
-            disabled={status === "loading"}
-            className={inputClass}
-          />
-        </div>
-      </div>
+          <div>
+            <label htmlFor={`${idPrefix}-email`} className={labelClass}>
+              {copy.labels.email}
+            </label>
+            <input
+              id={`${idPrefix}-email`}
+              type="email"
+              value={form.email}
+              onChange={(event) => updateField("email", event.target.value)}
+              placeholder={copy.placeholders.email}
+              required
+              disabled={status === "loading"}
+              className={inputClass}
+            />
+          </div>
 
-      <div className="grid md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
-        <div>
-          <label htmlFor={`${idPrefix}-business`} className={labelClass}>
-            {copy.labels.businessName}
-          </label>
-          <input
-            id={`${idPrefix}-business`}
-            type="text"
-            value={form.businessName ?? ""}
-            onChange={(event) => updateField("businessName", event.target.value)}
-            placeholder={copy.placeholders.businessName}
-            disabled={status === "loading"}
-            className={inputClass}
-          />
-        </div>
+          <div>
+            <label htmlFor={`${idPrefix}-business`} className={labelClass}>
+              {copy.labels.businessName}
+            </label>
+            <input
+              id={`${idPrefix}-business`}
+              type="text"
+              value={form.businessName ?? ""}
+              onChange={(event) => updateField("businessName", event.target.value)}
+              placeholder={copy.placeholders.businessName}
+              disabled={status === "loading"}
+              className={inputClass}
+            />
+          </div>
 
-        <div>
-          <label htmlFor={`${idPrefix}-phone`} className={labelClass}>
-            {copy.labels.phoneOrWhatsApp}
-          </label>
-          <input
-            id={`${idPrefix}-phone`}
-            type="text"
-            value={form.phoneOrWhatsApp ?? ""}
-            onChange={(event) => updateField("phoneOrWhatsApp", event.target.value)}
-            placeholder={copy.placeholders.phoneOrWhatsApp}
-            disabled={status === "loading"}
-            className={inputClass}
-          />
+          <div>
+            <label htmlFor={`${idPrefix}-phone`} className={labelClass}>
+              {copy.labels.phoneOrWhatsApp}
+            </label>
+            <input
+              id={`${idPrefix}-phone`}
+              type="text"
+              value={form.phoneOrWhatsApp ?? ""}
+              onChange={(event) => updateField("phoneOrWhatsApp", event.target.value)}
+              placeholder={copy.placeholders.phoneOrWhatsApp}
+              disabled={status === "loading"}
+              className={inputClass}
+            />
+          </div>
         </div>
-      </div>
+      </fieldset>
 
-      <div className="grid md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
-        <div>
-          <label htmlFor={`${idPrefix}-industry`} className={labelClass}>
-            {copy.labels.industry}
-          </label>
-          <select
-            id={`${idPrefix}-industry`}
-            value={form.industry ?? ""}
-            onChange={(event) => updateField("industry", event.target.value)}
-            disabled={status === "loading"}
-            className={selectClass}
-          >
-            <option value="" className="bg-bg text-fg-muted">
-              {copy.selects.industryDefault}
-            </option>
-            {copy.options.industries.map((option) => (
-              <option key={option.value} value={option.value} className="bg-bg text-fg">
-                {option.label}
+      <fieldset className="mb-8">
+        <legend className="mb-5 text-[11px] uppercase tracking-[0.24em] text-fg-muted">
+          {locale === "cr" ? "Proyecto" : "Project"}
+        </legend>
+        <div className="grid gap-x-6 gap-y-6 md:grid-cols-2">
+          <div>
+            <label htmlFor={`${idPrefix}-industry`} className={labelClass}>
+              {copy.labels.industry}
+            </label>
+            <select
+              id={`${idPrefix}-industry`}
+              value={form.industry ?? ""}
+              onChange={(event) => updateField("industry", event.target.value)}
+              disabled={status === "loading"}
+              className={selectClass}
+            >
+              <option value="" className="bg-bg text-fg-muted">
+                {copy.selects.industryDefault}
               </option>
-            ))}
-          </select>
-        </div>
+              {copy.options.industries.map((option) => (
+                <option key={option.value} value={option.value} className="bg-bg text-fg">
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div>
-          <label htmlFor={`${idPrefix}-project`} className={labelClass}>
-            {copy.labels.projectType}
-          </label>
-          <select
-            id={`${idPrefix}-project`}
-            value={form.projectType}
-            onChange={(event) => updateField("projectType", event.target.value)}
-            required
-            disabled={status === "loading"}
-            className={selectClass}
-          >
-            <option value="" className="bg-bg text-fg-muted">
-              {copy.selects.projectTypeDefault}
-            </option>
-            {copy.options.projectTypes.map((option) => (
-              <option key={option.value} value={option.value} className="bg-bg text-fg">
-                {option.label}
+          <div>
+            <label htmlFor={`${idPrefix}-project`} className={labelClass}>
+              {copy.labels.projectType}
+            </label>
+            <select
+              id={`${idPrefix}-project`}
+              value={form.projectType}
+              onChange={(event) => updateField("projectType", event.target.value)}
+              required
+              disabled={status === "loading"}
+              className={selectClass}
+            >
+              <option value="" className="bg-bg text-fg-muted">
+                {copy.selects.projectTypeDefault}
               </option>
-            ))}
-          </select>
-        </div>
-      </div>
+              {copy.options.projectTypes.map((option) => (
+                <option key={option.value} value={option.value} className="bg-bg text-fg">
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
-      <div className="grid md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
-        <div>
-          <label htmlFor={`${idPrefix}-budget`} className={labelClass}>
-            {copy.labels.budgetRange}
-          </label>
-          <select
-            id={`${idPrefix}-budget`}
-            value={form.budgetRange ?? ""}
-            onChange={(event) => updateField("budgetRange", event.target.value)}
-            disabled={status === "loading"}
-            className={selectClass}
-          >
-            <option value="" className="bg-bg text-fg-muted">
-              {copy.selects.budgetDefault}
-            </option>
-            {copy.options.budgetRanges.map((option) => (
-              <option key={option.value} value={option.value} className="bg-bg text-fg">
-                {option.label}
+          <div>
+            <label htmlFor={`${idPrefix}-budget`} className={labelClass}>
+              {copy.labels.budgetRange}
+            </label>
+            <select
+              id={`${idPrefix}-budget`}
+              value={form.budgetRange ?? ""}
+              onChange={(event) => updateField("budgetRange", event.target.value)}
+              disabled={status === "loading"}
+              className={selectClass}
+            >
+              <option value="" className="bg-bg text-fg-muted">
+                {copy.selects.budgetDefault}
               </option>
-            ))}
-          </select>
-        </div>
+              {copy.options.budgetRanges.map((option) => (
+                <option key={option.value} value={option.value} className="bg-bg text-fg">
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div>
-          <label htmlFor={`${idPrefix}-timeline`} className={labelClass}>
-            {copy.labels.timeline}
-          </label>
-          <select
-            id={`${idPrefix}-timeline`}
-            value={form.timeline ?? ""}
-            onChange={(event) => updateField("timeline", event.target.value)}
-            disabled={status === "loading"}
-            className={selectClass}
-          >
-            <option value="" className="bg-bg text-fg-muted">
-              {copy.selects.timelineDefault}
-            </option>
-            {copy.options.timelines.map((option) => (
-              <option key={option.value} value={option.value} className="bg-bg text-fg">
-                {option.label}
+          <div>
+            <label htmlFor={`${idPrefix}-timeline`} className={labelClass}>
+              {copy.labels.timeline}
+            </label>
+            <select
+              id={`${idPrefix}-timeline`}
+              value={form.timeline ?? ""}
+              onChange={(event) => updateField("timeline", event.target.value)}
+              disabled={status === "loading"}
+              className={selectClass}
+            >
+              <option value="" className="bg-bg text-fg-muted">
+                {copy.selects.timelineDefault}
               </option>
-            ))}
-          </select>
+              {copy.options.timelines.map((option) => (
+                <option key={option.value} value={option.value} className="bg-bg text-fg">
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      </div>
+      </fieldset>
 
       <div className="mb-8">
         <label htmlFor={`${idPrefix}-message`} className={labelClass}>
@@ -306,24 +313,28 @@ export function ContactForm({ locale = "en", sourcePage, className, header }: Co
           onChange={(event) => updateField("message", event.target.value)}
           placeholder={copy.placeholders.message}
           required
-          rows={6}
           disabled={status === "loading"}
-          className={`${inputClass} resize-none`}
+          className={textareaClass}
         />
       </div>
 
-      {status === "error" ? <p className="text-sm text-red-500 mb-6">{errorMsg}</p> : null}
+      {status === "error" ? (
+        <p className="mb-6 text-sm text-red-400" role="alert">
+          {errorMsg}
+        </p>
+      ) : null}
 
-      <div className="border-t border-border pt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-5 border-t border-border pt-6 md:flex-row md:items-center md:justify-between">
         <button
           type="submit"
           disabled={status === "loading"}
-          className="text-sm md:text-base uppercase tracking-[0.24em] text-fg hover:text-fg-secondary transition-colors disabled:opacity-40"
+          className="inline-flex min-h-14 items-center justify-center gap-3 border border-fg bg-fg px-6 text-sm uppercase tracking-[0.18em] text-bg transition-colors hover:bg-bg hover:text-fg disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {status === "loading" ? copy.submit.sending : `${copy.submit.idle} →`}
+          <span>{status === "loading" ? copy.submit.sending : copy.submit.idle}</span>
+          <span aria-hidden="true">→</span>
         </button>
 
-        <p className="max-w-md text-sm text-fg-muted leading-relaxed">{footerNote}</p>
+        <p className="max-w-md text-sm leading-relaxed text-fg-muted">{copy.messages.helper}</p>
       </div>
     </form>
   );

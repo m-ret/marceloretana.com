@@ -74,18 +74,18 @@ type LeadFormCopy = {
 
 const sharedProjectTypes: Record<LeadFormLocale, OptionValue[]> = {
   cr: [
-    { value: "Primera pagina web", label: "Primera pagina web" },
-    { value: "Rediseno de sitio web", label: "Rediseno de sitio web" },
-    { value: "Paginas por servicio con SEO", label: "Paginas por servicio con SEO" },
-    { value: "Sitio con reservas o consultas", label: "Sitio con reservas o consultas" },
-    { value: "App o solucion a medida", label: "App o solucion a medida" },
+    { value: "Sitio web nuevo", label: "Sitio web nuevo" },
+    { value: "Mejorar sitio actual", label: "Mejorar sitio actual" },
+    { value: "Paginas por servicio", label: "Paginas por servicio" },
+    { value: "Reservas o consultas", label: "Reservas o consultas" },
+    { value: "App o sistema a medida", label: "App o sistema a medida" },
   ],
   en: [
-    { value: "First business website", label: "First business website" },
-    { value: "Website redesign", label: "Website redesign" },
-    { value: "SEO service pages", label: "SEO service pages" },
-    { value: "Booking or inquiry website", label: "Booking or inquiry website" },
-    { value: "App or custom workflow", label: "App or custom workflow" },
+    { value: "New business website", label: "New business website" },
+    { value: "Improve current website", label: "Improve current website" },
+    { value: "Service pages", label: "Service pages" },
+    { value: "Booking or inquiry flow", label: "Booking or inquiry flow" },
+    { value: "App or custom system", label: "App or custom system" },
   ],
 };
 
@@ -141,27 +141,27 @@ export function getLeadFormCopy(locale: LeadFormLocale): LeadFormCopy {
     return {
       labels: {
         name: "Nombre",
-        businessName: "Negocio",
+        businessName: "Empresa o negocio",
         email: "Email",
         phoneOrWhatsApp: "Telefono o WhatsApp",
         industry: "Industria",
         projectType: "Tipo de proyecto",
-        budgetRange: "Presupuesto",
-        timeline: "Tiempo ideal",
-        message: "Cuenteme que necesita",
+        budgetRange: "Presupuesto estimado",
+        timeline: "Cuando le gustaria empezar",
+        message: "Que necesita cotizar",
       },
       placeholders: {
         name: "Su nombre",
         businessName: "Nombre del negocio",
         email: "su@email.com",
         phoneOrWhatsApp: "+506 ...",
-        message: "Que vende, que necesita y que le gustaria mejorar primero?",
+        message: "Que vende, que necesita cotizar y cual es la meta principal de este proyecto?",
       },
       selects: {
         industryDefault: "Seleccione una industria",
-        projectTypeDefault: "Seleccione un proyecto",
-        budgetDefault: "Seleccione un presupuesto",
-        timelineDefault: "Seleccione un tiempo",
+        projectTypeDefault: "Seleccione el tipo de proyecto",
+        budgetDefault: "Seleccione un rango",
+        timelineDefault: "Seleccione un momento",
       },
       options: {
         industries: sharedIndustries.cr,
@@ -175,7 +175,8 @@ export function getLeadFormCopy(locale: LeadFormLocale): LeadFormCopy {
         success: "Enviado",
       },
       messages: {
-        helper: "Respuesta por email en menos de 24 horas. WhatsApp queda como canal secundario.",
+        helper:
+          "Le respondo por email en menos de 24 horas con una recomendacion clara y siguientes pasos.",
         error: "Algo salio mal. Intente de nuevo o escriba por email.",
         success: "Mensaje enviado. Le respondere por email en menos de 24 horas.",
       },
@@ -190,22 +191,23 @@ export function getLeadFormCopy(locale: LeadFormLocale): LeadFormCopy {
       phoneOrWhatsApp: "Phone or WhatsApp",
       industry: "Industry",
       projectType: "Project type",
-      budgetRange: "Budget range",
-      timeline: "Timeline",
-      message: "Tell me what you need",
+      budgetRange: "Estimated budget",
+      timeline: "When would you like to start",
+      message: "What do you need quoted",
     },
     placeholders: {
       name: "Your name",
       businessName: "Business name",
       email: "your@email.com",
       phoneOrWhatsApp: "+1 ...",
-      message: "What does the business do, what do you need built, and what should improve first?",
+      message:
+        "What does the business do, what do you need quoted, and what is the main goal for this project?",
     },
     selects: {
       industryDefault: "Select an industry",
       projectTypeDefault: "Select a project type",
-      budgetDefault: "Select a budget range",
-      timelineDefault: "Select a timeline",
+      budgetDefault: "Select a range",
+      timelineDefault: "Select a timeframe",
     },
     options: {
       industries: sharedIndustries.en,
@@ -214,12 +216,12 @@ export function getLeadFormCopy(locale: LeadFormLocale): LeadFormCopy {
       timelines: sharedTimelines.en,
     },
     submit: {
-      idle: "Request a Quote",
+      idle: "Request Quote",
       sending: "Sending...",
       success: "Sent",
     },
     messages: {
-      helper: "Reply by email within 24 hours. Form first keeps follow-up cleaner than WhatsApp.",
+      helper: "I reply by email within 24 hours with a clear recommendation and next steps.",
       error: "Something went wrong. Please try again or email me directly.",
       success: "Message sent. I will reply by email within 24 hours.",
     },

@@ -45,40 +45,38 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
   const copy =
     entry.locale === "es"
       ? {
-          summary: "Resumen",
           problem: "Problemas",
           solution: "Enfoque",
           deliverables: "Entregables",
           faq: "Preguntas frecuentes",
-          proof: "Prueba",
           related: "Paginas relacionadas",
-          formEyebrow: "Cotizacion",
-          formTitle: "Cuente que necesita",
+          formEyebrow: "Solicitar cotizacion",
+          formTitle: "Cuenteme que necesita",
           formDescription:
-            "El formulario es la via principal para responder con mejor contexto y dar seguimiento por email.",
+            "Si necesita un sitio web nuevo, mejorar el actual o cotizar una app, deje aqui el contexto. Le respondo por email con una recomendacion clara, un rango de inversion y el siguiente paso.",
         }
       : {
-          summary: "Summary",
           problem: "Problems",
           solution: "Approach",
           deliverables: "Deliverables",
           faq: "Frequently asked questions",
-          proof: "Proof",
           related: "Related pages",
-          formEyebrow: "Quote",
+          formEyebrow: "Request Quote",
           formTitle: "Tell me what you need",
           formDescription:
-            "The form is the primary path because it makes scoping and follow-up much cleaner by email.",
+            "If you need a new website, a redesign, or a custom build, leave the context here. I will reply by email with a clear recommendation, a budget range, and the next step.",
         };
   const formNotes =
     entry.locale === "es"
       ? [
           "Respuesta por email en menos de 24 horas.",
-          "WhatsApp sigue disponible, pero el seguimiento principal queda por email.",
+          "Rango de inversion segun el alcance.",
+          "Siguiente paso claro para avanzar.",
         ]
       : [
           "Reply by email within 24 hours.",
-          "WhatsApp can stay secondary, but the main follow-up stays in email.",
+          "Budget range based on the scope.",
+          "Clear next step to move forward.",
         ];
   const relatedHeading = isPage
     ? copy.related
@@ -147,39 +145,20 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
           <ContactForm
             locale={locale}
             sourcePage={entry.path}
-            className="border-b-0 py-0"
+            className="border-b-0"
             header={{
               eyebrow: copy.formEyebrow,
               title: copy.formTitle,
               description: copy.formDescription,
               notes: formNotes,
+              notesTitle: entry.locale === "es" ? "Que recibe" : "What you get",
             }}
           />
         </div>
 
-        <div className="grid gap-10 lg:grid-cols-2 mt-16 max-w-6xl">
-          <div className={sectionClass}>
-            <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">{copy.summary}</p>
-            <h2 className="text-2xl md:text-3xl font-light mb-4">{entry.title}</h2>
-            <p className="text-fg-secondary leading-relaxed">{entry.intro}</p>
-          </div>
-
-          <div className={sectionClass}>
-            <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
-              {entry.locale === "es" ? "Palabras clave" : "Primary keywords"}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {entry.keywords.map((keyword) => (
-                <span
-                  key={keyword}
-                  className="border border-border px-3 py-2 text-xs uppercase tracking-[0.15em] text-fg-secondary"
-                >
-                  {keyword}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+        <section className={`${sectionClass} mt-16 max-w-4xl`}>
+          <p className="text-base md:text-xl text-fg-secondary leading-relaxed">{entry.intro}</p>
+        </section>
 
         {isPage ? (
           <div className="grid gap-10 lg:grid-cols-3 mt-16 max-w-6xl">
