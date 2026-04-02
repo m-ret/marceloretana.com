@@ -56,6 +56,22 @@ export default async function ResourcePage({ params }: PageProps) {
   const altSlug = hasAlternate("resources", slug, meta.locale)
     ? getAlternateSlug(slug, meta.locale)
     : undefined;
+  const ui =
+    meta.locale === "es"
+      ? {
+          back: "Todos los recursos",
+          ctaTitle: "¿Necesita ayuda para elegir las herramientas correctas?",
+          ctaBody:
+            "He trabajado en producción con muchas de estas herramientas. Puedo ayudarle a elegir lo que mejor se ajusta a su caso real.",
+          footer: "Todos los recursos",
+        }
+      : {
+          back: "All resources",
+          ctaTitle: "Need help choosing the right tools?",
+          ctaBody:
+            "I have built production projects with many of these tools. I can help you choose what best fits your real use case.",
+          footer: "All resources",
+        };
 
   const allTags = Array.from(
     new Set(categories.flatMap((c) => c.items.flatMap((item) => item.tags)))
@@ -110,7 +126,7 @@ export default async function ResourcePage({ params }: PageProps) {
           className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors mb-12"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          All resources
+          {ui.back}
         </Link>
 
         <header className="mb-12">
@@ -128,7 +144,7 @@ export default async function ResourcePage({ params }: PageProps) {
               href={`/resources/${altSlug}`}
               className="inline-block mt-4 text-sm text-accent hover:underline"
             >
-              {meta.locale === "en" ? "Ver en Espanol" : "View in English"}
+              {meta.locale === "en" ? "Ver en Español" : "View in English"}
             </Link>
           )}
         </header>
@@ -138,12 +154,12 @@ export default async function ResourcePage({ params }: PageProps) {
         <ResourceFilter categories={categories} tags={allTags} locale={meta.locale} />
 
         <section className="mt-16">
-          <h2 className="text-xl font-light text-fg mb-2">Need help choosing the right tools?</h2>
-          <p className="text-sm text-fg-muted mb-0">
-            I&apos;ve built production projects with most of these. Let&apos;s figure out what fits
-            your use case.
-          </p>
-          <ContactForm />
+          <h2 className="text-xl font-light text-fg mb-2">{ui.ctaTitle}</h2>
+          <p className="text-sm text-fg-muted mb-0">{ui.ctaBody}</p>
+          <ContactForm
+            locale={meta.locale === "es" ? "cr" : "en"}
+            sourcePage={`/resources/${slug}`}
+          />
         </section>
 
         <footer className="border-t border-border mt-16 pt-8">
@@ -152,7 +168,7 @@ export default async function ResourcePage({ params }: PageProps) {
             className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            All resources
+            {ui.footer}
           </Link>
         </footer>
       </article>

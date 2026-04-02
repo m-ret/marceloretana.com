@@ -29,7 +29,7 @@ export interface StackMeta {
 
 export function comparisonTitle(m: ComparisonMeta, locale: "en" | "es"): string {
   if (locale === "es") {
-    return `${m.tool_a} vs ${m.tool_b}: Cual Es Mejor para ${m.use_case} en 2026?`;
+    return `${m.tool_a} vs ${m.tool_b}: Cuál es mejor para ${m.use_case} en 2026?`;
   }
   return `${m.tool_a} vs ${m.tool_b}: Which Is Better for ${m.use_case} in 2026?`;
 }

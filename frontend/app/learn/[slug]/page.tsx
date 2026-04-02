@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ContactForm } from "@/components/sections/contact-form";
 import { getAlternateSlug, getPseoContent, getPseoSlugs, hasAlternate } from "@/lib/pseo";
 import type { Stack } from "@/lib/pseo-types";
 import ShareBar from "../../compare/[slug]/ShareBar";
@@ -62,6 +63,24 @@ export default async function LearnPage({ params }: PageProps) {
   const altSlug = hasAlternate("stacks", slug, meta.locale)
     ? getAlternateSlug(slug, meta.locale)
     : undefined;
+  const ui =
+    meta.locale === "es"
+      ? {
+          back: "Todas las guías",
+          tip: "Consejo:",
+          ctaTitle: "¿Necesita ayuda para construir esto?",
+          ctaBody:
+            "Si quiere lanzar algo con este stack, puedo ayudarle a definir la arquitectura y construirlo con una base sólida.",
+          footer: "Todas las guías",
+        }
+      : {
+          back: "All guides",
+          tip: "Tip:",
+          ctaTitle: "Need help building this?",
+          ctaBody:
+            "I have shipped production projects with these stacks. If you want to launch something with this stack, I can help define the architecture and build it well.",
+          footer: "All guides",
+        };
 
   const howToLd = {
     "@context": "https://schema.org",
@@ -109,7 +128,7 @@ export default async function LearnPage({ params }: PageProps) {
           className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors mb-12"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          All guides
+          {ui.back}
         </Link>
 
         <header className="mb-12">
@@ -133,7 +152,7 @@ export default async function LearnPage({ params }: PageProps) {
               href={`/learn/${altSlug}`}
               className="inline-block mt-4 text-sm text-accent hover:underline"
             >
-              {meta.locale === "en" ? "Ver en Espanol" : "View in English"}
+              {meta.locale === "en" ? "Ver en Español" : "View in English"}
             </Link>
           )}
         </header>
@@ -143,7 +162,7 @@ export default async function LearnPage({ params }: PageProps) {
         {/* Prerequisites */}
         <section className="mb-12 border border-border rounded-lg p-6">
           <h2 className="text-xl font-light text-fg mb-4">
-            {meta.locale === "es" ? "Prerequisitos" : "Prerequisites"}
+            {meta.locale === "es" ? "Requisitos previos" : "Prerequisites"}
           </h2>
           <ul className="space-y-3">
             {prerequisites.map((prereq, i) => (
@@ -184,7 +203,7 @@ export default async function LearnPage({ params }: PageProps) {
               <div className="ml-14 border-l-2 border-accent/20 pl-4">
                 {step.tips.map((tip, i) => (
                   <p key={i} className="text-sm text-fg-secondary mb-1">
-                    <span className="text-accent">Tip:</span> {tip}
+                    <span className="text-accent">{ui.tip}</span> {tip}
                   </p>
                 ))}
               </div>
@@ -195,7 +214,7 @@ export default async function LearnPage({ params }: PageProps) {
         {/* Next steps */}
         <section className="border border-border rounded-lg p-8 mb-16">
           <h2 className="text-xl font-light text-fg mb-6">
-            {meta.locale === "es" ? "Proximos Pasos" : "Next Steps"}
+            {meta.locale === "es" ? "Próximos pasos" : "Next Steps"}
           </h2>
           <ul className="space-y-3">
             {next_steps.map((step, i) => (
@@ -208,18 +227,10 @@ export default async function LearnPage({ params }: PageProps) {
         </section>
 
         {/* CTA */}
-        <section className="border border-border rounded-lg p-8 text-center">
-          <h2 className="text-xl font-light text-fg mb-3">Need help building this?</h2>
-          <p className="text-fg-secondary mb-6">
-            I&apos;ve shipped production projects with these stacks. Let&apos;s build yours
-            together.
-          </p>
-          <Link
-            href="#contact"
-            className="inline-block border border-accent text-accent px-6 py-2.5 rounded-full text-sm hover:bg-accent hover:text-white transition-colors"
-          >
-            Let&apos;s Talk
-          </Link>
+        <section className="border border-border rounded-lg p-8">
+          <h2 className="text-xl font-light text-fg mb-3">{ui.ctaTitle}</h2>
+          <p className="text-fg-secondary mb-0">{ui.ctaBody}</p>
+          <ContactForm locale={meta.locale === "es" ? "cr" : "en"} sourcePage={`/learn/${slug}`} />
         </section>
 
         <footer className="border-t border-border mt-16 pt-8">
@@ -228,7 +239,7 @@ export default async function LearnPage({ params }: PageProps) {
             className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            All guides
+            {ui.footer}
           </Link>
         </footer>
       </article>

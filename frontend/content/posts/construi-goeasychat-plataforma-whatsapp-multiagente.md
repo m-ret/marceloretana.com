@@ -16,7 +16,7 @@ Hay un patrón que vi repetirse en Costa Rica, en México, en Colombia, en prác
 
 La dueña tiene WhatsApp Business en su celular. Le llegan 80 mensajes por día. Responde los que puede entre reuniones, entre llamadas, entre coordinar el resto del negocio. Los que no alcanza a responder a tiempo se van. Algunos vuelven. Muchos no.
 
-Me lo contaron como si fuera inevitable. Como si perder clientes por WhatsApp fuera simplemente el costo de hacer negocios en la región.
+Me lo contaron como si fuera inevitable. Cómo si perder clientes por WhatsApp fuera simplemente el costo de hacer negocios en la región.
 
 No lo es. Pero las herramientas disponibles hacían que pareciera que sí.
 

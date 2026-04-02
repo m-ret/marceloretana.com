@@ -98,7 +98,7 @@ Anthropic está siendo transparente sobre tanto las capacidades como los riesgos
 
 El panorama general es que la autonomía de agentes IA está aumentando rápido, la mayoría del uso es seguro y productivo, pero los bordes son preocupantes y están creciendo. La respuesta no es restringir la autonomía — es construir mejor monitoreo, mejores barreras de seguridad, y mejores modelos que sepan cuándo pedir ayuda.
 
-Como alguien que usa Claude Code 8+ horas al día, los hallazgos coinciden. La herramienta se vuelve más capaz cada mes. Mi confianza aumenta proporcionalmente. Pero esa confianza está construida sobre configuración, no fe ciega — y los datos dicen que ese es exactamente el enfoque correcto.
+Cómo alguien que usa Claude Code 8+ horas al día, los hallazgos coinciden. La herramienta se vuelve más capaz cada mes. Mi confianza aumenta proporcionalmente. Pero esa confianza está construida sobre configuración, no fe ciega — y los datos dicen que ese es exactamente el enfoque correcto.
 
 ---
 

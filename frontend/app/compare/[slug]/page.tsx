@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ContactForm } from "@/components/sections/contact-form";
 import { getAlternateSlug, getPseoContent, getPseoSlugs, hasAlternate } from "@/lib/pseo";
 import type { Comparison } from "@/lib/pseo-types";
 import ShareBar from "./ShareBar";
@@ -71,6 +72,26 @@ export default async function ComparisonPage({ params }: PageProps) {
   const altSlug = hasAlternate("comparisons", slug, meta.locale)
     ? getAlternateSlug(slug, meta.locale)
     : undefined;
+  const ui =
+    meta.locale === "es"
+      ? {
+          breadcrumb: "Comparativas",
+          back: "Todas las comparativas",
+          bestFor: "Mejor para",
+          ctaTitle: "¿Necesita ayuda para elegir?",
+          ctaBody:
+            "Si está evaluando estas herramientas para un proyecto real, puedo ayudarle a escoger la opción correcta según su stack, su equipo y el tipo de negocio.",
+          footer: "Todas las comparativas",
+        }
+      : {
+          breadcrumb: "Compare",
+          back: "All comparisons",
+          bestFor: "Best for",
+          ctaTitle: "Need help choosing?",
+          ctaBody:
+            "I have shipped production projects with both. If you are evaluating these tools for a real build, I can help you choose what fits your stack and your team.",
+          footer: "All comparisons",
+        };
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -88,7 +109,7 @@ export default async function ComparisonPage({ params }: PageProps) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Compare",
+        name: ui.breadcrumb,
         item: "https://marceloretana.com/compare",
       },
       { "@type": "ListItem", position: 3, name: `${toolA.name} vs ${toolB.name}` },
@@ -112,7 +133,7 @@ export default async function ComparisonPage({ params }: PageProps) {
           className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors mb-12"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          All comparisons
+          {ui.back}
         </Link>
 
         <header className="mb-12">
@@ -125,7 +146,7 @@ export default async function ComparisonPage({ params }: PageProps) {
               href={`/compare/${altSlug}`}
               className="inline-block mt-4 text-sm text-accent hover:underline"
             >
-              {meta.locale === "en" ? "Ver en Espanol" : "View in English"}
+              {meta.locale === "en" ? "Ver en Español" : "View in English"}
             </Link>
           )}
         </header>
@@ -191,7 +212,7 @@ export default async function ComparisonPage({ params }: PageProps) {
             {Object.entries(verdict.best_for).map(([useCase, tool]) => (
               <div key={useCase} className="border border-border rounded-lg p-4">
                 <span className="text-fg-muted text-xs uppercase tracking-wider block mb-1">
-                  Best for {useCase}
+                  {ui.bestFor} {useCase}
                 </span>
                 <span className="text-fg">{tool}</span>
               </div>
@@ -200,18 +221,13 @@ export default async function ComparisonPage({ params }: PageProps) {
         </section>
 
         {/* CTA */}
-        <section className="border border-border rounded-lg p-8 text-center">
-          <h2 className="text-xl font-light text-fg mb-3">Need help choosing?</h2>
-          <p className="text-fg-secondary mb-6">
-            I&apos;ve shipped production projects with both. Let&apos;s figure out what fits your
-            use case.
-          </p>
-          <Link
-            href="#contact"
-            className="inline-block border border-accent text-accent px-6 py-2.5 rounded-full text-sm hover:bg-accent hover:text-white transition-colors"
-          >
-            Let&apos;s Talk
-          </Link>
+        <section className="border border-border rounded-lg p-8">
+          <h2 className="text-xl font-light text-fg mb-3">{ui.ctaTitle}</h2>
+          <p className="text-fg-secondary mb-0">{ui.ctaBody}</p>
+          <ContactForm
+            locale={meta.locale === "es" ? "cr" : "en"}
+            sourcePage={`/compare/${slug}`}
+          />
         </section>
 
         <footer className="border-t border-border mt-16 pt-8">
@@ -220,7 +236,7 @@ export default async function ComparisonPage({ params }: PageProps) {
             className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            All comparisons
+            {ui.footer}
           </Link>
         </footer>
       </article>

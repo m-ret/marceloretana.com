@@ -10,7 +10,7 @@
       "description_es": "Comparacion lado a lado de dos herramientas, frameworks o enfoques",
       "title_template": {
         "en": "{tool_a} vs {tool_b}: Which Is Better for {use_case} in 2026?",
-        "es": "{tool_a} vs {tool_b}: Cual Es Mejor para {use_case} en 2026?"
+        "es": "{tool_a} vs {tool_b}: Cuál es mejor para {use_case} en 2026?"
       },
       "target_pages": { "en": 30, "es": 30 },
       "schema_org_type": "Product"

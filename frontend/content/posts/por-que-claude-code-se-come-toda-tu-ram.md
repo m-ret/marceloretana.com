@@ -95,7 +95,7 @@ Causas potenciales según la investigación de la comunidad:
 - **Memoria de subagentes no liberada** después de completar tareas
 - **Acumulación de contexto** sin garbage collection adecuado
 
-Esto es un bug en Claude Code. Anthropic ha etiquetado el issue con `perf:memory` y `bug`. Como usuarios no podemos arreglarlo — pero podemos mitigarlo.
+Esto es un bug en Claude Code. Anthropic ha etiquetado el issue con `perf:memory` y `bug`. Cómo usuarios no podemos arreglarlo — pero podemos mitigarlo.
 
 ## Las Soluciones (Por Culpable)
 

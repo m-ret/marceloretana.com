@@ -85,6 +85,20 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) {
     notFound();
   }
+  const ui =
+    post.lang === "es"
+      ? {
+          back: "Volver al blog",
+          ctaTitle: "¿Quiere trabajar conmigo?",
+          ctaBody: "Desarrollo sitios web, apps y MVPs. Cuénteme sobre su proyecto.",
+          footer: "Volver a todas las publicaciones",
+        }
+      : {
+          back: "Back to blog",
+          ctaTitle: "Want to work together?",
+          ctaBody: "I build websites, apps, and MVPs. Let’s talk about your project.",
+          footer: "Back to all posts",
+        };
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -149,7 +163,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors mb-12"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to blog
+          {ui.back}
         </Link>
 
         {/* Header */}
@@ -191,11 +205,9 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         <section className="mt-16">
-          <h2 className="text-xl font-light text-fg mb-2">Want to work together?</h2>
-          <p className="text-sm text-fg-muted mb-0">
-            I build websites, apps, and MVPs. Let&apos;s talk about your project.
-          </p>
-          <ContactForm />
+          <h2 className="text-xl font-light text-fg mb-2">{ui.ctaTitle}</h2>
+          <p className="text-sm text-fg-muted mb-0">{ui.ctaBody}</p>
+          <ContactForm locale={post.lang === "es" ? "cr" : "en"} sourcePage={`/blog/${slug}`} />
         </section>
 
         {/* Footer */}
@@ -205,7 +217,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             className="inline-flex items-center text-fg-secondary hover:text-fg transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to all posts
+            {ui.footer}
           </Link>
         </footer>
       </article>

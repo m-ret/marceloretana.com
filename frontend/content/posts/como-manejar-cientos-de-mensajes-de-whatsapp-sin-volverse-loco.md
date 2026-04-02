@@ -30,7 +30,7 @@ Cuando el volumen supera la capacidad de una persona, pasan cosas muy específic
 
 **Todo depende de un número personal.** Si la persona que maneja el WhatsApp renuncia, se enferma, o simplemente se va de vacaciones, el canal se apaga. No hay forma de transferir el acceso sin entregar el teléfono físico.
 
-**No existe visibilidad para el negocio.** ¿Cuánto tiempo promedio tardás en responder? ¿Cuántas conversaciones resolviste esta semana? ¿Cuál agente lleva más carga? No sabés. Y lo que no medís, no podés mejorar.
+**No existe visibilidad para el negocio.** ¿Cuánto tiempo promedio tardás en responder? ¿Cuántas conversaciones resolviste está semana? ¿Cuál agente lleva más carga? No sabés. Y lo que no medís, no podés mejorar.
 
 ## El Error Más Común: Agregar Más Celulares
 

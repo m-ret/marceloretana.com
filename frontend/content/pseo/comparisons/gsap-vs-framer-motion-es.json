@@ -7,8 +7,8 @@
     "generated_at": "2026-03-11T00:00:00Z"
   },
   "seo": {
-    "title": "GSAP vs Framer Motion: Cual Es Mejor para Animaciones Web en 2026?",
-    "description": "GSAP vs Framer Motion: comparamos rendimiento, facilidad de uso y capacidades de animacion. Descubre cual libreria es mejor para tus animaciones web en 2026.",
+    "title": "GSAP vs Framer Motion: Cuál es mejor para Animaciones Web en 2026?",
+    "description": "GSAP vs Framer Motion: comparamos rendimiento, facilidad de uso y capacidades de animacion. Descubre cuál librería es mejor para tus animaciones web en 2026.",
     "keywords": [
       "GSAP vs Framer Motion",
       "animaciones web",
@@ -24,7 +24,7 @@
     {
       "name": "GSAP",
       "slug": "gsap",
-      "tagline": "La libreria de animacion profesional mas robusta de la web, con timeline, ScrollTrigger y easing avanzado",
+      "tagline": "La librería de animacion profesional más robusta de la web, con timeline, ScrollTrigger y easing avanzado",
       "website": "https://gsap.com",
       "category": "Libreria de animacion"
     },
@@ -36,7 +36,7 @@
       "category": "Libreria de animacion para React"
     }
   ],
-  "introduction": "Las animaciones son fundamentales para crear experiencias web memorables. GSAP es el veterano de la industria, una libreria framework-agnostica con poder ilimitado para secuencias complejas. Framer Motion nacio en el ecosistema React con un enfoque declarativo que simplifica animaciones comunes. Elegir entre ambos depende de la complejidad de tus animaciones y tu stack tecnologico.",
+  "introduction": "Las animaciones son fundamentales para crear experiencias web memorables. GSAP es el veterano de la industria, una librería framework-agnostica con poder ilimitado para secuencias complejas. Framer Motion nacio en el ecosistema React con un enfoque declarativo que simplifica animaciones comunes. Elegir entre ambos depende de la complejidad de tus animaciones y tu stack tecnologico.",
   "categories": [
     {
       "name": "Capacidades de animacion",
@@ -45,11 +45,11 @@
           "criterion": "Animaciones scroll-driven",
           "tool_a": {
             "score": 10,
-            "detail": "ScrollTrigger es probablemente el plugin de scroll mas potente de la web. Pin, scrub, snap, callbacks y control granular del timeline basado en posicion del scroll."
+            "detail": "ScrollTrigger es probablemente el plugin de scroll más potente de la web. Pin, scrub, snap, callbacks y control granular del timeline basado en posicion del scroll."
           },
           "tool_b": {
             "score": 7,
-            "detail": "useScroll y whileInView cubren los casos mas comunes. Funciona bien para reveal animations pero carece del control granular de GSAP para experiencias scroll-driven complejas."
+            "detail": "useScroll y whileInView cubren los casos más comunes. Funciona bien para reveal animations pero carece del control granular de GSAP para experiencias scroll-driven complejas."
           }
         },
         {
@@ -60,25 +60,25 @@
           },
           "tool_b": {
             "score": 6,
-            "detail": "AnimatePresence y staggerChildren cubren secuencias basicas. Para orquestaciones complejas con multiples elementos y timing preciso, la API se vuelve limitada."
+            "detail": "AnimatePresence y staggerChildren cubren secuencias básicas. Para orquestaciones complejas con múltiples elementos y timing preciso, la API se vuelve limitada."
           }
         },
         {
           "criterion": "Animaciones de layout",
           "tool_a": {
             "score": 5,
-            "detail": "Las animaciones de layout (reflow) requieren Flip plugin y mas configuracion manual. No calcula automaticamente los cambios de posicion entre estados."
+            "detail": "Las animaciones de layout (reflow) requieren Flip plugin y más configuración manual. No calcula automáticamente los cambios de posicion entre estados."
           },
           "tool_b": {
             "score": 10,
-            "detail": "Las layout animations son magicas: agregar layoutId y Framer Motion anima automaticamente entre posiciones. Shared layout transitions entre componentes sin esfuerzo."
+            "detail": "Las layout animations son magicas: agregar layoutId y Framer Motion anima automáticamente entre posiciones. Shared layout transitions entre componentes sin esfuerzo."
           }
         },
         {
           "criterion": "Gestos e interaccion",
           "tool_a": {
             "score": 6,
-            "detail": "Draggable plugin disponible pero la integracion con gestos modernos (pinch, rotate) requiere codigo adicional. No tiene soporte nativo para gestos tactiles complejos."
+            "detail": "Draggable plugin disponible pero la integración con gestos modernos (pinch, rotate) requiere código adicional. No tiene soporte nativo para gestos tactiles complejos."
           },
           "tool_b": {
             "score": 9,
@@ -93,7 +93,7 @@
           },
           "tool_b": {
             "score": 7,
-            "detail": "Soporta pathLength y valores SVG basicos. Para dibujar paths y transiciones de forma funciona decentemente, pero carece de morphing entre formas y animacion a lo largo de paths."
+            "detail": "Soporta pathLength y valores SVG básicos. Para dibujar paths y transiciones de forma funciona decentemente, pero carece de morphing entre formas y animacion a lo largo de paths."
           }
         },
         {
@@ -104,7 +104,7 @@
           },
           "tool_b": {
             "score": 7,
-            "detail": "Spring physics son excelentes y producen movimiento natural. Bezier curves y tween disponibles. Menos variedad que GSAP pero los springs cubren la mayoria de casos."
+            "detail": "Spring physics son excelentes y producen movimiento natural. Bezier curves y tween disponibles. Menos variedad que GSAP pero los springs cubren la mayoría de casos."
           }
         }
       ]
@@ -116,7 +116,7 @@
           "criterion": "Integracion con React",
           "tool_a": {
             "score": 6,
-            "detail": "Requiere useGSAP hook o useLayoutEffect para manejar el ciclo de vida. Las refs y el cleanup necesitan atencion manual. Funciona pero no se siente nativo a React."
+            "detail": "Requiere useGSAP hook o useLayoutEffect para manejar el ciclo de vida. Las refs y el cleanup necesitan atención manual. Funciona pero no se siente nativo a React."
           },
           "tool_b": {
             "score": 10,
@@ -127,7 +127,7 @@
           "criterion": "Compatibilidad con frameworks",
           "tool_a": {
             "score": 9,
-            "detail": "Framework-agnostico: funciona con React, Vue, Svelte, vanilla JavaScript o cualquier framework. La misma API en todos lados sin adaptadores especificos."
+            "detail": "Framework-agnostico: funciona con React, Vue, Svelte, vanilla JavaScript o cualquier framework. La misma API en todos lados sin adaptadores específicos."
           },
           "tool_b": {
             "score": 5,
@@ -138,28 +138,28 @@
           "criterion": "Curva de aprendizaje",
           "tool_a": {
             "score": 6,
-            "detail": "API imperativa poderosa pero extensa. Dominar timeline, ScrollTrigger y los plugins premium requiere tiempo. La documentacion es completa pero puede abrumar."
+            "detail": "API imperativa poderosa pero extensa. Dominar timeline, ScrollTrigger y los plugins premium requiere tiempo. La documentación es completa pero puede abrumar."
           },
           "tool_b": {
             "score": 9,
-            "detail": "Animaciones basicas se logran en minutos con initial, animate y transition. El modelo declarativo es intuitivo para desarrolladores React. La curva es gentil."
+            "detail": "Animaciones básicas se logran en minutos con initial, animate y transition. El modelo declarativo es intuitivo para desarrolladores React. La curva es gentil."
           }
         },
         {
           "criterion": "Tamano del bundle",
           "tool_a": {
             "score": 7,
-            "detail": "GSAP core es ~24KB gzipped. Cada plugin agrega mas peso. ScrollTrigger, Draggable y otros pueden llevar el total a 50KB+ segun las funcionalidades usadas."
+            "detail": "GSAP core es ~24KB gzipped. Cada plugin agrega más peso. ScrollTrigger, Draggable y otros pueden llevar el total a 50KB+ segun las funcionalidades usadas."
           },
           "tool_b": {
             "score": 6,
-            "detail": "Aproximadamente 32KB gzipped para la libreria completa. Es considerable para animaciones simples, pero incluye layout animations, gestos y AnimatePresence."
+            "detail": "Aproximadamente 32KB gzipped para la librería completa. Es considerable para animaciones simples, pero incluye layout animations, gestos y AnimatePresence."
           }
         }
       ]
     },
     {
-      "name": "Aspectos practicos",
+      "name": "Aspectos prácticos",
       "criteria": [
         {
           "criterion": "Licencia y precios",
@@ -176,7 +176,7 @@
           "criterion": "Rendimiento en animaciones complejas",
           "tool_a": {
             "score": 10,
-            "detail": "Motor optimizado durante 15 anos. Maneja cientos de elementos animados simultaneamente con un frame rate estable. Utiliza requestAnimationFrame con optimizaciones propias."
+            "detail": "Motor optimizado durante 15 años. Maneja cientos de elementos animados simultaneamente con un frame rate estable. Utiliza requestAnimationFrame con optimizaciones propias."
           },
           "tool_b": {
             "score": 7,
@@ -202,7 +202,7 @@
           },
           "tool_b": {
             "score": 8,
-            "detail": "Buena documentacion oficial con ejemplos interactivos. Comunidad activa en GitHub y Discord. Menos tutoriales avanzados pero los basicos son abundantes."
+            "detail": "Buena documentación oficial con ejemplos interactivos. Comunidad activa en GitHub y Discord. Menos tutoriales avanzados pero los básicos son abundantes."
           }
         }
       ]
@@ -214,7 +214,7 @@
       "Experiencias scroll-driven y cinematograficas": "GSAP",
       "Animaciones de UI y transiciones en React": "Framer Motion",
       "Sitios con animaciones SVG complejas": "GSAP",
-      "Prototipos rapidos con animaciones bonitas": "Framer Motion",
+      "Prototipos rápidos con animaciones bonitas": "Framer Motion",
       "Proyectos no-React o multi-framework": "GSAP"
     },
     "summary": "GSAP gana por su poder bruto y versatilidad: si una animacion es posible en la web, GSAP puede hacerla. Framer Motion gana en experiencia de desarrollo React con su API declarativa que simplifica animaciones cotidianas. En GEXP Software utilizamos ambas: GSAP con ScrollTrigger para las experiencias scroll-driven y animaciones 3D de nuestros heroes, y Framer Motion para transiciones de UI y micro-interacciones en componentes React."

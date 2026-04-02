@@ -40,7 +40,7 @@ export default function CompareIndex() {
                   {item.tools[0].name} vs {item.tools[1].name}
                 </h2>
                 <span className="text-sm text-fg-muted">
-                  {item.meta.locale === "es" ? "Espanol" : "English"}
+                  {item.meta.locale === "es" ? "Español" : "English"}
                 </span>
               </div>
               <span className="text-fg-muted group-hover:text-accent transition-colors">

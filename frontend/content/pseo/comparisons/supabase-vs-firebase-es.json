@@ -7,15 +7,15 @@
     "generated_at": "2026-03-11T00:00:00Z"
   },
   "seo": {
-    "title": "Supabase vs Firebase: Cual Es Mejor para tu Backend en 2026?",
-    "description": "Supabase vs Firebase: comparamos base de datos, autenticacion, precios y escalabilidad. Descubre cual plataforma backend conviene mas para tu app en 2026.",
+    "title": "Supabase vs Firebase: Cuál es mejor para tu Backend en 2026?",
+    "description": "Supabase vs Firebase: comparamos base de datos, autenticación, precios y escalabilidad. Descubre cuál plataforma backend conviene más para tu app en 2026.",
     "keywords": [
       "Supabase vs Firebase",
       "backend como servicio",
       "BaaS 2026",
       "base de datos en la nube",
       "PostgreSQL vs NoSQL",
-      "autenticacion backend",
+      "autenticación backend",
       "desarrollo backend Costa Rica"
     ]
   },
@@ -23,19 +23,19 @@
     {
       "name": "Supabase",
       "slug": "supabase",
-      "tagline": "La alternativa open source a Firebase construida sobre PostgreSQL con autenticacion, storage y funciones edge",
+      "tagline": "La alternativa open source a Firebase construida sobre PostgreSQL con autenticación, storage y funciones edge",
       "website": "https://supabase.com",
       "category": "Backend como servicio"
     },
     {
       "name": "Firebase",
       "slug": "firebase",
-      "tagline": "Plataforma de Google para desarrollo de apps con base de datos en tiempo real, autenticacion y hosting integrado",
+      "tagline": "Plataforma de Google para desarrollo de apps con base de datos en tiempo real, autenticación y hosting integrado",
       "website": "https://firebase.google.com",
       "category": "Backend como servicio"
     }
   ],
-  "introduction": "Supabase y Firebase son las dos plataformas de backend como servicio mas populares para desarrolladores modernos. Firebase, de Google, lleva anos siendo el estandar con su base de datos en tiempo real y ecosistema completo. Supabase irrumpio como alternativa open source construida sobre PostgreSQL, ofreciendo consultas SQL reales y una experiencia de desarrollo que resuena con equipos que valoran el control sobre sus datos.",
+  "introduction": "Supabase y Firebase son las dos plataformas de backend como servicio más populares para desarrolladores modernos. Firebase, de Google, lleva años siendo el estándar con su base de datos en tiempo real y ecosistema completo. Supabase irrumpio como alternativa open source construida sobre PostgreSQL, ofreciendo consultas SQL reales y una experiencia de desarrollo que resuena con equipos que valoran el control sobre sus datos.",
   "categories": [
     {
       "name": "Base de datos",
@@ -44,11 +44,11 @@
           "criterion": "Modelo de datos",
           "tool_a": {
             "score": 9,
-            "detail": "PostgreSQL completo con tablas relacionales, foreign keys, joins, vistas y funciones almacenadas. Si sabes SQL, sabes usar Supabase. Migraciones con SQL estandar."
+            "detail": "PostgreSQL completo con tablas relacionales, foreign keys, joins, vistas y funciones almacenadas. Si sabes SQL, sabes usar Supabase. Migraciones con SQL estándar."
           },
           "tool_b": {
             "score": 6,
-            "detail": "Firestore es un documento/coleccion NoSQL. Flexible para datos no estructurados pero las relaciones entre documentos son incomodas y las consultas complejas limitadas."
+            "detail": "Firestore es un documento/colección NoSQL. Flexible para datos no estructurados pero las relaciones entre documentos son incomodas y las consultas complejas limitadas."
           }
         },
         {
@@ -59,14 +59,14 @@
           },
           "tool_b": {
             "score": 5,
-            "detail": "Consultas limitadas en Firestore: no soporta joins nativos, las desigualdades en multiples campos requieren indices compuestos y la agregacion es basica."
+            "detail": "Consultas limitadas en Firestore: no soporta joins nativos, las desigualdades en múltiples campos requieren indices compuestos y la agregacion es básica."
           }
         },
         {
           "criterion": "Datos en tiempo real",
           "tool_a": {
             "score": 7,
-            "detail": "Realtime basado en los cambios de PostgreSQL via websockets. Funciona bien pero tiene latencia ligeramente mayor que Firebase y menos granularidad de filtros."
+            "detail": "Realtime basado en los cambios de PostgreSQL vía websockets. Funciona bien pero tiene latencia ligeramente mayor que Firebase y menos granularidad de filtros."
           },
           "tool_b": {
             "score": 10,
@@ -77,11 +77,11 @@
           "criterion": "Escalabilidad de la base de datos",
           "tool_a": {
             "score": 8,
-            "detail": "Escala verticalmente con instancias mas grandes. Read replicas disponibles en planes Pro. La escalabilidad depende de PostgreSQL, que es robusto pero tiene limites."
+            "detail": "Escala verticalmente con instancias más grandes. Read replicas disponibles en planes Pro. La escalabilidad depende de PostgreSQL, que es robusto pero tiene límites."
           },
           "tool_b": {
             "score": 9,
-            "detail": "Firestore escala automaticamente de forma horizontal, manejando millones de conexiones simultaneas sin configuracion. La infraestructura de Google respalda la promesa."
+            "detail": "Firestore escala automáticamente de forma horizontal, manejando millones de conexiones simultaneas sin configuración. La infraestructura de Google respalda la promesa."
           }
         }
       ]
@@ -97,14 +97,14 @@
           },
           "tool_b": {
             "score": 9,
-            "detail": "Firebase Auth es maduro y completo: telefono, email, Google, Apple, anonimo, custom tokens. Muy probado en produccion con miles de millones de usuarios."
+            "detail": "Firebase Auth es maduro y completo: teléfono, email, Google, Apple, anónimo, custom tokens. Muy probado en producción con miles de millones de usuarios."
           }
         },
         {
           "criterion": "Almacenamiento de archivos",
           "tool_a": {
             "score": 8,
-            "detail": "Storage basado en S3 con politicas de acceso RLS. Transformacion de imagenes integrada para thumbnails y optimizacion. API simple y directa."
+            "detail": "Storage basado en S3 con politicas de acceso RLS. Transformacion de imágenes integrada para thumbnails y optimización. API simple y directa."
           },
           "tool_b": {
             "score": 8,
@@ -115,7 +115,7 @@
           "criterion": "Funciones serverless",
           "tool_a": {
             "score": 7,
-            "detail": "Edge Functions con Deno. Rapidas y distribuidas globalmente pero el ecosistema Deno tiene menos librerias npm compatibles que Node.js."
+            "detail": "Edge Functions con Deno. Rapidas y distribuidas globalmente pero el ecosistema Deno tiene menos librerías npm compatibles que Node.js."
           },
           "tool_b": {
             "score": 8,
@@ -130,18 +130,18 @@
           },
           "tool_b": {
             "score": 7,
-            "detail": "Security Rules son funcionales pero su lenguaje propio es diferente a todo lo demas. Las reglas complejas se vuelven dificiles de leer, testear y mantener."
+            "detail": "Security Rules son funcionales pero su lenguaje propio es diferente a todo lo demas. Las reglas complejas se vuelven difíciles de leer, testear y mantener."
           }
         },
         {
           "criterion": "Analytics y monitoreo",
           "tool_a": {
             "score": 5,
-            "detail": "Dashboard basico con metricas de uso. Sin analytics de usuario integrado. Necesitas herramientas externas como Mixpanel o PostHog para tracking."
+            "detail": "Dashboard básico con metricas de uso. Sin analytics de usuario integrado. Necesitas herramientas externas como Mixpanel o PostHog para tracking."
           },
           "tool_b": {
             "score": 9,
-            "detail": "Google Analytics integrado, Crashlytics, Performance Monitoring y Remote Config. El ecosistema de analytics de Google es imbatible para apps moviles."
+            "detail": "Google Analytics integrado, Crashlytics, Performance Monitoring y Remote Config. El ecosistema de analytics de Google es imbatible para apps móviles."
           }
         }
       ]
@@ -157,25 +157,25 @@
           },
           "tool_b": {
             "score": 6,
-            "detail": "Plan Spark gratuito limitado. Los costos de Blaze escalan con las operaciones de lectura/escritura, lo que hace dificil predecir la factura en apps con mucho trafico."
+            "detail": "Plan Spark gratuito limitado. Los costos de Blaze escalan con las operaciones de lectura/escritura, lo que hace difícil predecir la factura en apps con mucho trafico."
           }
         },
         {
           "criterion": "Vendor lock-in",
           "tool_a": {
             "score": 9,
-            "detail": "Open source completo. Puedes exportar tu base PostgreSQL y correr Supabase self-hosted en cualquier momento. Los datos son siempre tuyos en formato estandar."
+            "detail": "Open source completo. Puedes exportar tu base PostgreSQL y correr Supabase self-hosted en cualquier momento. Los datos son siempre tuyos en formato estándar."
           },
           "tool_b": {
             "score": 4,
-            "detail": "Alto grado de lock-in. Migrar fuera de Firestore requiere reescribir la logica de consultas. Las Security Rules y Cloud Functions son especificas de Google."
+            "detail": "Alto grado de lock-in. Migrar fuera de Firestore requiere reescribir la lógica de consultas. Las Security Rules y Cloud Functions son específicas de Google."
           }
         },
         {
           "criterion": "Soporte y confiabilidad",
           "tool_a": {
             "score": 7,
-            "detail": "Soporte via email y Discord. Empresa mas joven con menos historial de uptime. Las incidencias se comunican de forma transparente pero la infraestructura es mas nueva."
+            "detail": "Soporte vía email y Discord. Empresa más joven con menos historial de uptime. Las incidencias se comunican de forma transparente pero la infraestructura es más nueva."
           },
           "tool_b": {
             "score": 9,
@@ -186,7 +186,7 @@
           "criterion": "Migracion y portabilidad de datos",
           "tool_a": {
             "score": 9,
-            "detail": "PostgreSQL estandar: pg_dump, migraciones SQL, replicas. Cualquier herramienta que funcione con PostgreSQL funciona con Supabase sin adaptaciones."
+            "detail": "PostgreSQL estándar: pg_dump, migraciones SQL, replicas. Cualquier herramienta que funcione con PostgreSQL funciona con Supabase sin adaptaciones."
           },
           "tool_b": {
             "score": 4,
@@ -200,12 +200,12 @@
     "winner_overall": "Supabase",
     "best_for": {
       "Aplicaciones con datos relacionales complejos": "Supabase",
-      "Apps moviles con sincronizacion offline": "Firebase",
+      "Apps móviles con sincronizacion offline": "Firebase",
       "Proyectos que valoran el open source": "Supabase",
       "Startups con datos en tiempo real intensivo": "Firebase",
       "Empresas preocupadas por el vendor lock-in": "Supabase"
     },
-    "summary": "Supabase gana por su modelo relacional completo, open source y menor lock-in. Para la mayoria de aplicaciones web, tener PostgreSQL con SQL real, RLS y migraciones estandar es una ventaja decisiva. Firebase mantiene superioridad en apps moviles con sincronizacion offline y en el ecosistema de analytics de Google. En GEXP Software recomendamos Supabase para proyectos web y Firebase cuando la sincronizacion en tiempo real movil es el requisito central."
+    "summary": "Supabase gana por su modelo relacional completo, open source y menor lock-in. Para la mayoría de aplicaciones web, tener PostgreSQL con SQL real, RLS y migraciones estándar es una ventaja decisiva. Firebase mantiene superioridad en apps móviles con sincronizacion offline y en el ecosistema de analytics de Google. En GEXP Software recomendamos Supabase para proyectos web y Firebase cuando la sincronizacion en tiempo real móvil es el requisito central."
   },
   "related_slugs": ["nodejs-vs-bun-es", "nextjs-vs-remix-es"]
 }
