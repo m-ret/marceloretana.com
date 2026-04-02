@@ -66,3 +66,26 @@ export function hasAlternate(type: ContentType, slug: string, currentLocale: "en
   const filePath = path.join(PSEO_DIR, type, `${altSlug}.json`);
   return fs.existsSync(filePath);
 }
+
+/**
+ * Get content by URL slug and locale.
+ * ES files use a "-es" suffix on disk but the URL slug omits it.
+ */
+export function getPseoContentByUrlSlug<T>(
+  type: ContentType,
+  urlSlug: string,
+  locale: "en" | "es"
+): T | null {
+  const fileSlug = locale === "es" ? `${urlSlug}-es` : urlSlug;
+  return getPseoContent<T>(type, fileSlug);
+}
+
+/**
+ * Get all URL slugs for ES content of a given type.
+ * Strips the "-es" suffix so the slug matches the URL, not the filename.
+ */
+export function getEsPseoSlugs(type: ContentType): string[] {
+  return getPseoSlugs(type)
+    .filter((slug) => slug.endsWith("-es"))
+    .map((slug) => slug.replace(/-es$/, ""));
+}
