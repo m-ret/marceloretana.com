@@ -1,31 +1,43 @@
 const capabilities = [
   {
-    category: "Commercial Websites",
+    category: "First Impression",
     items: [
-      "Service pages",
-      "Quote flows",
-      "Responsive builds",
-      "Fast performance",
+      "Clearer offer",
+      "More credible design",
+      "Better service pages",
+      "Stronger mobile experience",
+      "A site that feels current",
+    ],
+  },
+  {
+    category: "Lead Capture",
+    items: [
+      "Quote forms that make sense",
+      "Cleaner contact flows",
+      "Service pages built to convert",
+      "WhatsApp and email routing",
+      "Calls to action people notice",
+    ],
+  },
+  {
+    category: "Operations",
+    items: [
+      "Booking and inquiry flows",
+      "Easy content updates",
+      "Integrations when needed",
+      "Systems that reduce manual work",
+      "A setup your team can manage",
+    ],
+  },
+  {
+    category: "Build Quality",
+    items: [
+      "Fast loading pages",
       "SEO-ready structure",
+      "Stable technical setup",
+      "Built to grow with the business",
+      "Launch support and improvements",
     ],
-  },
-  {
-    category: "Business Systems",
-    items: ["Booking flows", "Inquiry systems", "Custom CMS", "Integrations", "Web apps"],
-  },
-  {
-    category: "Execution",
-    items: [
-      "Direct communication",
-      "Senior delivery",
-      "Analytics",
-      "Ongoing improvements",
-      "Clear handoff",
-    ],
-  },
-  {
-    category: "Technical Depth",
-    items: ["Next.js", "TypeScript", "Node.js", "Cloud infra", "Product architecture"],
   },
 ];
 
@@ -179,17 +191,17 @@ export function About() {
 
         <div className="border-t border-border pt-16">
           <h2 className="text-sm uppercase tracking-widest text-fg font-medium mb-12">
-            Capability Index
+            What This Work Usually Improves
           </h2>
 
           <div className="space-y-16">
             <div>
               <h3 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium mb-6">
-                What I Can Execute
+                What Clients Usually Need Fixed
               </h3>
               <p className="text-fg-muted mb-8 max-w-2xl">
-                Enough technical depth to build the thing properly, but always in service of a
-                stronger commercial result.
+                Not a stack list. The real job is to make the business look more serious, easier to
+                understand, and easier to contact.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border pt-6">
                 {capabilities.map((cap) => (
