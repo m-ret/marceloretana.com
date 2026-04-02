@@ -4,6 +4,7 @@ import { VercelToolbar } from "@vercel/toolbar/next";
 import { Inter } from "next/font/google";
 import { Nav } from "@/components/sections/nav";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LanguageProvider } from "@/lib/language-context";
 import { QueryProvider } from "@/lib/query-provider";
 import { organizationJsonLd, personJsonLd } from "@/lib/site-metadata";
 
@@ -15,9 +16,10 @@ const inter = Inter({
 type SiteRootProps = {
   children: React.ReactNode;
   lang: "en" | "es";
+  alternatePath?: string | null;
 };
 
-export function SiteRoot({ children, lang }: SiteRootProps) {
+export function SiteRoot({ children, lang, alternatePath }: SiteRootProps) {
   const showToolbar = process.env.NODE_ENV === "development";
 
   return (
@@ -33,12 +35,14 @@ export function SiteRoot({ children, lang }: SiteRootProps) {
         />
       </head>
       <body className={inter.className}>
-        <QueryProvider>
-          <ThemeProvider>
-            <Nav />
-            {children}
-          </ThemeProvider>
-        </QueryProvider>
+        <LanguageProvider locale={lang} alternatePath={alternatePath ?? null}>
+          <QueryProvider>
+            <ThemeProvider>
+              <Nav />
+              {children}
+            </ThemeProvider>
+          </QueryProvider>
+        </LanguageProvider>
         <Analytics />
         <SpeedInsights />
         {showToolbar && <VercelToolbar />}
