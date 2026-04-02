@@ -49,11 +49,11 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
           solution: "Enfoque",
           deliverables: "Entregables",
           faq: "Preguntas frecuentes",
-          related: "Paginas relacionadas",
-          formEyebrow: "Solicitar cotizacion",
-          formTitle: "Cuenteme que necesita",
+          related: "Páginas relacionadas",
+          formEyebrow: "Solicitar cotización",
+          formTitle: "Cuénteme qué necesita",
           formDescription:
-            "Si necesita un sitio web nuevo, mejorar el actual o cotizar una app, deje aqui el contexto. Le respondo por email con una recomendacion clara, un rango de inversion y el siguiente paso.",
+            "Si necesita un sitio web nuevo, mejorar el actual o cotizar una app, deje aquí el contexto. Le respondo por email con una recomendación clara, un rango de inversión y el siguiente paso.",
         }
       : {
           problem: "Problems",
@@ -70,7 +70,7 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
     entry.locale === "es"
       ? [
           "Respuesta por email en menos de 24 horas.",
-          "Rango de inversion segun el alcance.",
+          "Rango de inversión según el alcance.",
           "Siguiente paso claro para avanzar.",
         ]
       : [
@@ -81,7 +81,7 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
   const relatedHeading = isPage
     ? copy.related
     : entry.locale === "es"
-      ? "Todas las paginas"
+      ? "Todas las páginas"
       : "All pages";
 
   const primaryCtaClass =
@@ -151,7 +151,7 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
               title: copy.formTitle,
               description: copy.formDescription,
               notes: formNotes,
-              notesTitle: entry.locale === "es" ? "Que recibe" : "What you get",
+              notesTitle: entry.locale === "es" ? "Qué recibe" : "What you get",
             }}
           />
         </div>

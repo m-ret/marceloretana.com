@@ -76,7 +76,7 @@ const sharedProjectTypes: Record<LeadFormLocale, OptionValue[]> = {
   cr: [
     { value: "Sitio web nuevo", label: "Sitio web nuevo" },
     { value: "Mejorar sitio actual", label: "Mejorar sitio actual" },
-    { value: "Paginas por servicio", label: "Paginas por servicio" },
+    { value: "Páginas por servicio", label: "Páginas por servicio" },
     { value: "Reservas o consultas", label: "Reservas o consultas" },
     { value: "App o sistema a medida", label: "App o sistema a medida" },
   ],
@@ -91,8 +91,8 @@ const sharedProjectTypes: Record<LeadFormLocale, OptionValue[]> = {
 
 const sharedIndustries: Record<LeadFormLocale, OptionValue[]> = {
   cr: [
-    { value: "Construccion o inmobiliario", label: "Construccion o inmobiliario" },
-    { value: "Clinica o salud", label: "Clinica o salud" },
+    { value: "Construcción o inmobiliario", label: "Construcción o inmobiliario" },
+    { value: "Clínica o salud", label: "Clínica o salud" },
     { value: "Servicios generales", label: "Servicios generales" },
     { value: "Turismo u hospitalidad", label: "Turismo u hospitalidad" },
     { value: "Otro", label: "Otro" },
@@ -143,19 +143,19 @@ export function getLeadFormCopy(locale: LeadFormLocale): LeadFormCopy {
         name: "Nombre",
         businessName: "Empresa o negocio",
         email: "Email",
-        phoneOrWhatsApp: "Telefono o WhatsApp",
+        phoneOrWhatsApp: "Teléfono o WhatsApp",
         industry: "Industria",
         projectType: "Tipo de proyecto",
         budgetRange: "Presupuesto estimado",
-        timeline: "Cuando le gustaria empezar",
-        message: "Que necesita cotizar",
+        timeline: "Cuándo le gustaría empezar",
+        message: "Qué necesita cotizar",
       },
       placeholders: {
         name: "Su nombre",
         businessName: "Nombre del negocio",
         email: "su@email.com",
         phoneOrWhatsApp: "+506 ...",
-        message: "Que vende, que necesita cotizar y cual es la meta principal de este proyecto?",
+        message: "¿Qué vende, qué necesita cotizar y cuál es la meta principal de este proyecto?",
       },
       selects: {
         industryDefault: "Seleccione una industria",
@@ -170,15 +170,15 @@ export function getLeadFormCopy(locale: LeadFormLocale): LeadFormCopy {
         timelines: sharedTimelines.cr,
       },
       submit: {
-        idle: "Solicitar cotizacion",
+        idle: "Solicitar cotización",
         sending: "Enviando...",
         success: "Enviado",
       },
       messages: {
         helper:
-          "Le respondo por email en menos de 24 horas con una recomendacion clara y siguientes pasos.",
-        error: "Algo salio mal. Intente de nuevo o escriba por email.",
-        success: "Mensaje enviado. Le respondere por email en menos de 24 horas.",
+          "Le respondo por email en menos de 24 horas con una recomendación clara y los siguientes pasos.",
+        error: "Algo salió mal. Intente de nuevo o escriba por email.",
+        success: "Mensaje enviado. Le responderé por email en menos de 24 horas.",
       },
     };
   }

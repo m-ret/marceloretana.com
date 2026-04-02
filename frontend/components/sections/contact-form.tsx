@@ -120,7 +120,7 @@ export function ContactForm({ locale = "en", sourcePage, className, header }: Co
 
           <div className="lg:pt-12">
             <p className="mb-5 text-[11px] uppercase tracking-[0.2em] text-fg-muted">
-              {header.notesTitle ?? (locale === "cr" ? "Que recibe" : "What you get")}
+              {header.notesTitle ?? (locale === "cr" ? "Qué recibe" : "What you get")}
             </p>
             <ul className="space-y-4">
               {(header.notes?.length ? header.notes : [copy.messages.helper]).map((note) => (
