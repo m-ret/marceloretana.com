@@ -19,7 +19,7 @@ export default function CostaRicaEnglishHubPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
         />
       ))}
-      <MarketLandingPage entry={enCrHub} relatedPages={enCrMarketPages.slice(0, 6)} />
+      <MarketLandingPage entry={enCrHub} relatedPages={enCrMarketPages} />
     </>
   );
 }

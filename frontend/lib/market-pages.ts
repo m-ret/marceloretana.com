@@ -40,12 +40,13 @@ export function getMarketPage(machine: MarketMachine, slug: string): MarketPage 
 export function getRelatedMarketPages(
   machine: MarketMachine,
   slug: string,
-  limit = 4
+  limit?: number
 ): MarketPage[] {
   const page = getMarketPage(machine, slug);
   if (!page) return [];
 
   const pages = getMarketPagesByMachine(machine);
+  const maxItems = typeof limit === "number" ? limit : Math.max(pages.length - 1, 0);
   const pagesBySlug = new Map(pages.map((item) => [item.slug, item]));
   const selected: MarketPage[] = [];
   const seen = new Set<string>();
@@ -57,7 +58,7 @@ export function getRelatedMarketPages(
     selected.push(match);
   });
 
-  if (selected.length < limit) {
+  if (selected.length < maxItems) {
     pages.forEach((candidate) => {
       if (candidate.slug === slug || seen.has(candidate.slug)) return;
       seen.add(candidate.slug);
@@ -65,7 +66,7 @@ export function getRelatedMarketPages(
     });
   }
 
-  return selected.slice(0, limit);
+  return selected.slice(0, maxItems);
 }
 
 export function getAlternateMarketEntry(path: string): MarketHub | MarketPage | null {

@@ -11,6 +11,12 @@ type ContactFormProps = {
   locale?: LeadFormLocale;
   sourcePage?: string;
   className?: string;
+  header?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    notes?: string[];
+  };
 };
 
 const inputClass =
@@ -36,10 +42,15 @@ function formDefaults(locale: LeadFormLocale, sourcePage: string): LeadFormData 
   };
 }
 
-export function ContactForm({ locale = "en", sourcePage, className }: ContactFormProps) {
+export function ContactForm({ locale = "en", sourcePage, className, header }: ContactFormProps) {
   const copy = getLeadFormCopy(locale);
   const pathname = usePathname();
   const resolvedSourcePage = sourcePage ?? pathname ?? "/";
+  const footerNote = header
+    ? locale === "cr"
+      ? "Incluya negocio, meta principal y rango de presupuesto para responder mejor."
+      : "Include business context, top priority, and budget range for a cleaner quote."
+    : copy.messages.helper;
   const [form, setForm] = useState<LeadFormData>(formDefaults(locale, resolvedSourcePage));
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -95,7 +106,36 @@ export function ContactForm({ locale = "en", sourcePage, className }: ContactFor
       onSubmit={handleSubmit}
       className={cn("py-12 border-b border-border", className)}
     >
-      <p className="text-base text-fg-muted mb-10 max-w-2xl">{copy.messages.helper}</p>
+      {header ? (
+        <div className="grid gap-8 border-t border-border pt-8 pb-10 mb-10 xl:grid-cols-[minmax(0,1fr)_minmax(280px,360px)]">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
+              {header.eyebrow}
+            </p>
+            <h2 className="text-2xl md:text-4xl font-light leading-tight tracking-tight mb-4">
+              {header.title}
+            </h2>
+            <p className="max-w-2xl text-base md:text-lg text-fg-secondary leading-relaxed">
+              {header.description}
+            </p>
+          </div>
+
+          <div className="space-y-4 xl:pt-1">
+            {(header.notes?.length ? header.notes : [copy.messages.helper]).map((note) => (
+              <p
+                key={note}
+                className="border-t border-border pt-4 text-sm text-fg-muted leading-relaxed"
+              >
+                {note}
+              </p>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="border-t border-border pt-8 mb-10">
+          <p className="max-w-2xl text-base text-fg-muted">{copy.messages.helper}</p>
+        </div>
+      )}
 
       <div className="grid md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
         <div>
@@ -274,13 +314,17 @@ export function ContactForm({ locale = "en", sourcePage, className }: ContactFor
 
       {status === "error" ? <p className="text-sm text-red-500 mb-6">{errorMsg}</p> : null}
 
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="text-sm md:text-base uppercase tracking-[0.24em] text-fg hover:text-fg-secondary transition-colors disabled:opacity-40"
-      >
-        {status === "loading" ? copy.submit.sending : `${copy.submit.idle} →`}
-      </button>
+      <div className="border-t border-border pt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          className="text-sm md:text-base uppercase tracking-[0.24em] text-fg hover:text-fg-secondary transition-colors disabled:opacity-40"
+        >
+          {status === "loading" ? copy.submit.sending : `${copy.submit.idle} →`}
+        </button>
+
+        <p className="max-w-md text-sm text-fg-muted leading-relaxed">{footerNote}</p>
+      </div>
     </form>
   );
 }
