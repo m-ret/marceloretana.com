@@ -14,9 +14,9 @@ type ContactFormProps = {
 };
 
 const inputClass =
-  "w-full bg-transparent border-b border-border py-3 text-fg placeholder:text-fg-muted focus:outline-none focus:border-fg transition-colors text-sm";
+  "w-full bg-transparent border-b border-border py-4 md:py-5 text-base text-fg placeholder:text-fg-muted focus:outline-none focus:border-fg transition-colors";
 
-const labelClass = "block text-xs uppercase tracking-widest text-fg-muted mb-2";
+const labelClass = "block text-xs uppercase tracking-[0.28em] text-fg-muted mb-3";
 
 const selectClass = `${inputClass} cursor-pointer`;
 
@@ -95,9 +95,9 @@ export function ContactForm({ locale = "en", sourcePage, className }: ContactFor
       onSubmit={handleSubmit}
       className={cn("py-12 border-b border-border", className)}
     >
-      <p className="text-sm text-fg-muted mb-8">{copy.messages.helper}</p>
+      <p className="text-base text-fg-muted mb-10 max-w-2xl">{copy.messages.helper}</p>
 
-      <div className="grid md:grid-cols-2 gap-8 mb-8">
+      <div className="grid md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
         <div>
           <label htmlFor={`${idPrefix}-name`} className={labelClass}>
             {copy.labels.name}
@@ -131,7 +131,7 @@ export function ContactForm({ locale = "en", sourcePage, className }: ContactFor
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 mb-8">
+      <div className="grid md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
         <div>
           <label htmlFor={`${idPrefix}-business`} className={labelClass}>
             {copy.labels.businessName}
@@ -163,7 +163,7 @@ export function ContactForm({ locale = "en", sourcePage, className }: ContactFor
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 mb-8">
+      <div className="grid md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
         <div>
           <label htmlFor={`${idPrefix}-industry`} className={labelClass}>
             {copy.labels.industry}
@@ -210,7 +210,7 @@ export function ContactForm({ locale = "en", sourcePage, className }: ContactFor
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 mb-8">
+      <div className="grid md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
         <div>
           <label htmlFor={`${idPrefix}-budget`} className={labelClass}>
             {copy.labels.budgetRange}
@@ -266,7 +266,7 @@ export function ContactForm({ locale = "en", sourcePage, className }: ContactFor
           onChange={(event) => updateField("message", event.target.value)}
           placeholder={copy.placeholders.message}
           required
-          rows={5}
+          rows={6}
           disabled={status === "loading"}
           className={`${inputClass} resize-none`}
         />
@@ -277,7 +277,7 @@ export function ContactForm({ locale = "en", sourcePage, className }: ContactFor
       <button
         type="submit"
         disabled={status === "loading"}
-        className="text-sm uppercase tracking-widest text-fg hover:text-fg-secondary transition-colors disabled:opacity-40"
+        className="text-sm md:text-base uppercase tracking-[0.24em] text-fg hover:text-fg-secondary transition-colors disabled:opacity-40"
       >
         {status === "loading" ? copy.submit.sending : `${copy.submit.idle} →`}
       </button>

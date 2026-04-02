@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ContactForm } from "@/components/sections/contact-form";
 import type { MarketHub, MarketPage } from "@/lib/market-page-types";
-import { cn } from "@/lib/utils";
 
 type MarketEntry = MarketHub | MarketPage;
 
@@ -10,7 +9,7 @@ type MarketLandingPageProps = {
   relatedPages: MarketPage[];
 };
 
-const baseCardClass = "rounded-3xl border border-border bg-bg-tertiary/40 backdrop-blur-sm";
+const sectionClass = "border-t border-border pt-8";
 
 function isMarketPage(entry: MarketEntry): entry is MarketPage {
   return "slug" in entry;
@@ -73,18 +72,18 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
         };
 
   const primaryCtaClass =
-    "inline-flex items-center justify-center rounded-full border border-fg bg-fg px-6 py-3 text-xs uppercase tracking-[0.2em] text-bg transition-colors hover:bg-fg-secondary hover:border-fg-secondary";
+    "inline-flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-fg transition-colors hover:text-fg-secondary";
 
   const secondaryCtaClass =
-    "inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-xs uppercase tracking-[0.2em] text-fg transition-colors hover:border-fg hover:text-fg";
+    "inline-flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-fg-muted transition-colors hover:text-fg";
 
   const tertiaryCtaClass =
-    "inline-flex items-center text-xs uppercase tracking-[0.2em] text-fg-secondary transition-colors hover:text-fg";
+    "inline-flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-fg-muted transition-colors hover:text-fg";
 
   return (
     <main lang={entry.locale} className="min-h-screen bg-bg text-fg">
       <section className="px-6 md:px-12 lg:px-16 pt-32 md:pt-40 pb-16">
-        <div className="grid gap-12 xl:grid-cols-[minmax(0,1.2fr)_420px]">
+        <div className="grid gap-12 xl:grid-cols-[minmax(0,1.25fr)_minmax(280px,360px)]">
           <div>
             <div className="mb-10">
               <p className="text-sm uppercase tracking-[0.3em] text-fg-muted mb-6">
@@ -103,7 +102,7 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
               ) : null}
             </div>
 
-            <div className="flex flex-wrap gap-4 mb-12">
+            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-14">
               {renderCta(entry.cta.primaryHref, entry.cta.primaryLabel, primaryCtaClass)}
               {entry.cta.secondaryHref && entry.cta.secondaryLabel
                 ? renderCta(entry.cta.secondaryHref, entry.cta.secondaryLabel, secondaryCtaClass)
@@ -113,12 +112,9 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
                 : null}
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 gap-8">
               {entry.proof.map((item) => (
-                <div
-                  key={`${item.title}-${item.metric ?? ""}`}
-                  className={cn(baseCardClass, "p-6")}
-                >
+                <div key={`${item.title}-${item.metric ?? ""}`} className={sectionClass}>
                   {item.metric ? (
                     <p className="text-sm uppercase tracking-[0.2em] text-fg-muted mb-4">
                       {item.metric}
@@ -131,26 +127,55 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
             </div>
           </div>
 
-          <aside id="lead-form" className={cn(baseCardClass, "xl:sticky xl:top-28 self-start p-8")}>
-            <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
-              {copy.formEyebrow}
-            </p>
-            <h2 className="text-2xl md:text-3xl font-light mb-4">{copy.formTitle}</h2>
-            <p className="text-sm text-fg-secondary mb-0">{copy.formDescription}</p>
-            <ContactForm locale={locale} sourcePage={entry.path} className="mt-2 border-b-0 py-8" />
+          <aside className="self-start xl:pt-14">
+            <div className={sectionClass}>
+              <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
+                {copy.formEyebrow}
+              </p>
+              <h2 className="text-2xl md:text-3xl font-light mb-4">{copy.formTitle}</h2>
+              <p className="text-base text-fg-secondary leading-relaxed mb-6">
+                {copy.formDescription}
+              </p>
+              <p className="text-sm text-fg-muted leading-relaxed">
+                {entry.locale === "es"
+                  ? "El formulario abre una conversacion mas clara. WhatsApp sigue disponible, pero queda como canal secundario."
+                  : "The form starts a cleaner conversation. WhatsApp can stay secondary when needed, but email is the main path."}
+              </p>
+            </div>
           </aside>
         </div>
       </section>
 
       <section className="px-6 md:px-12 lg:px-16 pb-20">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className={cn(baseCardClass, "p-8")}>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.38fr)_minmax(0,1fr)]">
+          <div className={sectionClass}>
+            <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
+              {copy.formEyebrow}
+            </p>
+            <h2 className="text-2xl md:text-3xl font-light mb-4">{copy.formTitle}</h2>
+            <p className="text-base text-fg-secondary leading-relaxed mb-6">
+              {copy.formDescription}
+            </p>
+            <p className="text-sm text-fg-muted leading-relaxed">
+              {entry.locale === "es"
+                ? "La idea es responder por email con contexto, rango de presupuesto y siguientes pasos. El formulario va primero para que la conversacion no se pierda."
+                : "The goal is to reply by email with context, a budget range, and the next steps. The form comes first so the conversation does not get lost."}
+            </p>
+          </div>
+
+          <div className={sectionClass}>
+            <ContactForm locale={locale} sourcePage={entry.path} className="border-b-0 py-0" />
+          </div>
+        </div>
+
+        <div className="grid gap-10 lg:grid-cols-2 mt-16">
+          <div className={sectionClass}>
             <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">{copy.summary}</p>
             <h2 className="text-2xl md:text-3xl font-light mb-4">{entry.title}</h2>
             <p className="text-fg-secondary leading-relaxed">{entry.intro}</p>
           </div>
 
-          <div className={cn(baseCardClass, "p-8")}>
+          <div className={sectionClass}>
             <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
               {entry.locale === "es" ? "Palabras clave" : "Primary keywords"}
             </p>
@@ -158,7 +183,7 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
               {entry.keywords.map((keyword) => (
                 <span
                   key={keyword}
-                  className="rounded-full border border-border px-3 py-2 text-xs uppercase tracking-[0.15em] text-fg-secondary"
+                  className="border border-border px-3 py-2 text-xs uppercase tracking-[0.15em] text-fg-secondary"
                 >
                   {keyword}
                 </span>
@@ -168,8 +193,8 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
         </div>
 
         {isPage ? (
-          <div className="grid gap-6 lg:grid-cols-3 mt-6">
-            <section className={cn(baseCardClass, "p-8")}>
+          <div className="grid gap-10 lg:grid-cols-3 mt-16">
+            <section className={sectionClass}>
               <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
                 {copy.problem}
               </p>
@@ -181,7 +206,7 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
               </ul>
             </section>
 
-            <section className={cn(baseCardClass, "p-8")}>
+            <section className={sectionClass}>
               <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
                 {copy.solution}
               </p>
@@ -193,7 +218,7 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
               </ul>
             </section>
 
-            <section className={cn(baseCardClass, "p-8")}>
+            <section className={sectionClass}>
               <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">
                 {copy.deliverables}
               </p>
@@ -207,8 +232,8 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
           </div>
         ) : null}
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px] mt-6">
-          <section className={cn(baseCardClass, "p-8")}>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_380px] mt-16">
+          <section className={sectionClass}>
             <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">{copy.faq}</p>
             <div className="space-y-6">
               {entry.faq.map((item) => (
@@ -220,16 +245,17 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
             </div>
           </section>
 
-          <aside className={cn(baseCardClass, "p-8")}>
+          <aside className={sectionClass}>
             <p className="text-xs uppercase tracking-[0.3em] text-fg-muted mb-4">{copy.related}</p>
             <div className="space-y-3">
               {(isPage ? relatedPages : relatedPages.slice(0, 6)).map((page) => (
                 <Link
                   key={page.path}
                   href={page.path}
-                  className="block rounded-2xl border border-border px-4 py-4 text-sm text-fg-secondary transition-colors hover:text-fg hover:border-fg"
+                  className="flex items-center justify-between border-b border-border py-4 text-sm uppercase tracking-[0.16em] text-fg-secondary transition-colors hover:text-fg"
                 >
-                  {page.hero.eyebrow}
+                  <span>{page.hero.eyebrow}</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
               ))}
               {!isPage
@@ -237,9 +263,10 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
                     <Link
                       key={item.slug}
                       href={`${entry.path}/${item.slug}`}
-                      className="block rounded-2xl border border-border px-4 py-4 text-sm text-fg-secondary transition-colors hover:text-fg hover:border-fg"
+                      className="flex items-center justify-between border-b border-border py-4 text-sm uppercase tracking-[0.16em] text-fg-secondary transition-colors hover:text-fg"
                     >
-                      {item.label}
+                      <span>{item.label}</span>
+                      <span aria-hidden="true">→</span>
                     </Link>
                   ))
                 : null}
