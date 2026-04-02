@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const primaryLinks = [
@@ -14,7 +15,7 @@ const primaryLinks = [
 
 const marketLinks = [
   {
-    href: "/cr",
+    href: "/es",
     label: "Para negocios en Costa Rica",
     description:
       "Sitios web, rediseños y páginas por servicio para verse más serios y captar consultas.",
@@ -48,7 +49,7 @@ export function Nav() {
       {/* Fixed Nav -- no full-width background */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-4 pointer-events-none">
         <div className="flex items-center justify-between">
-          {/* Glass pill: logo + theme toggle */}
+          {/* Glass pill: logo + theme toggle + language toggle */}
           <div className="nav-glass pointer-events-auto flex items-center gap-1 rounded-full px-4 h-12">
             <Link href="/" className="text-2xl md:text-3xl tracking-tight">
               <span className="font-medium text-white">M</span>
@@ -57,6 +58,7 @@ export function Nav() {
             </Link>
             <div className="w-px h-5 bg-white/15 mx-2" />
             <ThemeToggle className="text-white" />
+            <LanguageToggle />
           </div>
 
           {/* Contact CTA */}
@@ -105,6 +107,7 @@ export function Nav() {
                 <span className="font-bold">R</span>
               </Link>
               <ThemeToggle />
+              <LanguageToggle />
             </div>
 
             {/* Close button */}
