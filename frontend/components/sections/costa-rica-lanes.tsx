@@ -3,28 +3,28 @@ import Link from "next/link";
 const laneCards = [
   {
     eyebrow: "Para negocios en Costa Rica",
-    title: "Sitios web y páginas de servicio para verse más serios y recibir más consultas.",
+    title: "¿Tiene un negocio en Costa Rica y necesita una página web que se vea seria?",
     description:
-      "Pensado para negocios locales que hoy dependen demasiado de redes sociales, referencias o WhatsApp para explicar todo.",
+      "Servicios en español para negocios que necesitan presencia en línea, una mejor imagen y una forma más clara de recibir consultas.",
     href: "/cr",
-    cta: "Ver servicios en español",
+    cta: "Ver servicios para Costa Rica",
     points: [
-      "Páginas web para negocios y servicios",
-      "Rediseños con mejor credibilidad y claridad",
-      "Cotización por formulario, no por mensajes sueltos",
+      "Páginas web y rediseños",
+      "Servicios para constructoras, clínicas, turismo y negocios locales",
+      "Cotización más clara por formulario",
     ],
   },
   {
     eyebrow: "For foreign-owned businesses in Costa Rica",
-    title: "Costa Rica web and app execution with direct English communication.",
+    title: "Do you run a foreign-owned business in Costa Rica and need a stronger website?",
     description:
-      "Built for expats, foreign-owned businesses, and local operators who want a stronger website, clearer scope, and less agency friction.",
+      "English-language service pages for businesses that want direct communication, clearer scope, and a serious local web partner.",
     href: "/costa-rica",
-    cta: "Explore the English lane",
+    cta: "Explore English services",
     points: [
       "Web development and redesigns",
-      "Founder-led execution with local context",
-      "Email-first quote flow with clearer follow-up",
+      "Direct English communication",
+      "Costa Rica context with cleaner follow-up",
     ],
   },
 ];
@@ -33,26 +33,23 @@ export function CostaRicaLanes() {
   return (
     <section className="bg-bg px-6 py-24 md:px-12 md:py-32 lg:px-16">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-8 border-t border-border pt-8 md:grid-cols-[220px_1fr] md:gap-16">
-          <div>
-            <p className="text-lg font-medium uppercase tracking-widest text-fg">Costa Rica</p>
-          </div>
-
-          <div>
-            <h2 className="max-w-4xl text-3xl font-light leading-tight text-fg md:text-5xl">
-              Choose the lane that matches the way your business buys.
-            </h2>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-fg-secondary md:text-xl">
-              The site now starts with two commercial paths. One speaks to Costa Rica business
-              owners in Spanish. The other speaks to foreign-owned businesses that want direct
-              communication in English and a serious local partner.
-            </p>
-          </div>
+        <div className="max-w-3xl border-t border-border pt-8">
+          <p className="text-xs uppercase tracking-[0.28em] text-fg-muted">Costa Rica Services</p>
+          <h2 className="mt-4 text-3xl font-light leading-tight text-fg md:text-5xl">
+            Start in the version that fits your business.
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-fg-secondary md:text-xl">
+            If your business operates in Costa Rica, use the Spanish side. If you prefer to work in
+            English, use the English side.
+          </p>
         </div>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           {laneCards.map((lane) => (
-            <article key={lane.href} className="border-t border-border pt-8">
+            <article
+              key={lane.href}
+              className="flex h-full flex-col justify-between border-t border-border pt-8"
+            >
               <p className="text-xs uppercase tracking-[0.28em] text-fg-muted">{lane.eyebrow}</p>
               <h3 className="mt-5 max-w-xl text-2xl font-light leading-tight text-fg md:text-4xl">
                 {lane.title}
