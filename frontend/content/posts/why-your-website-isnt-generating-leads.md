@@ -17,7 +17,7 @@ Your website looks fine. It loads. It has your logo, your services, a contact pa
 
 This is the reality for most small and mid-size businesses. They paid an agency to build a website — or dragged one together on Squarespace — and now it sits there like a digital brochure that nobody reads. No leads. No calls. No growth.
 
-I'm Marcelo Retana, a senior full-stack developer with over 10 years of experience building digital products for companies like Bank of America, IBM, Universal Music, BMW, and Mercedes Benz — as well as startups and small businesses around the world. I've shipped 50+ projects, and the lesson is always the same: **a website that doesn't generate leads is a website that isn't doing its job.**
+I'm Marcelo Retana, a senior full-stack developer with over 10 years of experience building digital products for companies like Bank of America, IBM, Universal Music, BMW, and Mercedes Benz — as well as startups and small businesses around the world. I've shipped 600+ projects, and the lesson is always the same: **a website that doesn't generate leads is a website that isn't doing its job.**
 
 Here's how I approach it differently.
 
@@ -123,7 +123,7 @@ Whether the objective is booking a call, capturing an email, or completing a pur
 
 ## What Clients Say
 
-I maintain a **5.0 rating on both Clutch and Google** with 100% client satisfaction across 50+ projects. Here's what some clients have said:
+I maintain a **5.0 rating on both Clutch and Google** with 100% client satisfaction across 600+ projects. Here's what some clients have said:
 
 > "Their speed and ability to adapt to changes are top-notch. They over-delivered, and operated like an extension of our team."
 > — **Clay McIlrath**, Founder, Unicorn

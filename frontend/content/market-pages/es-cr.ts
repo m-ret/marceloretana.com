@@ -20,7 +20,7 @@ const sharedProof: MarketProof[] = [
       "Marcelo Retana lleva más de una década construyendo sitios, apps y productos digitales para negocios locales y marcas globales.",
   },
   {
-    metric: "50+",
+    metric: "600+",
     title: "Proyectos entregados",
     description:
       "El enfoque combina velocidad, claridad comercial y ejecución técnica en proyectos reales, no demos ni promesas vacías.",

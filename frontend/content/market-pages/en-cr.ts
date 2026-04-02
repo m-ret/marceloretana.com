@@ -25,7 +25,7 @@ const sharedProof: MarketProof[] = [
       "Marcelo Retana has spent more than a decade building products, websites, and business systems that have to work in the real world.",
   },
   {
-    metric: "50+",
+    metric: "600+",
     title: "Projects shipped",
     description:
       "The offer is founder-led, fast-moving, and built around clear communication instead of agency layers and vague process.",

@@ -165,7 +165,7 @@ export function Testimonials() {
             <p className="text-fg-muted text-sm mt-2">Client Satisfaction</p>
           </div>
           <div>
-            <p className="text-4xl md:text-5xl font-light text-fg">50+</p>
+            <p className="text-4xl md:text-5xl font-light text-fg">600+</p>
             <p className="text-fg-muted text-sm mt-2">Projects Delivered</p>
           </div>
         </div>
