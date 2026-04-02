@@ -21,6 +21,7 @@ dist/
 
 # Claude Code
 .claude/
+.worktrees/
 
 # Embedded repos
 m-ret/
