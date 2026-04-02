@@ -1,18 +1,6 @@
 const MARKET_LASTMOD = "2026-04-01T00:00:00.000Z";
 
-const marketRoutes = [
-  "/cr",
-  "/cr/paginas-web-costa-rica",
-  "/cr/diseno-web-costa-rica",
-  "/cr/desarrollo-web-costa-rica",
-  "/cr/seo-costa-rica",
-  "/cr/constructoras",
-  "/cr/clinicas",
-  "/cr/turismo",
-  "/cr/cuanto-cuesta-pagina-web",
-  "/cr/por-que-necesita-sitio-web",
-  "/cr/sitio-web-que-genere-clientes",
-  "/cr/cotizacion",
+const costaRicaRoutes = [
   "/costa-rica",
   "/costa-rica/web-development",
   "/costa-rica/web-development-agency",
@@ -23,6 +11,18 @@ const marketRoutes = [
   "/costa-rica/lead-generation-websites-costa-rica",
   "/costa-rica/expat-business-web-development",
   "/costa-rica/nearshore-web-development",
+];
+
+const esRoutes = [
+  { loc: "/es", priority: 0.95, changefreq: "weekly" },
+  { loc: "/es/cuanto-cuesta", priority: 0.85, changefreq: "weekly" },
+  { loc: "/es/rediseno", priority: 0.85, changefreq: "weekly" },
+  { loc: "/es/generar-clientes", priority: 0.85, changefreq: "weekly" },
+  { loc: "/es/constructoras", priority: 0.85, changefreq: "weekly" },
+  { loc: "/es/clinicas", priority: 0.85, changefreq: "weekly" },
+  { loc: "/es/turismo", priority: 0.85, changefreq: "weekly" },
+  { loc: "/es/cotizacion", priority: 0.7, changefreq: "monthly" },
+  { loc: "/es/contacto", priority: 0.7, changefreq: "monthly" },
 ];
 
 /** @type {import('next-sitemap').IConfig} */
@@ -39,14 +39,8 @@ const config = {
     "/opengraph-image*",
     "/twitter-image*",
     "/llms.txt",
-    "/compare",
-    "/compare/*",
-    "/checklist",
-    "/checklist/*",
-    "/resources",
-    "/resources/*",
-    "/learn",
-    "/learn/*",
+    "/cr",
+    "/cr/*",
     "/cr/servicios",
     "/cr/negocios-servicios",
     "/cr/consultorios",
@@ -64,11 +58,20 @@ const config = {
   additionalPaths: async () => {
     const paths = [];
 
-    for (const route of marketRoutes) {
+    for (const route of costaRicaRoutes) {
       paths.push({
         loc: route,
         changefreq: "weekly",
-        priority: route === "/cr" || route === "/costa-rica" ? 0.95 : 0.85,
+        priority: route === "/costa-rica" ? 0.95 : 0.85,
+        lastmod: MARKET_LASTMOD,
+      });
+    }
+
+    for (const route of esRoutes) {
+      paths.push({
+        loc: route.loc,
+        changefreq: route.changefreq,
+        priority: route.priority,
         lastmod: MARKET_LASTMOD,
       });
     }
@@ -130,18 +133,35 @@ const config = {
     } else if (path.startsWith("/blog/")) {
       priority = 0.8;
       changefreq = "weekly";
-    } else if (
-      path === "/cr" ||
-      path === "/costa-rica"
-    ) {
+    } else if (path === "/es") {
       priority = 0.95;
       changefreq = "weekly";
-    } else if (
-      path.startsWith("/cr/") ||
-      path.startsWith("/costa-rica/")
-    ) {
+    } else if (path === "/es/blog") {
+      priority = 0.9;
+      changefreq = "weekly";
+    } else if (path.startsWith("/es/blog/")) {
+      priority = 0.8;
+      changefreq = "weekly";
+    } else if (path.startsWith("/es/compare/")) {
+      priority = 0.6;
+      changefreq = "monthly";
+    } else if (path.startsWith("/es/")) {
       priority = 0.85;
       changefreq = "weekly";
+    } else if (path === "/costa-rica") {
+      priority = 0.95;
+      changefreq = "weekly";
+    } else if (path.startsWith("/costa-rica/")) {
+      priority = 0.85;
+      changefreq = "weekly";
+    } else if (
+      path.startsWith("/compare/") ||
+      path.startsWith("/learn/") ||
+      path.startsWith("/checklist/") ||
+      path.startsWith("/resources/")
+    ) {
+      priority = 0.6;
+      changefreq = "monthly";
     }
 
     return {
