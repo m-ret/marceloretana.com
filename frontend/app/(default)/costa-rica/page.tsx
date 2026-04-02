@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MarketLandingPage } from "@/components/market-pages/market-landing-page";
-import { enCrHub, enCrMarketPages } from "@/content/market-pages/en-cr";
+import { enCrHub } from "@/content/market-pages/en-cr";
+import { getIndexableMarketPagesByMachine } from "@/lib/market-pages";
 import { buildMarketJsonLd, buildMarketMetadata } from "@/lib/market-seo";
 
 export function generateMetadata(): Metadata {
@@ -9,6 +10,7 @@ export function generateMetadata(): Metadata {
 
 export default function CostaRicaEnglishHubPage() {
   const jsonLd = buildMarketJsonLd(enCrHub);
+  const relatedPages = getIndexableMarketPagesByMachine("en-cr");
 
   return (
     <>
@@ -19,7 +21,7 @@ export default function CostaRicaEnglishHubPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
         />
       ))}
-      <MarketLandingPage entry={enCrHub} relatedPages={enCrMarketPages} />
+      <MarketLandingPage entry={enCrHub} relatedPages={relatedPages} />
     </>
   );
 }

@@ -5,10 +5,14 @@ import { getAllPseoContent } from "@/lib/pseo";
 import type { Comparison } from "@/lib/pseo-types";
 
 export const metadata: Metadata = {
-  title: "Tool Comparisons | Marcelo Retana",
+  title: "Technical Comparisons | Marcelo Retana",
   description:
-    "Honest, detailed comparisons of popular web frameworks, AI tools, and developer platforms.",
+    "Secondary library of technical comparisons across frameworks, AI tools, and developer platforms.",
   alternates: { canonical: "https://marceloretana.com/compare" },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function CompareIndex() {
@@ -24,9 +28,11 @@ export default function CompareIndex() {
           <ArrowLeft className="h-4 w-4 mr-2" />
           Home
         </Link>
-        <h1 className="text-3xl md:text-4xl font-light text-fg mb-4">Tool Comparisons</h1>
-        <p className="text-fg-secondary mb-12">
-          Honest, side-by-side comparisons with scores, criteria breakdowns, and clear verdicts.
+        <p className="mb-4 text-xs uppercase tracking-[0.3em] text-fg-muted">Library</p>
+        <h1 className="text-3xl md:text-4xl font-light text-fg mb-4">Technical Comparisons</h1>
+        <p className="max-w-2xl text-fg-secondary mb-12">
+          Side-by-side tool comparisons kept as part of the technical library. Useful reference
+          material, but secondary to the Costa Rica service lanes on this site.
         </p>
         <div className="space-y-3">
           {comparisons.map((item) => (

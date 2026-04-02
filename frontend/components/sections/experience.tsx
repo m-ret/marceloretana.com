@@ -11,7 +11,7 @@ const experiences: ExperienceItem[] = [
     role: "Founder",
     duration: "7+ yrs",
     description:
-      "Building high-converting websites, web apps, and MVPs for startups and growing businesses. Modern tech stack, performance-first development, and SEO optimization.",
+      "Founder-led execution across business websites, product builds, sector pages, and commercial flows for growing companies.",
   },
   {
     company: "Universal Music Group",
@@ -54,21 +54,19 @@ export function Experience() {
   return (
     <section id="experience" className="py-32 md:py-40 px-6 md:px-12 lg:px-16 bg-bg-secondary">
       <div className="max-w-6xl">
-        {/* WHAT I DO section */}
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-24">
           <div>
             <h2 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium">
-              What I Do
+              Experience
             </h2>
           </div>
           <div>
             <p className="text-3xl md:text-4xl lg:text-5xl font-light text-fg leading-tight">
-              10+ years shipping software that works.
+              10+ years shipping software, websites, and delivery that hold up in the real world.
             </p>
           </div>
         </div>
 
-        {/* Experience list */}
         <div className="border-t border-border">
           {experiences.map((exp) => (
             <div

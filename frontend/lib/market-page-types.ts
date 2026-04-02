@@ -30,6 +30,13 @@ export const marketFaqSchema = z.object({
   answer: z.string().min(1),
 });
 
+export const marketNarrativeSectionSchema = z.object({
+  eyebrow: z.string().min(1).optional(),
+  title: z.string().min(1),
+  body: z.string().min(1),
+  points: z.array(z.string().min(1)).optional(),
+});
+
 export const marketPageLinkSchema = z.object({
   label: z.string().min(1),
   slug: z.string().min(1),
@@ -48,6 +55,9 @@ const marketBaseSchema = z.object({
   faq: z.array(marketFaqSchema).min(1),
   cta: marketCtaSchema,
   alternatePath: z.string().min(1).optional(),
+  noindex: z.boolean().optional(),
+  narrativeSections: z.array(marketNarrativeSectionSchema).optional(),
+  caseProofIds: z.array(z.string().min(1)).optional(),
 });
 
 export const marketPageSchema = marketBaseSchema.extend({
@@ -79,6 +89,7 @@ export type MarketHero = z.infer<typeof marketHeroSchema>;
 export type MarketCta = z.infer<typeof marketCtaSchema>;
 export type MarketProof = z.infer<typeof marketProofSchema>;
 export type MarketFaq = z.infer<typeof marketFaqSchema>;
+export type MarketNarrativeSection = z.infer<typeof marketNarrativeSectionSchema>;
 export type MarketPageLink = z.infer<typeof marketPageLinkSchema>;
 export type MarketPage = z.infer<typeof marketPageSchema>;
 export type MarketHub = z.infer<typeof marketHubSchema>;

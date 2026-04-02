@@ -85,8 +85,27 @@ export const esCrHub: MarketHub = {
       "Si hoy su negocio depende demasiado de redes, referencias o WhatsApp, un buen sitio web puede darle una presencia más clara, confiable y fácil de contactar.",
   },
   intro:
-    "Aquí puede ver servicios, sectores, precios orientativos y la forma más clara de pedir una cotización. La idea es simple: ayudarle a verse más serio, explicar mejor lo que vende y ordenar mejor las consultas que recibe.",
-  proof: sharedProof,
+    "Aquí no estoy vendiendo tecnología por sonar moderno. Estoy vendiendo una presencia online que ayude a un negocio en Costa Rica a verse serio, explicar mejor lo que hace y mover mejores consultas por formulario. Si hoy su negocio se apoya demasiado en redes sociales, referencias o WhatsApp, este hub le enseña por dónde empezar según su caso.",
+  proof: [
+    {
+      metric: "Costa Rica",
+      title: "Lenguaje comercial, no técnico",
+      description:
+        "Las páginas se plantean desde lo que aquí sí se busca: sitio web, página web, cotización, verse serio, salir en Google y recibir consultas.",
+    },
+    {
+      metric: "Formulario primero",
+      title: "Cotización más ordenada",
+      description:
+        "La meta no es abrir otro chat. La meta es recibir contexto suficiente para responder por email con una propuesta más clara.",
+    },
+    {
+      metric: "Sectores reales",
+      title: "Enfoque en negocios que sí compran",
+      description:
+        "Constructoras, clínicas, turismo y negocios de servicios tienen necesidades distintas. Por eso cada página fuerte ataca una decisión comercial diferente.",
+    },
+  ],
   faq: sharedFaq,
   cta: defaultCta,
   featuredLinks: [
@@ -94,12 +113,36 @@ export const esCrHub: MarketHub = {
     { label: "Diseño Web", slug: "diseno-web-costa-rica" },
     { label: "Desarrollo Web", slug: "desarrollo-web-costa-rica" },
     { label: "SEO", slug: "seo-costa-rica" },
+    { label: "Generar clientes", slug: "sitio-web-que-genere-clientes" },
     { label: "Constructoras", slug: "constructoras" },
     { label: "Clínicas", slug: "clinicas" },
+    { label: "Por qué necesita sitio web", slug: "por-que-necesita-sitio-web" },
     { label: "Precio", slug: "cuanto-cuesta-pagina-web" },
-    { label: "Proceso", slug: "proceso" },
     { label: "Turismo", slug: "turismo" },
     { label: "Cotización", slug: "cotizacion" },
+  ],
+  caseProofIds: ["gexp", "nature-escapes", "vista3-architects"],
+  narrativeSections: [
+    {
+      eyebrow: "Qué resuelve",
+      title: "Un buen sitio no existe para verse bonito. Existe para bajar fricción comercial.",
+      body: "En Costa Rica mucha gente todavía pregunta si de verdad necesita una página web. La respuesta depende menos de la tecnología y más de tres cosas: si el negocio se ve serio, si lo que vende se entiende rápido y si el siguiente paso está claro. Cuando eso falla, la empresa termina explicando lo mismo todos los días por mensajes sueltos.",
+      points: [
+        "Mejor primera impresión para negocios que hoy se ven improvisados.",
+        "Más claridad sobre servicios, sectores y diferenciales.",
+        "Un camino más serio para cotizar y dar seguimiento.",
+      ],
+    },
+    {
+      eyebrow: "Cómo usar este hub",
+      title: "Empiece por la intención comercial, no por una categoría técnica.",
+      body: "Si necesita la presencia base del negocio, empiece por páginas web. Si el problema es percepción, empiece por diseño. Si el problema es salir en búsquedas y sumar más páginas, empiece por SEO. Si quiere saber si ya vale la pena hablar, empiece por precio o cotización.",
+      points: [
+        "Páginas base para verse serio.",
+        "Páginas sectoriales para capturar demanda específica.",
+        "Precio y cotización para pasar a una conversación real.",
+      ],
+    },
   ],
   alternatePath: "/costa-rica",
 };
@@ -107,6 +150,7 @@ export const esCrHub: MarketHub = {
 export const esCrMarketPages: MarketPage[] = [
   createPage({
     slug: "servicios",
+    noindex: true,
     title: "Servicios Web para Negocios en Costa Rica",
     description:
       "Servicios de páginas web, rediseños, SEO comercial y desarrollos ligeros para negocios en Costa Rica que necesitan verse serios y captar mejores consultas.",
@@ -163,7 +207,45 @@ export const esCrMarketPages: MarketPage[] = [
         "No una presencia online por cumplir. Una página que ayude a dar confianza, ordenar servicios y captar mejores consultas.",
     },
     intro:
-      "Cuando un negocio busca una página web, normalmente no está pensando en tecnología. Está pensando en verse serio, explicar bien lo que hace y facilitar el contacto.",
+      "Cuando un negocio busca una página web, casi nunca está pensando en código. Está pensando en algo mucho más simple: verse serio, explicar mejor lo que vende y dejar una forma clara para que la gente pregunte. Esa es la diferencia entre una página de relleno y una página comercial que sí ayuda al negocio.",
+    proof: [
+      {
+        metric: "Primera impresión",
+        title: "Más claridad desde el inicio",
+        description:
+          "La página principal deja claro qué hace el negocio, a quién ayuda y cómo se pide información sin obligar a la persona a descifrarlo sola.",
+      },
+      {
+        metric: "Confianza",
+        title: "Más credibilidad antes del contacto",
+        description:
+          "Servicios, prueba, preguntas frecuentes y un CTA visible ayudan a justificar mejor el negocio antes de hablar de precio.",
+      },
+      {
+        metric: "Formulario",
+        title: "Mejores consultas",
+        description:
+          "La meta no es cualquier mensaje. La meta es una consulta con más contexto para responder mejor y cerrar mejor.",
+      },
+    ],
+    caseProofIds: ["gexp", "vista3-architects"],
+    narrativeSections: [
+      {
+        eyebrow: "Lo que compra la gente",
+        title: "En la práctica, la mayoría compra confianza antes que diseño.",
+        body: "Cuando alguien visita la web de un negocio local, lo primero que evalúa es si el negocio se siente real, claro y confiable. Si la información es débil, el sitio parece viejo o todo se ve improvisado, el problema no es solo estético. El negocio pierde autoridad antes de la primera conversación.",
+      },
+      {
+        eyebrow: "Qué debe incluir",
+        title: "Una página web seria ordena la venta incluso cuando usted no está respondiendo.",
+        body: "Debe explicar el negocio rápido, mostrar servicios sin enredo, responder objeciones básicas y dejar un siguiente paso claro. Eso reduce preguntas repetidas, mejora la calidad de los contactos y hace que el negocio se perciba más establecido.",
+        points: [
+          "Titular claro y orientado a lo que vende.",
+          "Secciones por servicio o solución.",
+          "Prueba real y una cotización visible.",
+        ],
+      },
+    ],
     problemTitle: "Lo que pasa sin una página web seria",
     problemPoints: [
       "Todo depende de referencias, redes sociales o mensajes sueltos.",
@@ -318,6 +400,7 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "negocios-servicios",
+    noindex: true,
     title: "Páginas Web para Negocios de Servicios en Costa Rica",
     description:
       "Páginas web para negocios de servicios en Costa Rica que necesitan explicar rápido lo que hacen, verse confiables y captar formularios mejor calificados.",
@@ -380,7 +463,40 @@ export const esCrMarketPages: MarketPage[] = [
         "La presencia digital tiene que mostrar proyectos, ubicaciones, seriedad y un camino claro para pedir información.",
     },
     intro:
-      "La oportunidad aquí es convertir un sector con alta fricción comercial en una experiencia mucho más clara para compradores, inversionistas y prospectos.",
+      "Constructoras, desarrolladores e inmobiliarias venden proyectos de alto valor. Por eso la presencia online no puede verse improvisada. Tiene que transmitir orden, respaldo y una forma clara de pedir información sin depender de PDFs regados, redes sociales o mensajes sueltos.",
+    proof: [
+      {
+        metric: "Proyectos visibles",
+        title: "Presentación más fuerte",
+        description:
+          "Un sitio bien estructurado permite mostrar proyectos, ubicaciones, tipologías y servicios sin que la persona tenga que perseguir la información.",
+      },
+      {
+        metric: "Confianza",
+        title: "Menos fricción para consultas grandes",
+        description:
+          "Cuando la inversión es alta, la web tiene que respaldar la percepción de seriedad antes de que el prospecto escriba.",
+      },
+      {
+        metric: "SEO local",
+        title: "Más páginas con intención clara",
+        description:
+          "Servicios, desarrollos y ubicaciones pueden convertirse en páginas con más sentido comercial y más capacidad de captura.",
+      },
+    ],
+    caseProofIds: ["vista3-architects", "gexp"],
+    narrativeSections: [
+      {
+        eyebrow: "Qué se juzga aquí",
+        title: "En construcción e inmobiliaria la web funciona como señal de estabilidad.",
+        body: "Quien compra o invierte en este sector quiere sentir que la empresa tiene criterio, procesos y respaldo. Si la presencia online se siente débil, el riesgo percibido sube. Eso hace más difícil pedir una reunión, justificar precios o mover proyectos importantes.",
+      },
+      {
+        eyebrow: "Qué debe cambiar",
+        title: "La información tiene que sentirse ordenada y comprable.",
+        body: "La web debe separar bien proyectos, servicios, zonas, experiencia y contacto. Cuando todo eso está claro, el prospecto llega mejor filtrado y con más contexto para una conversación seria.",
+      },
+    ],
     problemTitle: "Problemas comunes del sector",
     problemPoints: [
       "Proyectos sin una vitrina profesional.",
@@ -427,7 +543,40 @@ export const esCrMarketPages: MarketPage[] = [
         "La meta es un sitio claro, profesional y fácil de consultar para clínicas, centros médicos y negocios de salud.",
     },
     intro:
-      "En salud, el sitio tiene que reducir ansiedad, explicar servicios y dejar claro cómo hacer la primera consulta.",
+      "En salud, la web tiene que transmitir calma, profesionalismo y claridad. Si el sitio se ve viejo, confuso o demasiado informal, mucha gente decide no escribir siquiera. Por eso una clínica necesita una presencia que explique servicios con orden y deje un camino claro para la primera consulta.",
+    proof: [
+      {
+        metric: "Confianza",
+        title: "Primera impresión más profesional",
+        description:
+          "El diseño, el tono y la estructura tienen que reducir ansiedad, no aumentarla.",
+      },
+      {
+        metric: "Claridad",
+        title: "Servicios más fáciles de entender",
+        description:
+          "Especialidades, tratamientos y preguntas frecuentes deben sentirse accesibles incluso para alguien que viene nervioso o apurado.",
+      },
+      {
+        metric: "Contacto",
+        title: "Mejor paso hacia la consulta",
+        description:
+          "La solicitud de cita o consulta tiene que ser visible, sencilla y confiable desde móvil.",
+      },
+    ],
+    caseProofIds: ["dr-bahia-ballena", "gexp"],
+    narrativeSections: [
+      {
+        eyebrow: "Qué importa aquí",
+        title: "La gente decide si confía antes de decidir si pregunta.",
+        body: "Una clínica no compite solo por aparecer en Google. Compite por transmitir suficiente tranquilidad como para que la persona dé el siguiente paso. Eso depende de cómo se presentan los servicios, el profesional, la experiencia y la forma de contacto.",
+      },
+      {
+        eyebrow: "Qué debe resolver",
+        title: "El sitio tiene que quitar dudas básicas sin complicar la experiencia.",
+        body: "La persona debería entender rápido qué atienden, dónde están, cómo pedir información y por qué confiar. Si esos puntos no están claros, la consulta se pierde o llega con demasiada fricción.",
+      },
+    ],
     problemTitle: "Lo que frena la conversión",
     problemPoints: [
       "Servicios explicados de forma confusa.",
@@ -458,6 +607,7 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "consultorios",
+    noindex: true,
     title: "Sitio Web para Consultorios en Costa Rica",
     description:
       "Sitios web para consultorios y profesionales de salud en Costa Rica que necesitan explicar servicios, ubicación y cómo agendar con claridad.",
@@ -509,7 +659,40 @@ export const esCrMarketPages: MarketPage[] = [
         "Trabajo con hoteles, tours y experiencias que necesitan comunicar valor rápido y dejar claro cómo consultar disponibilidad o reservar.",
     },
     intro:
-      "En turismo, el sitio es vitrina, filtro de confianza y motor de consultas al mismo tiempo. Si falla en uno, pierde en todos.",
+      "En turismo y hotelería la web vende antes de que alguien pregunte por disponibilidad. Tiene que mostrar bien la experiencia, responder dudas prácticas y dejar claro cómo consultar o reservar. Si eso falla, el negocio pierde confianza, urgencia y valor percibido al mismo tiempo.",
+    proof: [
+      {
+        metric: "Visual",
+        title: "La experiencia se entiende más rápido",
+        description:
+          "Habitaciones, tours, paquetes o experiencias deben sentirse claros y deseables en segundos.",
+      },
+      {
+        metric: "Turistas",
+        title: "Mejor confianza para compradores extranjeros",
+        description:
+          "La persona necesita señales de profesionalismo antes de comprometer una consulta o reserva desde otro país.",
+      },
+      {
+        metric: "Consulta",
+        title: "Más claridad en disponibilidad o reserva",
+        description:
+          "Un siguiente paso visible evita que la persona se pierda entre Instagram, WhatsApp y otras plataformas.",
+      },
+    ],
+    caseProofIds: ["nature-escapes", "gexp"],
+    narrativeSections: [
+      {
+        eyebrow: "Lo que vende turismo",
+        title: "Turismo vende confianza, contexto y deseo en muy poco tiempo.",
+        body: "La persona compara varias opciones rápido. Si no entiende bien la experiencia, los diferenciales, la ubicación o la forma de reservar, pasa a la siguiente opción. Por eso la web debe trabajar como vitrina y filtro de confianza al mismo tiempo.",
+      },
+      {
+        eyebrow: "Qué debe resolver",
+        title: "La web tiene que mover a la persona del interés a la consulta.",
+        body: "Eso significa fotos y estructura que sí ayuden, información práctica bien visible y un CTA que no dependa de perseguir respuestas por mensajes desordenados.",
+      },
+    ],
     problemTitle: "Fricciones típicas",
     problemPoints: [
       "Información clave repartida en muchas plataformas.",
@@ -555,7 +738,40 @@ export const esCrMarketPages: MarketPage[] = [
         "La inversión tiene que verse reflejada en confianza, claridad y mejores consultas, no solo en tener otra página más en internet.",
     },
     intro:
-      "El precio se vuelve confuso cuando se compara una página básica con un sitio comercial que sí ayuda a generar confianza, explicar servicios y mover consultas.",
+      "El precio se vuelve confuso cuando se compara una plantilla básica con un sitio comercial que sí ayuda a vender. No cuestan lo mismo porque no resuelven lo mismo. Una página barata puede darle presencia; una página bien planteada puede ayudarle a justificar mejor su negocio, ordenar el contacto y crecer con más claridad.",
+    proof: [
+      {
+        metric: "Costo real",
+        title: "Lo caro es publicar algo que no ayuda",
+        description:
+          "El mayor riesgo no es pagar más. Es pagar por una web que igual obliga a explicar todo por mensajes y no mejora la percepción del negocio.",
+      },
+      {
+        metric: "Alcance",
+        title: "El precio cambia según la ambición comercial",
+        description:
+          "No es lo mismo una presencia base que un sistema con servicios, sectores, SEO, prueba y mejor captación.",
+      },
+      {
+        metric: "Propuesta",
+        title: "La cotización debe explicar el porqué",
+        description:
+          "Una cifra sin alcance, prioridades y entregables deja al negocio igual de confundido que antes.",
+      },
+    ],
+    caseProofIds: ["gexp", "nature-escapes"],
+    narrativeSections: [
+      {
+        eyebrow: "Qué suele salir mal",
+        title: "Mucha gente compara precios como si todo fuera la misma página.",
+        body: "No lo es. Hay negocios que solo necesitan una presencia simple y hay otros que necesitan una estructura capaz de explicar servicios, soportar SEO, mostrar prueba y captar mejores consultas. Si se mezclan esas dos cosas en la comparación, el precio siempre va a parecer arbitrario.",
+      },
+      {
+        eyebrow: "Cómo evaluar mejor",
+        title: "Pida una cotización que hable de negocio, no solo de diseño.",
+        body: "La mejor forma de comparar propuestas es revisar qué problema resuelven, cuántas páginas necesita de verdad, qué tan claro queda el mensaje y si la conversión queda ordenada desde el principio.",
+      },
+    ],
     problemTitle: "Lo que confunde el precio",
     problemPoints: [
       "Comparar una plantilla barata con un sitio comercial real.",
@@ -672,6 +888,7 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "rediseno-sitio-web",
+    noindex: true,
     title: "Rediseño de Sitio Web en Costa Rica",
     description:
       "Rediseño de sitio web para negocios en Costa Rica que ya tienen una web, pero no se ve profesional, no explica bien o no ayuda a vender.",
@@ -713,6 +930,7 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "portafolio",
+    noindex: true,
     title: "Portafolio Web en Costa Rica",
     description:
       "Portafolio de sitios, productos y proyectos digitales de Marcelo Retana para mostrar calidad, criterio y velocidad de ejecución.",
@@ -753,6 +971,7 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "casos",
+    noindex: true,
     title: "Casos de Éxito Web en Costa Rica",
     description:
       "Casos de éxito y prueba comercial para negocios en Costa Rica que quieren validar calidad, velocidad y claridad antes de contratar.",
@@ -793,6 +1012,7 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "proceso",
+    noindex: true,
     title: "Proceso de Trabajo Web en Costa Rica",
     description:
       "Proceso de trabajo para sitios web y proyectos comerciales en Costa Rica, desde la cotización hasta la entrega y mejoras posteriores.",
@@ -846,7 +1066,40 @@ export const esCrMarketPages: MarketPage[] = [
         "Así la conversación empieza ordenada, con mejor contexto y sin perder tiempo en mensajes sueltos.",
     },
     intro:
-      "Una buena cotización empieza con contexto. Cuando entiendo qué vende, qué necesita y qué quiere lograr, puedo responder con algo útil en lugar de una cifra al aire.",
+      "Una buena cotización empieza con contexto. Cuando entiendo qué vende, qué necesita y qué quiere lograr, puedo responder con algo útil en lugar de una cifra al aire. Por eso el formulario importa: ayuda a pasar de una conversación informal a una propuesta con más sentido comercial.",
+    proof: [
+      {
+        metric: "Menos ruido",
+        title: "La conversación arranca con más contexto",
+        description:
+          "El formulario evita perseguir datos básicos en varios mensajes antes de poder responder algo serio.",
+      },
+      {
+        metric: "24 horas",
+        title: "Respuesta más útil por email",
+        description:
+          "La respuesta se plantea con recomendación, rango de inversión y siguiente paso, no solo con disponibilidad para chatear.",
+      },
+      {
+        metric: "Seguimiento",
+        title: "Más fácil de ordenar después",
+        description:
+          "Email permite retomar, comparar y dar seguimiento con más claridad que un hilo caótico de WhatsApp.",
+      },
+    ],
+    caseProofIds: ["gexp"],
+    narrativeSections: [
+      {
+        eyebrow: "Por qué esta vía",
+        title: "Cotizar bien requiere contexto, no solo urgencia.",
+        body: "Muchos negocios quieren una respuesta rápida, pero una respuesta rápida sin contexto casi siempre termina siendo incompleta o engañosa. Si entiendo el negocio, la meta principal y el nivel de inversión, puedo responder con algo mucho más útil desde el primer intercambio.",
+      },
+      {
+        eyebrow: "Qué ayuda a avanzar",
+        title: "Mientras más claro venga el proyecto, mejor sale la primera recomendación.",
+        body: "No hace falta llegar con especificaciones técnicas. Lo importante es decir qué vende, qué necesita mejorar primero y qué tipo de resultado espera conseguir con la web o el proyecto.",
+      },
+    ],
     problemTitle: "Por qué usar el formulario primero",
     problemPoints: [
       "Permite explicar mejor el negocio desde el inicio.",

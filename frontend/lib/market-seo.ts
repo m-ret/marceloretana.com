@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { MarketFaq, MarketHub, MarketPage } from "@/lib/market-page-types";
+import { getAlternateMarketEntry } from "@/lib/market-pages";
 
 const siteUrl = "https://marceloretana.com";
 
@@ -25,17 +26,23 @@ function buildFaqJsonLd(faq: MarketFaq[]) {
 }
 
 export function buildMarketMetadata(entry: MarketEntry): Metadata {
+  const alternateEntry = getAlternateMarketEntry(entry.path);
+  const languages = alternateEntry
+    ? {
+        [alternateEntry.locale === "es" ? "es-CR" : "en"]: alternateEntry.path,
+        ...(entry.path === "/cr" || entry.path === "/costa-rica" ? { "x-default": "/" } : {}),
+      }
+    : entry.path === "/cr" || entry.path === "/costa-rica"
+      ? { "x-default": "/" }
+      : undefined;
+
   return {
     title: entry.title,
     description: entry.description,
     keywords: entry.keywords,
     alternates: {
       canonical: entry.path,
-      languages: entry.alternatePath
-        ? {
-            [entry.locale === "es" ? "en" : "es-CR"]: entry.alternatePath,
-          }
-        : undefined,
+      languages,
     },
     openGraph: {
       title: entry.title,
@@ -51,10 +58,10 @@ export function buildMarketMetadata(entry: MarketEntry): Metadata {
       description: entry.description,
     },
     robots: {
-      index: true,
+      index: !entry.noindex,
       follow: true,
       googleBot: {
-        index: true,
+        index: !entry.noindex,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",

@@ -29,6 +29,10 @@ export function getAllMarketPages(): MarketPage[] {
   return Object.values(marketDatasets).flatMap((dataset) => dataset.pages);
 }
 
+export function getIndexableMarketPagesByMachine(machine: MarketMachine): MarketPage[] {
+  return getMarketPagesByMachine(machine).filter((page) => !page.noindex);
+}
+
 export function getAllMarketEntries(): Array<MarketHub | MarketPage> {
   return [...getAllMarketHubs(), ...getAllMarketPages()];
 }
@@ -45,7 +49,7 @@ export function getRelatedMarketPages(
   const page = getMarketPage(machine, slug);
   if (!page) return [];
 
-  const pages = getMarketPagesByMachine(machine);
+  const pages = getIndexableMarketPagesByMachine(machine);
   const maxItems = typeof limit === "number" ? limit : Math.max(pages.length - 1, 0);
   const pagesBySlug = new Map(pages.map((item) => [item.slug, item]));
   const selected: MarketPage[] = [];

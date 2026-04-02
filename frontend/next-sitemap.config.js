@@ -1,44 +1,28 @@
-import fs from "fs";
-import path from "path";
-
 const MARKET_LASTMOD = "2026-04-01T00:00:00.000Z";
 
 const marketRoutes = [
   "/cr",
-  "/cr/servicios",
   "/cr/paginas-web-costa-rica",
   "/cr/diseno-web-costa-rica",
   "/cr/desarrollo-web-costa-rica",
   "/cr/seo-costa-rica",
-  "/cr/negocios-servicios",
   "/cr/constructoras",
   "/cr/clinicas",
-  "/cr/consultorios",
   "/cr/turismo",
   "/cr/cuanto-cuesta-pagina-web",
   "/cr/por-que-necesita-sitio-web",
   "/cr/sitio-web-que-genere-clientes",
-  "/cr/rediseno-sitio-web",
-  "/cr/portafolio",
-  "/cr/casos",
-  "/cr/proceso",
   "/cr/cotizacion",
   "/costa-rica",
   "/costa-rica/web-development",
   "/costa-rica/web-development-agency",
-  "/costa-rica/software-development",
   "/costa-rica/web-design",
   "/costa-rica/request-a-quote",
   "/costa-rica/website-cost-costa-rica",
   "/costa-rica/website-redesign-costa-rica",
   "/costa-rica/lead-generation-websites-costa-rica",
-  "/costa-rica/why-costa-rica",
   "/costa-rica/expat-business-web-development",
   "/costa-rica/nearshore-web-development",
-  "/costa-rica/service-business-web-development",
-  "/costa-rica/real-estate-web-development",
-  "/costa-rica/healthcare-web-development",
-  "/costa-rica/tourism-web-development",
 ];
 
 /** @type {import('next-sitemap').IConfig} */
@@ -48,38 +32,37 @@ const config = {
   generateIndexSitemap: false,
   changefreq: "weekly",
   priority: 0.7,
-  exclude: ["/api/*", "/apple-icon*", "/icon*", "/opengraph-image*", "/twitter-image*", "/llms.txt"],
-  additionalPaths: async (config) => {
-    const PSEO_DIR = path.join(process.cwd(), "content/pseo");
-
-    function getSlugs(contentDir) {
-      const dir = path.join(PSEO_DIR, contentDir);
-      if (!fs.existsSync(dir)) return [];
-      return fs
-        .readdirSync(dir)
-        .filter((f) => f.endsWith(".json"))
-        .map((f) => f.replace(/\.json$/, ""));
-    }
-
-    const routes = [
-      { contentDir: "comparisons", routePrefix: "/compare" },
-      { contentDir: "checklists", routePrefix: "/checklist" },
-      { contentDir: "resources", routePrefix: "/resources" },
-      { contentDir: "stacks", routePrefix: "/learn" },
-    ];
-
+  exclude: [
+    "/api/*",
+    "/apple-icon*",
+    "/icon*",
+    "/opengraph-image*",
+    "/twitter-image*",
+    "/llms.txt",
+    "/compare",
+    "/compare/*",
+    "/checklist",
+    "/checklist/*",
+    "/resources",
+    "/resources/*",
+    "/learn",
+    "/learn/*",
+    "/cr/servicios",
+    "/cr/negocios-servicios",
+    "/cr/consultorios",
+    "/cr/rediseno-sitio-web",
+    "/cr/portafolio",
+    "/cr/casos",
+    "/cr/proceso",
+    "/costa-rica/software-development",
+    "/costa-rica/why-costa-rica",
+    "/costa-rica/service-business-web-development",
+    "/costa-rica/real-estate-web-development",
+    "/costa-rica/healthcare-web-development",
+    "/costa-rica/tourism-web-development",
+  ],
+  additionalPaths: async () => {
     const paths = [];
-    for (const { contentDir, routePrefix } of routes) {
-      const slugs = getSlugs(contentDir);
-      for (const slug of slugs) {
-        paths.push({
-          loc: `${routePrefix}/${slug}`,
-          changefreq: "weekly",
-          priority: 0.7,
-          lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
-        });
-      }
-    }
 
     for (const route of marketRoutes) {
       paths.push({
@@ -158,22 +141,6 @@ const config = {
       path.startsWith("/costa-rica/")
     ) {
       priority = 0.85;
-      changefreq = "weekly";
-    } else if (
-      path === "/compare" ||
-      path === "/checklist" ||
-      path === "/resources" ||
-      path === "/learn"
-    ) {
-      priority = 0.8;
-      changefreq = "weekly";
-    } else if (
-      path.startsWith("/compare/") ||
-      path.startsWith("/checklist/") ||
-      path.startsWith("/resources/") ||
-      path.startsWith("/learn/")
-    ) {
-      priority = 0.7;
       changefreq = "weekly";
     }
 

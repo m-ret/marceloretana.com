@@ -89,20 +89,57 @@ export const enCrHub: MarketHub = {
       "Work with someone in Costa Rica who can communicate clearly in English, move fast, and build something that feels serious from the first impression.",
   },
   intro:
-    "If you are looking for a Costa Rica-based partner for a website, redesign, or custom build, this is the place to start. The focus is clear communication, strong execution, and a quote process that feels organized from the beginning.",
-  proof: sharedProof,
+    "This hub is for foreign-owned businesses, expats, and English-speaking teams that want a serious Costa Rica partner without falling into low-end local agency quality or vague offshore execution. Start with the page that matches what you are actually buying: a website, an agency-style partner, a quote, clearer pricing, or a more local execution model.",
+  proof: [
+    {
+      metric: "English-first",
+      title: "Clearer communication from day one",
+      description:
+        "The offer is built for buyers who want Costa Rica context without having to decode messy process or weak delivery language.",
+    },
+    {
+      metric: "Founder-led",
+      title: "Less agency drag",
+      description:
+        "This is meant to feel more direct and more senior than the low-end agency market most foreign-owned businesses run into first.",
+    },
+    {
+      metric: "Quote process",
+      title: "A cleaner path into scope and follow-up",
+      description:
+        "The site pushes toward a form-first quote flow because that produces better commercial conversations than a loose WhatsApp thread.",
+    },
+  ],
   faq: sharedFaq,
   cta: defaultCta,
   featuredLinks: [
     { label: "Web Development", slug: "web-development" },
     { label: "Web Development Agency", slug: "web-development-agency" },
-    { label: "Software Development", slug: "software-development" },
     { label: "Web Design", slug: "web-design" },
     { label: "Quote", slug: "request-a-quote" },
     { label: "Cost", slug: "website-cost-costa-rica" },
-    { label: "Why Costa Rica", slug: "why-costa-rica" },
+    { label: "Lead Generation", slug: "lead-generation-websites-costa-rica" },
+    { label: "Expat Businesses", slug: "expat-business-web-development" },
     { label: "Nearshore", slug: "nearshore-web-development" },
-    { label: "Real Estate", slug: "real-estate-web-development" },
+  ],
+  caseProofIds: ["gexp", "unicorn", "avodah"],
+  narrativeSections: [
+    {
+      eyebrow: "Who this is for",
+      title:
+        "This lane is built for buyers who need Costa Rica context without sacrificing quality.",
+      body: "A lot of foreign-owned businesses in Costa Rica want the same mix: local understanding, English communication, cleaner execution, and a website that does not look like a cheap local template. That is the gap this lane is meant to cover.",
+      points: [
+        "English-speaking owners and operators in Costa Rica.",
+        "Foreign-owned service businesses that need a better website.",
+        "Nearshore buyers who want a more direct partner.",
+      ],
+    },
+    {
+      eyebrow: "How to use it",
+      title: "Pick the page that matches the buying decision you are making.",
+      body: "If you need the main service page, start with web development. If you are comparing agency-style partners, start with the agency page. If you are trying to understand cost, go to pricing. If you are already close to buying, go straight to the quote page.",
+    },
   ],
   alternatePath: "/cr",
 };
@@ -125,7 +162,41 @@ export const enCrMarketPages: MarketPage[] = [
         "I build fast, polished websites and commercial landing pages for businesses that want strong execution and a cleaner process than low-end offshore chaos.",
     },
     intro:
-      "If you need a business website in Costa Rica, the real goal is not just getting pages online. It is getting a site that looks credible, explains the offer clearly, and makes it easier to start serious conversations.",
+      "If you need a business website in Costa Rica, the goal is not just getting pages online. The real goal is getting a site that looks credible, explains the offer clearly, and makes it easier for the right buyer to start a serious conversation. That is the difference between a cheap build and a useful commercial asset.",
+    proof: [
+      {
+        metric: "Credibility",
+        title: "Stronger first impression",
+        description:
+          "The website should make the business feel more established, not smaller than it really is.",
+      },
+      {
+        metric: "Message",
+        title: "Cleaner offer framing",
+        description:
+          "What the business does, who it serves, and what to do next should feel obvious without extra explanation.",
+      },
+      {
+        metric: "Inquiry quality",
+        title: "Better context before the first reply",
+        description:
+          "The website should help filter and qualify inquiries instead of creating more back-and-forth.",
+      },
+    ],
+    caseProofIds: ["unicorn", "avodah", "gexp"],
+    narrativeSections: [
+      {
+        eyebrow: "What buyers actually want",
+        title:
+          "Most buyers are not shopping for code. They are shopping for confidence and clarity.",
+        body: "They want a website that feels serious enough to support pricing, polished enough to represent the business well, and structured enough to stop wasting time in vague conversations. That is why the commercial side of the work matters as much as the technical side.",
+      },
+      {
+        eyebrow: "What good execution changes",
+        title: "A stronger website improves the sales conversation before anyone talks to you.",
+        body: "Better positioning, better trust signals, and a cleaner quote path mean the buyer arrives with more context and less doubt. That makes the first conversation more productive and the business easier to take seriously.",
+      },
+    ],
     problemTitle: "What businesses usually need",
     problemPoints: [
       "They want a Costa Rica-based partner, not a random remote freelancer.",
@@ -172,7 +243,40 @@ export const enCrMarketPages: MarketPage[] = [
         "Work with a founder-led partner who gives you direct communication, serious execution, and a quote-first process that feels more organized than WhatsApp-first agencies.",
     },
     intro:
-      "Many businesses search for an agency because they want reliability, process, and accountability. The real need is a partner who communicates clearly, moves fast, and does senior-level work without unnecessary layers.",
+      "Many businesses search for an agency because they want reliability, process, and accountability. What they usually do not want is agency bloat, junior-heavy delivery, or a quote process that feels vague from the start. This page is for that buyer.",
+    proof: [
+      {
+        metric: "Founder-led",
+        title: "Fewer layers between decision and execution",
+        description:
+          "The work is positioned as a serious partner model, not a bloated agency chain where context gets lost every week.",
+      },
+      {
+        metric: "Costa Rica",
+        title: "Local context without low-end quality",
+        description:
+          "The advantage is being in Costa Rica while still keeping the communication and execution standard higher than the local default.",
+      },
+      {
+        metric: "Commercial process",
+        title: "Quote-first, not chat-first",
+        description:
+          "A clearer intake process means less ambiguity and a better handoff into scope, budget, and next steps.",
+      },
+    ],
+    caseProofIds: ["unicorn", "avodah", "gexp"],
+    narrativeSections: [
+      {
+        eyebrow: "Why people search for an agency",
+        title: "Agency buyers are usually paying to reduce risk, not to buy more meetings.",
+        body: "They want accountability, a cleaner process, and enough senior judgment to avoid wasting money. If an agency cannot provide that, then the layers are just overhead.",
+      },
+      {
+        eyebrow: "What this model does instead",
+        title: "The pitch is agency reliability with a tighter execution loop.",
+        body: "That means direct communication, a simpler process, and fewer people between the problem and the solution. It also means the site and the quote flow have to feel structured from the first touchpoint.",
+      },
+    ],
     problemTitle: "What businesses are really trying to avoid",
     problemPoints: [
       "Weak communication and messy scoping.",
@@ -197,6 +301,7 @@ export const enCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "software-development",
+    noindex: true,
     title: "Software Development Costa Rica for Custom Workflows and Products",
     description:
       "Costa Rica software development for businesses that need a stronger local partner for portals, apps, custom workflows, and product execution.",
@@ -284,6 +389,7 @@ export const enCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "why-costa-rica",
+    noindex: true,
     title: "Why Work with a Costa Rica Web Team",
     description:
       "Why a Costa Rica-based web and software partner can be a strong fit for expats, foreign-owned businesses, and nearshore buyers.",
@@ -343,7 +449,40 @@ export const enCrMarketPages: MarketPage[] = [
         "Start with the form if you want the conversation to stay organized from the first reply.",
     },
     intro:
-      "A good quote request saves time on both sides. It gives enough context to recommend the right direction, set expectations early, and keep the conversation organized by email.",
+      "A good quote request saves time on both sides. It gives enough context to recommend the right direction, set expectations early, and keep the conversation organized by email instead of scattering decisions across a loose chat thread.",
+    proof: [
+      {
+        metric: "24 hours",
+        title: "Fast response, better context",
+        description:
+          "The goal is a useful first reply with direction, not a generic acknowledgement and a vague promise to talk later.",
+      },
+      {
+        metric: "Email-first",
+        title: "Cleaner follow-up",
+        description:
+          "The commercial process stays easier to track when scope, budget, and next steps start in email.",
+      },
+      {
+        metric: "Qualified",
+        title: "A better start to scope",
+        description:
+          "The form helps filter the project before time is wasted on the wrong conversation.",
+      },
+    ],
+    caseProofIds: ["gexp", "unicorn"],
+    narrativeSections: [
+      {
+        eyebrow: "Why this matters",
+        title: "A serious quote starts with enough context to make a real recommendation.",
+        body: "If the only thing someone sends is 'I need a website,' the first response is usually weak. A stronger intake lets the recommendation include scope, likely budget range, and the next useful step instead of guesswork.",
+      },
+      {
+        eyebrow: "What to include",
+        title: "You do not need a technical brief. You need business context.",
+        body: "Explain the business, the main goal, what feels broken now, and what kind of result would make the project worthwhile. That is enough to start a much better conversation.",
+      },
+    ],
     problemTitle: "Why a form-first path works better",
     problemPoints: [
       "It gives enough context to scope properly.",
@@ -384,7 +523,40 @@ export const enCrMarketPages: MarketPage[] = [
         "Website pricing makes more sense when you look at what needs to be built, how clearly the business needs to communicate, and what should happen after someone lands on the site.",
     },
     intro:
-      "Many businesses compare a cheap template to a serious commercial website as if they were the same product. They are not. The difference is in clarity, trust, conversion, and how well the site supports the business after launch.",
+      "Many businesses compare a cheap template to a serious commercial website as if they were the same product. They are not. The real price difference is in clarity, trust, conversion, and how much the site helps the business after launch instead of just existing online.",
+    proof: [
+      {
+        metric: "Cost vs value",
+        title: "The expensive mistake is paying for a site that still does nothing",
+        description:
+          "A lower upfront price means very little if the website fails to improve trust, message clarity, or inquiry quality.",
+      },
+      {
+        metric: "Scope",
+        title: "Pricing follows the commercial job",
+        description:
+          "A basic presence, a redesign, and a lead-generation system are different deliverables. They should not be compared like one flat commodity.",
+      },
+      {
+        metric: "Proposal",
+        title: "A better quote explains what moves the price",
+        description:
+          "Page count, messaging depth, design quality, SEO support, and intake flow all materially change the scope.",
+      },
+    ],
+    caseProofIds: ["gexp", "avodah"],
+    narrativeSections: [
+      {
+        eyebrow: "Why buyers get stuck here",
+        title: "Most pricing confusion comes from comparing unlike things.",
+        body: "One quote may cover a simple brochure site. Another may cover offer strategy, page architecture, trust building, SEO support, and a quote flow. If those two offers are compared only by price, the decision gets distorted fast.",
+      },
+      {
+        eyebrow: "How to compare properly",
+        title: "Compare how much business clarity you get, not just how many pages.",
+        body: "The useful questions are whether the site will improve positioning, make the business easier to understand, and produce better inquiries. Those are the factors that change the real value of the work.",
+      },
+    ],
     problemTitle: "Why pricing feels confusing",
     problemPoints: [
       "Cheap template sites get compared to serious business websites.",
@@ -524,7 +696,42 @@ export const enCrMarketPages: MarketPage[] = [
         "Get English communication, Costa Rica market context, and a cleaner commercial process than the low-end local agency market usually offers.",
     },
     intro:
-      "Foreign-owned businesses usually need two things at once: someone who understands Costa Rica and someone who can still deliver work that feels polished, reliable, and easy to manage.",
+      "Foreign-owned businesses usually need two things at once: someone who understands Costa Rica and someone who can still deliver work that feels polished, reliable, and easy to manage. That combination is rarer than it should be, which is why this page exists.",
+    proof: [
+      {
+        metric: "English",
+        title: "Direct communication without translation friction",
+        description:
+          "Useful for owners who do not want the whole project slowed down by unclear handoff or informal communication.",
+      },
+      {
+        metric: "Costa Rica",
+        title: "Local market context still matters",
+        description:
+          "The site has to make sense for the way Costa Rica buyers search, compare, and contact businesses.",
+      },
+      {
+        metric: "Structure",
+        title: "A cleaner process for quotes and follow-up",
+        description:
+          "The work is framed to feel more organized from the first conversation, not more improvised.",
+      },
+    ],
+    caseProofIds: ["avodah", "unicorn", "gexp"],
+    narrativeSections: [
+      {
+        eyebrow: "The common gap",
+        title:
+          "A lot of foreign-owned businesses feel caught between local context and quality expectations.",
+        body: "One option knows Costa Rica but feels too informal. Another option communicates well but does not understand the local market well enough. This lane is designed to bridge that gap.",
+      },
+      {
+        eyebrow: "What they usually need",
+        title:
+          "Most of the time the job starts with a stronger website, not a giant software build.",
+        body: "The first need is usually a clearer offer, a more credible first impression, and a better way to move inquiries into an organized quote flow. Heavier software can come later if the business truly needs it.",
+      },
+    ],
     problemTitle: "What these businesses struggle with",
     problemPoints: [
       "Communication often feels too informal.",
@@ -599,6 +806,7 @@ export const enCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "service-business-web-development",
+    noindex: true,
     title: "Service Business Web Development Costa Rica",
     description:
       "Costa Rica web development for service businesses that need clearer messaging, better quote flow, and a more credible online presence.",
@@ -645,6 +853,7 @@ export const enCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "real-estate-web-development",
+    noindex: true,
     title: "Real Estate and Construction Web Development Costa Rica",
     description:
       "Costa Rica real estate and construction web development for businesses that need stronger trust, clearer project presentation, and better inquiry flow.",
@@ -686,6 +895,7 @@ export const enCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "healthcare-web-development",
+    noindex: true,
     title: "Healthcare Web Development Costa Rica",
     description:
       "Costa Rica healthcare web development for clinics, practices, and health businesses that need trust, clarity, and a better patient inquiry flow.",
@@ -732,6 +942,7 @@ export const enCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "tourism-web-development",
+    noindex: true,
     title: "Tourism and Hospitality Web Development Costa Rica",
     description:
       "Costa Rica tourism web development for hotels, tours, and hospitality businesses that need clearer presentation and stronger inquiry or booking intent.",

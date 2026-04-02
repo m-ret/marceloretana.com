@@ -1,19 +1,31 @@
 const capabilities = [
   {
-    category: "Frontend",
-    items: ["React", "Next.js", "React Native", "TypeScript", "SSR/RSC"],
+    category: "Commercial Websites",
+    items: [
+      "Service pages",
+      "Quote flows",
+      "Responsive builds",
+      "Fast performance",
+      "SEO-ready structure",
+    ],
   },
   {
-    category: "Backend",
-    items: ["Node.js", "GraphQL", "REST APIs", "PostgreSQL", "Redis"],
+    category: "Business Systems",
+    items: ["Booking flows", "Inquiry systems", "Custom CMS", "Integrations", "Web apps"],
   },
   {
-    category: "Cloud & DevOps",
-    items: ["AWS", "Hetzner", "Coolify", "Docker", "CI/CD"],
+    category: "Execution",
+    items: [
+      "Direct communication",
+      "Senior delivery",
+      "Analytics",
+      "Ongoing improvements",
+      "Clear handoff",
+    ],
   },
   {
-    category: "AI-Powered Dev",
-    items: ["Claude Code", "Cursor", "AI Workflows"],
+    category: "Technical Depth",
+    items: ["Next.js", "TypeScript", "Node.js", "Cloud infra", "Product architecture"],
   },
 ];
 
@@ -45,13 +57,13 @@ const ventures = [
     name: "GEXP Software",
     url: "https://gexpsoftware.com",
     category: "Software Agency",
-    tagline: "Digital products for startups & enterprises",
+    tagline: "Websites, apps, and digital execution",
   },
   {
     name: "GEXP Costa Rica",
     url: "https://gexpsoftware.com/cr",
     category: "Local Services",
-    tagline: "Empowering local businesses with technology",
+    tagline: "Costa Rica service lane for local businesses",
   },
   {
     name: "Inflafest",
@@ -77,27 +89,31 @@ export function About() {
   return (
     <section id="about" className="py-32 md:py-40 px-6 md:px-12 lg:px-16 bg-bg">
       <div className="max-w-6xl">
-        {/* WHO I AM section */}
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-32">
           <div>
             <h2 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium">
-              Who I Am
+              Why This Site Exists
             </h2>
           </div>
           <div>
             <p className="text-2xl md:text-3xl lg:text-4xl font-light text-fg-secondary leading-relaxed">
-              I&apos;m a Software Engineer and serial entrepreneur who builds{" "}
-              <span className="text-fg font-normal">modern, high-converting websites</span>,{" "}
-              <span className="text-fg font-normal">scalable apps</span>, and{" "}
+              I build{" "}
               <span className="text-fg font-normal">
-                digital products that drive real business results
+                websites that make businesses look more serious
+              </span>
+              ,{" "}
+              <span className="text-fg font-normal">
+                quote flows that create cleaner conversations
+              </span>
+              , and{" "}
+              <span className="text-fg font-normal">
+                digital products that are easier to trust and easier to buy from
               </span>
               .
             </p>
           </div>
         </div>
 
-        {/* MY APPROACH section */}
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-32">
           <div>
             <h2 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium">
@@ -106,32 +122,29 @@ export function About() {
           </div>
           <div className="space-y-6">
             <p className="text-lg md:text-xl text-fg-secondary leading-relaxed">
-              I combine deep technical expertise with a keen eye for design. Every site I build is
-              performance-first, SEO-optimized, and engineered for conversions. Every pixel matters,
-              every interaction counts.
+              The work starts with the commercial problem, not with jargon. If the business looks
+              improvised, hard to understand, or hard to contact, the website has to fix that first.
             </p>
             <p className="text-lg md:text-xl text-fg-secondary leading-relaxed">
-              I leverage the most modern tools in the industry — Next.js, AI-powered development,
-              and advanced search optimization for both Google and AI search engines like ChatGPT
-              and Perplexity. My sites don&apos;t just look good — they generate leads.
+              Then the technical side matters: performance, structure, responsive design, form
+              handling, SEO signals, and the kind of build quality that holds up after launch.
             </p>
             <p className="text-lg md:text-xl text-fg leading-relaxed font-medium">
-              My mission? Helping businesses compete with the big players through technology that
-              performs, converts, and scales.
+              The goal is simple, make the business easier to trust, easier to understand, and
+              easier to contact.
             </p>
           </div>
         </div>
 
-        {/* VENTURES section */}
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-32">
           <div>
             <h2 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium">
-              My Ventures
+              Operating Context
             </h2>
           </div>
           <div>
             <p className="text-3xl md:text-4xl lg:text-5xl font-light text-fg leading-tight mb-16">
-              Building businesses that matter.
+              Proof that this is operator work, not just portfolio theater.
             </p>
 
             {/* Venture list - minimal lines */}
@@ -164,19 +177,19 @@ export function About() {
           </div>
         </div>
 
-        {/* INDEX section */}
         <div className="border-t border-border pt-16">
-          <h2 className="text-sm uppercase tracking-widest text-fg font-medium mb-12">Index</h2>
+          <h2 className="text-sm uppercase tracking-widest text-fg font-medium mb-12">
+            Capability Index
+          </h2>
 
           <div className="space-y-16">
-            {/* Full-Stack Capabilities */}
             <div>
               <h3 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium mb-6">
-                Full-Stack Capabilities
+                What I Can Execute
               </h3>
               <p className="text-fg-muted mb-8 max-w-2xl">
-                End-to-end ownership — from high-converting interfaces to scalable cloud
-                infrastructure.
+                Enough technical depth to build the thing properly, but always in service of a
+                stronger commercial result.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border pt-6">
                 {capabilities.map((cap) => (
@@ -196,7 +209,6 @@ export function About() {
               </div>
             </div>
 
-            {/* Trusted By */}
             <div>
               <h3 className="text-lg md:text-xl uppercase tracking-widest text-fg font-medium mb-6">
                 Trusted By

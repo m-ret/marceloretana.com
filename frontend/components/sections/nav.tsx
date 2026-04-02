@@ -15,13 +15,14 @@ const primaryLinks = [
 const marketLinks = [
   {
     href: "/cr",
-    label: "Costa Rica ES",
-    description: "Para negocios en Costa Rica que necesitan verse más serios y captar consultas.",
+    label: "Para negocios en Costa Rica",
+    description:
+      "Sitios web, rediseños y páginas por servicio para verse más serios y captar consultas.",
   },
   {
     href: "/costa-rica",
-    label: "Costa Rica EN",
-    description: "For foreign-owned businesses that want a local partner in Costa Rica.",
+    label: "For foreign-owned businesses",
+    description: "English-language service pages for businesses that want a serious local partner.",
   },
 ];
 
@@ -29,12 +30,12 @@ const contentLinks = [
   {
     href: "/blog",
     label: "Blog",
-    description: "Essays, case notes, and practical thinking on web, AI, and execution.",
+    description: "Business and field notes on websites, digital presence, WhatsApp, and execution.",
   },
   {
     href: "/resources",
-    label: "Resources",
-    description: "Comparisons, guides, checklists, and developer reference material.",
+    label: "Library",
+    description: "Secondary technical library with comparisons, checklists, and build guides.",
   },
 ];
 
@@ -123,8 +124,8 @@ export function Nav() {
             <div className="md:w-1/2 mb-16 md:mb-0">
               <p className="text-sm uppercase tracking-widest text-fg mb-2">Start Here</p>
               <p className="text-fg-muted text-sm mb-6 max-w-sm">
-                This site does three jobs: show who I am, show the work, and route the right people
-                into the right lead path.
+                This site is built to do one job well: route the right Costa Rica buyers into the
+                right quote path without making them decode the structure first.
               </p>
               <a
                 href="mailto:info@gexpsoftware.com"
@@ -156,7 +157,7 @@ export function Nav() {
                 <div className="grid gap-10 md:grid-cols-2">
                   <div>
                     <p className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5">
-                      Costa Rica
+                      Costa Rica Services
                     </p>
                     <nav className="space-y-4">
                       {marketLinks.map((link) => (
