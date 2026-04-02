@@ -72,41 +72,115 @@ export const esCrHub: MarketHub = {
   locale: "es",
   path: "/es",
   generatedAt,
-  title: "Páginas Web y Desarrollo Web en Costa Rica",
+  title: "Páginas Web Costa Rica | Diseño Web, Desarrollo Web y SEO",
   description:
-    "Marcelo Retana ayuda a negocios en Costa Rica a verse más serios, más fáciles de encontrar y más fáciles de contactar con páginas web bien hechas.",
-  keywords: ["páginas web costa rica", "desarrollo web costa rica", "diseño web costa rica"],
+    "Páginas web profesionales en Costa Rica por Marcelo Retana. Diseño web, desarrollo web a medida y SEO para negocios que necesitan verse serios, salir en Google y recibir mejores consultas.",
+  keywords: [
+    "páginas web costa rica",
+    "diseño web costa rica",
+    "desarrollo web costa rica",
+    "seo costa rica",
+    "página web profesional costa rica",
+    "sitio web costa rica",
+    "crear página web costa rica",
+    "diseñador web costa rica",
+    "empresa desarrollo web costa rica",
+    "posicionamiento web costa rica",
+    "agencia web costa rica",
+    "cuánto cuesta una página web en costa rica",
+    "página web para negocio costa rica",
+    "sitio web profesional costa rica",
+  ],
   hero: {
-    eyebrow: "Costa Rica",
-    headline: "Sitios web para negocios que hoy se ven invisibles, viejos o improvisados.",
+    eyebrow: "Páginas Web Costa Rica",
+    headline:
+      "Páginas web para negocios en Costa Rica que necesitan verse serios, salir en Google y recibir mejores consultas.",
     subheadline:
-      "Trabajo con negocios en Costa Rica que necesitan verse más serios, explicar mejor lo que hacen y mover más consultas por formulario.",
+      "Soy Marcelo Retana, desarrollador web con más de 10 años de experiencia en empresas como IBM, Universal Music y Provectus. Ayudo a negocios en Costa Rica a tener una presencia online profesional que explique bien lo que hacen, inspire confianza y convierta visitas en oportunidades reales.",
     supportingText:
-      "Si hoy su negocio depende demasiado de redes, referencias o WhatsApp, un buen sitio web puede darle una presencia más clara, confiable y fácil de contactar.",
+      "Si hoy su negocio depende de redes sociales, referencias o WhatsApp para todo, un buen sitio web le da una base más fuerte: más credibilidad, más claridad y una forma más ordenada de recibir consultas.",
   },
   intro:
-    "Aquí no estoy vendiendo tecnología por sonar moderno. Estoy vendiendo una presencia online que ayude a un negocio en Costa Rica a verse serio, explicar mejor lo que hace y mover mejores consultas por formulario. Si hoy su negocio se apoya demasiado en redes sociales, referencias o WhatsApp, este hub le enseña por dónde empezar según su caso.",
+    "La mayoría de negocios en Costa Rica no necesitan una app ni un sistema complejo. Necesitan una página web que se vea profesional, que explique rápido lo que venden y que haga fácil el siguiente paso para el cliente. Eso es lo que hago. Desde páginas web nuevas hasta rediseños, desde optimización para Google hasta sistemas de captación de clientes. Todo con ejecución técnica seria, diseño que genera confianza y una comunicación directa donde usted habla conmigo, no con intermediarios. Esta página cubre todo: páginas web profesionales, diseño web, desarrollo web a medida y SEO para negocios en Costa Rica.",
   proof: [
     {
+      metric: "10+ años",
+      title: "Experiencia senior, no juniors aprendiendo con su proyecto",
+      description:
+        "Marcelo Retana ha construido productos en IBM, Universal Music, Provectus y Univision. El trabajo aquí es directo, técnicamente fuerte y con criterio comercial desde el primer día.",
+    },
+    {
+      metric: "600+",
+      title: "Proyectos entregados en distintos sectores",
+      description:
+        "El portafolio incluye sitios comerciales, aplicaciones web, sistemas de diseño y plataformas de captación para negocios en construcción, salud, turismo y servicios profesionales.",
+    },
+    {
+      metric: "GEXP Software",
+      title: "Trato directo, sin capas de agencia",
+      description:
+        "Usted habla con la persona que diseña, construye y entrega. Sin gerentes de cuenta, sin intermediarios, sin subcontratistas sorpresa.",
+    },
+    {
+      metric: "2-4 semanas",
+      title: "Entrega visible y rápida",
+      description:
+        "La prioridad es lanzar algo serio y útil rápido. Sin procesos eternos, sin cadenas innecesarias de aprobaciones ni reuniones que no avanzan nada.",
+    },
+    {
       metric: "Costa Rica",
-      title: "Lenguaje comercial, no técnico",
+      title: "Contexto local con estándar internacional",
       description:
-        "Las páginas se plantean desde lo que aquí sí se busca: sitio web, página web, cotización, verse serio, salir en Google y recibir consultas.",
-    },
-    {
-      metric: "Formulario primero",
-      title: "Cotización más ordenada",
-      description:
-        "La meta no es abrir otro chat. La meta es recibir contexto suficiente para responder por email con una propuesta más clara.",
-    },
-    {
-      metric: "Sectores reales",
-      title: "Enfoque en negocios que sí compran",
-      description:
-        "Constructoras, clínicas, turismo y negocios de servicios tienen necesidades distintas. Por eso cada página fuerte ataca una decisión comercial diferente.",
+        "Basado en Puerto Jiménez, Costa Rica. Con conocimiento del mercado local y la calidad técnica que su negocio necesita para competir en serio.",
     },
   ],
-  faq: sharedFaq,
+  faq: [
+    {
+      question: "¿Trabaja con negocios pequeños en Costa Rica?",
+      answer:
+        "Sí. De hecho, muchos proyectos empiezan con negocios que todavía no tienen una presencia online seria o que se ven improvisados frente a sus clientes. No hace falta ser una empresa grande para necesitar una página web bien hecha.",
+    },
+    {
+      question: "¿Cuál es la diferencia entre diseño web y desarrollo web?",
+      answer:
+        "El diseño web se enfoca en cómo se ve y cómo comunica el sitio: la estructura visual, la jerarquía del contenido y la confianza que transmite. El desarrollo web es la construcción técnica: el código, el rendimiento, las integraciones y la arquitectura. La mayoría de proyectos aquí incluyen ambos, porque un sitio bonito que carga lento no sirve, y un sitio rápido que se ve amateur tampoco.",
+    },
+    {
+      question: "¿Qué incluye el servicio de SEO?",
+      answer:
+        "No vendo SEO como un truco ni como una promesa mágica. Lo que hago es construir páginas con estructura correcta, títulos claros, contenido relevante y señales técnicas limpias para que Google entienda mejor lo que su negocio ofrece. Eso incluye arquitectura de páginas comerciales, optimización de títulos y descripciones, enlazado interno y páginas nuevas cuando la demanda lo justifica.",
+    },
+    {
+      question: "¿Cuánto cuesta una página web?",
+      answer:
+        "Depende del alcance. No es lo mismo una presencia base con una sola página que un sistema con páginas por servicio, SEO, integraciones y formularios avanzados. El proceso de cotización empieza con el formulario para que pueda recomendar el alcance correcto antes de hablar de números.",
+    },
+    {
+      question: "¿Cuánto tarda un sitio comercial bien hecho?",
+      answer:
+        "La mayoría de sitios para negocios se mueve en 2 a 4 semanas. Si hay SEO, integraciones, reservas o varias páginas sectoriales, puede tomar un poco más. Pero la prioridad siempre es mostrar avance rápido.",
+    },
+    {
+      question: "¿Todavía puedo escribir por WhatsApp?",
+      answer:
+        "Sí, pero la vía principal es el formulario. Así la respuesta por email sale con mejor contexto, alcance y siguientes pasos. WhatsApp está disponible para consultas rápidas, pero el proceso comercial se ordena mejor por email.",
+    },
+    {
+      question: "¿Sirve solo para negocios de tecnología?",
+      answer:
+        "No. La mayoría de clientes son negocios de servicios, constructoras, clínicas, hoteles y empresas que venden algo que necesitan explicar bien. No hace falta ser tech para necesitar una presencia online seria.",
+    },
+    {
+      question: "¿Puede hacer rediseño de un sitio que ya tengo?",
+      answer:
+        "Sí. Muchos proyectos empiezan porque el negocio ya tiene un sitio pero ese sitio no le está ayudando a vender, no refleja el nivel actual de la empresa o se quedó desactualizado. El rediseño mejora mensaje, diseño, estructura y conversión.",
+    },
+    {
+      question: "¿Ayuda a que mi negocio salga en Google?",
+      answer:
+        "Sí. Todo sitio que construyo tiene una base SEO sólida: estructura de páginas pensada para búsquedas comerciales, títulos optimizados, velocidad de carga fuerte y contenido que responde a lo que la gente realmente busca en Costa Rica.",
+    },
+  ],
   cta: defaultCta,
   featuredLinks: [
     { label: "Precio", slug: "cuanto-cuesta" },
@@ -115,27 +189,56 @@ export const esCrHub: MarketHub = {
     { label: "Clínicas", slug: "clinicas" },
     { label: "Turismo", slug: "turismo" },
     { label: "Rediseño", slug: "rediseno" },
+    { label: "Cotización", slug: "cotizacion" },
   ],
   caseProofIds: ["gexp", "nature-escapes", "vista3-architects"],
   narrativeSections: [
     {
-      eyebrow: "Qué resuelve",
-      title: "Un buen sitio no existe para verse bonito. Existe para bajar fricción comercial.",
-      body: "En Costa Rica mucha gente todavía pregunta si de verdad necesita una página web. La respuesta depende menos de la tecnología y más de tres cosas: si el negocio se ve serio, si lo que vende se entiende rápido y si el siguiente paso está claro. Cuando eso falla, la empresa termina explicando lo mismo todos los días por mensajes sueltos.",
+      eyebrow: "Páginas Web Profesionales",
+      title:
+        "Una página web profesional no es un lujo. Es la base para que su negocio deje de depender solo de redes y referencias.",
+      body: "En Costa Rica muchos negocios todavía funcionan sin página web o con una presencia tan débil que más bien les resta credibilidad. El resultado es claro: dependen de Instagram, Facebook o WhatsApp para todo, pierden clientes que no logran encontrarlos, y cada día tienen que explicar lo mismo porque no hay un lugar donde el cliente pueda entender la oferta por su cuenta. Una página web profesional resuelve eso. Explica qué hace su negocio, muestra prueba de que lo hace bien y deja un camino claro para que el cliente dé el siguiente paso sin perseguirlo por mensajes.",
       points: [
-        "Mejor primera impresión para negocios que hoy se ven improvisados.",
-        "Más claridad sobre servicios, sectores y diferenciales.",
-        "Un camino más serio para cotizar y dar seguimiento.",
+        "Presencia profesional que inspira confianza desde la primera visita.",
+        "Estructura clara con servicios, experiencia y formulario de contacto.",
+        "Diseño que se ve bien en celular, donde llega la mayoría del tráfico.",
+        "Base técnica sólida para crecer con nuevas páginas cuando haga falta.",
       ],
     },
     {
-      eyebrow: "Cómo usar este hub",
-      title: "Empiece por la intención comercial, no por una categoría técnica.",
-      body: "Si necesita la presencia base del negocio, empiece por páginas web. Si el problema es percepción, empiece por diseño. Si el problema es salir en búsquedas y sumar más páginas, empiece por SEO. Si quiere saber si ya vale la pena hablar, empiece por precio o cotización.",
+      eyebrow: "Diseño Web",
+      title:
+        "El diseño web no es decoración. Es la diferencia entre que un cliente confíe en su negocio o cierre la pestaña.",
+      body: "Cuando alguien llega a su sitio, decide en segundos si se queda o se va. Si la página se ve vieja, desordenada o genérica, el negocio parece menos serio de lo que realmente es. Un buen diseño web no se trata de verse bonito. Se trata de comunicar confianza rápido, hacer que la oferta se entienda sin esfuerzo y guiar al visitante hacia la acción que usted necesita: una consulta, una cotización o una llamada. Trabajo el diseño como herramienta comercial, no como arte.",
       points: [
-        "Páginas base para verse serio.",
-        "Páginas sectoriales para capturar demanda específica.",
-        "Precio y cotización para pasar a una conversación real.",
+        "Jerarquía visual clara para que el visitante entienda el negocio en segundos.",
+        "Secciones de prueba social y credibilidad donde realmente importan.",
+        "Diseño responsive que funciona igual de bien en celular y computadora.",
+        "Consistencia visual que hace que el negocio se sienta establecido y confiable.",
+      ],
+    },
+    {
+      eyebrow: "Desarrollo Web",
+      title:
+        "Desarrollo web a medida para negocios que necesitan algo más serio que una plantilla improvisada.",
+      body: "Hay una diferencia enorme entre un sitio armado con una plantilla barata y un sitio construido con criterio técnico. La plantilla puede verse aceptable al principio, pero se queda corta cuando quiere agregar páginas, mejorar la velocidad, integrar formularios o posicionarse en Google. El desarrollo web a medida le da al negocio una base técnica limpia, rápida y preparada para crecer. Construyo con frameworks modernos que cargan rápido, indexan bien y se pueden expandir sin tener que empezar de cero.",
+      points: [
+        "Sitios rápidos construidos con arquitectura moderna y limpia.",
+        "Estructura lista para crecer con nuevas páginas por servicio o sector.",
+        "Integraciones limpias con formularios, reservas y herramientas de contacto.",
+        "Rendimiento técnico fuerte que ayuda al SEO y a la experiencia del usuario.",
+      ],
+    },
+    {
+      eyebrow: "SEO",
+      title:
+        "SEO para que su negocio aparezca en Google cuando la gente busca lo que usted vende en Costa Rica.",
+      body: "SEO no es magia ni trucos. Es tener las páginas correctas, con el contenido correcto, organizadas de una forma que Google pueda entender. Muchos negocios en Costa Rica tienen un solo homepage que intenta decirlo todo y no dice nada bien. La solución es crear páginas comerciales específicas: una por cada servicio, una por cada sector, una por cada pregunta frecuente que sus clientes ya le hacen. Así Google puede mostrar su negocio justo cuando alguien busca lo que usted ofrece.",
+      points: [
+        "Arquitectura de páginas pensada para capturar búsquedas comerciales reales.",
+        "Títulos, descripciones y contenido optimizado para intención local.",
+        "Estructura técnica limpia: velocidad, indexación y enlazado interno.",
+        "Páginas nuevas por servicio o sector cuando la demanda lo justifica.",
       ],
     },
   ],

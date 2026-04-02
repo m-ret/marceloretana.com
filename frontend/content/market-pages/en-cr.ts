@@ -71,46 +71,110 @@ export const enCrHub: MarketHub = {
   locale: "en",
   path: "/costa-rica",
   generatedAt,
-  title: "Costa Rica Web Development and Design",
+  title: "Web Development Costa Rica | Design, Nearshore, and Agency Services",
   description:
-    "Costa Rica-based web development, web design, and software execution for expats, foreign-owned businesses, and nearshore teams that want a stronger local partner.",
+    "Costa Rica web development, web design, and nearshore software services by Marcelo Retana. 10+ years building websites for foreign-owned businesses, expats, and US companies that want a reliable local partner.",
   keywords: [
     "web development costa rica",
+    "web design costa rica",
     "web development agency costa rica",
+    "nearshore web development costa rica",
+    "website design costa rica",
+    "costa rica web developer",
+    "hire web developer costa rica",
     "software development costa rica",
+    "expat business website costa rica",
+    "foreign owned business website costa rica",
+    "english web developer costa rica",
+    "nearshore software costa rica",
+    "costa rica web agency",
+    "website development costa rica",
   ],
   hero: {
-    eyebrow: "Costa Rica",
+    eyebrow: "Web Development Costa Rica",
     headline:
-      "A Costa Rica-based web and software partner for businesses that want clarity and execution.",
+      "Costa Rica web development and design for businesses that need more than a template and a prayer.",
     subheadline:
-      "Built for expats, foreign-owned businesses, and nearshore teams that want local presence, stronger quality, and a cleaner form-first process.",
+      "I am Marcelo Retana, a senior developer based in Costa Rica with 10+ years of experience at IBM, Universal Music, and Provectus. I build websites, web applications, and design systems for foreign-owned businesses, expats, and US companies that want local presence with international execution quality.",
     supportingText:
-      "Work with someone in Costa Rica who can communicate clearly in English, move fast, and build something that feels serious from the first impression.",
+      "Whether you need a full website build, a redesign that actually improves your business positioning, or a nearshore development partner who communicates clearly in English, this is the place to start.",
   },
   intro:
-    "This hub is for foreign-owned businesses, expats, and English-speaking teams that want a serious Costa Rica partner without falling into low-end local agency quality or vague offshore execution. Start with the page that matches what you are actually buying: a website, an agency-style partner, a quote, clearer pricing, or a more local execution model.",
+    "Most businesses searching for web development in Costa Rica run into two problems. The local agency market is flooded with cheap template work that makes your company look worse than it is. And offshore options feel disconnected from the Costa Rica market you actually operate in. I work at the intersection: Costa Rica-based, English-first, technically senior, and focused on building websites that help businesses earn trust, explain their offer, and convert visitors into qualified inquiries. This page covers everything from web development and web design to nearshore partnerships and working with foreign-owned businesses in Costa Rica.",
   proof: [
     {
-      metric: "English-first",
-      title: "Clearer communication from day one",
+      metric: "10+ years",
+      title: "Senior execution, not junior handoffs",
       description:
-        "The offer is built for buyers who want Costa Rica context without having to decode messy process or weak delivery language.",
+        "Marcelo Retana has built products at IBM, Universal Music, Provectus, and Univision. The work here is founder-led and technically senior from day one.",
+    },
+    {
+      metric: "English-first",
+      title: "Clearer communication from the first email",
+      description:
+        "The entire process runs in English. No translation layers, no misinterpretations, no waiting for someone who actually understands the brief.",
+    },
+    {
+      metric: "Costa Rica-based",
+      title: "Local market context with international standards",
+      description:
+        "Based in Puerto Jimenez, Costa Rica. Close enough to understand the market, experienced enough to build at the level foreign-owned businesses expect.",
+    },
+    {
+      metric: "600+",
+      title: "Projects delivered across industries",
+      description:
+        "The work spans commercial websites, web applications, design systems, and lead-generation platforms for businesses in real estate, healthcare, tourism, and professional services.",
     },
     {
       metric: "Founder-led",
-      title: "Less agency drag",
+      title: "GEXP Software, not an agency assembly line",
       description:
-        "This is meant to feel more direct and more senior than the low-end agency market most foreign-owned businesses run into first.",
-    },
-    {
-      metric: "Quote process",
-      title: "A cleaner path into scope and follow-up",
-      description:
-        "The site pushes toward a form-first quote flow because that produces better commercial conversations than a loose WhatsApp thread.",
+        "You work directly with the person who builds, designs, and ships. No account managers, no middlemen, no surprise subcontractors.",
     },
   ],
-  faq: sharedFaq,
+  faq: [
+    {
+      question: "Do you work with foreign-owned businesses in Costa Rica?",
+      answer:
+        "Yes. Foreign-owned businesses and expat-led companies are one of the strongest fits for this offer. You get Costa Rica market context, English-first communication, and execution quality that matches what you are used to internationally.",
+    },
+    {
+      question: "What is the difference between web development and web design in your work?",
+      answer:
+        "Web development covers the full build: architecture, code, performance, integrations, and deployment. Web design focuses on how the site looks, feels, and communicates trust. Most projects here include both because a well-designed site still needs solid development underneath, and a well-built site still needs to look credible.",
+    },
+    {
+      question: "How does nearshore development with you work compared to a US agency?",
+      answer:
+        "You get the same timezone overlap, clearer communication than most offshore setups, and significantly lower overhead than a US agency. The difference is that I work directly with you instead of passing your project through layers of account managers and junior developers.",
+    },
+    {
+      question: "Can you work as an agency-style partner for ongoing projects?",
+      answer:
+        "Yes. Some clients start with a single website build and evolve into ongoing work: new service pages, design iterations, SEO expansion, or technical improvements. The engagement model adapts to what the business actually needs.",
+    },
+    {
+      question: "Is this only for software projects?",
+      answer:
+        "No. Many projects start with a business website, a redesign, or a lead-generation system. Software and web application work is available for businesses that need portals, custom workflows, or product-level builds.",
+    },
+    {
+      question: "Why should I choose a Costa Rica-based developer over a cheaper offshore option?",
+      answer:
+        "Cheaper offshore options often mean weaker communication, less understanding of your market, and more rework. A Costa Rica-based developer gives you local context for the market you operate in, timezone alignment across the Americas, and a more direct working relationship.",
+    },
+    {
+      question: "What does a typical web project cost?",
+      answer:
+        "It depends on scope. A focused business website with strong messaging and a quote flow is a different investment than a multi-page system with SEO, integrations, and sector landing pages. The quote process starts with a form so I can recommend the right scope before we talk numbers.",
+    },
+    {
+      question: "Do you build websites for businesses outside Costa Rica?",
+      answer:
+        "Yes. Nearshore clients in the US and Latin America work with me for the timezone alignment, communication quality, and technical execution. The Costa Rica base is an advantage, not a limitation.",
+    },
+  ],
   cta: defaultCta,
   featuredLinks: [
     { label: "Cost", slug: "website-cost" },
@@ -124,20 +188,52 @@ export const enCrHub: MarketHub = {
   caseProofIds: ["gexp", "unicorn", "avodah"],
   narrativeSections: [
     {
-      eyebrow: "Who this is for",
+      eyebrow: "Web Development",
       title:
-        "This lane is built for buyers who need Costa Rica context without sacrificing quality.",
-      body: "A lot of foreign-owned businesses in Costa Rica want the same mix: local understanding, English communication, cleaner execution, and a website that does not look like a cheap local template. That is the gap this lane is meant to cover.",
+        "Costa Rica web development that goes beyond templates and delivers real business results.",
+      body: "I build fast, polished websites and web applications for businesses that need their online presence to actually work. That means clean architecture, strong performance, clear messaging, and a site structure that supports growth. Most clients come to me after a bad experience with a cheap local build or a disconnected offshore team. The work here starts with understanding the business problem, not jumping to a tech stack.",
       points: [
-        "English-speaking owners and operators in Costa Rica.",
-        "Foreign-owned service businesses that need a better website.",
-        "Nearshore buyers who want a more direct partner.",
+        "Full website builds from architecture to deployment.",
+        "Modern frameworks with strong performance and SEO foundations.",
+        "Service pages, landing pages, and lead-generation systems that convert.",
+        "Technical cleanup and migration for businesses stuck on outdated platforms.",
       ],
     },
     {
-      eyebrow: "How to use it",
-      title: "Pick the page that matches the buying decision you are making.",
-      body: "If you need the main service page, start with web development. If you are comparing agency-style partners, start with the agency page. If you are trying to understand cost, go to pricing. If you are already close to buying, go straight to the quote page.",
+      eyebrow: "Web Design",
+      title:
+        "Web design that builds trust in seconds, not decoration that looks nice but converts nothing.",
+      body: "If the website looks weak, the business feels weaker than it actually is. Good web design in Costa Rica is not about visual trends. It is about making the business easier to understand, easier to trust, and easier to contact. I approach design as a commercial tool: clear hierarchy, strong proof sections, and a visual language that supports the quote request instead of distracting from it.",
+      points: [
+        "Design that communicates positioning and credibility fast.",
+        "Mobile-first layouts because that is where most traffic actually comes from.",
+        "Proof blocks, trust signals, and social proof placed where they matter.",
+        "Visual consistency that makes the business feel established and serious.",
+      ],
+    },
+    {
+      eyebrow: "Nearshore Development",
+      title:
+        "Nearshore Costa Rica development for US and international companies that want a better working model.",
+      body: "Nearshore only matters if communication and quality are actually better than the alternative. Costa Rica offers timezone alignment across the Americas, a stable business environment, and strong English proficiency. What I add on top of that is senior technical execution, a founder-led model with zero agency overhead, and a track record that includes IBM, Universal Music, and multiple US-facing products. You talk to the person who builds.",
+      points: [
+        "Same-day timezone overlap with US East and Central time.",
+        "Direct communication with the lead developer, not account managers.",
+        "Lower overhead than US agencies without the quality tradeoffs of cheap offshore.",
+        "Ongoing iteration and support without bloated retainer contracts.",
+      ],
+    },
+    {
+      eyebrow: "Foreign-Owned Businesses",
+      title:
+        "Built for expats and foreign-owned companies that need Costa Rica context without sacrificing execution quality.",
+      body: "Foreign-owned businesses in Costa Rica face a specific problem: the local agency market often does not match the execution standard they expect, and hiring remotely from abroad means losing local market context. I bridge that gap. I am Costa Rican, I communicate entirely in English, and I understand what foreign-owned businesses need because I have worked with international companies for over a decade. Whether you run a service business, a hospitality operation, or a professional practice, the website should work for both your international standards and your Costa Rica audience.",
+      points: [
+        "English-first process built for foreign business owners and operators.",
+        "Websites that work for both Costa Rica locals and international visitors.",
+        "Bilingual-ready architecture for businesses that serve both markets.",
+        "A partner who understands both the local context and international expectations.",
+      ],
     },
   ],
   alternatePath: "/es",
