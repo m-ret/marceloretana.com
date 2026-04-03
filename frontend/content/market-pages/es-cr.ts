@@ -74,7 +74,7 @@ export const esCrHub: MarketHub = {
   generatedAt,
   title: "Páginas Web Costa Rica | Diseño Web, Desarrollo Web y SEO",
   description:
-    "Páginas web profesionales en Costa Rica por Marcelo Retana. Diseño web, desarrollo web a medida y SEO para negocios que necesitan verse serios, salir en Google y recibir mejores consultas.",
+    "Páginas web profesionales en Costa Rica por Marcelo Retana. Diseño, desarrollo a medida y SEO para negocios que necesitan verse serios y recibir mejores consultas.",
   keywords: [
     "páginas web costa rica",
     "diseño web costa rica",
@@ -248,9 +248,9 @@ export const esCrHub: MarketHub = {
 export const esCrMarketPages: MarketPage[] = [
   createPage({
     slug: "cuanto-cuesta",
-    title: "Cuánto Cuesta una Página Web en Costa Rica",
+    title: "Cuánto Cuesta una Página Web en Costa Rica — Guía de Precios Real",
     description:
-      "Guía comercial para entender cuánto cuesta una página web en Costa Rica, qué mueve el precio y cómo evitar botar plata en algo que no ayuda al negocio.",
+      "Cuánto cuesta una página web en Costa Rica: qué mueve el precio, qué incluye cada rango de inversión y cómo evitar botar plata en algo que no ayuda a su negocio. Solicite cotización.",
     keywords: [
       "cuanto cuesta una pagina web en costa rica",
       "precio página web costa rica",
@@ -258,12 +258,34 @@ export const esCrMarketPages: MarketPage[] = [
     ],
     hero: {
       eyebrow: "Costo",
-      headline: "La pregunta correcta no es solo cuánto cuesta. Es qué tanto le ayuda al negocio.",
+      headline: "¿Cuánto cuesta una página web en Costa Rica? Lo que realmente mueve el precio.",
       subheadline:
         "La inversión tiene que verse reflejada en confianza, claridad y mejores consultas, no solo en tener otra página más en internet.",
     },
     intro:
-      "El precio se vuelve confuso cuando se compara una plantilla básica con un sitio comercial que sí ayuda a vender. No cuestan lo mismo porque no resuelven lo mismo. Una página barata puede darle presencia; una página bien planteada puede ayudarle a justificar mejor su negocio, ordenar el contacto y crecer con más claridad.",
+      "La pregunta de cuánto cuesta una página web en Costa Rica no tiene una sola respuesta, porque no es lo mismo una plantilla básica que un sitio comercial que sí ayuda a vender. Una página barata puede darle presencia; una página bien planteada puede ayudarle a justificar mejor su negocio, ordenar el contacto y crecer con más claridad.",
+    faq: [
+      {
+        question: "¿Qué factores afectan el precio de una página web?",
+        answer:
+          "El precio depende de la cantidad de páginas, el nivel de personalización del diseño, si necesita SEO, integraciones con formularios o reservas, y qué tan trabajado tiene que quedar el mensaje comercial. No es lo mismo una presencia base que un sitio con páginas por servicio y optimización para Google.",
+      },
+      {
+        question: "¿Una página de $500 es igual a una de $5,000?",
+        answer:
+          "No, y la diferencia no es solo visual. Una página de $500 suele ser una plantilla con su logo y texto genérico. Una de $5,000 tiene mensaje comercial pensado, estructura para convertir visitas en consultas, SEO y una base técnica que puede crecer con el negocio.",
+      },
+      {
+        question: "¿Se paga todo por adelantado?",
+        answer:
+          "No. El esquema habitual es un anticipo al iniciar y el resto contra entrega de hitos concretos. Así usted ve avance real antes de comprometer toda la inversión, y el proyecto se mueve con más confianza para ambas partes.",
+      },
+      {
+        question: "¿Qué incluye el precio de una página web profesional?",
+        answer:
+          "Incluye diseño personalizado, desarrollo técnico, mensaje comercial, estructura de páginas, formulario de contacto y una base lista para SEO. No se cobra aparte por cosas básicas como que el sitio se vea bien en celular o que cargue rápido — eso viene incluido.",
+      },
+    ],
     proof: [
       {
         metric: "Costo real",
@@ -322,9 +344,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "generar-clientes",
-    title: "Sitio Web que Genere Clientes en Costa Rica",
+    title: "Sitio Web para Generar Clientes en Costa Rica — Más que Presencia",
     description:
-      "Cómo estructurar un sitio web en Costa Rica para que inspire confianza, explique bien la oferta y convierta visitas en consultas por formulario.",
+      "Cómo estructurar un sitio web para generar clientes en Costa Rica: mensaje claro, prueba social, formularios estratégicos y estructura que convierte visitas en consultas reales. Solicite cotización.",
     keywords: [
       "sitio web que genere clientes",
       "página web para conseguir clientes",
@@ -332,12 +354,53 @@ export const esCrMarketPages: MarketPage[] = [
     ],
     hero: {
       eyebrow: "Generar clientes",
-      headline: "Un sitio web no genera clientes por existir. Genera cuando comunica bien.",
+      headline:
+        "Un sitio web para generar clientes en Costa Rica que realmente convierte visitas en consultas.",
       subheadline:
         "La combinación correcta es mensaje, estructura, prueba y un paso claro para mover a la persona a pedir información.",
     },
     intro:
-      "Conseguir más clientes no depende solo de tener una página. Depende de tener una página que explique bien, dé confianza y deje un siguiente paso muy claro.",
+      "Generar clientes con un sitio web no depende solo de tener una página bonita. Depende de tener una estructura que explique bien, dé confianza y deje un siguiente paso muy claro para que la persona se convierta en consulta real.",
+    faq: [
+      {
+        question: "¿Qué hace que un sitio web genere clientes?",
+        answer:
+          "Un sitio genera clientes cuando combina tres cosas: un mensaje que el visitante entiende en segundos, prueba de que usted sabe lo que hace, y un formulario visible que facilite el siguiente paso. Sin esas tres piezas, el sitio es solo una tarjeta de presentación cara.",
+      },
+      {
+        question: "¿En cuánto tiempo veo resultados?",
+        answer:
+          "Las primeras consultas suelen llegar entre las primeras 2 a 6 semanas después de lanzar, dependiendo del tráfico que ya tenga y si se combinan las páginas con SEO local. Lo importante es que la estructura de conversión quede lista desde el día uno.",
+      },
+      {
+        question: "¿Incluye formularios y seguimiento?",
+        answer:
+          "Sí. Cada sitio incluye formularios de contacto en puntos estratégicos, no solo al final de la página. Se configuran para que usted reciba las consultas por email con el contexto necesario para responder con una propuesta seria.",
+      },
+      {
+        question: "¿Qué pasa si ya tengo sitio pero no convierte?",
+        answer:
+          "Es más común de lo que parece. Muchos negocios tienen un sitio que se ve bien pero no genera consultas porque el mensaje es vago, no hay prueba social o el formulario está escondido. En esos casos, un rediseño enfocado en conversión puede cambiar el resultado sin empezar de cero.",
+      },
+    ],
+    narrativeSections: [
+      {
+        eyebrow: "El problema real",
+        title: "La mayoría de sitios web en Costa Rica no están diseñados para convertir.",
+        body: "Están diseñados para verse bien, y eso no es lo mismo. Un sitio que convierte tiene una estructura intencional: cada sección responde una objeción, cada bloque construye confianza, y el formulario aparece justo cuando la persona tiene suficiente contexto para dar el siguiente paso. Sin esa arquitectura, las visitas llegan y se van sin dejar rastro.",
+        points: [
+          "Mensaje comercial claro que filtra visitantes y atrae consultas relevantes.",
+          "Prueba social y experiencia colocada donde reduce la fricción de decidir.",
+          "Formularios repetidos en los puntos donde la intención de contacto es más alta.",
+          "Estructura de páginas que captura tráfico de búsqueda con intención comercial.",
+        ],
+      },
+      {
+        eyebrow: "El enfoque",
+        title: "Convertir más no es cuestión de trucos. Es cuestión de claridad comercial.",
+        body: "La mejor forma de generar más clientes con un sitio web es hacer que la oferta se entienda rápido, que la prueba de que funciona sea visible y que el siguiente paso sea obvio. Eso aplica igual para un negocio de servicios, una constructora o una clínica. La diferencia entre un sitio que genera consultas y uno que no, casi siempre es cuestión de estructura, no de diseño.",
+      },
+    ],
     problemTitle: "Por qué muchos sitios no convierten",
     problemPoints: [
       "No dejan claro qué hace el negocio.",
@@ -363,9 +426,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "constructoras",
-    title: "Páginas Web para Constructoras e Inmobiliarias en Costa Rica",
+    title: "Páginas Web para Constructoras en Costa Rica — Proyectos que Convencen",
     description:
-      "Páginas web para constructoras, desarrollos e inmobiliarias en Costa Rica que necesitan proyectar confianza, mostrar proyectos y recibir consultas mejor calificadas.",
+      "Páginas web para constructoras e inmobiliarias en Costa Rica: galería de proyectos, páginas por desarrollo y formularios que filtran consultas serias. Solicite cotización.",
     keywords: [
       "página web para constructora",
       "sitio web constructora costa rica",
@@ -373,12 +436,35 @@ export const esCrMarketPages: MarketPage[] = [
     ],
     hero: {
       eyebrow: "Constructoras",
-      headline: "Una constructora se juzga rápido por cómo se ve online.",
+      headline:
+        "Páginas web para constructoras en Costa Rica que proyectan la seriedad que sus proyectos merecen.",
       subheadline:
         "La presencia digital tiene que mostrar proyectos, ubicaciones, seriedad y un camino claro para pedir información.",
     },
     intro:
-      "Constructoras, desarrolladores e inmobiliarias venden proyectos de alto valor. Por eso la presencia online no puede verse improvisada. Tiene que transmitir orden, respaldo y una forma clara de pedir información sin depender de PDFs regados, redes sociales o mensajes sueltos.",
+      "Las páginas web para constructoras en Costa Rica tienen que resolver un problema concreto: transmitir orden, respaldo y una forma clara de pedir información sin depender de PDFs regados, redes sociales o mensajes sueltos. Cuando la inversión es alta, la web es la primera señal de confianza.",
+    faq: [
+      {
+        question: "¿Pueden integrar galerías de proyectos?",
+        answer:
+          "Sí. El sitio se estructura para que cada proyecto tenga su propia página con galería de imágenes, ubicación, tipologías y estado del desarrollo. Así el prospecto llega con más contexto y la conversación comercial arranca con mejor base.",
+      },
+      {
+        question: "¿Qué buscan los clientes de construcción en internet?",
+        answer:
+          "Buscan proyectos en zonas específicas, precios de referencia, imágenes de avance y una forma rápida de pedir información. Si su sitio no responde esas preguntas con claridad, el cliente se va a buscar a otra constructora que sí lo haga.",
+      },
+      {
+        question: "¿Incluyen páginas por proyecto o desarrollo?",
+        answer:
+          "Sí. Cada proyecto activo puede tener su propia página con detalles, galería, planos y formulario de consulta. Eso no solo mejora la experiencia del visitante, también le ayuda a posicionarse en Google por búsquedas específicas de zona o tipo de proyecto.",
+      },
+      {
+        question: "¿Sirve para inmobiliarias y constructoras?",
+        answer:
+          "Sí. La estructura funciona tanto para constructoras que venden sus propios desarrollos como para inmobiliarias que manejan inventario de terceros. Lo importante es que los proyectos se presenten con orden y que el formulario filtre bien las consultas.",
+      },
+    ],
     proof: [
       {
         metric: "Proyectos visibles",
@@ -437,9 +523,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "clinicas",
-    title: "Páginas Web para Clínicas y Negocios de Salud en Costa Rica",
+    title: "Páginas Web para Clínicas en Costa Rica — Confianza desde la Primera Visita",
     description:
-      "Páginas web para clínicas, consultorios y negocios de salud en Costa Rica que necesitan inspirar confianza, explicar servicios y facilitar consultas.",
+      "Páginas web para clínicas y negocios de salud en Costa Rica: diseño profesional, páginas por especialidad, reserva de citas y estructura que genera confianza en pacientes. Solicite cotización.",
     keywords: [
       "página web clínica costa rica",
       "sitio web clínica",
@@ -447,13 +533,34 @@ export const esCrMarketPages: MarketPage[] = [
     ],
     hero: {
       eyebrow: "Clínicas",
-      headline:
-        "Si una clínica no inspira confianza online, pierde pacientes antes de hablar con ellos.",
+      headline: "Páginas web para clínicas en Costa Rica que los pacientes realmente confían.",
       subheadline:
         "La meta es un sitio claro, profesional y fácil de consultar para clínicas, centros médicos y negocios de salud.",
     },
     intro:
-      "En salud, la web tiene que transmitir calma, profesionalismo y claridad. Si el sitio se ve viejo, confuso o demasiado informal, mucha gente decide no escribir siquiera. Por eso una clínica necesita una presencia que explique servicios con orden y deje un camino claro para la primera consulta.",
+      "Las páginas web para clínicas en Costa Rica tienen que transmitir calma, profesionalismo y claridad. Si el sitio se ve viejo, confuso o demasiado informal, mucha gente decide no escribir siquiera. Por eso una clínica necesita una presencia que explique servicios con orden y deje un camino claro para la primera consulta.",
+    faq: [
+      {
+        question: "¿Pueden incluir reserva de citas en línea?",
+        answer:
+          "Sí. Se puede integrar un sistema de reserva de citas directamente en el sitio, ya sea con herramientas como Calendly o con un formulario de solicitud que usted gestiona por email. La idea es que el paciente pueda agendar sin tener que llamar o escribir por WhatsApp.",
+      },
+      {
+        question: "¿Cómo generan confianza para clínicas?",
+        answer:
+          "Con diseño limpio, información médica bien organizada por especialidad, perfiles profesionales del equipo y testimonios de pacientes. Cuando la persona ve orden y profesionalismo, baja la ansiedad y es más probable que dé el siguiente paso.",
+      },
+      {
+        question: "¿Trabajan con especialistas o solo clínicas generales?",
+        answer:
+          "Con ambos. La estructura se adapta: para una clínica general se crean páginas por especialidad, y para un especialista independiente se enfoca en su área con más profundidad. Lo importante es que el paciente encuentre rápido lo que busca.",
+      },
+      {
+        question: "¿Qué debe tener un sitio web de salud?",
+        answer:
+          "Como mínimo: descripción clara de servicios y especialidades, información del equipo médico, forma fácil de agendar cita o consulta, y un diseño que transmita profesionalismo. Si además incluye preguntas frecuentes por tratamiento, la confianza sube y el paciente llega mejor informado.",
+      },
+    ],
     proof: [
       {
         metric: "Confianza",
@@ -512,9 +619,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "turismo",
-    title: "Páginas Web para Turismo y Hotelería en Costa Rica",
+    title: "Páginas Web para Turismo en Costa Rica — Hoteles, Tours y Experiencias",
     description:
-      "Páginas web para hoteles, tours y negocios de turismo en Costa Rica que necesitan transmitir confianza rápido y facilitar consultas o reservas.",
+      "Páginas web para turismo en Costa Rica: hoteles, tours y experiencias con galerías, reservas en línea y posicionamiento en Google para atraer viajeros. Solicite cotización.",
     keywords: [
       "página web turismo costa rica",
       "sitio web hotel costa rica",
@@ -522,12 +629,34 @@ export const esCrMarketPages: MarketPage[] = [
     ],
     hero: {
       eyebrow: "Turismo",
-      headline: "En turismo, una mala presencia online mata la confianza antes de la reserva.",
+      headline: "Páginas web para turismo en Costa Rica que convierten visitantes en reservas.",
       subheadline:
         "Trabajo con hoteles, tours y experiencias que necesitan comunicar valor rápido y dejar claro cómo consultar disponibilidad o reservar.",
     },
     intro:
-      "En turismo y hotelería la web vende antes de que alguien pregunte por disponibilidad. Tiene que mostrar bien la experiencia, responder dudas prácticas y dejar claro cómo consultar o reservar. Si eso falla, el negocio pierde confianza, urgencia y valor percibido al mismo tiempo.",
+      "Las páginas web para turismo en Costa Rica venden antes de que alguien pregunte por disponibilidad. Tienen que mostrar bien la experiencia, responder dudas prácticas y dejar claro cómo consultar o reservar. Si eso falla, el negocio pierde confianza, urgencia y valor percibido al mismo tiempo.",
+    faq: [
+      {
+        question: "¿Pueden integrar reservas en línea?",
+        answer:
+          "Sí. Se puede conectar con sistemas de reservas como Booking Engine, FareHarbor o Rezdy, o crear un formulario de disponibilidad propio si prefiere manejar las reservas manualmente. La meta es que el visitante pueda avanzar sin salir del sitio.",
+      },
+      {
+        question: "¿Cómo se posiciona un sitio de turismo en Google?",
+        answer:
+          "Con páginas específicas por tour, destino o experiencia, optimizadas para las búsquedas que los viajeros realmente hacen. Por ejemplo, 'tour de avistamiento de ballenas en Osa' es mucho más efectivo que una sola página genérica de 'nuestros tours'.",
+      },
+      {
+        question: "¿Incluyen galerías de tours y destinos?",
+        answer:
+          "Sí. Cada tour, habitación o experiencia puede tener su propia página con galería de fotos, descripción, precio de referencia y formulario de consulta. Las fotos bien presentadas son la herramienta de venta más poderosa en turismo.",
+      },
+      {
+        question: "¿Sirve para hoteles, tours y actividades?",
+        answer:
+          "Sí. La estructura se adapta al tipo de negocio: para un hotel se enfoca en habitaciones y amenidades, para un operador de tours en experiencias y destinos, y para actividades en disponibilidad y logística. Lo que no cambia es la necesidad de confianza visual y un paso claro hacia la reserva.",
+      },
+    ],
     proof: [
       {
         metric: "Visual",
@@ -586,9 +715,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "rediseno",
-    title: "Rediseño de Sitio Web en Costa Rica",
+    title: "Rediseño de Sitio Web en Costa Rica — Más Profesional, Más Conversión",
     description:
-      "Rediseño de sitio web para negocios en Costa Rica que ya tienen una web, pero no se ve profesional, no explica bien o no ayuda a vender.",
+      "Rediseño de sitio web en Costa Rica para negocios que ya tienen web pero no convierte: mensaje comercial más claro, diseño profesional y estructura que sí ayuda a vender. Solicite cotización.",
     keywords: [
       "rediseño sitio web costa rica",
       "mejorar página web",
@@ -596,12 +725,54 @@ export const esCrMarketPages: MarketPage[] = [
     ],
     hero: {
       eyebrow: "Rediseño",
-      headline: "Si su sitio actual se ve viejo, el negocio paga ese costo todos los días.",
+      headline:
+        "Rediseño de sitio web en Costa Rica para negocios que ya no se reconocen en su propia página.",
       subheadline:
         "Rediseñamos sitios para que el negocio se vea más fuerte, se entienda mejor y convierta mejor que la versión anterior.",
     },
     intro:
-      "Muchas empresas ya tienen sitio, pero ese sitio no les ayuda a vender, justificar mejor sus precios o dar una mejor primera impresión.",
+      "El rediseño de sitio web en Costa Rica es para negocios que ya tienen presencia online pero esa presencia no les ayuda a vender, justificar mejor sus precios o dar una primera impresión a la altura del trabajo que hacen.",
+    faq: [
+      {
+        question: "¿Cómo sé si mi sitio necesita un rediseño?",
+        answer:
+          "Las señales más claras son: el sitio se ve desactualizado frente a su competencia, los clientes le preguntan cosas que deberían estar claras en la página, o usted mismo siente que la web no representa el nivel actual del negocio. Si le da pena mandar el link, es momento de rediseñar.",
+      },
+      {
+        question: "¿Voy a perder mi posicionamiento en Google?",
+        answer:
+          "No si el rediseño se hace con criterio técnico. Se conservan las URLs que ya tienen tráfico, se implementan redirecciones donde haga falta y se mejora la estructura de contenido para que Google entienda mejor cada página. El objetivo es subir, no retroceder.",
+      },
+      {
+        question: "¿Cuánto tarda un rediseño?",
+        answer:
+          "Depende del alcance, pero la mayoría se mueve entre 2 y 4 semanas. Si el sitio actual tiene muchas páginas o requiere una reestructuración fuerte del contenido, puede tomar un poco más. Siempre se acuerda un cronograma antes de arrancar.",
+      },
+      {
+        question: "¿Pueden conservar mi contenido actual?",
+        answer:
+          "Sí. Se revisa todo el contenido existente y se decide qué se mantiene, qué se reescribe y qué se elimina. El objetivo no es empezar de cero sino construir sobre lo que ya funciona y mejorar lo que no está ayudando al negocio.",
+      },
+    ],
+    narrativeSections: [
+      {
+        eyebrow: "La señal de alerta",
+        title: "Un sitio desactualizado le cuesta clientes todos los días, aunque no lo note.",
+        body: "Cada persona que llega a un sitio viejo o confuso forma una opinión en segundos. Si esa opinión es 'esto no se ve serio', el negocio pierde la oportunidad antes de que alguien lea una sola línea. El problema es que ese costo es invisible: usted no sabe cuántas personas cerraron la pestaña porque la web no les dio confianza.",
+        points: [
+          "Primera impresión profesional que refleja el nivel real del negocio.",
+          "Mensaje comercial actualizado para cómo el negocio opera hoy.",
+          "Estructura moderna que funciona bien en celular y carga rápido.",
+          "Formularios de contacto visibles y fáciles de usar.",
+        ],
+      },
+      {
+        eyebrow: "El proceso",
+        title:
+          "Un buen rediseño no es solo cambiar colores. Es repensar cómo la web trabaja para el negocio.",
+        body: "El rediseño empieza por entender qué no está funcionando: si el problema es el mensaje, la estructura, la confianza visual o la conversión. A partir de ahí se prioriza y se reconstruye lo que más impacto tiene. No se trata de empezar de cero, sino de hacer que la web finalmente haga el trabajo que debería estar haciendo.",
+      },
+    ],
     problemTitle: "Señales de que toca rediseñar",
     problemPoints: [
       "La web ya no representa el nivel real del negocio.",
@@ -627,9 +798,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "cotizacion",
-    title: "Solicitar Cotización Web en Costa Rica",
+    title: "Cotización de Página Web en Costa Rica — Respuesta en 24 Horas",
     description:
-      "Solicite una cotización para su sitio web, rediseño o proyecto digital en Costa Rica. Reciba una respuesta clara por email en menos de 24 horas.",
+      "Solicite una cotización de página web en Costa Rica. Cuénteme sobre su negocio y reciba por email una recomendación, rango de inversión y siguientes pasos en menos de 24 horas.",
     keywords: [
       "cotización página web costa rica",
       "solicitar cotización web",
@@ -637,14 +808,37 @@ export const esCrMarketPages: MarketPage[] = [
     ],
     hero: {
       eyebrow: "Cotización",
-      headline: "Cuénteme sobre el proyecto y le envío una cotización clara.",
+      headline:
+        "Cotización de página web en Costa Rica: cuénteme sobre el proyecto y le respondo en 24 horas.",
       subheadline:
         "Si necesita un sitio web nuevo, mejorar el actual o cotizar una app, deje el contexto aquí y le respondo por email con una recomendación, un rango de inversión y los siguientes pasos.",
       supportingText:
         "Así la conversación empieza ordenada, con mejor contexto y sin perder tiempo en mensajes sueltos.",
     },
     intro:
-      "Una buena cotización empieza con contexto. Cuando entiendo qué vende, qué necesita y qué quiere lograr, puedo responder con algo útil en lugar de una cifra al aire. Por eso el formulario importa: ayuda a pasar de una conversación informal a una propuesta con más sentido comercial.",
+      "Solicitar una cotización de página web empieza con contexto. Cuando entiendo qué vende, qué necesita y qué quiere lograr, puedo responder con algo útil en lugar de una cifra al aire. Por eso el formulario importa: ayuda a pasar de una conversación informal a una propuesta con más sentido comercial.",
+    faq: [
+      {
+        question: "¿Qué pasa después de enviar el formulario?",
+        answer:
+          "Reviso la información que dejó, analizo el negocio y le respondo por email en menos de 24 horas con una recomendación de enfoque, un rango de inversión estimado y los siguientes pasos concretos. No es una respuesta automática — es una evaluación real.",
+      },
+      {
+        question: "¿En cuánto tiempo recibo respuesta?",
+        answer:
+          "En menos de 24 horas hábiles. La mayoría de respuestas salen el mismo día. Si el proyecto necesita más análisis, le aviso por email y coordinamos una llamada corta para afinar los detalles.",
+      },
+      {
+        question: "¿Necesito saber exactamente lo que quiero?",
+        answer:
+          "No. Muchos negocios llegan sabiendo que necesitan algo pero no están seguros de qué exactamente. Para eso sirve la primera respuesta: le ayudo a definir prioridades, alcance y qué tiene más sentido según su situación y presupuesto.",
+      },
+      {
+        question: "¿La consulta inicial tiene costo?",
+        answer:
+          "No. La primera evaluación y recomendación por email es sin costo ni compromiso. Si después de eso quiere avanzar, le presento una propuesta formal con alcance, tiempos y precio claro.",
+      },
+    ],
     proof: [
       {
         metric: "Menos ruido",
