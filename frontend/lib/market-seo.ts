@@ -84,11 +84,24 @@ export function buildMarketJsonLd(entry: MarketEntry) {
       url: siteUrl,
     },
     about: {
-      "@type": "Service",
+      "@type": "ProfessionalService",
       name: entry.title,
+      description: entry.description,
+      serviceType: entry.locale === "es" ? "Desarrollo Web" : "Web Development",
       areaServed: {
         "@type": "Country",
         name: "Costa Rica",
+      },
+      provider: {
+        "@type": "Person",
+        name: "Marcelo Retana",
+        url: "https://marceloretana.com",
+        jobTitle: "Web Developer & Founder",
+        worksFor: {
+          "@type": "Organization",
+          name: "GEXP Software",
+          url: "https://gexpsoftware.com",
+        },
       },
     },
   };
