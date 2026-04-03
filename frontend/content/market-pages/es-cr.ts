@@ -101,7 +101,7 @@ export const esCrHub: MarketHub = {
       "Si hoy su negocio depende de redes sociales, referencias o WhatsApp para todo, un buen sitio web le da una base más fuerte: más credibilidad, más claridad y una forma más ordenada de recibir consultas.",
   },
   intro:
-    "La mayoría de negocios en Costa Rica no necesitan una app ni un sistema complejo. Necesitan una página web que se vea profesional, que explique rápido lo que venden y que haga fácil el siguiente paso para el cliente. Eso es lo que hago. Desde páginas web nuevas hasta rediseños, desde optimización para Google hasta sistemas de captación de clientes. Todo con ejecución técnica seria, diseño que genera confianza y una comunicación directa donde usted habla conmigo, no con intermediarios. Esta página cubre todo: páginas web profesionales, diseño web, desarrollo web a medida y SEO para negocios en Costa Rica.",
+    "La mayoría de negocios en Costa Rica no necesitan una app ni un sistema complejo — necesitan páginas web que se vean profesionales, expliquen rápido lo que venden y hagan fácil el siguiente paso para el cliente. Eso es lo que hago. Desde páginas web nuevas hasta rediseños, desde optimización para Google hasta sistemas de captación de clientes. Todo con ejecución técnica seria, diseño que genera confianza y una comunicación directa donde usted habla conmigo, no con intermediarios. Esta página cubre todo: páginas web profesionales, diseño web, desarrollo web a medida y SEO para negocios en Costa Rica.",
   proof: [
     {
       metric: "10+ años",
@@ -248,9 +248,9 @@ export const esCrHub: MarketHub = {
 export const esCrMarketPages: MarketPage[] = [
   createPage({
     slug: "cuanto-cuesta",
-    title: "Cuánto Cuesta una Página Web en Costa Rica — Guía de Precios Real",
+    title: "Cuánto Cuesta una Página Web en Costa Rica",
     description:
-      "Cuánto cuesta una página web en Costa Rica: qué mueve el precio, qué incluye cada rango de inversión y cómo evitar botar plata en algo que no ayuda a su negocio. Solicite cotización.",
+      "Cuánto cuesta una página web en Costa Rica: qué mueve el precio, qué incluye cada rango de inversión y cómo evitar botar plata.",
     keywords: [
       "cuanto cuesta una pagina web en costa rica",
       "precio página web costa rica",
@@ -344,9 +344,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "generar-clientes",
-    title: "Sitio Web para Generar Clientes en Costa Rica — Más que Presencia",
+    title: "Sitio Web para Generar Clientes en Costa Rica",
     description:
-      "Cómo estructurar un sitio web para generar clientes en Costa Rica: mensaje claro, prueba social, formularios estratégicos y estructura que convierte visitas en consultas reales. Solicite cotización.",
+      "Cómo estructurar un sitio web para generar clientes en Costa Rica: mensaje claro, prueba social y estructura que convierte visitas en consultas.",
     keywords: [
       "sitio web que genere clientes",
       "página web para conseguir clientes",
@@ -360,7 +360,7 @@ export const esCrMarketPages: MarketPage[] = [
         "La combinación correcta es mensaje, estructura, prueba y un paso claro para mover a la persona a pedir información.",
     },
     intro:
-      "Generar clientes con un sitio web no depende solo de tener una página bonita. Depende de tener una estructura que explique bien, dé confianza y deje un siguiente paso muy claro para que la persona se convierta en consulta real.",
+      "Generar clientes con un sitio web en Costa Rica no depende solo de tener una página bonita. Depende de tener una estructura que explique bien, dé confianza y deje un siguiente paso muy claro para que la persona se convierta en consulta real.",
     faq: [
       {
         question: "¿Qué hace que un sitio web genere clientes?",
@@ -426,9 +426,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "constructoras",
-    title: "Páginas Web para Constructoras en Costa Rica — Proyectos que Convencen",
+    title: "Páginas Web para Constructoras en Costa Rica",
     description:
-      "Páginas web para constructoras e inmobiliarias en Costa Rica: galería de proyectos, páginas por desarrollo y formularios que filtran consultas serias. Solicite cotización.",
+      "Páginas web para constructoras en Costa Rica: galería de proyectos, páginas por desarrollo y formularios que filtran consultas serias.",
     keywords: [
       "página web para constructora",
       "sitio web constructora costa rica",
@@ -523,9 +523,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "clinicas",
-    title: "Páginas Web para Clínicas en Costa Rica — Confianza desde la Primera Visita",
+    title: "Páginas Web para Clínicas en Costa Rica",
     description:
-      "Páginas web para clínicas y negocios de salud en Costa Rica: diseño profesional, páginas por especialidad, reserva de citas y estructura que genera confianza en pacientes. Solicite cotización.",
+      "Páginas web para clínicas en Costa Rica: diseño profesional, páginas por especialidad, reserva de citas y estructura que genera confianza.",
     keywords: [
       "página web clínica costa rica",
       "sitio web clínica",
@@ -619,9 +619,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "turismo",
-    title: "Páginas Web para Turismo en Costa Rica — Hoteles, Tours y Experiencias",
+    title: "Páginas Web para Turismo en Costa Rica | Hoteles y Tours",
     description:
-      "Páginas web para turismo en Costa Rica: hoteles, tours y experiencias con galerías, reservas en línea y posicionamiento en Google para atraer viajeros. Solicite cotización.",
+      "Páginas web para turismo en Costa Rica: hoteles, tours y experiencias con galerías, reservas en línea y posicionamiento en Google.",
     keywords: [
       "página web turismo costa rica",
       "sitio web hotel costa rica",
@@ -715,9 +715,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "rediseno",
-    title: "Rediseño de Sitio Web en Costa Rica — Más Profesional, Más Conversión",
+    title: "Rediseño de Sitio Web en Costa Rica | Más Conversión",
     description:
-      "Rediseño de sitio web en Costa Rica para negocios que ya tienen web pero no convierte: mensaje comercial más claro, diseño profesional y estructura que sí ayuda a vender. Solicite cotización.",
+      "Rediseño de sitio web en Costa Rica para negocios que ya tienen web pero no convierte: mensaje más claro, diseño profesional y mejor conversión.",
     keywords: [
       "rediseño sitio web costa rica",
       "mejorar página web",
@@ -798,9 +798,9 @@ export const esCrMarketPages: MarketPage[] = [
   }),
   createPage({
     slug: "cotizacion",
-    title: "Cotización de Página Web en Costa Rica — Respuesta en 24 Horas",
+    title: "Cotización de Página Web en Costa Rica | 24 Horas",
     description:
-      "Solicite una cotización de página web en Costa Rica. Cuénteme sobre su negocio y reciba por email una recomendación, rango de inversión y siguientes pasos en menos de 24 horas.",
+      "Cotización de página web en Costa Rica. Cuénteme sobre su negocio y reciba por email recomendación, rango de inversión y siguientes pasos.",
     keywords: [
       "cotización página web costa rica",
       "solicitar cotización web",
@@ -816,7 +816,7 @@ export const esCrMarketPages: MarketPage[] = [
         "Así la conversación empieza ordenada, con mejor contexto y sin perder tiempo en mensajes sueltos.",
     },
     intro:
-      "Solicitar una cotización de página web empieza con contexto. Cuando entiendo qué vende, qué necesita y qué quiere lograr, puedo responder con algo útil en lugar de una cifra al aire. Por eso el formulario importa: ayuda a pasar de una conversación informal a una propuesta con más sentido comercial.",
+      "Solicitar una cotización de página web en Costa Rica empieza con contexto. Cuando entiendo qué vende, qué necesita y qué quiere lograr, puedo responder con algo útil en lugar de una cifra al aire. Por eso el formulario importa: ayuda a pasar de una conversación informal a una propuesta con más sentido comercial.",
     faq: [
       {
         question: "¿Qué pasa después de enviar el formulario?",

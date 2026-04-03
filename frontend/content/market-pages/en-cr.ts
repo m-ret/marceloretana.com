@@ -71,7 +71,7 @@ export const enCrHub: MarketHub = {
   locale: "en",
   path: "/costa-rica",
   generatedAt,
-  title: "Web Development Costa Rica | Design, Nearshore, and Agency Services",
+  title: "Web Development Costa Rica | Design, SEO & Agency",
   description:
     "Costa Rica web development and design by Marcelo Retana. 10+ years building websites for foreign-owned businesses, expats, and US companies. Request a quote today.",
   keywords: [
@@ -336,7 +336,7 @@ export const enCrMarketPages: MarketPage[] = [
     slug: "website-cost",
     title: "Website Cost in Costa Rica | What You Actually Pay For",
     description:
-      "Understand website cost in Costa Rica before you request a quote. See what moves pricing, what separates a $500 site from a $5,000 one, and how to evaluate proposals.",
+      "Understand website cost in Costa Rica before you request a quote. See what moves pricing, what separates a $500 site from a $5,000 one, and how to compare.",
     keywords: [
       "website cost costa rica",
       "how much does a website cost in costa rica",
@@ -521,7 +521,7 @@ export const enCrMarketPages: MarketPage[] = [
     slug: "lead-generation",
     title: "Lead Generation Websites Costa Rica | Sites That Convert",
     description:
-      "Lead generation websites in Costa Rica built to convert visitors into qualified inquiries. Clear messaging, trust signals, and form-first design by a senior developer.",
+      "Lead generation websites in Costa Rica built to convert visitors into qualified inquiries. Clear messaging, trust signals, and form-first design.",
     keywords: [
       "lead generation websites costa rica",
       "website that gets leads costa rica",
