@@ -42,7 +42,7 @@ async function appendToSheet(data: Record<string, string | undefined>) {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
-    range: "Leads!A:L",
+    range: "Leads!A:S",
     valueInputOption: "USER_ENTERED",
     requestBody: {
       values: [
@@ -60,6 +60,12 @@ async function appendToSheet(data: Record<string, string | undefined>) {
           data.message,
           data.locale,
           data.sourcePage,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
         ],
       ],
     },
