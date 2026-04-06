@@ -22,18 +22,12 @@ export function LanguageToggle() {
       ? "Switch to English"
       : "Cambiar a Español";
 
-  const ariaLabel = isHubFallback
-    ? isEs
-      ? "English services hub"
-      : "Spanish services hub"
-    : title;
-
   return (
     <a
       href={targetPath}
       className="flex items-center gap-1 text-xs font-medium tracking-wide text-fg-muted hover:text-fg transition-colors"
       title={title}
-      aria-label={ariaLabel}
+      aria-label={title}
     >
       <span className={isEs ? "text-fg-muted" : "text-fg"}>EN</span>
       <span className="text-fg-muted">/</span>
