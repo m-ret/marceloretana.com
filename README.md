@@ -457,6 +457,12 @@ bun install
 
 ---
 
+## AI-assisted development
+
+Coding agents (Cursor, Claude Code, Codex, Copilot) should follow **[AGENTS.md](./AGENTS.md)** for repo layout, Bun commands, and content/validation rules. Claude Code project skills: `.claude/skills/marceloretana-com/` (general frontend work), `.claude/skills/marceloretana-seo-leads/` (SEO, market landings, PSEO, lead capture). New market landings default **Spanish-first** (`es-cr.ts`, then promote to `en-cr.ts` per AGENTS.md).
+
+---
+
 ## License
 
 MIT
