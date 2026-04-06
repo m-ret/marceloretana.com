@@ -183,13 +183,13 @@ export const esCrHub: MarketHub = {
   ],
   cta: defaultCta,
   featuredLinks: [
-    { label: "Precio", slug: "cuanto-cuesta" },
-    { label: "Generar clientes", slug: "generar-clientes" },
-    { label: "Constructoras", slug: "constructoras" },
-    { label: "Clínicas", slug: "clinicas" },
-    { label: "Turismo", slug: "turismo" },
-    { label: "Rediseño", slug: "rediseno" },
     { label: "Cotización", slug: "cotizacion" },
+    { label: "Generar clientes", slug: "generar-clientes" },
+    { label: "Precio", slug: "cuanto-cuesta" },
+    { label: "Constructoras", slug: "constructoras" },
+    { label: "Turismo", slug: "turismo" },
+    { label: "Clínicas", slug: "clinicas" },
+    { label: "Rediseño", slug: "rediseno" },
   ],
   caseProofIds: ["gexp", "nature-escapes", "vista3-architects"],
   narrativeSections: [
@@ -731,12 +731,12 @@ export const esCrMarketPages: MarketPage[] = [
         "Rediseñamos sitios para que el negocio se vea más fuerte, se entienda mejor y convierta mejor que la versión anterior.",
     },
     intro:
-      "El rediseño de sitio web en Costa Rica es para negocios que ya tienen presencia online pero esa presencia no les ayuda a vender, justificar mejor sus precios o dar una primera impresión a la altura del trabajo que hacen.",
+      "En Costa Rica muchos negocios viven de referencias, Instagram y WhatsApp — y eso funciona hasta que alguien pide el link y la página no coincide con la seriedad del trato en persona. Pasa en servicios en GAM, hoteles en Guanacaste, clínicas en San José y talleres en provincia: el sitio quedó con fotos viejas, tipografía incómoda en celular o un mensaje que ya no refleja cómo cobran, qué incluyen o dónde atienden. El rediseño no es maquillaje: es volver a alinear la web con la operación real del negocio (horarios, zonas, precios orientativos, formulario claro) para que la primera visita no sea la excusa para seguir cotizando solo por chat.",
     faq: [
       {
         question: "¿Cómo sé si mi sitio necesita un rediseño?",
         answer:
-          "Las señales más claras son: el sitio se ve desactualizado frente a su competencia, los clientes le preguntan cosas que deberían estar claras en la página, o usted mismo siente que la web no representa el nivel actual del negocio. Si le da pena mandar el link, es momento de rediseñar.",
+          "Señales muy típicas en Costa Rica: le piden por WhatsApp lo mismo que ya debería decir la web (ubicación en Waze, si facturan con datos, si atienden fin de semana), evita mandar el link en propuestas o lo disculpa con un “todavía no lo actualizamos”, o la versión móvil hace difícil tocar el botón de contacto con el pulgar. Si compite con negocios que sí se ven ordenados en línea — aunque sea en el mismo cantón — y usted siente que su sitio baja la confianza antes de la llamada, ya está pagando el costo de un rediseño que no hizo.",
       },
       {
         question: "¿Voy a perder mi posicionamiento en Google?",
@@ -752,6 +752,26 @@ export const esCrMarketPages: MarketPage[] = [
         question: "¿Pueden conservar mi contenido actual?",
         answer:
           "Sí. Se revisa todo el contenido existente y se decide qué se mantiene, qué se reescribe y qué se elimina. El objetivo no es empezar de cero sino construir sobre lo que ya funciona y mejorar lo que no está ayudando al negocio.",
+      },
+    ],
+    proof: [
+      {
+        metric: "WhatsApp + web",
+        title: "Menos vueltas en el primer contacto",
+        description:
+          "Cuando la web deja claras zona, servicio y siguiente paso, bajan las consultas repetitivas por chat y sube la calidad de quien escribe: llega con contexto, no solo con “cuánto sale”.",
+      },
+      {
+        metric: "Celular primero",
+        title: "CR navega en teléfono; el rediseño también",
+        description:
+          "La mayoría del tráfico local entra desde el celular. Un rediseño serio prioriza legibilidad, velocidad y formularios que se pueden completar sin pellizcar la pantalla — especialmente si el cliente cotiza entre traslados o en horario nocturno.",
+      },
+      {
+        metric: "Competencia local",
+        title: "Misma ciudad, distinta percepción",
+        description:
+          "Si dos negocios ofrecen algo parecido en Limón, Cartago o Pérez Zeledón, el que se ve más ordenado en línea suele quedar como la opción ‘más estable’. El rediseño acerca la percepción al nivel real de su operación.",
       },
     ],
     narrativeSections: [
