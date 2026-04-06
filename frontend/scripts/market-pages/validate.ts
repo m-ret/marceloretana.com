@@ -3,6 +3,7 @@
 import { enCrHub, enCrMarketPages } from "@/content/market-pages/en-cr";
 import { esCrHub, esCrMarketPages } from "@/content/market-pages/es-cr";
 import { marketDatasetSchema } from "@/lib/market-page-types";
+import { getAllMarketEntries } from "@/lib/market-pages";
 
 const datasets = [
   {
@@ -41,6 +42,28 @@ for (const dataset of datasets) {
         process.exit(1);
       }
     }
+  }
+}
+
+const allEntries = getAllMarketEntries();
+const byPath = new Map(allEntries.map((entry) => [entry.path, entry]));
+
+for (const entry of allEntries) {
+  const alternatePath = entry.alternatePath;
+  if (alternatePath === undefined) continue;
+
+  const peer = byPath.get(alternatePath);
+  if (!peer) {
+    console.error(`alternatePath "${alternatePath}" has no market entry (from ${entry.path})`);
+    process.exit(1);
+  }
+  if (peer.alternatePath !== entry.path) {
+    console.error(
+      `alternatePath reciprocity broken: ${entry.path} -> ${alternatePath}, peer has alternatePath ` +
+        `${peer.alternatePath === undefined ? "(omitted)" : JSON.stringify(peer.alternatePath)} ` +
+        `(expected ${JSON.stringify(entry.path)})`
+    );
+    process.exit(1);
   }
 }
 
