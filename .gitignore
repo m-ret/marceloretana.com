@@ -19,8 +19,10 @@ dist/
 *.pem
 *.log
 
-# Claude Code
-.claude/
+# Claude Code — keep project skills in git; other .claude/ files stay local
+.claude/*
+!.claude/skills/
+!.claude/skills/**/*
 .worktrees/
 
 # Embedded repos

@@ -1,0 +1,8 @@
+---
+description: Root-level reminder — read AGENTS.md for any repo change
+alwaysApply: true
+---
+
+# Repository policy
+
+Before making non-trivial changes anywhere in this repository, read **AGENTS.md** at the project root. It defines the canonical command list (Bun, `frontend/` cwd), validation steps, and content rules for blog, PSEO, and market pages.

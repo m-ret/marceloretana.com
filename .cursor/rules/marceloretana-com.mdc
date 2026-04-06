@@ -1,0 +1,17 @@
+---
+description: marceloretana.com repo — Next.js frontend, Bun, content conventions
+globs: frontend/**/*
+alwaysApply: false
+---
+
+# marceloretana.com
+
+Read the root **AGENTS.md** before larger changes. It defines commands, content boundaries, and validation.
+
+**Workspace:** Primary code is under `frontend/` (Next.js App Router, TypeScript, Tailwind, Biome + oxlint).
+
+**Commands** (from `frontend/`): `bun run validate` after edits; `bun run validate:market` after `content/market-pages/` changes; `bun run dev` for local preview.
+
+**Content:** Blog in `frontend/content/posts/` (gray-matter). PSEO in `frontend/content/pseo/`. Market data in `frontend/content/market-pages/` — must pass market validation.
+
+**Style:** Match existing patterns; avoid drive-by refactors; use Bun as the package runner.

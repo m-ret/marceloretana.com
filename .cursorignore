@@ -1,0 +1,11 @@
+# Reduce indexer noise; agents still read paths explicitly when needed.
+**/node_modules/**
+**/.next/**
+**/out/**
+**/dist/**
+**/build/**
+cms/.tmp/**
+cms/.cache/**
+cms/build/**
+.vercel/
+**/*.tsbuildinfo
