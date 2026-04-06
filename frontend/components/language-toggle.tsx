@@ -1,21 +1,39 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { getAlternatePath } from "@/lib/language-pairs";
+import { getAlternatePath, getLanguageHubFallback } from "@/lib/language-pairs";
 
 export function LanguageToggle() {
   const pathname = usePathname();
   const alternatePath = getAlternatePath(pathname);
+  const hubFallback = alternatePath == null ? getLanguageHubFallback(pathname) : null;
+  const targetPath = alternatePath ?? hubFallback;
 
-  if (!alternatePath) return null;
+  if (!targetPath) return null;
 
+  const isHubFallback = alternatePath == null && hubFallback != null;
   const isEs = pathname === "/es" || pathname.startsWith("/es/");
+
+  const title = isHubFallback
+    ? isEs
+      ? "English services hub"
+      : "Spanish services hub"
+    : isEs
+      ? "Switch to English"
+      : "Cambiar a Español";
+
+  const ariaLabel = isHubFallback
+    ? isEs
+      ? "English services hub"
+      : "Spanish services hub"
+    : title;
 
   return (
     <a
-      href={alternatePath}
+      href={targetPath}
       className="flex items-center gap-1 text-xs font-medium tracking-wide text-fg-muted hover:text-fg transition-colors"
-      title={isEs ? "Switch to English" : "Cambiar a Español"}
+      title={title}
+      aria-label={ariaLabel}
     >
       <span className={isEs ? "text-fg-muted" : "text-fg"}>EN</span>
       <span className="text-fg-muted">/</span>
