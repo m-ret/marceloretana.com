@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
@@ -45,6 +46,9 @@ export function SiteRoot({ children, lang, alternatePath }: SiteRootProps) {
         </LanguageProvider>
         <Analytics />
         <SpeedInsights />
+        {process.env.NEXT_PUBLIC_GA4_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
+        )}
         {showToolbar && <VercelToolbar />}
       </body>
     </html>

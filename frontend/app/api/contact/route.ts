@@ -1,3 +1,4 @@
+import { google } from "googleapis";
 import { NextResponse } from "next/server";
 import { leadFormSchema } from "@/lib/lead-form";
 
@@ -22,6 +23,47 @@ function renderField(label: string, value?: string, isLink = false) {
     <p style="margin:0;font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;">${label}</p>
     <p style="margin:4px 0 0;font-size:15px;color:#111827;line-height:1.6;">${content}</p>
   </td></tr>`;
+}
+
+async function appendToSheet(data: Record<string, string | undefined>) {
+  const clientEmail = process.env.GOOGLE_SHEETS_CLIENT_EMAIL;
+  const privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  const sheetId = process.env.GOOGLE_SHEETS_LEAD_SHEET_ID;
+
+  if (!clientEmail || !privateKey || !sheetId) return;
+
+  const auth = new google.auth.JWT({
+    email: clientEmail,
+    key: privateKey,
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  });
+
+  const sheets = google.sheets({ version: "v4", auth });
+
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: sheetId,
+    range: "Leads!A:L",
+    valueInputOption: "USER_ENTERED",
+    requestBody: {
+      values: [
+        [
+          new Date().toISOString(),
+          "marceloretana.com",
+          data.name,
+          data.businessName || "",
+          data.email,
+          data.phoneOrWhatsApp || "",
+          data.industry || "",
+          data.projectType,
+          data.budgetRange || "",
+          data.timeline || "",
+          data.message,
+          data.locale,
+          data.sourcePage,
+        ],
+      ],
+    },
+  });
 }
 
 export async function POST(request: Request) {
@@ -106,6 +148,21 @@ export async function POST(request: Request) {
     console.error("Unosend error:", response.status, responseBody);
     return NextResponse.json({ error: "Failed to send message." }, { status: 500 });
   }
+
+  // Async fire-and-forget: Sheets write should not block the response
+  appendToSheet({
+    name,
+    businessName,
+    email,
+    phoneOrWhatsApp,
+    industry,
+    projectType,
+    budgetRange,
+    timeline,
+    message,
+    locale,
+    sourcePage,
+  }).catch((err) => console.error("Sheets write failed:", err));
 
   return NextResponse.json({ success: true });
 }
