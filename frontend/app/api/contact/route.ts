@@ -91,7 +91,7 @@ export async function POST(request: Request) {
   const localeLabel = locale === "cr" ? "Spanish / Costa Rica" : "English / Costa Rica";
   const subject = `New lead from ${name} via marceloretana.com (${projectType})`;
 
-  const response = await fetch("https://www.unosend.co/api/v1/emails", {
+  const response = await fetch("https://api.unosend.co/v1/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.UNOSEND_API_KEY}`,
