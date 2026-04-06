@@ -46,6 +46,18 @@ for (const dataset of datasets) {
 }
 
 const allEntries = getAllMarketEntries();
+const pathCounts = new Map<string, number>();
+for (const entry of allEntries) {
+  pathCounts.set(entry.path, (pathCounts.get(entry.path) ?? 0) + 1);
+}
+const duplicatePaths = [...pathCounts.entries()]
+  .filter(([, count]) => count > 1)
+  .map(([path]) => path);
+if (duplicatePaths.length > 0) {
+  console.error(`Duplicate market paths: ${duplicatePaths.join(", ")}`);
+  process.exit(1);
+}
+
 const byPath = new Map(allEntries.map((entry) => [entry.path, entry]));
 
 for (const entry of allEntries) {
