@@ -1,5 +1,6 @@
 "use client";
 
+import { sendGAEvent } from "@next/third-parties/google";
 import { usePathname } from "next/navigation";
 import { useId, useState } from "react";
 import { getLeadFormCopy, type LeadFormData, type LeadFormLocale } from "@/lib/lead-form";
@@ -77,6 +78,21 @@ export function ContactForm({ locale = "en", sourcePage, className, header }: Co
       if (!response.ok) {
         const data = (await response.json().catch(() => ({}))) as { error?: string };
         throw new Error(data.error || copy.messages.error);
+      }
+
+      if (process.env.NEXT_PUBLIC_GA4_ID) {
+        try {
+          const params: Record<string, string> = {
+            source_page: resolvedSourcePage,
+            locale,
+          };
+          if (pathname && pathname !== resolvedSourcePage) {
+            params.page_path = pathname;
+          }
+          sendGAEvent("event", "generate_lead", params);
+        } catch {
+          /* analytics must not affect UX */
+        }
       }
 
       setStatus("success");
