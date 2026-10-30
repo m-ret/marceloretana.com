@@ -23,6 +23,13 @@ const esRoutes = [
   { loc: "/es/contacto", priority: 0.7, changefreq: "monthly" },
 ];
 
+/** EN ↔ ES twins of the build-story pages (same slug in both languages); null elsewhere. */
+function workPair(path) {
+  if (path === "/work" || path === "/es/casos") return { en: "/work", es: "/es/casos" };
+  const match = /^\/(?:work|es\/casos)\/([^/]+)$/.exec(path);
+  return match ? { en: `/work/${match[1]}`, es: `/es/casos/${match[1]}` } : null;
+}
+
 /** @type {import('next-sitemap').IConfig} */
 const config = {
   siteUrl: process.env.SITE_URL || "https://marceloretana.com",
@@ -125,6 +132,12 @@ const config = {
     } else if (path.startsWith("/es/blog/")) {
       priority = 0.8;
       changefreq = "weekly";
+    } else if (path === "/work" || path === "/es/casos") {
+      priority = 0.8;
+      changefreq = "monthly";
+    } else if (path.startsWith("/work/") || path.startsWith("/es/casos/")) {
+      priority = 0.7;
+      changefreq = "monthly";
     } else if (path.startsWith("/es/compare/")) {
       priority = 0.6;
       changefreq = "monthly";
@@ -147,11 +160,21 @@ const config = {
       changefreq = "monthly";
     }
 
+    const pair = workPair(path);
+    const alternateRefs = pair
+      ? [
+          { href: `${config.siteUrl}${pair.en}`, hreflang: "en", hrefIsAbsolute: true },
+          { href: `${config.siteUrl}${pair.es}`, hreflang: "es", hrefIsAbsolute: true },
+          { href: `${config.siteUrl}${pair.en}`, hreflang: "x-default", hrefIsAbsolute: true },
+        ]
+      : undefined;
+
     return {
       loc: path,
       changefreq,
       priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+      alternateRefs,
     };
   },
 };

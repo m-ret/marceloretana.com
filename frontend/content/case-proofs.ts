@@ -113,6 +113,45 @@ const caseProofs: CaseProof[] = [
       "Lead capture structured around email-first quotes instead of pure WhatsApp chaos.",
     ],
   },
+  {
+    id: "repuestos-alto",
+    title: "Repuestos Alto",
+    sector: "Venta de repuestos automotrices",
+    audience: "es",
+    href: "/es/casos/repuestos-alto",
+    summary:
+      "Sitio para una tienda de repuestos en Pérez Zeledón donde el catálogo, cada producto y el estimado de piezas 3D terminan en un mensaje de WhatsApp con los datos ya escritos.",
+    highlights: [
+      "Búsqueda en el catálogo LED que entiende los códigos con o sin tildes, mayúsculas y guiones.",
+      "El personal edita productos LED, servicios y preguntas frecuentes desde un CMS, sin tocar código.",
+    ],
+  },
+  {
+    id: "uvita-body-shop",
+    title: "Uvita Body Shop",
+    sector: "Enderezado y pintura automotriz",
+    audience: "es",
+    href: "/es/casos/uvita-body-shop",
+    summary:
+      "Sitio bilingüe para un taller de enderezado y pintura en Uvita, armado para que el cliente mande una foto por WhatsApp desde cualquier página.",
+    highlights: [
+      "Páginas de servicios, zonas y guías, cada una con datos estructurados para Google.",
+      "Formulario con filtros contra bots simples y sin CAPTCHA, para no sumarle pasos al cliente.",
+    ],
+  },
+  {
+    id: "mav-digital",
+    title: "MAV Boutique",
+    sector: "Asesoría contable y legal",
+    audience: "es",
+    href: "/es/casos/mav-digital",
+    summary:
+      "Reemplazo del sitio WordPress de una firma contable y legal en Pérez Zeledón por un sitio bilingüe, sin perder ninguna de sus 52 direcciones públicas.",
+    highlights: [
+      "47 direcciones conservan su ruta y 5 redirigen a su página nueva.",
+      "26 páginas en español y 25 en inglés; cada página emparejada le dice a los buscadores dónde está su versión en el otro idioma.",
+    ],
+  },
 ];
 
 const caseProofsById = new Map(caseProofs.map((proof) => [proof.id, proof]));

@@ -1,0 +1,48 @@
+import type { WorkLocale } from "@/content/work/types";
+
+export const workLabels = {
+  en: {
+    allWork: "All work",
+    client: "Client",
+    product: "Product",
+    sector: "Sector",
+    location: "Location",
+    year: "Year",
+    visitSite: "Visit live site",
+    newTab: "(opens in a new tab)",
+    takeaways: "What I'd tell an owner",
+    stack: "Stack",
+    caseStudyLink: "Full case study on gexpsoftware.com",
+    caseStudyNote: "The company version of this project, with features and results.",
+    ctaTitle: "Planning a project like this?",
+    ctaBody: "Tell me what you're working on. I'll reply by email with a clear next step.",
+    ctaLink: "Get a quote",
+    ctaHref: "/contact",
+    next: "Next story",
+    indexTitle: "Projects, and how I built them.",
+    indexIntro:
+      "First-person notes on real projects: the decisions, the trade-offs, and what I'd tell an owner planning something similar.",
+  },
+  es: {
+    allWork: "Todos los casos",
+    client: "Cliente",
+    product: "Producto",
+    sector: "Sector",
+    location: "Ubicación",
+    year: "Año",
+    visitSite: "Ver el sitio en vivo",
+    newTab: "(se abre en una pestaña nueva)",
+    takeaways: "Lo que le diría a un dueño de negocio",
+    stack: "Tecnología",
+    caseStudyLink: "Caso completo en gexpsoftware.com",
+    caseStudyNote: "La versión de la empresa sobre este proyecto, con funciones y resultados.",
+    ctaTitle: "¿Tiene un proyecto parecido?",
+    ctaBody: "Cuénteme qué necesita. Le respondo por email con un siguiente paso claro.",
+    ctaLink: "Solicitar cotización",
+    ctaHref: "/es/contacto",
+    next: "Siguiente caso",
+    indexTitle: "Proyectos y cómo los construí.",
+    indexIntro:
+      "Notas en primera persona sobre proyectos reales: las decisiones, lo que cedí en cada una y lo que le diría a un dueño que planea algo parecido.",
+  },
+} satisfies Record<WorkLocale, Record<string, string>>;

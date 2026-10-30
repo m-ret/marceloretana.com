@@ -19,10 +19,20 @@ const staticPairs: Record<string, string> = {
   "/es/contacto": "/contact",
   "/blog": "/es/blog",
   "/es/blog": "/blog",
+  "/work": "/es/casos",
+  "/es/casos": "/work",
 };
 
+/** Build stories exist in both languages under the same slug. */
+function getBuildStoryPair(currentPath: string): string | null {
+  const en = /^\/work\/([^/]+)$/.exec(currentPath);
+  if (en) return `/es/casos/${en[1]}`;
+  const es = /^\/es\/casos\/([^/]+)$/.exec(currentPath);
+  return es ? `/work/${es[1]}` : null;
+}
+
 export function getAlternatePath(currentPath: string): string | null {
-  return staticPairs[currentPath] ?? null;
+  return staticPairs[currentPath] ?? getBuildStoryPair(currentPath);
 }
 
 function isHubFallbackExcluded(path: string): boolean {

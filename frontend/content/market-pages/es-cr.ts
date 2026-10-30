@@ -191,7 +191,14 @@ export const esCrHub: MarketHub = {
     { label: "Clínicas", slug: "clinicas" },
     { label: "Rediseño", slug: "rediseno" },
   ],
-  caseProofIds: ["gexp", "nature-escapes", "vista3-architects"],
+  caseProofIds: [
+    "gexp",
+    "nature-escapes",
+    "vista3-architects",
+    "repuestos-alto",
+    "uvita-body-shop",
+    "mav-digital",
+  ],
   narrativeSections: [
     {
       eyebrow: "Páginas Web Profesionales",

@@ -6,11 +6,20 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useLanguage } from "@/lib/language-context";
 
-const primaryLinks = [
+/** Shared by the always-visible pill and the menu. */
+const quoteLink = {
+  href: "/contact",
+  label: "Get a Quote",
+  es: { href: "/es/contacto", label: "Cotizar" },
+};
+
+const primaryLinks: { href: string; label: string; es?: { href: string; label: string } }[] = [
   { href: "/#about", label: "About" },
   { href: "/#experience", label: "Experience" },
-  { href: "/contact", label: "Get a Quote" },
+  { href: "/work", label: "Work", es: { href: "/es/casos", label: "Casos" } },
+  quoteLink,
 ];
 
 const marketLinks = [
@@ -43,6 +52,8 @@ const contentLinks = [
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const { locale } = useLanguage();
+  const quote = locale === "es" ? quoteLink.es : quoteLink;
 
   return (
     <>
@@ -64,12 +75,12 @@ export function Nav() {
           {/* Contact CTA */}
           <button
             type="button"
-            onClick={() => router.push("/contact")}
+            onClick={() => router.push(quote.href)}
             className="pointer-events-auto nav-glass flex items-center gap-2 px-4 h-12 rounded-full group contact-cta-btn"
-            aria-label="Get a quote"
+            aria-label={locale === "es" ? quote.label : "Get a quote"}
           >
             <span className="text-xs uppercase tracking-widest text-white/80 group-hover:text-white transition-colors">
-              Get a Quote
+              {quote.label}
             </span>
           </button>
 
@@ -144,16 +155,19 @@ export function Nav() {
                 <div>
                   <p className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5">Main</p>
                   <nav className="space-y-2">
-                    {primaryLinks.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="block text-3xl md:text-4xl text-fg hover:text-fg-secondary transition-colors border-b border-border pb-2"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
+                    {primaryLinks.map((item) => {
+                      const link = locale === "es" && item.es ? item.es : item;
+                      return (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className="block text-3xl md:text-4xl text-fg hover:text-fg-secondary transition-colors border-b border-border pb-2"
+                        >
+                          {link.label}
+                        </Link>
+                      );
+                    })}
                   </nav>
                 </div>
 

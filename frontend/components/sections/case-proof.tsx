@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getCaseProofs } from "@/content/case-proofs";
 
 type CaseProofSectionProps = {
@@ -16,12 +17,17 @@ export function CaseProofSection({ locale, caseProofIds }: CaseProofSectionProps
           eyebrow: "Prueba",
           title: "Proyectos reales que ayudan a bajar el riesgo antes de cotizar.",
           viewProject: "Ver proyecto",
+          readCase: "Leer el caso",
         }
       : {
           eyebrow: "Proof",
           title: "Real projects that reduce risk before someone requests a quote.",
           viewProject: "View project",
+          readCase: "Read the case study",
         };
+
+  const linkClass =
+    "mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-fg transition-colors hover:text-fg-secondary";
 
   return (
     <section className="border-t border-border pt-8">
@@ -55,13 +61,13 @@ export function CaseProofSection({ locale, caseProofIds }: CaseProofSectionProps
                 </footer>
               </blockquote>
             ) : null}
-            {proof.href ? (
-              <a
-                href={proof.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-fg transition-colors hover:text-fg-secondary"
-              >
+            {proof.href?.startsWith("/") && !proof.href.startsWith("//") ? (
+              <Link href={proof.href} className={linkClass}>
+                <span>{copy.readCase}</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+            ) : proof.href ? (
+              <a href={proof.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
                 <span>{copy.viewProject}</span>
                 <span aria-hidden="true">→</span>
               </a>
