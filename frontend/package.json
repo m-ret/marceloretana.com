@@ -15,7 +15,8 @@
     "check": "biome check --write .",
     "typecheck": "tsc --noEmit",
     "validate:market": "bun scripts/market-pages/validate.ts",
-    "validate": "bun run typecheck && bun run lint && bun run format:check",
+    "validate:work": "bun scripts/work/validate.ts",
+    "validate": "bun run typecheck && bun run lint && bun run format:check && bun run validate:work",
     "prepare": "cd .. && husky frontend/.husky"
   },
   "lint-staged": {

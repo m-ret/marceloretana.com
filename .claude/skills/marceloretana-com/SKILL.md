@@ -13,7 +13,7 @@ Open **`AGENTS.md`** at the repository root for full structure, safety rules, an
 
 ## Commands (from `frontend/`)
 
-1. After substantive code edits: `bun run validate` (typecheck + lint + format check).
+1. After substantive code edits: `bun run validate` (typecheck + lint + format check + `validate:work`).
 2. After `content/market-pages/` edits: `bun run validate:market` (Zod + slug graph).
 3. Local preview: `bun run dev`.
 

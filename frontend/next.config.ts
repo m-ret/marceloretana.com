@@ -37,8 +37,8 @@ const nextConfig: NextConfig = {
       { source: "/cr/servicios", destination: "/es", permanent: true },
       { source: "/cr/negocios-servicios", destination: "/es", permanent: true },
       { source: "/cr/consultorios", destination: "/es/clinicas", permanent: true },
-      { source: "/cr/portafolio", destination: "/es", permanent: true },
-      { source: "/cr/casos", destination: "/es", permanent: true },
+      { source: "/cr/portafolio", destination: "/es/casos", permanent: true },
+      { source: "/cr/casos", destination: "/es/casos", permanent: true },
       { source: "/cr/proceso", destination: "/es", permanent: true },
 
       // === English market pages -> consolidated ===

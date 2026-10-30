@@ -27,11 +27,12 @@ From `frontend/`:
 | `bun install` | Install dependencies. |
 | `bun run dev` | Local dev server (default: http://localhost:3000). |
 | `bun run build` | Production build (+ `postbuild` sitemap). |
-| `bun run validate` | **Preferred gate:** `typecheck` + `lint` + `format:check`. Run before concluding a task. |
+| `bun run validate` | **Preferred gate:** `typecheck` + `lint` + `format:check` + `validate:work`. Run before concluding a task. |
 | `bun run typecheck` | `tsc --noEmit`. |
 | `bun run lint` | Biome lint + oxlint. |
 | `bun run lint:fix` / `bun run format` | Auto-fix (use when appropriate). |
 | `bun run validate:market` | Zod validation + slug integrity for `content/market-pages/`. **Reciprocal `alternatePath`:** if set, peer entry must exist and point back; omit when there is no real locale pair. **Run after editing market pages.** |
+| `bun run validate:work` | Zod + banned-pattern self-test for `content/work/`. **Run after editing `content/work/`.** |
 
 Do **not** assume `npm`/`pnpm` unless the user asks; this project standardizes on **Bun**.
 
