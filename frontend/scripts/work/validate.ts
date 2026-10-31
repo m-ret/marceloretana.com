@@ -17,9 +17,11 @@ import sharp from "sharp";
 import { z } from "zod";
 
 export const EXPECTED_SLUGS = [
+  "picomar",
   "mav-digital",
   "repuestos-alto",
   "uvita-body-shop",
+  "casa-paraiso",
   "goeasy-chat",
   "alhena",
 ];
