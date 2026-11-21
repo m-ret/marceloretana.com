@@ -1,14 +1,22 @@
 import { getAllPosts } from "@/lib/posts";
+import { getBuildStories, workPath } from "@/lib/work";
 
 export const dynamic = "force-static";
 
+const siteUrl = "https://marceloretana.com";
+
 export function GET() {
   const posts = getAllPosts();
+  const stories = getBuildStories("en");
 
   const blogLines = posts
     .map(
       (post) => `- [${post.title}](https://marceloretana.com/blog/${post.slug}): ${post.excerpt}`
     )
+    .join("\n");
+
+  const caseStudyLines = stories
+    .map((story) => `- [${story.title}](${siteUrl}${story.path}): ${story.excerpt}`)
     .join("\n");
 
   const content = `# Marcelo Retana
@@ -18,6 +26,7 @@ export function GET() {
 ## About
 
 - [Portfolio](https://marceloretana.com): Main site with work experience, client testimonials, services, and contact information
+- [Work](${siteUrl}${workPath("en")}): First-person build stories from real projects, with the decisions and trade-offs behind each one
 - [Blog](https://marceloretana.com/blog): Technical articles on web development, AI developer tools, SEO, and lead generation
 
 ## Services
@@ -33,6 +42,15 @@ export function GET() {
 - Frontend: React, Next.js, TypeScript, Tailwind CSS, React Native
 - Backend: Node.js, GraphQL, PostgreSQL, AWS, Docker
 - AI & Tooling: Claude Code, MCP servers, AI-powered development workflows
+
+## Case Studies
+
+First-person build stories, one per project: the decisions, the trade-offs and what I'd tell an owner planning something similar. Each story has a Spanish twin under ${siteUrl}${workPath("es", "<same-slug>")} and a company version on https://gexpsoftware.com/work/<same-slug>.
+
+English index: ${siteUrl}${workPath("en")}
+Spanish index: ${siteUrl}${workPath("es")}
+
+${caseStudyLines}
 
 ## Blog Posts
 
