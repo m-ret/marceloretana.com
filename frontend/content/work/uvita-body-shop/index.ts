@@ -10,6 +10,8 @@ const story: BuildStorySource = {
   year: "2026",
   liveUrl: "https://uvitabodyshop.com",
   publishedAt: "2026-10-30",
+  relatedStories: ["repuestos-alto", "casa-paraiso"],
+  relatedPages: ["/costa-rica/lead-generation"],
   og,
   images: {
     hero: {

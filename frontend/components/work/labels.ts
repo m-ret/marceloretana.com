@@ -19,6 +19,10 @@ export const workLabels = {
     ctaLink: "Get a quote",
     ctaHref: "/contact",
     next: "Next story",
+    keepReading: "Keep reading",
+    relatedServices: "Related services",
+    caseStudiesEyebrow: "Case studies",
+    relatedProjects: "Related projects, and how I built them.",
     indexTitle: "Projects, and how I built them.",
     indexIntro:
       "First-person notes on real projects: the decisions, the trade-offs, and what I'd tell an owner planning something similar.",
@@ -41,6 +45,10 @@ export const workLabels = {
     ctaLink: "Solicitar cotización",
     ctaHref: "/es/contacto",
     next: "Siguiente caso",
+    keepReading: "Siga leyendo",
+    relatedServices: "Servicios relacionados",
+    caseStudiesEyebrow: "Casos",
+    relatedProjects: "Proyectos relacionados y cómo los construí.",
     indexTitle: "Proyectos y cómo los construí.",
     indexIntro:
       "Notas en primera persona sobre proyectos reales: las decisiones, lo que cedí en cada una y lo que le diría a un dueño que planea algo parecido.",

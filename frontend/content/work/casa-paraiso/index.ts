@@ -13,6 +13,8 @@ const story: BuildStorySource = {
   year: "2026",
   liveUrl: "https://casaparaisocr.com",
   publishedAt: "2026-10-30",
+  relatedStories: ["picomar", "uvita-body-shop"],
+  relatedPages: ["/costa-rica/tourism"],
   og,
   images: {
     hero: {

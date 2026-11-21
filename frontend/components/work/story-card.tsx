@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { BuildStory } from "@/content/work/types";
+import type { StoryPreview } from "@/content/work/types";
 
 type StoryCardProps = {
-  story: BuildStory;
+  story: StoryPreview;
   headingLevel?: "h2" | "h3";
 };
 

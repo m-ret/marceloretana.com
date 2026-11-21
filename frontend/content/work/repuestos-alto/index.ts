@@ -12,6 +12,8 @@ const story: BuildStorySource = {
   year: "2026",
   liveUrl: "https://www.repuestosalto.com",
   publishedAt: "2026-10-30",
+  relatedStories: ["uvita-body-shop", "mav-digital"],
+  relatedPages: ["/costa-rica/lead-generation"],
   og,
   images: {
     hero: {

@@ -13,6 +13,8 @@ const story: BuildStorySource = {
   liveUrl: "https://alhena.fun",
   ownProduct: true,
   publishedAt: "2026-10-30",
+  relatedStories: ["goeasy-chat", "casa-paraiso"],
+  relatedPages: [],
   og,
   images: {
     hero: {

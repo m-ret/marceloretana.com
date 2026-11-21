@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CaseProofSection } from "@/components/sections/case-proof";
 import { ContactForm } from "@/components/sections/contact-form";
+import { RelatedWorkSection } from "@/components/work/related-work-section";
 import type { MarketHub, MarketPage } from "@/lib/market-page-types";
 
 type MarketEntry = MarketHub | MarketPage;
@@ -253,6 +254,8 @@ export function MarketLandingPage({ entry, relatedPages }: MarketLandingPageProp
           <div className="mt-16 max-w-6xl">
             <CaseProofSection locale={entry.locale} caseProofIds={entry.caseProofIds} />
           </div>
+
+          <RelatedWorkSection locale={entry.locale} path={entry.path} className="mt-16 max-w-6xl" />
 
           <section className={`${sectionClass} mt-16 max-w-6xl`}>
             <p className="mb-4 text-xs uppercase tracking-[0.3em] text-fg-muted">{copy.faq}</p>

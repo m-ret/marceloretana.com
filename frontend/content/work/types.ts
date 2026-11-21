@@ -39,6 +39,14 @@ export type BuildStorySource = {
   ownProduct?: boolean;
   /** ISO date; Article datePublished and dateModified. */
   publishedAt: string;
+  /** Two other stories to suggest at the end of the page, by slug (the pairs gexpsoftware.com uses). */
+  relatedStories: [string, string];
+  /**
+   * English paths of the service pages this project is proof for (at most 3). Each page needs a
+   * Spanish twin through `alternatePath`, so the story and the page link to each other in both
+   * languages. Empty for products with no matching service page.
+   */
+  relatedPages: string[];
   /** 1200×630 crop of the hero without text, shared by both locales. */
   og: StaticImageData;
   images: Record<string, WorkImageAsset>;
@@ -65,4 +73,14 @@ export type BuildStory = BuildStoryCopy<WorkImage> & {
   path: string;
   caseStudyUrl: string;
   next: { slug: string; name: string; title: string; path: string };
+  /** The two stories named in `relatedStories`, ready to render as cards. */
+  related: StoryPreview[];
+  /** English paths of the service pages this story is proof for; see `BuildStorySource`. */
+  relatedPages: string[];
 };
+
+/** What a card needs to show another story: enough to link it without embedding the whole story. */
+export type StoryPreview = Pick<
+  BuildStory,
+  "slug" | "name" | "year" | "title" | "sector" | "path" | "hero"
+>;
