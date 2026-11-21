@@ -1,8 +1,11 @@
 import type { BuildStorySource } from "../types";
+import desktopContactEn from "./desktop-contact-en.webp";
+import desktopQuoteForm from "./desktop-quote-form.webp";
 import hero from "./hero.webp";
 import mobileHome from "./mobile-home.webp";
 import mobileQuoteForm from "./mobile-quote-form.webp";
 import og from "./og.jpg";
+import videoReelMaterialsEn from "./video-reel-materials-en.webp";
 
 const story: BuildStorySource = {
   slug: "uvita-body-shop",
@@ -50,6 +53,42 @@ const story: BuildStorySource = {
         es: "En el teléfono, el inicio conserva el carro en 3D y los dos botones de contacto.",
       },
     },
+    "desktop-contact-en": {
+      src: desktopContactEn,
+      kind: "desktop",
+      alt: {
+        en: "English contact page on a desktop screen: the headline “Let’s talk about your car.”, a quote form with name, phone, email, service, vehicle and job description fields, and the shop’s WhatsApp number, hours and location on the right.",
+        es: "Página de contacto en inglés en pantalla de escritorio: el titular «Let’s talk about your car.», un formulario de cotización con campos de nombre, teléfono, correo, servicio, vehículo y descripción del trabajo, y a la derecha el número de WhatsApp, el horario y la ubicación del taller.",
+      },
+      caption: {
+        en: "The contact page in English, with a button in the header to switch back to Spanish.",
+        es: "La página de contacto en inglés, con un botón en el encabezado para volver al español.",
+      },
+    },
+    "video-reel-materials-en": {
+      src: videoReelMaterialsEn,
+      kind: "video",
+      alt: {
+        en: "Frame from the brand reel: the line “A finish that lasts.” in large white and red letters on a dark background, with “No shortcuts · Pro materials” above it.",
+        es: "Cuadro del reel de marca: la frase «A finish that lasts.» en letras grandes blancas y rojas sobre fondo oscuro, con «No shortcuts · Pro materials» encima.",
+      },
+      caption: {
+        en: "A frame from the wide, English version of the brand reel.",
+        es: "Un cuadro de la versión horizontal, en inglés, del reel de marca.",
+      },
+    },
+    "desktop-quote-form": {
+      src: desktopQuoteForm,
+      kind: "desktop",
+      alt: {
+        en: "Contact section of the Spanish home page on a desktop screen: the headline “¿Listo para recuperar tu vehículo?”, WhatsApp and phone buttons, an “open now” badge with the hours, and the quote form with a send button.",
+        es: "Sección de contacto del inicio en español, en pantalla de escritorio: el titular «¿Listo para recuperar tu vehículo?», botones de WhatsApp y teléfono, una etiqueta de «abierto ahora» con el horario y el formulario de cotización con un botón de envío.",
+      },
+      caption: {
+        en: "The quote form on desktop, with no CAPTCHA between the customer and the send button.",
+        es: "El formulario de cotización en escritorio, sin CAPTCHA entre el cliente y el botón de envío.",
+      },
+    },
   },
   copy: {
     en: {
@@ -75,7 +114,7 @@ const story: BuildStorySource = {
             "Today English text covers the services and the guides, plus the FAQ, about, contact and privacy pages. Translation is the part owners underestimate: every later text change has to be made twice. So I kept page text in one set of files per language, and the shop’s facts, such as hours, services and areas, in a single data file that feeds the pages, the sitemap and the structured data.",
             "A second language is a commitment: budget for every later text change, not just the first translation.",
           ],
-          image: null,
+          image: "desktop-contact-en",
         },
         {
           heading: "A 3D hero, and what it costs",
@@ -92,7 +131,7 @@ const story: BuildStorySource = {
             "Decide the limit before the photo shoot, not after the page feels slow. It is far easier to shoot for a limit than to rescue a heavy picture later.",
             "The brand reel is the heaviest asset: four files of 5.5 to 6.5 MB. The player never starts on its own, and it gives phones held upright the vertical version, so they skip the wide file.",
           ],
-          image: null,
+          image: "video-reel-materials-en",
         },
         {
           heading: "Pages that match what people type",
@@ -108,7 +147,7 @@ const story: BuildStorySource = {
           body: [
             "Any public form attracts bots, but this one has no CAPTCHA, the picture puzzle: a customer with a damaged car and a weak signal does not need one more hurdle. Quiet checks on the server stop simple bots instead.",
           ],
-          image: null,
+          image: "desktop-quote-form",
         },
       ],
       takeaways: [
@@ -157,7 +196,7 @@ const story: BuildStorySource = {
             "Hoy el texto en inglés cubre los servicios y las guías, además de las páginas de preguntas frecuentes, «sobre nosotros», contacto y privacidad. La traducción es lo que más se subestima: cada cambio de texto posterior se hace dos veces. Por eso dejé el texto de las páginas en un conjunto de archivos por idioma, y los datos del taller, como horario, servicios y zonas, en un único archivo que alimenta las páginas, el mapa del sitio y los datos estructurados.",
             "Un segundo idioma es un compromiso: presupueste cada cambio de texto futuro, no solo la primera traducción.",
           ],
-          image: null,
+          image: "desktop-contact-en",
         },
         {
           heading: "Una portada en 3D, y lo que cuesta",
@@ -174,7 +213,7 @@ const story: BuildStorySource = {
             "Fije el límite antes de la sesión de fotos, no cuando la página ya se sienta lenta. Es mucho más fácil fotografiar para un límite que rescatar después una imagen pesada.",
             "El reel de marca es lo más pesado: cuatro archivos de 5.5 a 6.5 MB. El reproductor nunca arranca solo, y a los teléfonos en vertical les entrega la versión vertical, así no descargan la versión horizontal.",
           ],
-          image: null,
+          image: "video-reel-materials-en",
         },
         {
           heading: "Páginas que responden lo que la gente busca",
@@ -190,7 +229,7 @@ const story: BuildStorySource = {
           body: [
             "Todo formulario público atrae bots, pero este no tiene CAPTCHA, el acertijo de imágenes: un cliente con el carro golpeado y poca señal no necesita un obstáculo más. En su lugar, unas revisiones discretas en el servidor frenan a los bots simples.",
           ],
-          image: null,
+          image: "desktop-quote-form",
         },
       ],
       takeaways: [
