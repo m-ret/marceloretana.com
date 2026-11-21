@@ -13,6 +13,8 @@ This file is the **canonical** onboarding document for AI coding agents (Claude 
 | `frontend/content/posts/` | Blog markdown; consumed by `lib/posts.ts` (gray-matter frontmatter). |
 | `frontend/content/pseo/` | Programmatic SEO JSON (comparisons, stacks, resources, checklists, taxonomy). |
 | `frontend/content/market-pages/` | Typed market landing datasets (`en-cr.ts`, `es-cr.ts`); validated by script. |
+| `frontend/content/work/` | Bilingual build stories (one folder per project: TS module + WebP images + `og.jpg`); validated by script. |
+| `frontend/tests/` | Shared fixtures for unit tests (`*.test.ts(x)` files sit next to the code they test). |
 | `cms/` | Strapi 5 project (when present). Not required for most **frontend-only** tasks. |
 | `docs/superpowers/` | Internal planning/specs (SEO, etc.). Not executed by the build. |
 
@@ -27,8 +29,9 @@ From `frontend/`:
 | `bun install` | Install dependencies. |
 | `bun run dev` | Local dev server (default: http://localhost:3000). |
 | `bun run build` | Production build (+ `postbuild` sitemap). |
-| `bun run validate` | **Preferred gate:** `typecheck` + `lint` + `format:check` + `validate:work`. Run before concluding a task. |
-| `bun run typecheck` | `tsc --noEmit`. |
+| `bun run validate` | **Preferred gate:** `typecheck` + `lint` + `format:check` + `validate:work` + `test:coverage`. Run before concluding a task. |
+| `bun run typecheck` | `tsc --noEmit` for the app, then for the tests (`tsconfig.test.json`). |
+| `bun run test` / `bun run test:coverage` | Unit tests with `bun test` (Jest-style API). `test:coverage` fails if any file the tests load is below 100% of lines or functions. |
 | `bun run lint` | Biome lint + oxlint. |
 | `bun run lint:fix` / `bun run format` | Auto-fix (use when appropriate). |
 | `bun run validate:market` | Zod validation + slug integrity for `content/market-pages/`. **Reciprocal `alternatePath`:** if set, peer entry must exist and point back; omit when there is no real locale pair. **Run after editing market pages.** |
@@ -63,6 +66,22 @@ Do **not** assume `npm`/`pnpm` unless the user asks; this project standardizes o
 - Data is TypeScript, validated by `bun run validate:market`.
 - Hub + page objects must stay internally consistent (`relatedSlugs` must exist, no duplicate `slug` per dataset).
 - Run `bun run validate:market` after edits.
+
+### Build stories (`frontend/content/work/`)
+
+First-person case studies at `/work/<slug>` (EN) and `/es/casos/<slug>` (ES). The same seven projects are published as company case studies on gexpsoftware.com (`/work/<slug>`, `/cr/casos/<slug>`), written in a different voice so the two sites never carry the same text. Each story links to its company version (`caseStudyUrl` in `lib/work.ts`), and gexpsoftware.com links back here.
+
+- **One folder per project:** `index.ts` (a `BuildStorySource`), `hero.webp`, the figures the copy refers to by key, and `og.jpg` (1200×630). The registry order lives in `content/work/index.ts` and in `EXPECTED_SLUGS` in `scripts/work/validate.ts`; keep both in step.
+- **Cross-links, defined once per story:** `relatedStories` (two slugs) feeds the "Keep reading" cards. `relatedPages` (English market paths, at most 3, each with a Spanish twin through `alternatePath`) feeds the story's "Related services" list **and** the "Related projects" section on those service pages, in both languages. Service pages need no field of their own.
+- **Public repo:** commit only page code, story modules and images. Never commit fact sheets, briefs, client details, prices, emails or phone numbers; the validator rejects currency, contact details and hype words.
+- **Claims:** every figure in a story must be checkable on the live site or in the project's repo. Do not add numbers that are not already supported.
+- Run `bun run validate:work` after editing a story, and `bun run validate:market` after changing the market pages a story points to.
+
+### Tests
+
+- Tests are `*.test.ts(x)` files next to the code, run with `bun test` (Jest-style `describe` / `it` / `expect` / `mock`), and are excluded from the app's `tsconfig.json` so they can never affect `next build`; `tsconfig.test.json` type-checks them.
+- Mock only leaf modules (`@/content/work`, `@/lib/market-pages`, `@/lib/posts`, `next/image`, `next/link`) with the shared fakes in `frontend/tests/fixtures/`, and use the same fakes in every file: `mock.module` is process-wide, so tests must not depend on file order.
+- New logic ships with tests that bring every file they load to 100% (`bun run test:coverage` enforces it). Put new logic in small modules instead of inside large components.
 
 #### Spanish-first market pages
 
