@@ -15,6 +15,7 @@ import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
 import { z } from "zod";
+import { checkRelated, MAX_RELATED_PAGES, type MarketIndexEntry } from "./related";
 
 export const EXPECTED_SLUGS = [
   "picomar",
@@ -161,6 +162,10 @@ const sourceSchema = z.object({
   liveUrl: z.url({ protocol: /^https$/ }),
   ownProduct: z.boolean().optional(),
   publishedAt: z.iso.date(),
+  relatedStories: z.tuple([z.string().regex(kebab), z.string().regex(kebab)]),
+  relatedPages: z
+    .array(z.string().startsWith("/", { error: "expected a site path" }))
+    .max(MAX_RELATED_PAGES),
   og: filePath,
   images: z.record(z.string().regex(kebab), imageSchema),
   copy: z.object({ en: copySchema, es: copySchema }),
@@ -205,12 +210,24 @@ function webpChunks(file: string): string[] | null {
 // Camera or editor metadata (EXIF can hold GPS) must not ship in a public repo.
 const METADATA_CHUNKS = new Set(["EXIF", "XMP "]);
 
-async function checkStory(story: ParsedSource): Promise<string[]> {
+type Registry = { slugs: string[]; market: ReadonlyMap<string, MarketIndexEntry> };
+
+async function checkStory(story: ParsedSource, registry: Registry): Promise<string[]> {
   const errors: string[] = [];
 
   if (OWN_PRODUCTS.has(story.slug) !== (story.ownProduct === true)) {
     errors.push(`ownProduct must be ${OWN_PRODUCTS.has(story.slug)}`);
   }
+
+  errors.push(
+    ...checkRelated(
+      story.slug,
+      story.relatedStories,
+      story.relatedPages,
+      registry.slugs,
+      registry.market
+    )
+  );
 
   if (!story.images.hero) errors.push("images.hero is required");
 
@@ -319,10 +336,16 @@ async function main() {
   if (!selfTestPassed) process.exit(1);
 
   const { buildStorySources } = await import("@/content/work");
+  const { getAllMarketEntries } = await import("@/lib/market-pages");
   const errors: string[] = [];
 
   const slugs = buildStorySources.map((story) => story.slug);
   errors.push(...checkOrder(slugs, args.has("--partial")).map((error) => `registry: ${error}`));
+
+  const registry: Registry = {
+    slugs,
+    market: new Map(getAllMarketEntries().map((entry) => [entry.path, entry])),
+  };
 
   for (const source of buildStorySources) {
     const parsed = sourceSchema.safeParse(source);
@@ -332,7 +355,9 @@ async function main() {
       }
       continue;
     }
-    for (const error of await checkStory(parsed.data)) errors.push(`${source.slug}: ${error}`);
+    for (const error of await checkStory(parsed.data, registry)) {
+      errors.push(`${source.slug}: ${error}`);
+    }
   }
 
   if (errors.length > 0) {

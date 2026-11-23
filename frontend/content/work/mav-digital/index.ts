@@ -13,6 +13,8 @@ const story: BuildStorySource = {
   year: "2026",
   liveUrl: "https://mav-digital.com",
   publishedAt: "2026-10-30",
+  relatedStories: ["repuestos-alto", "uvita-body-shop"],
+  relatedPages: ["/costa-rica/redesign"],
   og,
   images: {
     hero: {

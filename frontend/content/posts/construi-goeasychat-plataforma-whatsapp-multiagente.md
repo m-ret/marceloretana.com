@@ -80,6 +80,8 @@ Si reconocés ese problema en tu negocio o en el de alguien que conocés, te inv
 
 Si te preguntás cómo se compara GoEasyChat con otras plataformas del mercado, revisá [esta comparación contra Whaticket en GEXP Software](https://gexpsoftware.com/compare/goeasy-chat-vs-whaticket).
 
+Si querés la parte técnica, las decisiones detrás del producto están en [Cómo construí GoEasy.Chat: lo que reutilicé y lo que escribí](/es/casos/goeasy-chat).
+
 [Probá GoEasyChat gratis por 14 días](https://goeasy.chat). Sin tarjeta de crédito para empezar, sin contrato, sin consultor de ventas que te llame para presionarte. Solo el producto.
 
 Si tenés preguntas o querés contarme cómo usás WhatsApp hoy en tu negocio, escribime. Me interesa saberlo — literal, es lo que usa para hacer GoEasyChat mejor.

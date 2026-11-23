@@ -1,0 +1,6 @@
+[test]
+# `bun run test:coverage` fails when any file the tests load is below 100% of its lines or functions.
+coverageThreshold = { line = 1, function = 1, statement = 1 }
+coverageSkipTestFiles = true
+# Shared fixtures for the tests, not application code.
+coveragePathIgnorePatterns = ["tests/**"]

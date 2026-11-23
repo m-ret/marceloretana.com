@@ -2,6 +2,7 @@ import { buildStorySources } from "@/content/work";
 import type {
   BuildStory,
   BuildStorySource,
+  StoryPreview,
   WorkImage,
   WorkImageAsset,
   WorkLocale,
@@ -27,6 +28,29 @@ function resolveImage(source: BuildStorySource, key: string, locale: WorkLocale)
     alt: asset.alt[locale],
     caption: asset.caption?.[locale],
   };
+}
+
+function toPreview(source: BuildStorySource, locale: WorkLocale): StoryPreview {
+  const copy = source.copy[locale];
+  return {
+    slug: source.slug,
+    name: source.name,
+    year: source.year,
+    title: copy.title,
+    sector: copy.sector,
+    path: workPath(locale, source.slug),
+    hero: resolveImage(source, "hero", locale),
+  };
+}
+
+function resolveRelated(source: BuildStorySource, locale: WorkLocale): StoryPreview[] {
+  return source.relatedStories.map((slug) => {
+    const related = buildStorySources.find((candidate) => candidate.slug === slug);
+    if (!related || related === source) {
+      throw new Error(`${source.slug}: lists an invalid related story "${slug}"`);
+    }
+    return toPreview(related, locale);
+  });
 }
 
 function toBuildStory(source: BuildStorySource, index: number, locale: WorkLocale): BuildStory {
@@ -56,6 +80,8 @@ function toBuildStory(source: BuildStorySource, index: number, locale: WorkLocal
       title: next.copy[locale].title,
       path: workPath(locale, next.slug),
     },
+    related: resolveRelated(source, locale),
+    relatedPages: source.relatedPages,
   };
 }
 

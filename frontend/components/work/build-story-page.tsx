@@ -1,10 +1,13 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { workLabels } from "@/components/work/labels";
+import { RelatedPages } from "@/components/work/related-pages";
+import { RelatedStories } from "@/components/work/related-stories";
 import { WorkCta } from "@/components/work/work-cta";
 import { WorkFigure } from "@/components/work/work-figure";
 import type { BuildStory } from "@/content/work/types";
 import { workPath } from "@/lib/work";
+import { getRelatedPages } from "@/lib/work-links";
 import { buildStoryJsonLd } from "@/lib/work-seo";
 
 const gutter = "px-6 md:px-12 lg:px-16";
@@ -181,7 +184,21 @@ export function BuildStoryPage({ story }: { story: BuildStory }) {
             <span className="sr-only">{t.newTab}</span>
           </a>
 
+          <RelatedPages
+            links={getRelatedPages(story)}
+            id="related-services"
+            heading={t.relatedServices}
+            className={`${rail} mt-20 border-t border-border pt-8 md:mt-28 md:pt-10`}
+          />
+
           <WorkCta locale={story.locale} className="mt-24 md:mt-32" />
+
+          <RelatedStories
+            stories={story.related}
+            id="keep-reading"
+            heading={t.keepReading}
+            className="mt-24 md:mt-32"
+          />
 
           {story.next.slug !== story.slug ? (
             <nav aria-label={t.next} className="mt-24 border-t border-border md:mt-32">

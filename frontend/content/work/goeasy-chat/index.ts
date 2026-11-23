@@ -14,6 +14,8 @@ const story: BuildStorySource = {
   liveUrl: "https://goeasy.chat",
   ownProduct: true,
   publishedAt: "2026-10-30",
+  relatedStories: ["alhena", "repuestos-alto"],
+  relatedPages: [],
   og,
   images: {
     hero: {

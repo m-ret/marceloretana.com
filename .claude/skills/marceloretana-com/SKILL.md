@@ -13,7 +13,7 @@ Open **`AGENTS.md`** at the repository root for full structure, safety rules, an
 
 ## Commands (from `frontend/`)
 
-1. After substantive code edits: `bun run validate` (typecheck + lint + format check + `validate:work`).
+1. After substantive code edits: `bun run validate` (typecheck + lint + format check + `validate:work` + unit tests with a 100% coverage gate).
 2. After `content/market-pages/` edits: `bun run validate:market` (Zod + slug graph).
 3. Local preview: `bun run dev`.
 
@@ -27,6 +27,7 @@ Use **Bun**, not npm/yarn, unless the user specifies otherwise.
 - **`content/posts/`** — blog markdown + frontmatter (`lang`, `alternate`, dates).
 - **`content/pseo/**/*.json`** — structured SEO pages; keep JSON valid and consistent with siblings.
 - **`content/market-pages/`** — TS datasets; must pass `validate:market`.
+- **`content/work/`** — bilingual build stories (case studies); must pass `validate:work`. See "Build stories" in `AGENTS.md`.
 
 ## Editing rules
 
