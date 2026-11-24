@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { MarketLandingPage } from "@/components/market-pages/market-landing-page";
 import { getMarketPage, getMarketPagesByMachine, getRelatedMarketPages } from "@/lib/market-pages";
 import { buildMarketJsonLd, buildMarketMetadata } from "@/lib/market-seo";
+import { withShareImages } from "@/lib/site-metadata";
 
 type PageProps = {
   params: Promise<{
@@ -16,7 +17,10 @@ export async function generateStaticParams() {
   return getMarketPagesByMachine("en-cr").map((page) => ({ slug: page.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: PageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const { slug } = await params;
   const page = getMarketPage("en-cr", slug);
 
@@ -24,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {};
   }
 
-  return buildMarketMetadata(page);
+  return withShareImages(buildMarketMetadata(page), parent);
 }
 
 export default async function CostaRicaEnglishPage({ params }: PageProps) {

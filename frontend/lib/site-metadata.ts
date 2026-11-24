@@ -1,4 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
+
+/**
+ * The share image of the English pages. The file that draws it sits at the app root, outside the
+ * route groups, so Next does not attach it to any page on its own. The Spanish pages get theirs
+ * from `app/(es)/es/opengraph-image.tsx`.
+ */
+const defaultShareImage = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "Marcelo Retana - Full-Stack Developer",
+};
 
 export const siteMetadata: Metadata = {
   title: {
@@ -43,12 +55,14 @@ export const siteMetadata: Metadata = {
     siteName: "Marcelo Retana",
     locale: "en_US",
     type: "website",
+    images: [defaultShareImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Marcelo Retana | Costa Rica Websites, Web Development, and Product Execution",
     description:
       "Costa Rica web development for businesses that need a stronger website, a clearer digital presence, and a cleaner quote process.",
+    images: ["/twitter-image"],
   },
   robots: {
     index: true,
@@ -64,6 +78,20 @@ export const siteMetadata: Metadata = {
   verification: {},
   category: "technology",
 };
+
+/**
+ * A page that sets its own `openGraph` replaces the one its layouts built, share image included.
+ * This puts back the image the layouts resolved (the English default, or the Spanish one), so the
+ * page keeps its own title and URL and is still shared with a picture.
+ */
+export async function withShareImages(
+  metadata: Metadata,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const images = (await parent).openGraph?.images;
+  if (!images) return metadata;
+  return { ...metadata, openGraph: { ...metadata.openGraph, images } };
+}
 
 export const organizationJsonLd = {
   "@context": "https://schema.org",

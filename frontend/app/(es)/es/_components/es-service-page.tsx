@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { MarketLandingPage } from "@/components/market-pages/market-landing-page";
 import type { MarketPage } from "@/lib/market-page-types";
 import { getRelatedMarketPages } from "@/lib/market-pages";
 import { buildMarketJsonLd, buildMarketMetadata } from "@/lib/market-seo";
+import { withShareImages } from "@/lib/site-metadata";
 
-export function generateEsMetadata(page: MarketPage): Metadata {
-  return buildMarketMetadata(page);
+export function generateEsMetadata(page: MarketPage, parent: ResolvingMetadata): Promise<Metadata> {
+  return withShareImages(buildMarketMetadata(page), parent);
 }
 
 export function EsServicePage({ page }: { page: MarketPage }) {
