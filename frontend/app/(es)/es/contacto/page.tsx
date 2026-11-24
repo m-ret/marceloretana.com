@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { ContactForm } from "@/components/sections/contact-form";
+import { withShareImages } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
+const description = "Contacte a Marcelo Retana para servicios de desarrollo web en Costa Rica.";
+
+const metadata: Metadata = {
   title: "Contacto",
-  description: "Contacte a Marcelo Retana para servicios de desarrollo web en Costa Rica.",
+  description,
   alternates: {
     canonical: "/es/contacto",
     languages: {
@@ -11,11 +14,24 @@ export const metadata: Metadata = {
       "x-default": "/contact",
     },
   },
+  openGraph: {
+    title: "Contacto | Marcelo Retana",
+    description,
+    url: "https://marceloretana.com/es/contacto",
+    siteName: "Marcelo Retana",
+    locale: "es_CR",
+    type: "website",
+  },
 };
+
+export function generateMetadata(_props: unknown, parent: ResolvingMetadata): Promise<Metadata> {
+  return withShareImages(metadata, parent);
+}
 
 export default function ContactoPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-24">
+      <h1 className="sr-only">Contacto</h1>
       <ContactForm locale="cr" sourcePage="/es/contacto" />
     </main>
   );
