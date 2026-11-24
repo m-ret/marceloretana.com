@@ -3,7 +3,8 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { useSceneActivity } from "@/hooks/use-scene-activity";
 
 const HeroCanvas = dynamic(
   () => import("@/components/three/hero-canvas").then((m) => m.HeroCanvas),
@@ -12,24 +13,15 @@ const HeroCanvas = dynamic(
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(true);
-
-  // Pause canvas when hero section is out of view
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), {
-      threshold: 0,
-    });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  // The scene starts once the page is idle (so it does not compete with the first paint), pauses
+  // while the hero is out of view, and shows a still frame for visitors who asked for less motion.
+  const { mounted, frameloop } = useSceneActivity(sectionRef);
 
   return (
     <section ref={sectionRef} className="relative bg-black" style={{ clipPath: "inset(0)" }}>
       {/* Fixed canvas -- stays viewport-sized, clipped to section bounds by clip-path */}
       <div className="hero-canvas-wrap fixed inset-0 pointer-events-none">
-        {isVisible && <HeroCanvas />}
+        {mounted && <HeroCanvas frameloop={frameloop} />}
       </div>
 
       {/* Content scrolls naturally on top -- CSS animations, no JS dependency */}
@@ -77,7 +69,7 @@ export function Hero() {
 
           {/* Scroll indicator */}
           <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
-            <span className="text-white/40 text-xs uppercase tracking-[0.2em] [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
+            <span className="text-white/60 text-xs uppercase tracking-[0.2em] [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
               Scroll
             </span>
             <div className="scroll-indicator-line" />
