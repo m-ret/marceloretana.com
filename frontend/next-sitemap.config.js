@@ -106,7 +106,9 @@ const config = {
     ],
     additionalSitemaps: [],
     transformRobotsTxt: async (_, robotsTxt) => {
-      return `${robotsTxt}\n# LLMs\nLlms-Txt: https://marceloretana.com/llms.txt\n`;
+      // "Llms-Txt" is not a robots.txt directive: validators (Lighthouse included) flag it as
+      // unknown. AI assistants find /llms.txt by convention, so only mention it in a comment.
+      return `${robotsTxt}\n# llms.txt for AI assistants: https://marceloretana.com/llms.txt\n`;
     },
   },
   transform: async (config, path) => {

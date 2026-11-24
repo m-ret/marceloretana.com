@@ -2,6 +2,9 @@ import withVercelToolbar from "@vercel/toolbar/plugins/next";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Browsers only fetch source maps when DevTools is open; Lighthouse and error reporters
+  // expect them for large first-party bundles.
+  productionBrowserSourceMaps: true,
   images: {
     remotePatterns: [
       {
