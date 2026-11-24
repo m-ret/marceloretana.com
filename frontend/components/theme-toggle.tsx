@@ -12,6 +12,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   if (!mounted) {
     return (
       <button
+        type="button"
         className="p-2 rounded-full hover:bg-white/10 transition-colors"
         aria-label="Toggle theme"
       >
@@ -22,6 +23,7 @@ export function ThemeToggle({ className }: { className?: string }) {
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
       className="p-2 rounded-full hover:bg-white/10 transition-colors"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
