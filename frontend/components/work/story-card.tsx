@@ -5,11 +5,17 @@ import type { StoryPreview } from "@/content/work/types";
 type StoryCardProps = {
   story: StoryPreview;
   headingLevel?: "h2" | "h3";
+  /** For a card in the first screen: the image loads at once and at high priority, not lazily. */
+  preload?: boolean;
 };
 
 const sizes = "(min-width: 1280px) 556px, (min-width: 768px) calc(50vw - 4rem), calc(100vw - 3rem)";
 
-export function StoryCard({ story, headingLevel: Heading = "h2" }: StoryCardProps) {
+export function StoryCard({
+  story,
+  headingLevel: Heading = "h2",
+  preload = false,
+}: StoryCardProps) {
   return (
     <Link href={story.path} className="group block">
       <div className="relative aspect-[16/10] overflow-hidden border border-border bg-bg-tertiary">
@@ -19,6 +25,7 @@ export function StoryCard({ story, headingLevel: Heading = "h2" }: StoryCardProp
           fill
           sizes={sizes}
           placeholder="blur"
+          preload={preload}
           className="object-cover object-top motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out motion-safe:group-hover:scale-[1.03]"
         />
       </div>
