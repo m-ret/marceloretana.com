@@ -26,6 +26,7 @@ export function StoryCard({
           sizes={sizes}
           placeholder="blur"
           preload={preload}
+          fetchPriority={preload ? "high" : undefined}
           className="object-cover object-top motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out motion-safe:group-hover:scale-[1.03]"
         />
       </div>

@@ -8,6 +8,7 @@ type ImageProps = {
   sizes?: string;
   className?: string;
   preload?: boolean;
+  fetchPriority?: "high" | "low" | "auto";
 };
 
 /** Plain `a` and `img` elements in place of Next's link and image components. */
@@ -20,7 +21,7 @@ export function registerNextMocks(): void {
     ),
   }));
   mock.module("next/image", () => ({
-    default: ({ src, alt, sizes, className, preload }: ImageProps) => (
+    default: ({ src, alt, sizes, className, preload, fetchPriority }: ImageProps) => (
       // biome-ignore lint/performance/noImgElement: a test double for next/image
       <img
         src={typeof src === "string" ? src : src.src}
@@ -28,6 +29,7 @@ export function registerNextMocks(): void {
         sizes={sizes}
         className={className}
         loading={preload ? "eager" : "lazy"}
+        fetchPriority={fetchPriority}
         data-preload={preload ? "true" : undefined}
       />
     ),

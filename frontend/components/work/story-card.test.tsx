@@ -22,6 +22,7 @@ describe("StoryCard", () => {
 
     expect(html).toContain('loading="lazy"');
     expect(html).not.toContain("data-preload");
+    expect(html).not.toMatch(/fetchpriority/i);
   });
 
   it("loads the image at once and at high priority for a card in the first screen", () => {
@@ -29,6 +30,7 @@ describe("StoryCard", () => {
 
     expect(html).toContain('loading="eager"');
     expect(html).toContain('data-preload="true"');
+    expect(html).toMatch(/fetchpriority="high"/i);
   });
 
   it("uses the heading level it is given", () => {
