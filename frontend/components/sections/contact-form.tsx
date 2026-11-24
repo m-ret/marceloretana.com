@@ -335,7 +335,7 @@ export function ContactForm({ locale = "en", sourcePage, className, header }: Co
       </div>
 
       {status === "error" ? (
-        <p className="mb-6 text-sm text-red-400" role="alert">
+        <p className="mb-6 text-sm text-danger-fg" role="alert">
           {errorMsg}
         </p>
       ) : null}

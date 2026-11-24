@@ -59,7 +59,7 @@ function ScoreBar({ score, label }: { score: number; label: string }) {
           style={{ width: `${pct}%` }}
         />
       </div>
-      <span className="text-sm text-accent w-10">{score}/10</span>
+      <span className="text-sm text-accent-fg w-10">{score}/10</span>
     </div>
   );
 }
@@ -136,7 +136,7 @@ export default async function EsComparisonPage({ params }: PageProps) {
           {enExists && (
             <Link
               href={`/compare/${enSlug}`}
-              className="inline-block mt-4 text-sm text-accent hover:underline"
+              className="inline-block mt-4 text-sm text-accent-fg hover:underline"
             >
               View in English
             </Link>
@@ -174,11 +174,15 @@ export default async function EsComparisonPage({ params }: PageProps) {
                   </div>
                   <div className="grid md:grid-cols-2 gap-4 mt-4 text-sm">
                     <div>
-                      <span className="text-accent text-xs uppercase block mb-1">{toolA.name}</span>
+                      <span className="text-accent-fg text-xs uppercase block mb-1">
+                        {toolA.name}
+                      </span>
                       <p className="text-fg-secondary">{criterion.tool_a.detail}</p>
                     </div>
                     <div>
-                      <span className="text-accent text-xs uppercase block mb-1">{toolB.name}</span>
+                      <span className="text-accent-fg text-xs uppercase block mb-1">
+                        {toolB.name}
+                      </span>
                       <p className="text-fg-secondary">{criterion.tool_b.detail}</p>
                     </div>
                   </div>
@@ -196,7 +200,7 @@ export default async function EsComparisonPage({ params }: PageProps) {
             <span className="text-fg-muted text-xs uppercase tracking-wider block mb-1">
               Ganador General
             </span>
-            <span className="text-2xl font-light text-accent">{verdict.winner_overall}</span>
+            <span className="text-2xl font-light text-accent-fg">{verdict.winner_overall}</span>
           </div>
           <div className="grid sm:grid-cols-2 gap-3">
             {Object.entries(verdict.best_for).map(([useCase, tool]) => (

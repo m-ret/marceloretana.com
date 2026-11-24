@@ -21,9 +21,9 @@ interface Props {
 }
 
 const diffColors = {
-  beginner: "text-green-500 border-green-500/30",
-  intermediate: "text-yellow-500 border-yellow-500/30",
-  advanced: "text-red-500 border-red-500/30",
+  beginner: "text-success-fg border-green-500/30",
+  intermediate: "text-warning-fg border-yellow-500/30",
+  advanced: "text-danger-fg border-red-500/30",
 };
 const prioLabels = {
   critical: { en: "Critical", es: "Critico" },
@@ -73,7 +73,7 @@ export default function ChecklistInteractive({ sections, locale, slug }: Props) 
           <span className="text-sm text-fg-muted uppercase tracking-wider">
             {locale === "es" ? "Progreso" : "Progress"}
           </span>
-          <span className="text-sm text-accent">
+          <span className="text-sm text-accent-fg">
             {done}/{total} ({Math.round(pct)}%)
           </span>
         </div>

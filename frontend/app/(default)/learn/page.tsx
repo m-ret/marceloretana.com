@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 };
 
 const difficultyColors = {
-  beginner: "text-green-500 border-green-500/30",
-  intermediate: "text-yellow-500 border-yellow-500/30",
-  advanced: "text-red-500 border-red-500/30",
+  beginner: "text-success-fg border-green-500/30",
+  intermediate: "text-warning-fg border-yellow-500/30",
+  advanced: "text-danger-fg border-red-500/30",
 };
 
 export default function LearnIndex() {
@@ -48,7 +48,7 @@ export default function LearnIndex() {
               className="group flex items-center justify-between p-5 border border-border rounded-lg hover:border-accent/50 transition-colors"
             >
               <div>
-                <h2 className="text-lg text-fg group-hover:text-accent transition-colors">
+                <h2 className="text-lg text-fg group-hover:text-accent-fg transition-colors">
                   {item.seo.title}
                 </h2>
                 <div className="flex items-center gap-4 mt-1">
@@ -61,7 +61,7 @@ export default function LearnIndex() {
                   <span className="text-sm text-fg-muted">{item.steps.length} steps</span>
                 </div>
               </div>
-              <span className="text-fg-muted group-hover:text-accent transition-colors">
+              <span className="text-fg-muted group-hover:text-accent-fg transition-colors">
                 &rarr;
               </span>
             </Link>

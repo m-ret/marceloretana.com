@@ -29,7 +29,7 @@ export default function ShareBar({ title, url }: ShareBarProps) {
         href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:text-accent transition-colors"
+        className="hover:text-accent-fg transition-colors"
       >
         X
       </a>
@@ -37,11 +37,11 @@ export default function ShareBar({ title, url }: ShareBarProps) {
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:text-accent transition-colors"
+        className="hover:text-accent-fg transition-colors"
       >
         LinkedIn
       </a>
-      <button onClick={copyLink} className="hover:text-accent transition-colors cursor-pointer">
+      <button onClick={copyLink} className="hover:text-accent-fg transition-colors cursor-pointer">
         {copied ? "Copied!" : "Copy Link"}
       </button>
     </div>

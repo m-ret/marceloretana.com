@@ -143,7 +143,7 @@ export function Testimonials() {
               }`}
             >
               <p className="text-xs font-medium truncate">{testimonial.author.split(",")[0]}</p>
-              <p className="text-xs opacity-60 truncate">
+              <p className="text-xs opacity-80 truncate">
                 {testimonial.company || testimonial.role}
               </p>
             </button>

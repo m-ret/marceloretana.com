@@ -42,7 +42,7 @@ export default function ChecklistIndex() {
               className="group flex items-center justify-between p-5 border border-border rounded-lg hover:border-accent/50 transition-colors"
             >
               <div>
-                <h2 className="text-lg text-fg group-hover:text-accent transition-colors">
+                <h2 className="text-lg text-fg group-hover:text-accent-fg transition-colors">
                   {item.seo.title}
                 </h2>
                 <div className="flex items-center gap-4 mt-1">
@@ -50,7 +50,7 @@ export default function ChecklistIndex() {
                   <span className="text-sm text-fg-muted">~{item.estimated_time}</span>
                 </div>
               </div>
-              <span className="text-fg-muted group-hover:text-accent transition-colors">
+              <span className="text-fg-muted group-hover:text-accent-fg transition-colors">
                 &rarr;
               </span>
             </Link>

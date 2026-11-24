@@ -31,14 +31,16 @@ export default function CodeBlock({ code, language, filename }: Props) {
         </div>
         <button
           onClick={copyCode}
-          className="text-[10px] text-fg-secondary hover:text-accent transition-colors uppercase tracking-wider cursor-pointer"
+          className="text-[10px] text-fg-secondary hover:text-accent-fg transition-colors uppercase tracking-wider cursor-pointer"
         >
           {copied ? "Copied!" : "Copy"}
         </button>
       </div>
 
       {/* Code */}
-      <pre className="p-4 overflow-x-auto">
+      {/* Scrolls sideways when a line is long, so keyboard users must be able to focus it. */}
+      {/* biome-ignore lint/a11y/noNoninteractiveTabindex: a scrollable region has to be focusable */}
+      <pre className="p-4 overflow-x-auto" tabIndex={0}>
         <code className="text-sm text-fg-secondary leading-relaxed whitespace-pre">{code}</code>
       </pre>
     </div>
