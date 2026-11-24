@@ -5,7 +5,7 @@ import { getAllPseoContent } from "@/lib/pseo";
 import type { Stack } from "@/lib/pseo-types";
 
 export const metadata: Metadata = {
-  title: "Build Guides | Marcelo Retana",
+  title: "Build Guides",
   description:
     "Secondary library of build guides with code snippets, prerequisites, and step-by-step instructions.",
   alternates: { canonical: "https://marceloretana.com/learn" },
