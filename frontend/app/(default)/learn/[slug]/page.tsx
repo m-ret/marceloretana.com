@@ -47,9 +47,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const difficultyColors = {
-  beginner: "text-green-500 border-green-500/30",
-  intermediate: "text-yellow-500 border-yellow-500/30",
-  advanced: "text-red-500 border-red-500/30",
+  beginner: "text-success-fg border-green-500/30",
+  intermediate: "text-warning-fg border-yellow-500/30",
+  advanced: "text-danger-fg border-red-500/30",
 };
 
 export default async function LearnPage({ params }: PageProps) {
@@ -150,7 +150,7 @@ export default async function LearnPage({ params }: PageProps) {
           {altSlug && (
             <Link
               href={`/learn/${altSlug}`}
-              className="inline-block mt-4 text-sm text-accent hover:underline"
+              className="inline-block mt-4 text-sm text-accent-fg hover:underline"
             >
               {meta.locale === "en" ? "Ver en Español" : "View in English"}
             </Link>
@@ -167,7 +167,7 @@ export default async function LearnPage({ params }: PageProps) {
           <ul className="space-y-3">
             {prerequisites.map((prereq, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="text-accent text-sm mt-0.5">-</span>
+                <span className="text-accent-fg text-sm mt-0.5">-</span>
                 <div>
                   <span className="text-fg">{prereq.name}</span>
                   <p className="text-sm text-fg-secondary mt-0.5">{prereq.description}</p>
@@ -181,7 +181,7 @@ export default async function LearnPage({ params }: PageProps) {
         {steps.map((step) => (
           <section key={step.number} className="mb-12">
             <div className="flex items-start gap-4 mb-4">
-              <span className="text-3xl text-accent/30 leading-none font-light">
+              <span className="text-3xl text-accent-fg/70 leading-none font-light">
                 {String(step.number).padStart(2, "0")}
               </span>
               <h2 className="text-2xl font-light text-fg">{step.title}</h2>
@@ -203,7 +203,7 @@ export default async function LearnPage({ params }: PageProps) {
               <div className="ml-14 border-l-2 border-accent/20 pl-4">
                 {step.tips.map((tip, i) => (
                   <p key={i} className="text-sm text-fg-secondary mb-1">
-                    <span className="text-accent">{ui.tip}</span> {tip}
+                    <span className="text-accent-fg">{ui.tip}</span> {tip}
                   </p>
                 ))}
               </div>
@@ -219,7 +219,7 @@ export default async function LearnPage({ params }: PageProps) {
           <ul className="space-y-3">
             {next_steps.map((step, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="text-accent text-sm mt-0.5">-</span>
+                <span className="text-accent-fg text-sm mt-0.5">-</span>
                 <span className="text-fg-secondary">{step}</span>
               </li>
             ))}

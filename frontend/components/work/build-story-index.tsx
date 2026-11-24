@@ -32,9 +32,10 @@ export function BuildStoryIndex({ locale, stories }: BuildStoryIndexProps) {
 
         {/* Even items drop a row-gap's height for an editorial stagger; DOM order stays 1, 2, 3… */}
         <ol className="mt-20 grid gap-x-10 gap-y-16 md:mt-28 md:grid-cols-2 md:gap-y-24 md:pb-24 md:[&>li:nth-child(even)]:translate-y-24">
-          {stories.map((story) => (
+          {stories.map((story, index) => (
             <li key={story.slug} className="min-w-0">
-              <StoryCard story={story} />
+              {/* The first two cards are in the first screen, and the first is the LCP image. */}
+              <StoryCard story={story} preload={index < 2} />
             </li>
           ))}
         </ol>

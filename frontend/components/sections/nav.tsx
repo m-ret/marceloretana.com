@@ -2,8 +2,7 @@
 
 import { X } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef } from "react";
 import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useLanguage } from "@/lib/language-context";
@@ -49,16 +48,35 @@ const contentLinks = [
   },
 ];
 
+/** Names for the menu controls, in the language of the page. */
+const menuLabels = {
+  en: { nav: "Primary", menu: "Menu", open: "Open menu", close: "Close menu" },
+  es: { nav: "Principal", menu: "Menú", open: "Abrir menú", close: "Cerrar menú" },
+};
+
 export function Nav() {
-  const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
+  const menuRef = useRef<HTMLDialogElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const { locale } = useLanguage();
   const quote = locale === "es" ? quoteLink.es : quoteLink;
+  const t = menuLabels[locale === "es" ? "es" : "en"];
+
+  // The menu is a native modal dialog: the browser makes the page behind it inert, closes it on
+  // Escape (and the back gesture) and returns focus to the button that opened it. Focus starts on
+  // the close button rather than the first link.
+  const openMenu = () => {
+    menuRef.current?.showModal();
+    closeRef.current?.focus();
+  };
+  const closeMenu = () => menuRef.current?.close();
 
   return (
     <>
       {/* Fixed Nav -- no full-width background */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-4 pointer-events-none">
+      <nav
+        aria-label={t.nav}
+        className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-4 pointer-events-none"
+      >
         <div className="flex items-center justify-between">
           {/* Glass pill: logo + theme toggle + language toggle */}
           <div className="nav-glass pointer-events-auto flex items-center gap-1 rounded-full px-4 h-12">
@@ -69,27 +87,27 @@ export function Nav() {
             </Link>
             <div className="w-px h-5 bg-white/15 mx-2" />
             <ThemeToggle className="text-white" />
-            <LanguageToggle />
+            <LanguageToggle onGlass />
           </div>
 
           {/* Contact CTA */}
-          <button
-            type="button"
-            onClick={() => router.push(quote.href)}
+          <Link
+            href={quote.href}
             className="pointer-events-auto nav-glass flex items-center gap-2 px-4 h-12 rounded-full group contact-cta-btn"
-            aria-label={locale === "es" ? quote.label : "Get a quote"}
           >
             <span className="text-xs uppercase tracking-widest text-white/80 group-hover:text-white transition-colors">
               {quote.label}
             </span>
-          </button>
+          </Link>
 
           {/* Hamburger -- standalone, no container */}
           <button
             type="button"
-            onClick={() => setIsOpen(true)}
+            onClick={openMenu}
             className="pointer-events-auto nav-glass flex flex-col items-center justify-center gap-1.5 w-12 h-12 rounded-full group"
-            aria-label="Open menu"
+            aria-label={t.open}
+            aria-haspopup="dialog"
+            aria-controls="site-menu"
           >
             <span className="w-6 h-0.5 bg-white group-hover:bg-white/70 transition-colors" />
             <span className="w-6 h-0.5 bg-white group-hover:bg-white/70 transition-colors" />
@@ -98,20 +116,16 @@ export function Nav() {
         </div>
       </nav>
 
-      {/* Full screen menu overlay */}
-      <div
-        className={`fixed inset-0 z-[100] bg-bg transition-transform duration-500 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="h-full px-6 md:px-12 lg:px-16 py-6 flex flex-col">
+      {/* Full screen menu */}
+      <dialog id="site-menu" ref={menuRef} aria-label={t.menu} className="site-menu">
+        <div className="min-h-full px-6 md:px-12 lg:px-16 py-6 flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Link
                 href="/"
                 className="text-fg text-2xl md:text-3xl tracking-tight"
-                onClick={() => setIsOpen(false)}
+                onClick={closeMenu}
               >
                 <span className="font-medium">M</span>
                 <span className="font-light text-fg-muted">/</span>
@@ -123,12 +137,13 @@ export function Nav() {
 
             {/* Close button */}
             <button
+              ref={closeRef}
               type="button"
-              onClick={() => setIsOpen(false)}
+              onClick={closeMenu}
               className="p-2 text-fg hover:text-fg-secondary transition-colors"
-              aria-label="Close menu"
+              aria-label={t.close}
             >
-              <X className="w-8 h-8" strokeWidth={1} />
+              <X className="w-8 h-8" strokeWidth={1} aria-hidden="true" />
             </button>
           </div>
 
@@ -153,15 +168,20 @@ export function Nav() {
             <div className="md:w-1/2 md:pl-16">
               <div className="space-y-12">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5">Main</p>
-                  <nav className="space-y-2">
+                  <p
+                    id="menu-main"
+                    className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5"
+                  >
+                    Main
+                  </p>
+                  <nav aria-labelledby="menu-main" className="space-y-2">
                     {primaryLinks.map((item) => {
                       const link = locale === "es" && item.es ? item.es : item;
                       return (
                         <Link
                           key={link.href}
                           href={link.href}
-                          onClick={() => setIsOpen(false)}
+                          onClick={closeMenu}
                           className="block text-3xl md:text-4xl text-fg hover:text-fg-secondary transition-colors border-b border-border pb-2"
                         >
                           {link.label}
@@ -173,15 +193,18 @@ export function Nav() {
 
                 <div className="grid gap-10 md:grid-cols-2">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5">
+                    <p
+                      id="menu-services"
+                      className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5"
+                    >
                       Costa Rica Services
                     </p>
-                    <nav className="space-y-4">
+                    <nav aria-labelledby="menu-services" className="space-y-4">
                       {marketLinks.map((link) => (
                         <Link
                           key={link.href}
                           href={link.href}
-                          onClick={() => setIsOpen(false)}
+                          onClick={closeMenu}
                           className="block border-t border-border pt-4 group"
                         >
                           <p className="text-lg text-fg group-hover:text-fg-secondary transition-colors">
@@ -196,15 +219,18 @@ export function Nav() {
                   </div>
 
                   <div>
-                    <p className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5">
+                    <p
+                      id="menu-library"
+                      className="text-xs uppercase tracking-[0.28em] text-fg-muted mb-5"
+                    >
                       Library
                     </p>
-                    <nav className="space-y-4">
+                    <nav aria-labelledby="menu-library" className="space-y-4">
                       {contentLinks.map((link) => (
                         <Link
                           key={link.href}
                           href={link.href}
-                          onClick={() => setIsOpen(false)}
+                          onClick={closeMenu}
                           className="block border-t border-border pt-4 group"
                         >
                           <p className="text-lg text-fg group-hover:text-fg-secondary transition-colors">
@@ -235,7 +261,7 @@ export function Nav() {
             </div>
           </div>
         </div>
-      </div>
+      </dialog>
     </>
   );
 }

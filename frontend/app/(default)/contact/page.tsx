@@ -1,8 +1,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useRef } from "react";
 import { ContactForm } from "@/components/sections/contact-form";
 import { MarqueeStrip } from "@/components/ui/marquee-strip";
+import { useSceneActivity } from "@/hooks/use-scene-activity";
 
 const ContactCanvas = dynamic(
   () => import("@/components/three/contact-canvas").then((m) => m.ContactCanvas),
@@ -10,12 +12,21 @@ const ContactCanvas = dynamic(
 );
 
 export default function ContactPage() {
+  const sectionRef = useRef<HTMLElement>(null);
+  // Starts once the page is idle, pauses while this section is out of view, and shows a still
+  // frame for visitors who asked for less motion.
+  const { mounted, frameloop } = useSceneActivity(sectionRef);
+
   return (
     <main className="min-h-screen bg-bg">
       {/* WebGL canvas — fixed, clipped to this section */}
-      <section className="relative bg-black min-h-[60vh]" style={{ clipPath: "inset(0)" }}>
+      <section
+        ref={sectionRef}
+        className="relative bg-black min-h-[60vh]"
+        style={{ clipPath: "inset(0)" }}
+      >
         <div className="fixed inset-0 pointer-events-none">
-          <ContactCanvas />
+          {mounted && <ContactCanvas frameloop={frameloop} />}
         </div>
 
         {/* Text content over the canvas */}

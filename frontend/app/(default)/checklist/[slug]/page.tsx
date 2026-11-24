@@ -99,7 +99,7 @@ export default async function ChecklistPage({ params }: PageProps) {
             <ul className="space-y-2">
               {tips.map((tip, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className="text-accent mt-0.5">-</span>
+                  <span className="text-accent-fg mt-0.5">-</span>
                   <span className="text-fg-secondary">{tip}</span>
                 </li>
               ))}

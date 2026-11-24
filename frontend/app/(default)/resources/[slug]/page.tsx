@@ -142,7 +142,7 @@ export default async function ResourcePage({ params }: PageProps) {
           {altSlug && (
             <Link
               href={`/resources/${altSlug}`}
-              className="inline-block mt-4 text-sm text-accent hover:underline"
+              className="inline-block mt-4 text-sm text-accent-fg hover:underline"
             >
               {meta.locale === "en" ? "Ver en Español" : "View in English"}
             </Link>

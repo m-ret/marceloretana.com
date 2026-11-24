@@ -48,11 +48,11 @@ export default function CompareEsIndex() {
               className="group flex items-center justify-between p-5 border border-border rounded-lg hover:border-accent/50 transition-colors"
             >
               <div>
-                <h2 className="text-lg text-fg group-hover:text-accent transition-colors">
+                <h2 className="text-lg text-fg group-hover:text-accent-fg transition-colors">
                   {item.tools[0].name} vs {item.tools[1].name}
                 </h2>
               </div>
-              <span className="text-fg-muted group-hover:text-accent transition-colors">
+              <span className="text-fg-muted group-hover:text-accent-fg transition-colors">
                 &rarr;
               </span>
             </Link>

@@ -135,7 +135,12 @@ function renderBlock(block: Block, index: number): React.ReactNode {
 
     case "code":
       return (
-        <pre key={index} className="bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto">
+        <pre
+          key={index}
+          className="bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto"
+          // biome-ignore lint/a11y/noNoninteractiveTabindex: a scrollable region has to be focusable
+          tabIndex={0}
+        >
           <code>{block.children.map((child) => child.text).join("")}</code>
         </pre>
       );

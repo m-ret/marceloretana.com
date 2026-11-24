@@ -24,10 +24,10 @@ interface Props {
 }
 
 const pricingColors = {
-  free: "text-green-500 border-green-500/30",
-  "open-source": "text-green-500 border-green-500/30",
-  freemium: "text-yellow-500 border-yellow-500/30",
-  paid: "text-red-500 border-red-500/30",
+  free: "text-success-fg border-green-500/30",
+  "open-source": "text-success-fg border-green-500/30",
+  freemium: "text-warning-fg border-yellow-500/30",
+  paid: "text-danger-fg border-red-500/30",
 };
 
 export default function ResourceFilter({ categories, tags, locale }: Props) {
@@ -67,7 +67,7 @@ export default function ResourceFilter({ categories, tags, locale }: Props) {
             onClick={() => setSelectedTag(null)}
             className={`text-xs uppercase tracking-wider px-3 py-1.5 border rounded-full transition-colors cursor-pointer ${
               !selectedTag
-                ? "border-accent text-accent"
+                ? "border-accent text-accent-fg"
                 : "border-border text-fg-secondary hover:border-fg-muted"
             }`}
           >
@@ -79,7 +79,7 @@ export default function ResourceFilter({ categories, tags, locale }: Props) {
               onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
               className={`text-xs uppercase tracking-wider px-3 py-1.5 border rounded-full transition-colors cursor-pointer ${
                 selectedTag === tag
-                  ? "border-accent text-accent"
+                  ? "border-accent text-accent-fg"
                   : "border-border text-fg-secondary hover:border-fg-muted"
               }`}
             >
@@ -107,7 +107,7 @@ export default function ResourceFilter({ categories, tags, locale }: Props) {
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-lg text-fg group-hover:text-accent transition-colors">
+                      <h3 className="text-lg text-fg group-hover:text-accent-fg transition-colors">
                         {item.name}
                       </h3>
                       <span
@@ -118,7 +118,7 @@ export default function ResourceFilter({ categories, tags, locale }: Props) {
                     </div>
                     <p className="text-sm text-fg-secondary mb-3">{item.description}</p>
                     {item.highlight && (
-                      <p className="text-sm text-accent/80 mb-3">{item.highlight}</p>
+                      <p className="text-sm text-accent-fg mb-3">{item.highlight}</p>
                     )}
                     <div className="flex flex-wrap gap-2">
                       {item.tags.map((tag) => (
@@ -131,7 +131,7 @@ export default function ResourceFilter({ categories, tags, locale }: Props) {
                       ))}
                     </div>
                   </div>
-                  <span className="text-fg-muted group-hover:text-accent transition-colors shrink-0">
+                  <span className="text-fg-muted group-hover:text-accent-fg transition-colors shrink-0">
                     &rarr;
                   </span>
                 </div>

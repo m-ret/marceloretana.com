@@ -82,6 +82,17 @@ First-person case studies at `/work/<slug>` (EN) and `/es/casos/<slug>` (ES). Th
 - Tests are `*.test.ts(x)` files next to the code, run with `bun test` (Jest-style `describe` / `it` / `expect` / `mock`), and are excluded from the app's `tsconfig.json` so they can never affect `next build`; `tsconfig.test.json` type-checks them.
 - Mock only leaf modules (`@/content/work`, `@/lib/market-pages`, `@/lib/posts`, `next/image`, `next/link`) with the shared fakes in `frontend/tests/fixtures/`, and use the same fakes in every file: `mock.module` is process-wide, so tests must not depend on file order.
 - New logic ships with tests that bring every file they load to 100% (`bun run test:coverage` enforces it). Put new logic in small modules instead of inside large components.
+- Tests of client components and hooks need a DOM: call `installDom()` from `frontend/tests/dom.ts` at the top of the file (and `removeDom` in `afterAll`) before importing React DOM; the file also has controllable fakes for `matchMedia`, `IntersectionObserver` and idle callbacks. Real browser behavior (focus, inertness, top layer) is checked in a browser, not in these tests.
+
+### Front-end conventions (Chrome's Modern Web Guidance)
+
+Look guidance up with `npx modern-web-guidance@latest search "<topic>"` (then `retrieve <id>`) before writing UI, and check the result in a real browser; a rule is not done because the code follows the guide.
+
+- **Overlays and menus:** use a native `<dialog>` opened with `showModal()` (`components/sections/nav.tsx`). Do not add `role`, `aria-modal`, a focus trap, `inert` toggling or an Escape handler; the browser provides them. Do not hide an overlay by moving it off-screen: it stays in the tab order and the accessibility tree.
+- **Motion:** every infinite or spatial animation and every `scroll-behavior: smooth` lives inside `@media (prefers-reduced-motion: no-preference)`. Keep the final state: text that an animation reveals must still be visible without it (see `.animate-hero-fade-up`). WebGL scenes use `useSceneActivity`, which starts them when the page is idle, pauses them out of view and shows one still frame under reduced motion. It also checks once for a GPU (`hasHardwareWebGL`) and never creates a scene where the browser draws WebGL on the CPU or has none: there an animated scene left the page's main thread free about three times a second. Test scene changes with a real GPU in mind; headless Chrome here draws on the CPU, so a spoofed renderer name is how the GPU path is exercised.
+- **Theme:** change it only through `lib/theme.ts` (the provider and the inline script in `<head>` both use it): it keeps `data-theme`, `<meta name="color-scheme">` and `<meta name="theme-color">` together, and the inline script applies the saved theme before the first paint. Save a theme only on a deliberate choice, never as a default.
+- **Text colors:** use `text-accent-fg`, `text-success-fg`, `text-warning-fg` and `text-danger-fg` for text. They keep 4.5:1 contrast in both themes; the raw accent (`text-accent`) is only 3.7:1 on white, and Tailwind's `text-red-500`, `text-green-500` and `text-yellow-500` fail on white too. Text on the always-dark navigation pill is white.
+- **Names:** an accessible name must contain the visible text (WCAG 2.5.3). Scrollable regions (`overflow-x-auto` code blocks) need `tabIndex={0}`.
 
 #### Spanish-first market pages
 
