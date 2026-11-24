@@ -16,11 +16,20 @@
   --color-fg-secondary: #d4d4d4;
   --color-fg-muted: #cccccc;
   --color-border: #262626;
+
+  /* Colors for text that carries meaning: each keeps WCAG AA contrast (4.5:1) on the page
+     background of its theme. The accent #3b82f6 itself is only 3.7:1 on white. */
+  --color-accent-fg: #3b82f6;
+  --color-success-fg: #22c55e;
+  --color-warning-fg: #eab308;
+  --color-danger-fg: #ef4444;
 }
 
-/* Dark theme (default) */
+/* Dark theme (default). color-scheme makes the browser paint its own UI to match: form controls,
+   scrollbars, the canvas before the CSS arrives. */
 :root,
 [data-theme="dark"] {
+  color-scheme: dark;
   --color-bg: #000000;
   --color-bg-secondary: #0a0a0a;
   --color-bg-tertiary: #171717;
@@ -28,10 +37,15 @@
   --color-fg-secondary: #d4d4d4;
   --color-fg-muted: #cccccc;
   --color-border: #262626;
+  --color-accent-fg: #3b82f6;
+  --color-success-fg: #22c55e;
+  --color-warning-fg: #eab308;
+  --color-danger-fg: #ef4444;
 }
 
 /* Light theme */
 [data-theme="light"] {
+  color-scheme: light;
   --color-bg: #ffffff;
   --color-bg-secondary: #fafafa;
   --color-bg-tertiary: #f5f5f5;
@@ -39,10 +53,17 @@
   --color-fg-secondary: #2e2e2e;
   --color-fg-muted: #3a3a3a;
   --color-border: #e5e5e5;
+  --color-accent-fg: #1d4ed8;
+  --color-success-fg: #15803d;
+  --color-warning-fg: #854d0e;
+  --color-danger-fg: #b91c1c;
 }
 
+/* Smooth in-page scrolling only for visitors who have not asked for less motion. */
 html {
-  scroll-behavior: smooth;
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -72,8 +93,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Reduced motion means no animation at all: the strip stays still. */
 .animate-marquee {
-  animation: marquee 20s linear infinite;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: marquee 20s linear infinite;
+  }
 }
 
 /* Theme transition for all elements */
@@ -105,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .prose a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-fg);
 }
 
 /* Inline code styling - subtle background, no backticks */
@@ -244,8 +268,10 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0s;
 }
 .contact-cta-btn:hover::before {
-  transform: translateX(100%);
-  transition: transform 0.5s ease;
+  @media (prefers-reduced-motion: no-preference) {
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+  }
 }
 
 /* Contact form flash animation */
@@ -269,7 +295,9 @@ h1, h2, h3, h4, h5, h6 {
     rgba(136, 68, 255, 0.08) 60%,
     rgba(0, 0, 0, 1) 100%
   );
-  animation: hero-pulse 6s ease-in-out infinite alternate;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: hero-pulse 6s ease-in-out infinite alternate;
+  }
 }
 
 @keyframes hero-pulse {
@@ -295,9 +323,23 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* The text starts hidden and the animation reveals it, so reduced motion keeps the reveal and drops
+   only the 24px of travel: the text must still end up visible. */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .animate-hero-fade-up {
   opacity: 0;
   animation: hero-fade-up 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  @media (prefers-reduced-motion: reduce) {
+    animation-name: hero-fade-in;
+  }
 }
 
 /* Scroll indicator */
@@ -305,10 +347,74 @@ h1, h2, h3, h4, h5, h6 {
   width: 1px;
   height: 32px;
   background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-  animation: scroll-bounce 2s ease-in-out infinite;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
 }
 
 @keyframes scroll-bounce {
   0%, 100% { transform: translateY(0); opacity: 0.4; }
   50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* Full-screen menu: a native modal <dialog>. The browser makes the page behind it inert, closes it
+   on Escape and returns focus to the button that opened it, so none of that is written by hand. */
+.site-menu {
+  /* Undo the default dialog box: centered, padded, bordered and capped in size. */
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  /* The menu scrolls on short screens instead of clipping, and the scroll never reaches the page. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /* Entry and exit: display and overlay are transitioned so the menu stays on screen until the
+     exit finishes. Declared apart from the shorthand so older browsers ignore only this line. */
+  transition-property: transform, opacity, display, overlay;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+  transition-behavior: allow-discrete;
+}
+
+.site-menu::backdrop {
+  background: transparent;
+  /* ::backdrop only honors overscroll-behavior once it is a scroll container. */
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Slides in from the right, as before. */
+  .site-menu {
+    transform: translateX(100%);
+  }
+  .site-menu[open] {
+    transform: translateX(0);
+
+    @starting-style {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No travel: a short fade instead. */
+  .site-menu {
+    opacity: 0;
+    transition-duration: 0.1s;
+  }
+  .site-menu[open] {
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
 }
