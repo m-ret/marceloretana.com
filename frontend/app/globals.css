@@ -154,31 +154,35 @@ h1, h2, h3, h4, h5, h6 {
   font-size: inherit;
 }
 
-/* Syntax highlighting - Dark theme (Atom One Dark inspired) */
+/* Syntax highlighting - Dark theme (Atom One Dark hues, lightened where needed).
+   Every token keeps 4.5:1 contrast on the code block's background (#171717) and on --hljs-bg.
+   Atom's own comment color (#5c6370) is only 2.9:1. */
 :root,
 [data-theme="dark"] {
   --hljs-bg: #282c34;
   --hljs-fg: #abb2bf;
-  --hljs-comment: #5c6370;
+  --hljs-comment: #8f96a3;
   --hljs-keyword: #c678dd;
   --hljs-string: #98c379;
   --hljs-number: #d19a66;
   --hljs-function: #61afef;
-  --hljs-variable: #e06c75;
+  --hljs-variable: #e2747d;
   --hljs-type: #e5c07b;
 }
 
-/* Syntax highlighting - Light theme (Atom One Light inspired) */
+/* Syntax highlighting - Light theme (Atom One Light hues, darkened to 4.5:1 on #f5f5f5 and
+   #fafafa). Atom's originals were between 2.4:1 and 3.7:1 there. Numbers and types would meet at
+   one shade, so they are pushed apart: orange-brown and olive-gold. */
 [data-theme="light"] {
   --hljs-bg: #fafafa;
   --hljs-fg: #383a42;
-  --hljs-comment: #a0a1a7;
+  --hljs-comment: #6c6d75;
   --hljs-keyword: #a626a4;
-  --hljs-string: #50a14f;
-  --hljs-number: #986801;
-  --hljs-function: #4078f2;
-  --hljs-variable: #e45649;
-  --hljs-type: #c18401;
+  --hljs-string: #3d7b3d;
+  --hljs-number: #a05a00;
+  --hljs-function: #2364f0;
+  --hljs-variable: #d12e1f;
+  --hljs-type: #806600;
 }
 
 /* Apply syntax highlighting */

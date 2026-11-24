@@ -1,10 +1,11 @@
 import { ArrowLeft } from "lucide-react";
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getPostsByLang, type Post } from "@/lib/posts";
+import { withShareImages } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Blog",
   description:
     "Artículos sobre sitios web, presencia digital, flujos de WhatsApp y ejecución de producto en Costa Rica.",
@@ -23,6 +24,10 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+export function generateMetadata(_props: unknown, parent: ResolvingMetadata): Promise<Metadata> {
+  return withShareImages(metadata, parent);
+}
 
 const commercialPostSlugs = new Set([
   "5-errores-que-matan-tu-atencion-al-cliente-en-whatsapp",

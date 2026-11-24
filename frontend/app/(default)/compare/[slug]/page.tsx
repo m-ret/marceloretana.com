@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactForm } from "@/components/sections/contact-form";
+import { comparisonAlternateUrl } from "@/lib/compare-alternates";
 import { getAlternateSlug, getPseoContent, getPseoSlugs, hasAlternate } from "@/lib/pseo";
 import type { Comparison } from "@/lib/pseo-types";
 import ShareBar from "./ShareBar";
@@ -23,9 +24,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const url = `https://marceloretana.com/compare/${slug}`;
   const alternates: Metadata["alternates"] = { canonical: url };
   if (hasAlternate("comparisons", slug, data.meta.locale)) {
-    const altSlug = getAlternateSlug(slug, data.meta.locale);
     alternates.languages = {
-      [data.meta.locale === "en" ? "es" : "en"]: `https://marceloretana.com/compare/${altSlug}`,
+      [data.meta.locale === "en" ? "es" : "en"]: comparisonAlternateUrl(slug, data.meta.locale),
     };
   }
 

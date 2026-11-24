@@ -1,11 +1,12 @@
 import { ArrowLeft } from "lucide-react";
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ShareBar from "@/app/(default)/compare/[slug]/ShareBar";
 import { ContactForm } from "@/components/sections/contact-form";
 import { getEsPseoSlugs, getPseoContentByUrlSlug, hasAlternate } from "@/lib/pseo";
 import type { Comparison } from "@/lib/pseo-types";
+import { withShareImages } from "@/lib/site-metadata";
 
 export const dynamicParams = false;
 
@@ -17,7 +18,10 @@ export function generateStaticParams() {
   return getEsPseoSlugs("comparisons").map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: PageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const { slug } = await params;
   const data = getPseoContentByUrlSlug<Comparison>("comparisons", slug, "es");
   if (!data) return {};
@@ -32,20 +36,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  return {
-    title: data.seo.title,
-    description: data.seo.description,
-    keywords: data.seo.keywords,
-    alternates,
-    openGraph: {
+  return withShareImages(
+    {
       title: data.seo.title,
       description: data.seo.description,
-      url,
-      type: "article",
-      siteName: "Marcelo Retana",
-      locale: "es_CR",
+      keywords: data.seo.keywords,
+      alternates,
+      openGraph: {
+        title: data.seo.title,
+        description: data.seo.description,
+        url,
+        type: "article",
+        siteName: "Marcelo Retana",
+        locale: "es_CR",
+      },
     },
-  };
+    parent
+  );
 }
 
 function ScoreBar({ score, label }: { score: number; label: string }) {

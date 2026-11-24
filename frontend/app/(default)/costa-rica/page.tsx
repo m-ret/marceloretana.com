@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { MarketLandingPage } from "@/components/market-pages/market-landing-page";
 import { enCrHub } from "@/content/market-pages/en-cr";
 import { getIndexableMarketPagesByMachine } from "@/lib/market-pages";
 import { buildMarketJsonLd, buildMarketMetadata } from "@/lib/market-seo";
+import { withShareImages } from "@/lib/site-metadata";
 
-export function generateMetadata(): Metadata {
-  return buildMarketMetadata(enCrHub);
+export function generateMetadata(_props: unknown, parent: ResolvingMetadata): Promise<Metadata> {
+  return withShareImages(buildMarketMetadata(enCrHub), parent);
 }
 
 export default function CostaRicaEnglishHubPage() {

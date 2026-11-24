@@ -77,6 +77,13 @@ First-person case studies at `/work/<slug>` (EN) and `/es/casos/<slug>` (ES). Th
 - **Claims:** every figure in a story must be checkable on the live site or in the project's repo. Do not add numbers that are not already supported.
 - Run `bun run validate:work` after editing a story, and `bun run validate:market` after changing the market pages a story points to.
 
+### Page metadata
+
+- A page that sets its own `openGraph` replaces the one its layouts built, share image included. Wrap its metadata with `withShareImages(metadata, parent)` (`lib/site-metadata.ts`) from `generateMetadata(_props, parent)`, or the page is shared without a picture. English pages get `/opengraph-image` from `siteMetadata` (the file at the app root is not attached to any page by Next); Spanish pages get the image of `app/(es)/es/opengraph-image.tsx`, whose address carries a hash, which is why the helper reads it from `parent` instead of hard-coding it.
+- Titles are templated (`%s | Marcelo Retana`): write only the page's own part. `app/page-titles.test.ts` fails when a static title repeats the brand.
+- hreflang must be reciprocal and point at final addresses, never at a redirect (`lib/compare-alternates.ts` for comparisons). The sitemap lists only pages meant to be indexed: put redirecting addresses and deliberately `noindex` pages in `exclude` in `next-sitemap.config.js`.
+- Check metadata on the **live** site as well as locally: some audits (canonical, for one) only run when the page's origin matches its canonical.
+
 ### Tests
 
 - Tests are `*.test.ts(x)` files next to the code, run with `bun test` (Jest-style `describe` / `it` / `expect` / `mock`), and are excluded from the app's `tsconfig.json` so they can never affect `next build`; `tsconfig.test.json` type-checks them.

@@ -43,7 +43,17 @@ const config = {
     "/icon*",
     "/opengraph-image*",
     "/twitter-image*",
+    "/es/opengraph-image*",
+    "/es/twitter-image*",
     "/llms.txt",
+    // The old Spanish comparison addresses only redirect to /es/compare/<slug>.
+    "/compare/*-es",
+    // Library hubs that are deliberately noindex: a sitemap lists only pages meant to be indexed.
+    "/checklist",
+    "/compare",
+    "/learn",
+    "/resources",
+    "/es/compare",
   ],
   additionalPaths: async () => {
     const paths = [];

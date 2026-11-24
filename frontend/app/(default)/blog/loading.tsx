@@ -37,11 +37,15 @@ export default function BlogLoading() {
         {/* Header */}
         <header className="mb-24">
           <p className="text-white text-sm uppercase tracking-widest mb-8">Blog</p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight">
+          {/* Part of the loading skeleton, not the page's heading: the real page has its own h1. */}
+          <p
+            aria-hidden="true"
+            className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight"
+          >
             Thoughts &
             <br />
             Insights.
-          </h1>
+          </p>
         </header>
 
         {/* Skeleton posts */}
