@@ -51,7 +51,7 @@ export function stubMatchMedia(initial: boolean) {
     listeners,
     set(value: boolean) {
       matches = value;
-      for (const listener of [...listeners]) listener();
+      for (const listener of listeners) listener();
     },
   };
 }
@@ -90,6 +90,32 @@ export function stubIntersectionObserver() {
   };
 }
 
+type WebGLKind = "gpu" | "software" | "none";
+
+const GPU_RENDERER = "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Direct3D11 vs_5_0 ps_5_0, D3D11)";
+const CPU_RENDERER =
+  "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero)), SwiftShader driver)";
+
+/**
+ * `canvas.getContext("webgl")` as the test wants it: a GPU, a renderer that draws on the CPU, or no
+ * WebGL at all. Change `kind` between renders; `lost` counts the contexts that were released.
+ */
+export function stubWebGL(kind: WebGLKind) {
+  const state = { kind, lost: 0 };
+  HTMLCanvasElement.prototype.getContext = (() => {
+    if (state.kind === "none") return null;
+    return {
+      getExtension: (name: string) => {
+        if (name === "WEBGL_debug_renderer_info") return { UNMASKED_RENDERER_WEBGL: 37446 };
+        if (name === "WEBGL_lose_context") return { loseContext: () => state.lost++ };
+        return null;
+      },
+      getParameter: () => (state.kind === "software" ? CPU_RENDERER : GPU_RENDERER),
+    };
+  }) as unknown as HTMLCanvasElement["getContext"];
+  return state;
+}
+
 /** An idle callback the test runs by hand; `cancelled` lists the handles that were cancelled. */
 export function stubIdleCallback() {
   const pending = new Map<number, () => void>();
@@ -111,7 +137,7 @@ export function stubIdleCallback() {
   return {
     cancelled,
     runAll() {
-      for (const [handle, callback] of [...pending]) {
+      for (const [handle, callback] of pending) {
         pending.delete(handle);
         callback();
       }

@@ -7,6 +7,7 @@ import {
   stubIdleCallback,
   stubIntersectionObserver,
   stubMatchMedia,
+  stubWebGL,
 } from "@/tests/dom";
 
 installDom();
@@ -31,11 +32,13 @@ const read = (container: HTMLElement) =>
 let observer: ReturnType<typeof stubIntersectionObserver>;
 let idle: ReturnType<typeof stubIdleCallback>;
 let media: ReturnType<typeof stubMatchMedia>;
+let webgl: ReturnType<typeof stubWebGL>;
 
 beforeEach(() => {
   observer = stubIntersectionObserver();
   idle = stubIdleCallback();
   media = stubMatchMedia(false);
+  webgl = stubWebGL("gpu");
 });
 
 describe("useSceneActivity", () => {
@@ -46,6 +49,36 @@ describe("useSceneActivity", () => {
 
     await view.act(async () => idle.runAll());
     expect(read(view.container)).toEqual({ mounted: true, frameloop: "always" });
+    await view.unmount();
+  });
+
+  it("never creates the scene on a browser that draws WebGL on the CPU", async () => {
+    webgl.kind = "software";
+    const view = await render(<Probe />);
+
+    await view.act(async () => idle.runAll());
+    await view.act(async () => observer.fire(true));
+
+    expect(read(view.container)).toEqual({ mounted: false, frameloop: "always" });
+    await view.unmount();
+  });
+
+  it("never creates the scene where WebGL is not available", async () => {
+    webgl.kind = "none";
+    const view = await render(<Probe />);
+
+    await view.act(async () => idle.runAll());
+
+    expect(read(view.container)).toEqual({ mounted: false, frameloop: "always" });
+    await view.unmount();
+  });
+
+  it("releases the context it used to look for a GPU", async () => {
+    const view = await render(<Probe />);
+
+    await view.act(async () => idle.runAll());
+
+    expect(webgl.lost).toBe(1);
     await view.unmount();
   });
 
