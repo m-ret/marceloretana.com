@@ -5,7 +5,7 @@ import { getAllPseoContent, getPseoContentByLocale } from "@/lib/pseo";
 import type { Checklist, Comparison, Resource, Stack } from "@/lib/pseo-types";
 
 export const metadata: Metadata = {
-  title: "Technical Library | Marcelo Retana",
+  title: "Technical Library",
   description:
     "Secondary technical library with comparisons, checklists, and build guides. The main commercial paths for this site live under /es and /costa-rica.",
   alternates: { canonical: "https://marceloretana.com/resources" },

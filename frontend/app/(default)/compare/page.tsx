@@ -5,7 +5,7 @@ import { getAllPseoContent } from "@/lib/pseo";
 import type { Comparison } from "@/lib/pseo-types";
 
 export const metadata: Metadata = {
-  title: "Technical Comparisons | Marcelo Retana",
+  title: "Technical Comparisons",
   description:
     "Secondary library of technical comparisons across frameworks, AI tools, and developer platforms.",
   alternates: {

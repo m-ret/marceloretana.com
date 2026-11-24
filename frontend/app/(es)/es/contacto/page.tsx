@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/sections/contact-form";
 
 export const metadata: Metadata = {
-  title: "Contacto | Marcelo Retana",
+  title: "Contacto",
   description: "Contacte a Marcelo Retana para servicios de desarrollo web en Costa Rica.",
-  alternates: { canonical: "/es/contacto" },
+  alternates: {
+    canonical: "/es/contacto",
+    languages: {
+      en: "/contact",
+      "x-default": "/contact",
+    },
+  },
 };
 
 export default function ContactoPage() {

@@ -5,7 +5,7 @@ import { getAllPseoContent } from "@/lib/pseo";
 import type { Checklist } from "@/lib/pseo-types";
 
 export const metadata: Metadata = {
-  title: "Technical Checklists | Marcelo Retana",
+  title: "Technical Checklists",
   description:
     "Secondary library of interactive checklists for launches, audits, and implementation work.",
   alternates: { canonical: "https://marceloretana.com/checklist" },

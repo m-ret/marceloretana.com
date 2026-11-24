@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/sections/contact-form";
 
 export const metadata: Metadata = {
-  title: "Solicitar Cotización | Marcelo Retana",
+  title: "Solicitar Cotización",
   description: "Solicite una cotización para su proyecto web en Costa Rica.",
   alternates: { canonical: "/es/cotizacion" },
 };
