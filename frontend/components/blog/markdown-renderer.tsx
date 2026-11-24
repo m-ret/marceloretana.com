@@ -18,6 +18,11 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           </a>
         ),
         img: ({ src, alt }) => <img src={src} alt={alt || ""} className="rounded-lg" />,
+        // A code block that scrolls sideways must be reachable by keyboard.
+        pre: ({ children }) => (
+          // biome-ignore lint/a11y/noNoninteractiveTabindex: a scrollable region needs focus to be scrolled with the keyboard
+          <pre tabIndex={0}>{children}</pre>
+        ),
       }}
     >
       {content}
