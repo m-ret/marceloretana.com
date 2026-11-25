@@ -100,10 +100,6 @@ export function Testimonials() {
                 <span className="w-2 h-2 rounded-full bg-yellow-400" />
                 5.0 on Clutch
               </div>
-              <div className="flex items-center gap-2 text-sm text-fg-muted">
-                <span className="w-2 h-2 rounded-full bg-yellow-400" />
-                5.0 on Google
-              </div>
             </div>
           </div>
         </div>
