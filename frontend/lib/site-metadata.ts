@@ -115,7 +115,7 @@ export const organizationJsonLd = {
     addressLocality: "Puerto Jiménez",
     addressCountry: "CR",
   },
-  sameAs: ["https://linkedin.com/in/marceloretana", "https://github.com/maketroli"],
+  sameAs: ["https://linkedin.com/in/marceloretana", "https://github.com/m-ret"],
 };
 
 export const personJsonLd = {
@@ -137,7 +137,7 @@ export const personJsonLd = {
     addressCountry: "Costa Rica",
   },
   email: "info@gexpsoftware.com",
-  sameAs: ["https://linkedin.com/in/marceloretana", "https://github.com/maketroli"],
+  sameAs: ["https://linkedin.com/in/marceloretana", "https://github.com/m-ret"],
   knowsAbout: [
     "Business Website Development",
     "Website Redesign",

@@ -59,7 +59,7 @@ ${blogLines}
 ## Contact
 
 - [Book a Call](https://cal.com/marcelo-retana): Schedule a free consultation
-- [GitHub](https://github.com/maketroli): Open source work and projects
+- [GitHub](https://github.com/m-ret): Open source work and projects
 - [LinkedIn](https://linkedin.com/in/marceloretana): Professional profile
 - Email: info@gexpsoftware.com
 `;

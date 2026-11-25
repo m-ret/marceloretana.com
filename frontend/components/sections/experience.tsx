@@ -16,14 +16,14 @@ const experiences: ExperienceItem[] = [
   {
     company: "Universal Music Group",
     role: "Senior Software Developer",
-    duration: "6+ yrs",
+    duration: "7+ yrs",
     description:
       "Full-stack development with React, Next.js, Node.js, and AWS. Built high-traffic web applications, managed cloud infrastructure, and delivered internal tools at enterprise scale.",
   },
   {
     company: "Provectus",
     role: "Software Engineer",
-    duration: "4+ yrs",
+    duration: "5+ yrs",
     description:
       "AWS Premier Consulting Partner. Working on AI solutions, MLOps, and cloud transformation projects.",
   },
